@@ -43,7 +43,7 @@ async function initHomepageGrid() {
     }
 
     gridContainer.innerHTML = games.map(game => `
-      <a href="/games/${game.slug}/" class="game-card">
+      <a href="/${game.slug}/" class="game-card">
         <img class="card-thumb" src="${game.thumbnail || '/assets/placeholder.jpg'}" alt="${game.title} screenshot" loading="lazy">
         <div class="card-body">
           <div class="card-tags">
@@ -62,48 +62,65 @@ async function initHomepageGrid() {
 }
 
 /**
- * Generates a PNG result card using HTML Canvas and triggers a download.
- * @param {Object} options - Share parameters.
+ * Shared Helper: Canvas-based Share Card Generator (Supports 9:16 and 1:1)
+ * @param {Object} options
  * @param {string} options.gameTitle - Name of the game.
- * @param {string} options.scoreText - Score or outcome to highlight.
- * @param {string} [options.subtext] - Optional detail (e.g. "Time: 42s").
+ * @param {string} options.scoreText - Main score / achievement text.
+ * @param {string} [options.subtext] - Funny punchline or extra info.
+ * @param {'9:16'|'1:1'} [options.aspectRatio='1:1'] - Image aspect ratio.
  */
-function generateResultCard({ gameTitle, scoreText, subtext = "Played on minigames.website" }) {
+function generateResultCard({ gameTitle, scoreText, subtext = "Played on minigames.website", aspectRatio = "1:1" }) {
   const canvas = document.createElement("canvas");
-  canvas.width = 600;
-  canvas.height = 315;
+  
+  // Set dimensions based on ratio requirement
+  if (aspectRatio === "9:16") {
+    canvas.width = 1080;
+    canvas.height = 1920;
+  } else {
+    canvas.width = 1080;
+    canvas.height = 1080;
+  }
+
   const ctx = canvas.getContext("2d");
 
   // Background
   ctx.fillStyle = "#121212";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Border Highlight
+  // Decorative Border
   ctx.strokeStyle = "#2563eb";
-  ctx.lineWidth = 12;
+  ctx.lineWidth = 24;
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
   // Text Config
   ctx.textAlign = "center";
 
-  // Game Title
+  const centerY = canvas.height / 2;
+
+  // Title
   ctx.fillStyle = "#9ca3af";
-  ctx.font = "bold 20px sans-serif";
-  ctx.fillText(gameTitle.toUpperCase(), canvas.width / 2, 70);
+  ctx.font = "bold 42px sans-serif";
+  ctx.fillText(gameTitle.toUpperCase(), canvas.width / 2, centerY - 160);
 
   // Score
   ctx.fillStyle = "#ffffff";
-  ctx.font = "900 48px sans-serif";
-  ctx.fillText(scoreText, canvas.width / 2, 160);
+  ctx.font = "900 84px sans-serif";
+  ctx.fillText(scoreText, canvas.width / 2, centerY);
 
-  // Subtext / Domain
+  // Punchline / Subtext
   ctx.fillStyle = "#60a5fa";
-  ctx.font = "18px sans-serif";
-  ctx.fillText(subtext, canvas.width / 2, 240);
+  ctx.font = "36px sans-serif";
+  ctx.fillText(subtext, canvas.width / 2, centerY + 140);
 
-  // Trigger Download
+  // Branding Domain Footer
+  ctx.fillStyle = "#6c757d";
+  ctx.font = "bold 32px sans-serif";
+  ctx.fillText("minigames.website", canvas.width / 2, canvas.height - 100);
+
+  // Trigger File Download
   const link = document.createElement("a");
-  link.download = `${gameTitle.toLowerCase().replace(/\s+/g, '-')}-score.png`;
+  const filename = `${gameTitle.toLowerCase().replace(/\s+/g, '-')}-${aspectRatio.replace(':', 'x')}-score.png`;
+  link.download = filename;
   link.href = canvas.toDataURL("image/png");
   link.click();
 }
