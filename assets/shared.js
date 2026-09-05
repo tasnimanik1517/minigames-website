@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   renderLayoutComponents();
-  
+
   if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
     initHomepageGrid();
+  } else {
+    initMoreGamesStrip();
   }
 });
 
@@ -28,36 +30,84 @@ function renderLayoutComponents() {
   }
 }
 
+async function fetchGames() {
+  const response = await fetch("/games.json");
+  if (!response.ok) throw new Error("Network response was not ok");
+  const games = await response.json();
+  return Array.isArray(games) ? games : [];
+}
+
+function gameCardHTML(game) {
+  return `
+    <a href="/${game.slug}/" class="game-card">
+      <img class="card-thumb" src="${game.thumbnail || '/assets/placeholder.jpg'}" alt="${game.title} screenshot" loading="lazy">
+      <div class="card-body">
+        <div class="card-tags">
+          ${(game.tags || []).map(tag => `<span class="tag-badge">${tag}</span>`).join('')}
+        </div>
+        <h3 class="card-title">${game.title}</h3>
+        <p class="card-tagline">${game.tagline}</p>
+      </div>
+    </a>
+  `;
+}
+
+// Homepage: splits games.json into two sections by the "section" field
+// ("popular" or "new"). Add a new game to games.json and it lands in the
+// right section automatically — no other file needs to change.
 async function initHomepageGrid() {
-  const gridContainer = document.getElementById("game-grid");
-  if (!gridContainer) return;
+  const popularContainer = document.getElementById("popular-grid");
+  const newContainer = document.getElementById("new-grid");
+  if (!popularContainer || !newContainer) return;
 
   try {
-    const response = await fetch("/games.json");
-    if (!response.ok) throw new Error("Network response was not ok");
-    const games = await response.json();
+    const games = await fetchGames();
 
-    if (!Array.isArray(games) || games.length === 0) {
-      gridContainer.innerHTML = `<div class="empty-state">More games coming soon</div>`;
-      return;
-    }
+    const popular = games.filter(g => g.section === "popular");
+    const newGames = games
+      .filter(g => g.section === "new")
+      .sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
 
-    gridContainer.innerHTML = games.map(game => `
-      <a href="/${game.slug}/" class="game-card">
-        <img class="card-thumb" src="${game.thumbnail || '/assets/placeholder.jpg'}" alt="${game.title} screenshot" loading="lazy">
-        <div class="card-body">
-          <div class="card-tags">
-            ${game.isNew ? `<span class="tag-badge new-badge">NEW</span>` : ''}
-            ${(game.tags || []).map(tag => `<span class="tag-badge">${tag}</span>`).join('')}
-          </div>
-          <h2 class="card-title">${game.title}</h2>
-          <p class="card-tagline">${game.tagline}</p>
-        </div>
-      </a>
-    `).join('');
+    popularContainer.innerHTML = popular.length
+      ? popular.map(gameCardHTML).join('')
+      : `<div class="empty-state">More games coming soon</div>`;
+
+    newContainer.innerHTML = newGames.length
+      ? newGames.map(gameCardHTML).join('')
+      : `<div class="empty-state">More games coming soon</div>`;
   } catch (error) {
     console.error("Failed to fetch games list:", error);
-    gridContainer.innerHTML = `<div class="empty-state">More games coming soon</div>`;
+    popularContainer.innerHTML = `<div class="empty-state">More games coming soon</div>`;
+    newContainer.innerHTML = `<div class="empty-state">More games coming soon</div>`;
+  }
+}
+
+// Individual game pages: auto-fills the "More Games" strip. Prefers other
+// games that share a tag with the current one (e.g. give every version of
+// Rock Paper Scissors the shared tag "rock-paper-scissors" so they always
+// link to each other), then fills any remaining slots at random.
+async function initMoreGamesStrip() {
+  const container = document.getElementById("more-games-grid");
+  if (!container) return;
+
+  const currentSlug = window.location.pathname.split("/").filter(Boolean)[0] || "";
+
+  try {
+    const games = await fetchGames();
+    const current = games.find(g => g.slug === currentSlug);
+    const others = games.filter(g => g.slug !== currentSlug);
+
+    let related = [];
+    if (current && current.tags && current.tags.length) {
+      related = others.filter(g => (g.tags || []).some(tag => current.tags.includes(tag)));
+    }
+
+    const rest = others.filter(g => !related.includes(g)).sort(() => Math.random() - 0.5);
+    const picks = related.concat(rest).slice(0, 3);
+
+    container.innerHTML = picks.map(gameCardHTML).join('');
+  } catch (error) {
+    console.error("Failed to fetch games list:", error);
   }
 }
 

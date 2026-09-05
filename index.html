@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MiniGames.website - Play Free Online Mini-Games</title>
   <meta name="description" content="A collection of fast, free, fun mini-games playable directly in your browser.">
+  <link rel="canonical" href="https://minigames.website/">
   <link rel="stylesheet" href="/assets/shared.css">
 </head>
 <body>
@@ -13,12 +14,19 @@
 
   <main class="container">
     <section class="hero">
-      <h1 class="hero-title"></h1>
-      <p class="hero-subtitle"></p>
+      <h1 class="hero-title">Free Mini-Games You Can Play Instantly</h1>
+      <p class="hero-subtitle">No downloads, no sign-ups — just click and play.</p>
     </section>
 
-    <div id="game-grid" class="game-grid" aria-live="polite">
-      </div>
+    <section class="games-section">
+      <h2 class="section-heading">Popular Games</h2>
+      <div id="popular-grid" class="game-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="games-section">
+      <h2 class="section-heading">New Games</h2>
+      <div id="new-grid" class="game-grid" aria-live="polite"></div>
+    </section>
   </main>
 
   <footer id="site-footer" class="site-footer"></footer>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================================
+       STEP 1 — SEO tags. Replace every [bracketed] value below.
+       ============================================================ -->
+  <title>[Game Title] – Play Free Online | MiniGames.website</title>
+  <meta name="description" content="[150-160 character description: what the game is and why it's fun.]">
+  <link rel="canonical" href="https://minigames.website/[game-slug]/">
+
+  <meta property="og:title" content="[Game Title] – Play Free Online">
+  <meta property="og:description" content="[Same description, or a shorter version.]">
+  <meta property="og:image" content="https://minigames.website/[game-slug]/thumbnail.jpg">
+  <meta property="og:url" content="https://minigames.website/[game-slug]/">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="/assets/shared.css">
+
+  <!-- Structured data — tells Google this page is a playable game.
+       Optional but harmless; keep the fields in sync with the tags above. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "[Game Title]",
+    "description": "[Same as meta description]",
+    "url": "https://minigames.website/[game-slug]/",
+    "image": "https://minigames.website/[game-slug]/thumbnail.jpg",
+    "applicationCategory": "Game",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <header id="site-header" class="site-header"></header>
+
+  <main class="container">
+    <div class="game-page-header">
+      <a href="/" class="back-link">&larr; All Games</a>
+    </div>
+
+    <!-- STEP 2 — This H1 should contain the exact game name. -->
+    <h1 class="game-title">[Game Title]</h1>
+    <p class="game-tagline">[One short line — what this version is / what makes it different.]</p>
+
+    <!-- STEP 3 — The game itself.
+         Drop the file you get from your AI tool into this folder as
+         "game.html" — don't merge its code into this page. The iframe
+         keeps its CSS/JS completely separate from the site's, so nothing
+         clashes no matter which tool built it.
+         Set --game-aspect to whatever shape suits this game
+         (4 / 3, 1 / 1, 16 / 9, etc). -->
+    <div class="game-stage" style="--game-aspect: 4 / 3;">
+      <iframe src="game.html" loading="lazy" title="[Game Title]"></iframe>
+    </div>
+
+    <!-- STEP 4 — A little real, unique text. This is what actually helps
+         a page rank for its own keyword — don't leave it as one line. -->
+    <div class="game-info">
+      <h2>How to Play</h2>
+      <p>[2-4 sentences explaining the rules in plain language.]</p>
+
+      <h2>About This Version</h2>
+      <p>[1-2 sentences on what's different about this variant — delete this block entirely for a game that has no "original" version.]</p>
+    </div>
+
+    <!-- STEP 5 — Leave this as-is. shared.js fills it in automatically,
+         and prefers other games that share a tag with this one (see
+         games.json below), so a variant and its original link to each
+         other without you doing it by hand. -->
+    <h2 class="more-games-heading">More Games</h2>
+    <div id="more-games-grid" class="game-grid" aria-live="polite"></div>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <script src="/assets/shared.js"></script>
+</body>
+</html>
