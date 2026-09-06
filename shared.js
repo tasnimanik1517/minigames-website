@@ -1,49 +1,14 @@
-/**
- * Path handling
- * ------------------------------------------------------------------
- * On the live site every path is written from the domain root
- * ("/assets/x.js", "/rock-paper-scissors/"). That only works when
- * served over http(s). When someone opens a file directly on their
- * computer (file:///D:/.../index.html) there is no domain root, so
- * absolute paths break.
- *
- * Fix: every HTML page declares its own depth via a data attribute
- * on <body> — data-depth="0" for root pages (home, /all-games/),
- * data-depth="1" for a game page one folder deep. resolvePath()
- * uses that to build the right relative path ONLY when testing via
- * file://; on a real http(s) deployment it just returns the
- * absolute path unchanged.
- */
-function isFileProtocol() {
-  return window.location.protocol === "file:";
-}
-
-function pageDepth() {
-  return Number(document.body?.dataset.depth || "0");
-}
-
-function resolvePath(absPath) {
-  if (!isFileProtocol()) return absPath;
-  const clean = absPath.replace(/^\//, "");
-  const prefix = "../".repeat(pageDepth());
-  if (clean === "") return pageDepth() > 0 ? prefix : "./";
-  return `${prefix}${clean}`;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   renderLayoutComponents();
   initSearch();
 
-  switch (document.body?.dataset.page) {
-    case "home":
-      initHomepageGrid();
-      break;
-    case "all-games":
-      initAllGamesGrid();
-      break;
-    case "game":
-      initMoreGamesStrip();
-      break;
+  const path = window.location.pathname;
+  if (path === "/" || path === "/index.html") {
+    initHomepageGrid();
+  } else if (path === "/all-games/" || path === "/all-games/index.html") {
+    initAllGamesGrid();
+  } else {
+    initMoreGamesStrip();
   }
 });
 
@@ -54,13 +19,20 @@ function renderLayoutComponents() {
   if (headerEl) {
     headerEl.innerHTML = `
       <div class="container">
-        <a href="${resolvePath('/')}" class="brand-link">MiniGames.website</a>
+        <a href="/" class="brand-link">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/>
+            </svg>
+          </span>
+          MiniGames.website
+        </a>
         <div class="nav-group">
           <div class="search-wrap">
             <input type="search" id="site-search" class="search-input" placeholder="Search games…" autocomplete="off" aria-label="Search games">
             <div id="search-results" class="search-results"></div>
           </div>
-          <a href="${resolvePath('/all-games/')}" class="nav-link">All Games</a>
+          <a href="/all-games/" class="nav-link">All Games</a>
         </div>
       </div>
     `;
@@ -70,11 +42,7 @@ function renderLayoutComponents() {
     footerEl.innerHTML = `
       <div class="container">
         <span>&copy; ${new Date().getFullYear()} MiniGames.website</span>
-        <div class="footer-links">
-          <a href="${resolvePath('/about/')}" class="footer-link">About</a>
-          <a href="${resolvePath('/contact/')}" class="footer-link">Contact</a>
-          <a href="${resolvePath('/all-games/')}" class="footer-link">All Games</a>
-        </div>
+        <a href="/all-games/" class="footer-link">All Games</a>
       </div>
     `;
   }
@@ -84,7 +52,7 @@ let gamesCache = null;
 
 async function fetchGames() {
   if (gamesCache) return gamesCache;
-  const response = await fetch(resolvePath("/games.json"));
+  const response = await fetch("/games.json");
   if (!response.ok) throw new Error("Network response was not ok");
   const games = await response.json();
   gamesCache = Array.isArray(games) ? games : [];
@@ -92,11 +60,9 @@ async function fetchGames() {
 }
 
 function gameCardHTML(game) {
-  const href = resolvePath(`/${game.slug}/`);
-  const thumb = resolvePath(game.thumbnail || "/assets/placeholder.jpg");
   return `
-    <a href="${href}" class="game-card">
-      <img class="card-thumb" src="${thumb}" alt="${game.title} screenshot" loading="lazy">
+    <a href="/${game.slug}/" class="game-card">
+      <img class="card-thumb" src="${game.thumbnail || '/assets/placeholder.jpg'}" alt="${game.title} screenshot" loading="lazy">
       <div class="card-body">
         <div class="card-tags">
           ${(game.tags || []).map(tag => `<span class="tag-badge">${tag}</span>`).join('')}
@@ -164,7 +130,7 @@ async function initMoreGamesStrip() {
   const container = document.getElementById("more-games-grid");
   if (!container) return;
 
-  const currentSlug = document.body?.dataset.slug || "";
+  const currentSlug = window.location.pathname.split("/").filter(Boolean)[0] || "";
 
   try {
     const games = await fetchGames();
@@ -217,8 +183,8 @@ function initSearch() {
 
         resultsBox.innerHTML = matches.length
           ? matches.map(g => `
-              <a href="${resolvePath(`/${g.slug}/`)}" class="search-result-item">
-                <img class="search-result-thumb" src="${resolvePath(g.thumbnail || '/assets/placeholder.jpg')}" alt="" loading="lazy">
+              <a href="/${g.slug}/" class="search-result-item">
+                <img class="search-result-thumb" src="${g.thumbnail || '/assets/placeholder.jpg'}" alt="" loading="lazy">
                 <span>${g.title}</span>
               </a>
             `).join('')
@@ -259,10 +225,10 @@ function generateResultCard({ gameTitle, scoreText, subtext = "Played on minigam
 
   const ctx = canvas.getContext("2d");
 
-  ctx.fillStyle = "#17202a";
+  ctx.fillStyle = "#16141F";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.strokeStyle = "#7657e8";
+  ctx.strokeStyle = "#6C4FF6";
   ctx.lineWidth = 24;
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
@@ -274,11 +240,11 @@ function generateResultCard({ gameTitle, scoreText, subtext = "Played on minigam
   ctx.font = "bold 42px sans-serif";
   ctx.fillText(gameTitle.toUpperCase(), canvas.width / 2, centerY - 160);
 
-  ctx.fillStyle = "#fffefa";
+  ctx.fillStyle = "#ffffff";
   ctx.font = "900 84px sans-serif";
   ctx.fillText(scoreText, canvas.width / 2, centerY);
 
-  ctx.fillStyle = "#62d7d2";
+  ctx.fillStyle = "#2FD1BE";
   ctx.font = "36px sans-serif";
   ctx.fillText(subtext, canvas.width / 2, centerY + 140);
 

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>if(location.protocol==='http:'){location.replace('https://'+location.host+location.pathname+location.search);}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
@@ -17,7 +18,7 @@
   <meta property="og:url" content="https://minigames.website/[game-slug]/">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="../assets/shared.css">
 
   <!-- Structured data — tells Google this page is a playable game.
        Optional but harmless; keep the fields in sync with the tags above. -->
@@ -39,13 +40,13 @@
   }
   </script>
 </head>
-<body>
+<body data-depth="1" data-page="game" data-slug="[game-slug]">
 
   <header id="site-header" class="site-header"></header>
 
   <main class="container">
     <div class="game-page-header">
-      <a href="/" class="back-link">&larr; All Games</a>
+      <a href="../" class="back-link">&larr; All Games</a>
     </div>
 
     <!-- STEP 2 — This H1 should contain the exact game name. -->
@@ -83,6 +84,6 @@
 
   <footer id="site-footer" class="site-footer"></footer>
 
-  <script src="/assets/shared.js"></script>
+  <script src="../assets/shared.js"></script>
 </body>
 </html>
