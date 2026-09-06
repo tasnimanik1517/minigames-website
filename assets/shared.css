@@ -224,7 +224,19 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 
 @media (max-width: 680px) {
-  .search-input { width: clamp(100px, 34vw, 160px); }
+  .site-header .container { flex-wrap: nowrap; }
+  .brand-link { font-size: .82rem; gap: 6px; letter-spacing: -.02em; }
+  .brand-link::before {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    border-radius: 8px 8px 8px 3px;
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .nav-group { gap: 6px; }
+  .search-wrap::before { left: 9px; width: 11px; height: 11px; }
+  .search-input { width: clamp(64px, 24vw, 110px); padding: 6px 8px 6px 26px; font-size: .74rem; }
+  .nav-link { padding: 6px 10px; font-size: .72rem; }
 }
 
 /* ============================================================
@@ -539,6 +551,49 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .footer-link { color: var(--ink); font-weight: 800; text-decoration: none; }
 .footer-link:hover { color: var(--violet); }
 
+.subscribe-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subscribe-input {
+  width: clamp(140px, 22vw, 200px);
+  padding: 7px 12px;
+  color: var(--ink);
+  background: var(--white);
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: .8rem;
+}
+
+.subscribe-input:focus {
+  outline: none;
+  border-color: var(--violet);
+}
+
+.subscribe-btn {
+  padding: 7px 16px;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: .8rem;
+  font-weight: 800;
+  background: var(--lime);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.subscribe-btn:hover { background: var(--yellow); }
+
+.subscribe-note {
+  font-size: .72rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
 /* ============================================================
    Responsive
    ============================================================ */
@@ -550,8 +605,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .container { width: min(calc(100% - 26px), var(--max-width)); }
   .site-header { padding: 11px 0; }
   .hero { padding: 20px 10px 20px; }
-  .hero::before { width: 40px; height: 40px; left: -10px; top: 4px; }
-  .hero::after { width: 34px; height: 34px; right: -8px; bottom: 4px; }
+  .hero::before { width: 30px; height: 30px; left: 4%; top: 2px; }
+  .hero::after { width: 26px; height: 26px; right: 6%; bottom: 2px; }
   .hero-title { font-size: clamp(1.4rem, 6vw, 1.9rem); }
   .games-section { margin-top: 24px; }
   .game-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }

@@ -33,6 +33,7 @@ function resolvePath(absPath) {
 document.addEventListener("DOMContentLoaded", () => {
   renderLayoutComponents();
   initSearch();
+  initSubscribe();
 
   switch (document.body?.dataset.page) {
     case "home":
@@ -69,11 +70,19 @@ function renderLayoutComponents() {
   if (footerEl) {
     footerEl.innerHTML = `
       <div class="container">
-        <span>&copy; ${new Date().getFullYear()} MiniGames.website</span>
-        <div class="footer-links">
-          <a href="${resolvePath('/about/')}" class="footer-link">About</a>
-          <a href="${resolvePath('/contact/')}" class="footer-link">Contact</a>
-          <a href="${resolvePath('/all-games/')}" class="footer-link">All Games</a>
+        <div>
+          <span>&copy; ${new Date().getFullYear()} MiniGames.website</span>
+          <div class="footer-links">
+            <a href="${resolvePath('/about/')}" class="footer-link">About</a>
+            <a href="${resolvePath('/contact/')}" class="footer-link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="subscribe-form">
+            <input type="email" id="subscribe-email" class="subscribe-input" placeholder="Your email" aria-label="Your email">
+            <button type="button" id="subscribe-btn" class="subscribe-btn">Notify me</button>
+          </div>
+          <p class="subscribe-note">Get an email when a new game goes up.</p>
         </div>
       </div>
     `;
@@ -188,6 +197,27 @@ async function initMoreGamesStrip() {
 // Header search: filters games.json live as the person types (title or
 // tags), shows up to 6 matches in a dropdown. Works the same on every page
 // since the header is shared.
+// Footer "Notify me" button: the site has no backend to store emails, so
+// this opens the visitor's own email app with a message pre-addressed to
+// the site owner, asking to be added to updates. Replace [your-email]
+// below with the real inbox that should receive these.
+function initSubscribe() {
+  const btn = document.getElementById("subscribe-btn");
+  const input = document.getElementById("subscribe-email");
+  if (!btn || !input) return;
+
+  btn.addEventListener("click", () => {
+    const email = input.value.trim();
+    if (!email || !email.includes("@")) {
+      input.focus();
+      return;
+    }
+    const subject = encodeURIComponent("Notify me about new games");
+    const body = encodeURIComponent(`Please add this email to the updates list: ${email}`);
+    window.location.href = `mailto:[your-email]@minigames.website?subject=${subject}&body=${body}`;
+  });
+}
+
 function initSearch() {
   const input = document.getElementById("site-search");
   const resultsBox = document.getElementById("search-results");
