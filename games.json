@@ -7,5 +7,14 @@
     "tags": ["rock-paper-scissors", "strategy", "arcade"],
     "section": "new",
     "dateAdded": "2026-09-12"
+  },
+  {
+    "slug": "tic-tac-toe-4x4-4-in-a-row",
+    "title": "Tic Tac Toe 4x4 – 4 in a Row",
+    "tagline": "Play Tic Tac Toe 4x4 for free. Each player gets 4 pieces, and your oldest piece vanishes when you place a new one.",
+    "thumbnail": "/tic-tac-toe-4x4-4-in-a-row/thumbnail.webp",
+    "tags": ["tic-tac-toe", "strategy", "puzzle"],
+    "section": "new",
+    "dateAdded": "2026-09-12"
   }
 ]

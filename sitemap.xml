@@ -16,6 +16,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+  <loc>https://minigames.website/tic-tac-toe-4x4-4-in-a-row/</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+  <url>
     <loc>https://minigames.website/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
