@@ -184,7 +184,8 @@
   .arena-status.thinking { color: var(--muted); font-style: italic; }
 
   .board-wrap { width: min(440px, 88vw, calc(100dvh - 250px)); max-width: 100%; aspect-ratio: 1; margin: 0 auto; }
-  .ttt-board { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: clamp(5px, 1.6vw, 10px); }
+  .ttt-board { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: clamp(5px, 1.6vw, 10px); transition: opacity 0.22s ease; }
+  .ttt-board.resetting { opacity: 0; }
 
   .ttt-cell {
     background: var(--card-bg); border: 1px solid var(--border); border-radius: clamp(8px, 2vw, 14px);
@@ -213,11 +214,6 @@
   }
   .ttt-mark.vanishing { animation: dissolveOut 0.38s ease-in forwards; }
 
-  @keyframes atRiskPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.42; }
-  }
-  .ttt-cell.at-risk .ttt-mark { animation: atRiskPulse 1.3s ease-in-out infinite; }
   .ttt-cell.at-risk::after {
     content: ''; position: absolute; inset: 3px; border-radius: inherit; border: 1.5px dashed currentColor; opacity: 0.35; pointer-events: none;
   }
@@ -775,22 +771,26 @@
   }
 
   function startNewRound() {
-    state = createState();
-    state.turn = nextFirstMover;
-    nextFirstMover = (nextFirstMover === 'player') ? 'cpu' : 'player';
-    cells.forEach(function (cell, idx) {
-      cell.innerHTML = '';
-      cell.classList.remove('at-risk', 'owner-player', 'owner-cpu', 'win-cell-player', 'win-cell-cpu');
-      setCellAria(idx, 'empty');
-    });
-    if (state.turn === 'cpu') {
-      setStatus('Computer is thinking…', 'thinking');
-      isBusy = true;
-      setTimeout(computerTurn, THINK_DELAY);
-    } else {
-      setStatus('Your turn — place a piece');
-      isBusy = false;
-    }
+    boardEl.classList.add('resetting');
+    setTimeout(function () {
+      state = createState();
+      state.turn = nextFirstMover;
+      nextFirstMover = (nextFirstMover === 'player') ? 'cpu' : 'player';
+      cells.forEach(function (cell, idx) {
+        cell.innerHTML = '';
+        cell.classList.remove('at-risk', 'owner-player', 'owner-cpu', 'win-cell-player', 'win-cell-cpu');
+        setCellAria(idx, 'empty');
+      });
+      boardEl.classList.remove('resetting');
+      if (state.turn === 'cpu') {
+        setStatus('Computer is thinking…', 'thinking');
+        isBusy = true;
+        setTimeout(computerTurn, THINK_DELAY);
+      } else {
+        setStatus('Your turn — place a piece');
+        isBusy = false;
+      }
+    }, 230);
   }
 
   // initial kickoff
