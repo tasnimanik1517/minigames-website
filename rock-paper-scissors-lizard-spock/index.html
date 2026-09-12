@@ -1130,7 +1130,7 @@
       if (isThrowing) return;
       isThrowing = true;
       soundMove();
-      triggerHaptic(12); // Move select vibration: 10-15ms
+      triggerHaptic(12);
 
       var circleYou = document.getElementById('circle-you');
       var circleCpu = document.getElementById('circle-cpu');
@@ -1145,6 +1145,7 @@
 
       setButtonsDisabled(true);
 
+      // ১ সেকেন্ড (1000 মিলিসেকেন্ড) ডিলে করা হয়েছে
       setTimeout(function() {
         circleYou.classList.remove('shake-left');
         circleCpu.classList.remove('shake-right');
@@ -1167,19 +1168,19 @@
           statusEl.textContent = 'You win! ' + capitalize(playerChoice) + ' ' + outcome.verb + ' ' + capitalize(cpuChoice) + '!';
           statusEl.className = 'arena-status win';
           soundWin();
-          triggerHaptic(18); // Result vibration: 15-20ms
+          triggerHaptic(18);
         } else if (outcome.result === 'lose') {
           scoreCpu++;
           streakCurr = 0;
           statusEl.textContent = 'Computer wins! ' + capitalize(cpuChoice) + ' ' + outcome.verb + ' ' + capitalize(playerChoice) + '.';
           statusEl.className = 'arena-status lose';
           soundLose();
-          triggerHaptic(18); // Result vibration: 15-20ms
+          triggerHaptic(18);
         } else {
           statusEl.textContent = "It's a draw! Both picked " + capitalize(playerChoice) + '.';
           statusEl.className = 'arena-status tie';
           soundTie();
-          triggerHaptic(18); // Result vibration: 15-20ms
+          triggerHaptic(18);
         }
 
         document.getElementById('score-you').textContent = scoreYou;
@@ -1189,7 +1190,7 @@
 
         setButtonsDisabled(false);
         isThrowing = false;
-      }, 500);
+      }, 1000); // <-- এখানে ৫৫০ থেকে বাড়িয়ে ১০০০ করা হয়েছে
     }
 
     // Move button click events
