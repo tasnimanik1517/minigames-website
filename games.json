@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "slug": "rock-paper-scissors-lizard-spock",
+    "title": "Rock Paper Scissors Lizard Spock",
+    "tagline": "Play the classic 5-move game online for free. Fast and distraction-free.",
+    "thumbnail": "/assets/placeholder.jpg",
+    "tags": ["rock-paper-scissors", "strategy", "arcade"],
+    "section": "new",
+    "dateAdded": "2026-09-12"
+  }
+]

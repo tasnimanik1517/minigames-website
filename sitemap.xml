@@ -11,6 +11,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://minigames.website/rock-paper-scissors-lizard-spock/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://minigames.website/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
