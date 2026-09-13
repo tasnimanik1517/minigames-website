@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   renderLayoutComponents();
+  updateCopyrightYear();
   initSearch();
 
   const path = window.location.pathname;
@@ -12,11 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Renders the shared header/footer ONLY on pages that haven't already
+// baked this markup in statically. Pages that ship it statically (to
+// avoid an empty-then-filled layout shift) are left untouched here —
+// this function then just acts as a fallback for any new page that
+// hasn't been updated with the static markup yet.
 function renderLayoutComponents() {
   const headerEl = document.getElementById("site-header");
   const footerEl = document.getElementById("site-footer");
 
-  if (headerEl) {
+  if (headerEl && headerEl.innerHTML.trim() === "") {
     headerEl.innerHTML = `
       <div class="container">
         <a href="/" class="brand-link">
@@ -38,14 +44,22 @@ function renderLayoutComponents() {
     `;
   }
 
-  if (footerEl) {
+  if (footerEl && footerEl.innerHTML.trim() === "") {
     footerEl.innerHTML = `
       <div class="container">
-        <span>&copy; ${new Date().getFullYear()} MiniGames.website</span>
+        <span>&copy; <span id="copyright-year"></span> MiniGames.website</span>
         <a href="/all-games/" class="footer-link">All Games</a>
       </div>
     `;
   }
+}
+
+// Keeps the footer year correct without ever causing a layout shift —
+// swapping one 4-digit number for another never changes the footer's
+// size, so this is safe to run unconditionally on every page.
+function updateCopyrightYear() {
+  const yearEl = document.getElementById("copyright-year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
 
 let gamesCache = null;
@@ -59,10 +73,11 @@ async function fetchGames() {
   return gamesCache;
 }
 
-// isPriority marks the single image that is likely the page's LCP
-// (largest contentful paint) element: it skips lazy-loading and gets
-// fetchpriority="high" so the browser fetches it immediately instead
-// of discovering it late. Every other card stays lazy-loaded as before.
+// isPriority marks the small handful of cards that could plausibly be
+// the page's LCP (largest contentful paint) element: they skip
+// lazy-loading and get fetchpriority="high" so the browser fetches
+// them immediately instead of discovering them late. Every other card
+// stays lazy-loaded as before.
 function gameCardHTML(game, isPriority = false) {
   const loadingAttr = isPriority ? '' : ' loading="lazy"';
   const fetchPriorityAttr = isPriority ? ' fetchpriority="high"' : '';
@@ -80,6 +95,11 @@ function gameCardHTML(game, isPriority = false) {
   `;
 }
 
+// How many of the first-rendered cards are treated as "above the fold"
+// and skip lazy-loading. 2 gives a safety margin across phone/desktop
+// viewport heights without un-prioritizing the whole grid.
+const PRIORITY_CARD_COUNT = 2;
+
 // Homepage: splits games.json into two sections by the "section" field
 // ("popular" or "new"). Add a new game to games.json and it lands in the
 // right section automatically — no other file needs to change.
@@ -96,11 +116,11 @@ async function initHomepageGrid() {
       .filter(g => g.section === "new")
       .sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
 
-    // Whichever section actually renders first on the page holds the
-    // LCP image. Only that one card gets priority loading — this stays
-    // correct automatically even after "popular" games are added later.
-    const firstVisible = popular.length ? popular[0] : (newGames.length ? newGames[0] : null);
-    const renderCard = (g) => gameCardHTML(g, !!firstVisible && g.slug === firstVisible.slug);
+    // Popular renders first on the page, then New — match that order
+    // to decide which cards are actually above the fold.
+    const visualOrder = popular.concat(newGames);
+    const prioritySlugs = new Set(visualOrder.slice(0, PRIORITY_CARD_COUNT).map(g => g.slug));
+    const renderCard = (g) => gameCardHTML(g, prioritySlugs.has(g.slug));
 
     popularContainer.innerHTML = popular.length
       ? popular.map(renderCard).join('')
@@ -126,7 +146,7 @@ async function initAllGamesGrid() {
     const sorted = [...games].sort((a, b) => a.title.localeCompare(b.title));
 
     container.innerHTML = sorted.length
-      ? sorted.map((g, i) => gameCardHTML(g, i === 0)).join('')
+      ? sorted.map((g, i) => gameCardHTML(g, i < PRIORITY_CARD_COUNT)).join('')
       : `<div class="empty-state">More games coming soon</div>`;
   } catch (error) {
     console.error("Failed to fetch games list:", error);
