@@ -7,7 +7,9 @@
   <title>MiniGames.website - Play Free Online Mini-Games</title>
   <meta name="description" content="A collection of fast, free, fun mini-games playable directly in your browser.">
   <link rel="canonical" href="https://minigames.website/">
-  <link rel="stylesheet" href="assets/shared.css">
+  <link rel="preload" href="/games.json" as="fetch" type="application/json" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/shared.css">
+  <script src="/assets/shared.js" defer></script>
 </head>
 <body data-depth="0" data-page="home">
 
@@ -31,6 +33,5 @@
 
   <footer id="site-footer" class="site-footer"></footer>
 
-  <script src="assets/shared.js"></script>
 </body>
 </html>

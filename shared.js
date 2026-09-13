@@ -59,10 +59,16 @@ async function fetchGames() {
   return gamesCache;
 }
 
-function gameCardHTML(game) {
+// isPriority marks the single image that is likely the page's LCP
+// (largest contentful paint) element: it skips lazy-loading and gets
+// fetchpriority="high" so the browser fetches it immediately instead
+// of discovering it late. Every other card stays lazy-loaded as before.
+function gameCardHTML(game, isPriority = false) {
+  const loadingAttr = isPriority ? '' : ' loading="lazy"';
+  const fetchPriorityAttr = isPriority ? ' fetchpriority="high"' : '';
   return `
     <a href="/${game.slug}/" class="game-card">
-      <img class="card-thumb" src="${game.thumbnail || '/assets/placeholder.jpg'}" alt="${game.title} screenshot" loading="lazy">
+      <img class="card-thumb" src="${game.thumbnail || '/assets/placeholder.jpg'}" alt="${game.title} screenshot"${loadingAttr}${fetchPriorityAttr}>
       <div class="card-body">
         <div class="card-tags">
           ${(game.tags || []).map(tag => `<span class="tag-badge">${tag}</span>`).join('')}
@@ -90,12 +96,18 @@ async function initHomepageGrid() {
       .filter(g => g.section === "new")
       .sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
 
+    // Whichever section actually renders first on the page holds the
+    // LCP image. Only that one card gets priority loading — this stays
+    // correct automatically even after "popular" games are added later.
+    const firstVisible = popular.length ? popular[0] : (newGames.length ? newGames[0] : null);
+    const renderCard = (g) => gameCardHTML(g, !!firstVisible && g.slug === firstVisible.slug);
+
     popularContainer.innerHTML = popular.length
-      ? popular.map(gameCardHTML).join('')
+      ? popular.map(renderCard).join('')
       : `<div class="empty-state">More games coming soon</div>`;
 
     newContainer.innerHTML = newGames.length
-      ? newGames.map(gameCardHTML).join('')
+      ? newGames.map(renderCard).join('')
       : `<div class="empty-state">More games coming soon</div>`;
   } catch (error) {
     console.error("Failed to fetch games list:", error);
@@ -114,7 +126,7 @@ async function initAllGamesGrid() {
     const sorted = [...games].sort((a, b) => a.title.localeCompare(b.title));
 
     container.innerHTML = sorted.length
-      ? sorted.map(gameCardHTML).join('')
+      ? sorted.map((g, i) => gameCardHTML(g, i === 0)).join('')
       : `<div class="empty-state">More games coming soon</div>`;
   } catch (error) {
     console.error("Failed to fetch games list:", error);
@@ -145,7 +157,7 @@ async function initMoreGamesStrip() {
     const rest = others.filter(g => !related.includes(g)).sort(() => Math.random() - 0.5);
     const picks = related.concat(rest).slice(0, 3);
 
-    container.innerHTML = picks.map(gameCardHTML).join('');
+    container.innerHTML = picks.map(g => gameCardHTML(g)).join('');
   } catch (error) {
     console.error("Failed to fetch games list:", error);
   }
