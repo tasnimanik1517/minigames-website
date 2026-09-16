@@ -125,6 +125,20 @@ async function initHomepageGrid() {
   const newContainer = document.getElementById("new-grid");
   if (!popularContainer || !newContainer) return;
 
+  // These grids now ship real, static <a href> game cards in the HTML
+  // itself (for crawlers that don't run JavaScript). Only replace that
+  // static content once games.json actually has more games than are
+  // hard-coded on the page — comparing card counts, not "is it empty",
+  // so a newly added game still shows up automatically.
+  try {
+    const games = await fetchGames();
+    const totalCards = popularContainer.children.length + newContainer.children.length;
+    if (games.length <= totalCards) return;
+  } catch (error) {
+    console.error("Failed to fetch games list:", error);
+    return;
+  }
+
   try {
     const games = await fetchGames();
 
@@ -151,6 +165,16 @@ async function initHomepageGrid() {
 async function initAllGamesGrid() {
   const container = document.getElementById("all-games-grid");
   if (!container) return;
+
+  // Same reasoning as initHomepageGrid: only re-render over the static
+  // fallback cards once games.json has more games than are already shown.
+  try {
+    const games = await fetchGames();
+    if (games.length <= container.children.length) return;
+  } catch (error) {
+    console.error("Failed to fetch games list:", error);
+    return;
+  }
 
   try {
     const games = await fetchGames();

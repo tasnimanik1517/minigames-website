@@ -40,12 +40,43 @@
 
     <section class="games-section">
       <h2 class="section-heading">Popular Games</h2>
-      <div id="popular-grid" class="game-grid" aria-live="polite"></div>
+      <div id="popular-grid" class="game-grid" aria-live="polite">
+        <div class="empty-state">More games coming soon</div>
+      </div>
     </section>
 
     <section class="games-section">
       <h2 class="section-heading">New Games</h2>
-      <div id="new-grid" class="game-grid" aria-live="polite"></div>
+      <!-- Static fallback cards: real <a href> links so search engines see
+           these games immediately without running JavaScript. shared.js
+           will only touch this grid if it finds it empty (see initHomepageGrid),
+           so keep this list in sync with games.json by hand when you add a game. -->
+      <div id="new-grid" class="game-grid" aria-live="polite">
+        <a href="/rock-paper-scissors-lizard-spock/" class="game-card">
+          <img class="card-thumb" src="/assets/rock-paper-scissors-lizard-spock.webp" alt="Rock Paper Scissors Lizard Spock screenshot" loading="lazy" fetchpriority="high">
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag-badge">rock-paper-scissors</span>
+              <span class="tag-badge">strategy</span>
+              <span class="tag-badge">arcade</span>
+            </div>
+            <h3 class="card-title">Rock Paper Scissors Lizard Spock</h3>
+            <p class="card-tagline">Play the classic 5-move game online for free. Fast and distraction-free.</p>
+          </div>
+        </a>
+        <a href="/tic-tac-toe-4x4-4-in-a-row/" class="game-card">
+          <img class="card-thumb" src="/tic-tac-toe-4x4-4-in-a-row/thumbnail.webp" alt="Tic Tac Toe 4x4 – 4 in a Row screenshot" loading="lazy" fetchpriority="high">
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag-badge">tic-tac-toe</span>
+              <span class="tag-badge">strategy</span>
+              <span class="tag-badge">puzzle</span>
+            </div>
+            <h3 class="card-title">Tic Tac Toe 4x4 – 4 in a Row</h3>
+            <p class="card-tagline">Play Tic Tac Toe 4x4 for free. Each player gets 4 pieces, and your oldest piece vanishes when you place a new one.</p>
+          </div>
+        </a>
+      </div>
     </section>
   </main>
 
