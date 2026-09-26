@@ -16,5 +16,14 @@
     "tags": ["tic-tac-toe", "strategy", "puzzle"],
     "section": "new",
     "dateAdded": "2026-09-12"
+  },
+   {
+    "slug": "snake",
+    "title": "Snake",
+    "tagline": "Play classic Snake online for free. Eat food, grow longer, and don't crash into the walls or your own tail.",
+    "thumbnail": "/snake/thumbnail.webp",
+    "tags": ["snake", "arcade", "classic"],
+    "section": "new",
+    "dateAdded": "2026-09-26"
   }
 ]
