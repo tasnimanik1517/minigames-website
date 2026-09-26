@@ -11,7 +11,18 @@
 </head>
 <body data-depth="1" data-page="contact">
 
-  <header id="site-header" class="site-header"></header>
+  <header id="site-header" class="site-header">
+    <div class="container">
+      <a href="../" class="brand-link">MiniGames.website</a>
+      <div class="nav-group">
+        <div class="search-wrap">
+          <input type="search" id="site-search" class="search-input" placeholder="Search games…" autocomplete="off" aria-label="Search games">
+          <div id="search-results" class="search-results"></div>
+        </div>
+        <a href="../all-games/" class="nav-link">All Games</a>
+      </div>
+    </div>
+  </header>
 
   <main class="container">
     <div class="game-page-header">
@@ -25,8 +36,25 @@
     </div>
   </main>
 
-  <footer id="site-footer" class="site-footer"></footer>
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <div>
+        <span>&copy; 2026 MiniGames.website</span>
+        <div class="footer-links">
+          <a href="../about/" class="footer-link">About</a>
+          <a href="../contact/" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="subscribe-form">
+          <input type="email" id="subscribe-email" class="subscribe-input" placeholder="Your email" aria-label="Your email">
+          <button type="button" id="subscribe-btn" class="subscribe-btn">Notify me</button>
+        </div>
+        <p class="subscribe-note">Get an email when a new game goes up.</p>
+      </div>
+    </div>
+  </footer>
 
-  <script src="../assets/shared.js"></script>
+  <script src="../assets/shared.js" defer></script>
 </body>
 </html>

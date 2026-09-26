@@ -335,13 +335,22 @@ a, button { -webkit-tap-highlight-color: transparent; }
   transform: rotate(18deg);
 }
 
-.games-section:nth-of-type(3) .section-heading::before { background: var(--coral); }
-
 .game-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 15px;
 }
+
+/* Homepage showcase grid — bigger cards than the compact grid used on
+   /all-games/ and the "More Games" strip. Fewer columns = more width
+   per card, so the thumbnail, title and tagline all read bigger. */
+.game-grid-showcase {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.game-grid-showcase .card-title { font-size: 1.15rem; }
+.game-grid-showcase .card-tagline { font-size: 0.85rem; }
+.game-grid-showcase .card-body { padding: 16px 18px 18px; }
 
 /* ============================================================
    Game cards — editorial/playground feel, not arcade clutter
@@ -599,6 +608,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
    ============================================================ */
 @media (max-width: 900px) {
   .game-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .game-grid-showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 680px) {
@@ -612,6 +622,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .game-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .card-body { min-height: 75px; padding: 11px 11px 12px; }
   .card-tagline { display: none; }
+  .game-grid-showcase { grid-template-columns: 1fr; gap: 16px; }
+  .game-grid-showcase .card-tagline { display: block; }
+  .game-grid-showcase .card-body { min-height: 0; padding: 15px 16px 17px; }
   .game-info { padding: 19px; }
   .site-footer { margin-top: 48px; }
 }

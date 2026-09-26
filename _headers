@@ -1,0 +1,21 @@
+# Cloudflare Pages custom headers.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Shared CSS/JS: cache for a day, but must-revalidate so an edit you push
+# shows up quickly instead of being stuck behind a long cache.
+/assets/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Game thumbnails and other images change rarely once published — cache
+# them for a week.
+/*.webp
+  Cache-Control: public, max-age=604800, must-revalidate
+/*.png
+  Cache-Control: public, max-age=604800, must-revalidate
+/*.jpg
+  Cache-Control: public, max-age=604800, must-revalidate
+
+# Baseline security/privacy headers on every page.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

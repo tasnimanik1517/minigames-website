@@ -7,22 +7,35 @@
   <title>MiniGames.website - Play Free Online Mini-Games</title>
   <meta name="description" content="A collection of fast, free, fun mini-games playable directly in your browser.">
   <link rel="canonical" href="https://minigames.website/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MiniGames.website - Play Free Online Mini-Games">
+  <meta property="og:description" content="A collection of fast, free, fun mini-games playable directly in your browser.">
+  <meta property="og:url" content="https://minigames.website/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MiniGames.website - Play Free Online Mini-Games">
+  <meta name="twitter:description" content="A collection of fast, free, fun mini-games playable directly in your browser.">
   <link rel="preload" href="/games.json" as="fetch" type="application/json" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/shared.css">
   <script src="/assets/shared.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MiniGames.website",
+    "url": "https://minigames.website/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://minigames.website/all-games/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 </head>
 <body data-depth="0" data-page="home">
 
   <header id="site-header" class="site-header">
     <div class="container">
-      <a href="/" class="brand-link">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/>
-          </svg>
-        </span>
-        MiniGames.website
-      </a>
+      <a href="/" class="brand-link">MiniGames.website</a>
       <div class="nav-group">
         <div class="search-wrap">
           <input type="search" id="site-search" class="search-input" placeholder="Search games…" autocomplete="off" aria-label="Search games">
@@ -39,21 +52,15 @@
     </section>
 
     <section class="games-section">
-      <h2 class="section-heading">Popular Games</h2>
-      <div id="popular-grid" class="game-grid" aria-live="polite">
-        <div class="empty-state">More games coming soon</div>
-      </div>
-    </section>
-
-    <section class="games-section">
-      <h2 class="section-heading">New Games</h2>
+      <h2 class="section-heading">All Games</h2>
       <!-- Static fallback cards: real <a href> links so search engines see
            these games immediately without running JavaScript. shared.js
-           will only touch this grid if it finds it empty (see initHomepageGrid),
-           so keep this list in sync with games.json by hand when you add a game. -->
-      <div id="new-grid" class="game-grid" aria-live="polite">
+           will only touch this grid if games.json has more games than are
+           hard-coded here, so keep this list in sync with games.json by
+           hand when you add a game. -->
+      <div id="all-games-grid-home" class="game-grid game-grid-showcase" aria-live="polite">
         <a href="/rock-paper-scissors-lizard-spock/" class="game-card">
-          <img class="card-thumb" src="/assets/rock-paper-scissors-lizard-spock.webp" alt="Rock Paper Scissors Lizard Spock screenshot" loading="lazy" fetchpriority="high">
+          <img class="card-thumb" src="/assets/rock-paper-scissors-lizard-spock.webp" alt="Rock Paper Scissors Lizard Spock screenshot" fetchpriority="high">
           <div class="card-body">
             <div class="card-tags">
               <span class="tag-badge">rock-paper-scissors</span>
@@ -65,7 +72,7 @@
           </div>
         </a>
         <a href="/tic-tac-toe-4x4-4-in-a-row/" class="game-card">
-          <img class="card-thumb" src="/tic-tac-toe-4x4-4-in-a-row/thumbnail.webp" alt="Tic Tac Toe 4x4 – 4 in a Row screenshot" loading="lazy" fetchpriority="high">
+          <img class="card-thumb" src="/tic-tac-toe-4x4-4-in-a-row/thumbnail.webp" alt="Tic Tac Toe 4x4 – 4 in a Row screenshot" loading="lazy">
           <div class="card-body">
             <div class="card-tags">
               <span class="tag-badge">tic-tac-toe</span>
@@ -82,8 +89,20 @@
 
   <footer id="site-footer" class="site-footer">
     <div class="container">
-      <span>&copy; <span id="copyright-year">2026</span> MiniGames.website</span>
-      <a href="/all-games/" class="footer-link">All Games</a>
+      <div>
+        <span>&copy; 2026 MiniGames.website</span>
+        <div class="footer-links">
+          <a href="/about/" class="footer-link">About</a>
+          <a href="/contact/" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="subscribe-form">
+          <input type="email" id="subscribe-email" class="subscribe-input" placeholder="Your email" aria-label="Your email">
+          <button type="button" id="subscribe-btn" class="subscribe-btn">Notify me</button>
+        </div>
+        <p class="subscribe-note">Get an email when a new game goes up.</p>
+      </div>
     </div>
   </footer>
 

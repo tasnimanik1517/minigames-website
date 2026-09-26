@@ -52,7 +52,11 @@ function renderLayoutComponents() {
   const headerEl = document.getElementById("site-header");
   const footerEl = document.getElementById("site-footer");
 
-  if (headerEl) {
+  // Every page now ships this same markup baked in statically (so there's
+  // no empty-header-then-filled layout shift on first paint). Only touch
+  // it here if a page hasn't got it yet — e.g. a new page someone forgets
+  // to copy the header/footer into.
+  if (headerEl && !headerEl.querySelector(".brand-link")) {
     headerEl.innerHTML = `
       <div class="container">
         <a href="${resolvePath('/')}" class="brand-link">MiniGames.website</a>
@@ -67,7 +71,7 @@ function renderLayoutComponents() {
     `;
   }
 
-  if (footerEl) {
+  if (footerEl && !footerEl.querySelector(".footer-links")) {
     footerEl.innerHTML = `
       <div class="container">
         <div>
@@ -117,47 +121,26 @@ function gameCardHTML(game) {
   `;
 }
 
-// Homepage: splits games.json into two sections by the "section" field
-// ("popular" or "new"). Add a new game to games.json and it lands in the
-// right section automatically — no other file needs to change.
+// Homepage: one flat "All Games" grid, newest first. These ship as real,
+// static <a href> game cards in the HTML itself (for crawlers that don't
+// run JavaScript). Only replace that static content once games.json
+// actually has more games than are hard-coded on the page — comparing
+// card counts, not "is it empty" — so a newly added game still shows up
+// automatically without touching this file.
 async function initHomepageGrid() {
-  const popularContainer = document.getElementById("popular-grid");
-  const newContainer = document.getElementById("new-grid");
-  if (!popularContainer || !newContainer) return;
-
-  // These grids now ship real, static <a href> game cards in the HTML
-  // itself (for crawlers that don't run JavaScript). Only replace that
-  // static content once games.json actually has more games than are
-  // hard-coded on the page — comparing card counts, not "is it empty",
-  // so a newly added game still shows up automatically.
-  try {
-    const games = await fetchGames();
-    const totalCards = popularContainer.children.length + newContainer.children.length;
-    if (games.length <= totalCards) return;
-  } catch (error) {
-    console.error("Failed to fetch games list:", error);
-    return;
-  }
+  const container = document.getElementById("all-games-grid-home");
+  if (!container) return;
 
   try {
     const games = await fetchGames();
+    if (games.length <= container.children.length) return;
 
-    const popular = games.filter(g => g.section === "popular");
-    const newGames = games
-      .filter(g => g.section === "new")
-      .sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
-
-    popularContainer.innerHTML = popular.length
-      ? popular.map(gameCardHTML).join('')
-      : `<div class="empty-state">More games coming soon</div>`;
-
-    newContainer.innerHTML = newGames.length
-      ? newGames.map(gameCardHTML).join('')
+    const sorted = [...games].sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
+    container.innerHTML = sorted.length
+      ? sorted.map(gameCardHTML).join('')
       : `<div class="empty-state">More games coming soon</div>`;
   } catch (error) {
     console.error("Failed to fetch games list:", error);
-    popularContainer.innerHTML = `<div class="empty-state">More games coming soon</div>`;
-    newContainer.innerHTML = `<div class="empty-state">More games coming soon</div>`;
   }
 }
 
