@@ -1,0 +1,119 @@
+{
+  "slug": "tic-tac-toe",
+  "title": "Tic Tac Toe",
+  "seoTitle": "Tic Tac Toe – Play Online vs Computer or 2 Players",
+  "description": "Play Tic Tac Toe online for free against the computer (Easy, Medium or unbeatable Hard) or with a friend on the same device. Quick rounds, no download.",
+  "tagline": "Three in a row wins. Can you beat Hard mode?",
+  "categories": [
+    "board",
+    "two-player",
+    "classic",
+    "strategy"
+  ],
+  "engine": "tictactoe",
+  "options": {
+    "size": 3,
+    "win": 3
+  },
+  "aspect": "1 / 1",
+  "aspectMobile": "4 / 5",
+  "players": "1–2",
+  "time": "1 min",
+  "controls": [
+    [
+      "Click or tap",
+      "Place your mark"
+    ],
+    [
+      "1 to 9",
+      "Place on a square (1 is top left)"
+    ],
+    [
+      "Arrow keys, then Enter",
+      "Move between squares and place"
+    ]
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "popularity": 95,
+  "featured": false,
+  "color": "#2F6BFF",
+  "aka": [
+    "noughts and crosses",
+    "x and o",
+    "xo",
+    "tictactoe",
+    "tic tac toe 3x3"
+  ],
+  "lede": "Noughts and crosses against a computer with three difficulty levels, or against a friend on the same screen. Hard mode never loses, so a draw is a win.",
+  "sections": [
+    {
+      "h": "Rules",
+      "p": [
+        "Players take turns placing their mark, X or O, on a 3×3 grid. The first to get three in a row across, down or diagonally wins. If all nine squares fill up without a line, the round is a draw.",
+        "In this version you are X against the computer. The first move switches every round, so sometimes the computer starts."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "How to never lose",
+      "p": [
+        "Perfect Tic Tac Toe always ends in a draw. To play perfectly, go down this list on every move and take the first one that applies:"
+      ],
+      "ol": [
+        "Win: if you have two in a row and the third square is free, take it.",
+        "Block: if your opponent has two in a row, take the third square.",
+        "Fork: make a move that creates two lines of two at once. Only one can be blocked.",
+        "Block a fork: if your opponent can fork next turn, stop it, ideally by making two in a row yourself so they have to answer.",
+        "Take the centre.",
+        "If your opponent is in a corner, take the opposite corner.",
+        "Take any free corner.",
+        "Take any free side square."
+      ]
+    },
+    {
+      "h": "Difficulty levels",
+      "dl": [
+        [
+          "Easy",
+          "Mostly random. It sometimes spots a winning move and rarely blocks yours. Good for learning or for young players."
+        ],
+        [
+          "Medium",
+          "Takes a win when it sees one and usually blocks your lines, but it can be caught out by a fork."
+        ],
+        [
+          "Hard",
+          "Looks at every possible game before it moves, so it never loses. Your goal is a draw."
+        ]
+      ]
+    },
+    {
+      "h": "A very old game",
+      "p": [
+        "Three-in-a-row games have been played for a long time. People in the Roman Empire played a version called terni lapilli, and in Britain the game is still called noughts and crosses.",
+        "In 1952 a version called OXO was programmed on the EDSAC computer at the University of Cambridge. It is one of the earliest video games."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "How do I play with a friend?",
+          "Open the options under the board and choose 2 Players. You take turns on the same device: X first, then O."
+        ],
+        [
+          "What is the best first move?",
+          "The centre, followed by a corner. Both give you the most ways to make three in a row."
+        ],
+        [
+          "Is my score saved?",
+          "Yes. Wins, losses and draws are counted on your device, separately for each mode and difficulty."
+        ]
+      ]
+    }
+  ]
+}

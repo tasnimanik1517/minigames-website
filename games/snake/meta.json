@@ -1,0 +1,122 @@
+{
+  "slug": "snake",
+  "title": "Snake",
+  "seoTitle": "Snake Game – Play Classic Snake Online Free",
+  "description": "Play Snake online free: a realistic snake on a forest floor. Eat eggs, grow longer and beat your high score with swipe or arrow keys. No download.",
+  "tagline": "Eat the eggs, grow longer, don't bite your own tail.",
+  "categories": [
+    "arcade",
+    "classic"
+  ],
+  "engine": "snake",
+  "options": {
+    "cols": 20,
+    "rows": 20
+  },
+  "aspect": "1 / 1",
+  "aspectMobile": "3 / 4",
+  "players": "1",
+  "time": "1–5 min",
+  "controls": [
+    [
+      "Arrow keys or WASD",
+      "Steer the snake"
+    ],
+    [
+      "Swipe",
+      "Steer on a phone or tablet"
+    ],
+    [
+      "Space or P",
+      "Pause and resume"
+    ],
+    [
+      "Enter",
+      "Start a new game"
+    ]
+  ],
+  "added": "2026-09-26",
+  "updated": "2026-11-02",
+  "popularity": 92,
+  "featured": true,
+  "color": "#1F9D63",
+  "aka": [
+    "snake game",
+    "nokia snake",
+    "worm game",
+    "classic snake"
+  ],
+  "lede": "The classic Snake game with a realistic snake in its natural habitat: a grassy forest floor ringed with stones. Swipe or use the arrow keys, eat the eggs, and watch each one travel down the snake's body. Your best score is saved on your device.",
+  "sections": [
+    {
+      "h": "How to play Snake",
+      "p": [
+        "Steer the snake to the egg. Each egg is worth one point and makes the snake one segment longer, and you can see it slide down the body after it's swallowed.",
+        "The snake never stops moving, and it gets a little faster with every egg. The game ends when it runs into the stones around the edge or into its own body."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "Classic or No walls?",
+      "dl": [
+        [
+          "Classic",
+          "The board is ringed with stones. Touch them and the game is over. This is the original way to play."
+        ],
+        [
+          "No walls",
+          "Tall grass replaces the stones. Leave the board on one side and you come back on the other, so only your own tail can stop you. It's a good mode for practising long runs."
+        ]
+      ],
+      "p": [
+        "Each mode keeps its own best score, so you can try both without losing a record."
+      ]
+    },
+    {
+      "h": "The golden egg",
+      "p": [
+        "Every seventh egg brings a golden egg with a ring around it. The ring empties in about five seconds. Reach it in time for 5 bonus points. The golden egg doesn't make the snake longer, so it's worth a detour even when the board is crowded."
+      ]
+    },
+    {
+      "h": "Tips for a higher score",
+      "ul": [
+        "Plan your turns a few squares ahead. At top speed you react late, so set up each turn early.",
+        "When the snake gets long, move in tidy loops along the edges. That keeps the middle open for the next egg.",
+        "Before you turn into a narrow gap, make sure there is a way out.",
+        "You can press two directions quickly, such as up then right, to make a tight U-turn. The game remembers both.",
+        "If you need a break, press Space. The game also pauses by itself when you switch tabs."
+      ]
+    },
+    {
+      "h": "Where Snake comes from",
+      "p": [
+        "The idea goes back to the arcade game Blockade from 1976. Snake became a worldwide hit in 1997, when Nokia put a version on its mobile phones, and it has been a favourite quick game ever since."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Can I play Snake on my phone?",
+          "Yes. Swipe anywhere on the board to turn, or use the arrow pad under it. It works in any modern mobile browser."
+        ],
+        [
+          "Why eggs instead of apples?",
+          "Real snakes don't eat fruit, but many of them do eat eggs. This version is set in a snake's natural habitat, so it uses the food a snake would really go after."
+        ],
+        [
+          "Is my high score saved?",
+          "Your best score is saved in your browser on this device, separately for each mode. Clearing your browser data resets it."
+        ],
+        [
+          "Do I need to download anything?",
+          "No. Snake runs in your browser, with nothing to install and no account to create."
+        ]
+      ]
+    }
+  ]
+}

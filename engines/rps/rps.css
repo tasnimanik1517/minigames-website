@@ -1,0 +1,84 @@
+.rps-main {
+  flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(6px, 2vh, 14px); padding: 0 12px;
+}
+.rps-arena { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; width: min(100%, 520px); }
+.rps-side { display: grid; justify-items: center; gap: 4px; }
+.rps-hand {
+  font-size: clamp(54px, min(17vw, 19vh), 128px); line-height: 1.05; transform-origin: 50% 85%;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .16));
+}
+.rps-hand.is-b { transform: scaleX(-1); }
+.rps.is-shaking .rps-hand.is-a { animation: rps-shake .52s ease-in-out; }
+.rps.is-shaking .rps-hand.is-b { animation: rps-shake-b .52s ease-in-out; }
+.rps.is-win .rps-hand.is-a { animation: rps-pop .4s ease-out; }
+.rps.is-lose .rps-hand.is-b { animation: rps-pop-b .4s ease-out; }
+.rps.is-lose .rps-hand.is-a, .rps.is-win .rps-hand.is-b { opacity: .55; }
+.rps.is-hidden-a .rps-hand.is-a { opacity: .7; }
+.rps-who { font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--g-muted); }
+.rps-vs { font-weight: 900; font-size: 16px; color: var(--g-muted); letter-spacing: .06em; }
+.rps-text { text-align: center; min-height: 50px; }
+.rps-result { margin: 0; font-size: clamp(19px, 5vw, 24px); font-weight: 900; }
+.rps.is-win .rps-result { color: var(--g-good); }
+.rps.is-lose .rps-result { color: var(--g-bad); }
+.rps-detail { margin: 2px 0 0; color: var(--g-muted); font-size: 14px; min-height: 1.3em; }
+.rps-moves { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: min(100%, 440px); }
+.rps-moves.is-five { grid-template-columns: repeat(5, minmax(0, 1fr)); width: min(100%, 600px); gap: 6px; }
+.rps-move {
+  appearance: none; border: 0; border-radius: 16px; background: var(--g-surface); cursor: pointer;
+  box-shadow: inset 0 0 0 1.5px var(--g-line), 0 4px 0 var(--g-line); padding: 10px 2px 8px;
+  display: grid; justify-items: center; gap: 2px; min-width: 0;
+}
+.rps-move:hover { background: var(--g-surface-2); }
+.rps-move:active { transform: translateY(3px); box-shadow: inset 0 0 0 1.5px var(--g-line), 0 1px 0 var(--g-line); }
+.rps-move-e { font-size: clamp(28px, 8vw, 42px); line-height: 1.1; }
+.rps-move-n { font-weight: 800; font-size: 13px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.rps-moves.is-five .rps-move-n { font-size: 12px; }
+.rps-move .mg-kbd { font-size: 10px; }
+@media (pointer: coarse) { .rps-move .mg-kbd { display: none; } }
+.rps-history { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; min-height: 26px; }
+.rps-history li { font-size: 13px; padding: 2px 6px; border-radius: 8px; background: var(--g-surface-2); }
+.rps-history li.is-w { box-shadow: inset 0 -2px 0 var(--g-good); }
+.rps-history li.is-l { box-shadow: inset 0 -2px 0 var(--g-bad); }
+.rps-bar { display: flex; justify-content: center; padding: 4px 10px 12px; }
+.rps-rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; text-align: left; font-size: 15px; font-weight: 600; }
+.rps-rules span { display: inline-block; width: 1.6em; }
+@media (max-width: 400px) { .rps-streak { display: none; } }
+@media (max-height: 430px) { .rps-history { display: none; } }
+@keyframes rps-shake { 0%, 33%, 66%, 100% { transform: translateY(0); } 16%, 50%, 83% { transform: translateY(-18%); } }
+@keyframes rps-shake-b { 0%, 33%, 66%, 100% { transform: scaleX(-1) translateY(0); } 16%, 50%, 83% { transform: scaleX(-1) translateY(-18%); } }
+@keyframes rps-pop { 0% { transform: scale(.8); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+@keyframes rps-pop-b { 0% { transform: scaleX(-1) scale(.8); } 60% { transform: scaleX(-1) scale(1.15); } 100% { transform: scaleX(-1) scale(1); } }
+
+
+/* Comic-pop arena (matches the cover art): sunburst, halftone edges, sticker-outlined hands, starburst VS */
+.rps { background: repeating-conic-gradient(from 0deg at 50% 34%, #FFD25A 0deg 9deg, #FFBF3A 9deg 18deg); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rps { background: repeating-conic-gradient(from 0deg at 50% 34%, #3B2B66 0deg 9deg, #2D2154 9deg 18deg); } }
+:root[data-theme="dark"] .rps { background: repeating-conic-gradient(from 0deg at 50% 34%, #3B2B66 0deg 9deg, #2D2154 9deg 18deg); }
+.rps::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(150, 60, 0, .2) 2.5px, transparent 3.2px) 0 0 / 16px 16px;
+  -webkit-mask: radial-gradient(75% 70% at 50% 40%, transparent 50%, #000 100%); mask: radial-gradient(75% 70% at 50% 40%, transparent 50%, #000 100%);
+}
+.rps > * { position: relative; }
+.rps .mg-overlay { position: absolute; }
+.rps-hand {
+  filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 12px 0 rgba(110, 40, 0, .28));
+}
+.rps-who { color: #5A2E00; background: rgba(255, 255, 255, .75); padding: 2px 8px; border-radius: 999px; }
+.rps-vs {
+  display: grid; place-items: center; width: 74px; height: 74px; color: #fff; font-size: 24px; font-style: italic; letter-spacing: 0;
+  background: #E8481C; -webkit-text-stroke: 1.5px #2A1030; paint-order: stroke fill; transform: rotate(-8deg);
+  clip-path: polygon(50% 0, 61% 26%, 90% 14%, 76% 42%, 100% 56%, 72% 64%, 80% 94%, 50% 76%, 20% 94%, 28% 64%, 0 56%, 24% 42%, 10% 14%, 39% 26%);
+  filter: drop-shadow(0 4px 0 rgba(110, 40, 0, .3));
+}
+.rps-result { color: #2A1500; text-shadow: 0 2px 0 rgba(255, 255, 255, .8); }
+.rps.is-win .rps-result { color: #0E7A45; }
+.rps.is-lose .rps-result { color: #C22B2F; }
+.rps-detail { color: #5A3A10; font-weight: 600; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rps-result { color: #FFF4D6; text-shadow: none; } :root:not([data-theme="light"]) .rps-detail { color: #E9D9B5; } }
+:root[data-theme="dark"] .rps-result { color: #FFF4D6; text-shadow: none; }
+:root[data-theme="dark"] .rps-detail { color: #E9D9B5; }
+.rps-move { box-shadow: inset 0 0 0 2px rgba(120, 60, 0, .18), 0 5px 0 rgba(150, 70, 0, .35); }
+.rps-move:active { box-shadow: inset 0 0 0 2px rgba(120, 60, 0, .18), 0 1px 0 rgba(150, 70, 0, .35); }
+.rps-history li { background: rgba(255, 255, 255, .7); }

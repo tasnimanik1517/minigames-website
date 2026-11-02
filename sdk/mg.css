@@ -1,0 +1,144 @@
+/* MiniGames game UI kit: shared tokens + components for every game frame. */
+:root {
+  --g-bg: #F6F7FB;
+  --g-surface: #FFFFFF;
+  --g-surface-2: #ECEEF5;
+  --g-ink: #171A2B;
+  --g-muted: #5A6079;
+  --g-line: #D9DCE7;
+  --g-brand: #E8481C;
+  --g-brand-ink: #FFFFFF;
+  --g-brand-edge: #B9350F;
+  --g-accent: #FFC22E;
+  --g-good: #16915A;
+  --g-bad: #D93B3F;
+  --g-focus: #2F6BFF;
+  --g-p1: #E8481C;
+  --g-p2: #2F6BFF;
+  --g-shadow: 0 1px 0 rgba(23, 26, 43, .05), 0 10px 28px -12px rgba(23, 26, 43, .35);
+  --g-font: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --g-bg: #12141F; --g-surface: #1B1E2D; --g-surface-2: #252A3D; --g-ink: #F1F2F8; --g-muted: #A4A9C2;
+    --g-line: #30354D; --g-brand: #FF6A3D; --g-brand-edge: #C24A22; --g-accent: #FFD15C; --g-good: #3CCB86;
+    --g-bad: #FF6B6E; --g-focus: #7EA2FF; --g-p1: #FF6A3D; --g-p2: #6E9BFF;
+    --g-shadow: 0 1px 0 rgba(0, 0, 0, .4), 0 12px 30px -12px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --g-bg: #12141F; --g-surface: #1B1E2D; --g-surface-2: #252A3D; --g-ink: #F1F2F8; --g-muted: #A4A9C2;
+  --g-line: #30354D; --g-brand: #FF6A3D; --g-brand-edge: #C24A22; --g-accent: #FFD15C; --g-good: #3CCB86;
+  --g-bad: #FF6B6E; --g-focus: #7EA2FF; --g-p1: #FF6A3D; --g-p2: #6E9BFF;
+  --g-shadow: 0 1px 0 rgba(0, 0, 0, .4), 0 12px 30px -12px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--g-bg); color: var(--g-ink); font-family: var(--g-font); font-size: 15px; line-height: 1.35;
+  overflow: hidden; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none;
+  touch-action: manipulation; -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--g-focus); outline-offset: 2px; }
+
+[hidden] { display: none !important; }
+#game { height: 100%; }
+.mg-root { position: relative; display: flex; flex-direction: column; height: 100%; width: 100%; }
+.mg-hud {
+  display: flex; align-items: center; gap: 6px; padding: 8px 10px; flex: 0 0 auto; min-height: 52px;
+  flex-wrap: wrap;
+}
+.mg-spacer { flex: 1 1 auto; }
+.mg-pill {
+  display: inline-flex; align-items: baseline; gap: 6px; padding: 6px 11px; border-radius: 999px;
+  background: var(--g-surface); box-shadow: inset 0 0 0 1px var(--g-line);
+  font-weight: 800; font-size: 16px; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.mg-pill small {
+  font-weight: 700; color: var(--g-muted); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+}
+.mg-icon-btn {
+  appearance: none; border: 0; width: 38px; height: 38px; border-radius: 12px; display: inline-grid; place-items: center;
+  background: var(--g-surface); box-shadow: inset 0 0 0 1px var(--g-line); color: var(--g-ink); cursor: pointer;
+  padding: 0; flex: 0 0 auto;
+}
+.mg-icon-btn svg { width: 20px; height: 20px; }
+.mg-icon-btn:hover { background: var(--g-surface-2); }
+
+.mg-btn {
+  appearance: none; border: 0; border-radius: 14px; padding: 12px 22px; font-weight: 800; font-size: 17px;
+  letter-spacing: .01em; background: var(--g-brand); color: var(--g-brand-ink); cursor: pointer;
+  box-shadow: 0 4px 0 var(--g-brand-edge); transform: translateY(0); transition: transform .06s, box-shadow .06s;
+  min-width: 140px;
+}
+.mg-btn:hover { filter: brightness(1.05); }
+.mg-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--g-brand-edge); }
+.mg-btn.is-secondary {
+  background: var(--g-surface); color: var(--g-ink); box-shadow: inset 0 0 0 1.5px var(--g-line), 0 4px 0 var(--g-line);
+}
+.mg-btn.is-secondary:active { box-shadow: inset 0 0 0 1.5px var(--g-line), 0 1px 0 var(--g-line); }
+.mg-btn.is-small { padding: 8px 14px; font-size: 14px; min-width: 0; border-radius: 11px; box-shadow: 0 3px 0 var(--g-brand-edge); }
+.mg-btn.is-small.is-secondary { box-shadow: inset 0 0 0 1.5px var(--g-line), 0 3px 0 var(--g-line); }
+
+.mg-seg { display: inline-flex; padding: 3px; border-radius: 12px; background: var(--g-surface-2); gap: 2px; flex-wrap: wrap; justify-content: center; }
+.mg-seg button {
+  appearance: none; border: 0; background: transparent; color: var(--g-muted); font-weight: 700; font-size: 14px;
+  padding: 7px 12px; border-radius: 9px; cursor: pointer; white-space: nowrap;
+}
+.mg-seg button:hover { color: var(--g-ink); }
+.mg-seg button[aria-pressed="true"] { background: var(--g-surface); color: var(--g-ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .15); }
+.mg-field { display: grid; gap: 6px; justify-items: center; }
+.mg-chip {
+  appearance: none; border: 0; display: inline-flex; align-items: center; gap: 4px; padding: 7px 10px 7px 13px;
+  border-radius: 999px; background: var(--g-surface); color: var(--g-ink); box-shadow: inset 0 0 0 1.5px var(--g-line);
+  font-weight: 800; font-size: 14px; cursor: pointer; white-space: nowrap; max-width: 100%;
+}
+.mg-chip:hover { background: var(--g-surface-2); }
+.mg-chip span:first-child { overflow: hidden; text-overflow: ellipsis; }
+.mg-chip-caret svg { width: 18px; height: 18px; display: block; color: var(--g-muted); }
+.mg-linkbtn { appearance: none; border: 0; background: none; color: var(--g-muted); font-weight: 700; font-size: 13px; text-decoration: underline; cursor: pointer; padding: 4px; }
+.mg-label { font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--g-muted); }
+
+.mg-overlay {
+  position: absolute; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 14px;
+  background: color-mix(in srgb, var(--g-bg) 72%, transparent); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  overflow: auto;
+}
+.mg-overlay[hidden] { display: none; }
+.mg-card {
+  background: var(--g-surface); border-radius: 22px; padding: 22px 20px; box-shadow: var(--g-shadow);
+  text-align: center; width: min(360px, 100%); display: grid; gap: 14px; justify-items: center;
+  animation: mg-pop .22s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+.mg-title { font-size: clamp(24px, 6vw, 32px); font-weight: 900; letter-spacing: -.02em; margin: 0; line-height: 1.05; }
+.mg-sub { color: var(--g-muted); margin: 0; font-size: 15px; text-wrap: balance; }
+.mg-big { font-size: 46px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+.mg-badge {
+  display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--g-accent); color: #3A2A00;
+  font-weight: 900; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+}
+.mg-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; }
+.mg-kbd {
+  display: inline-block; min-width: 1.6em; padding: 1px 6px; border-radius: 6px; font-size: 12px; font-weight: 800;
+  background: var(--g-surface-2); box-shadow: inset 0 -2px 0 var(--g-line); color: var(--g-ink); text-align: center;
+}
+.mg-hint { font-size: 13px; color: var(--g-muted); margin: 0; }
+.mg-toast {
+  position: absolute; left: 50%; top: 12px; transform: translateX(-50%); z-index: 25; pointer-events: none;
+  background: var(--g-ink); color: var(--g-bg); padding: 8px 14px; border-radius: 999px; font-weight: 800; font-size: 14px;
+  animation: mg-toast 1.6s ease both; white-space: nowrap;
+}
+.mg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@keyframes mg-pop { from { transform: scale(.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes mg-toast { 0% { opacity: 0; transform: translate(-50%, -6px); } 12%, 80% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+.mg-confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }

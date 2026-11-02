@@ -1,0 +1,87 @@
+{
+  "slug": "rock-paper-scissors",
+  "title": "Rock Paper Scissors",
+  "seoTitle": "Rock Paper Scissors – Play Online vs Computer",
+  "description": "Play Rock Paper Scissors online against a computer that learns your patterns, or with a friend on one device. Best of 3, best of 5 or endless. Free, no download.",
+  "tagline": "Can you outsmart a computer that learns?",
+  "categories": [
+    "casual",
+    "classic",
+    "two-player"
+  ],
+  "engine": "rps",
+  "options": {
+    "moves": 3
+  },
+  "aspect": "4 / 3",
+  "aspectMobile": "4 / 5",
+  "players": "1–2",
+  "time": "1–3 min",
+  "controls": [
+    [
+      "R, P or S",
+      "Play Rock, Paper or Scissors"
+    ],
+    [
+      "Click or tap",
+      "Choose a move"
+    ]
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "popularity": 90,
+  "featured": false,
+  "color": "#FF8A1F",
+  "aka": [
+    "roshambo",
+    "janken",
+    "rock paper scissor",
+    "rps"
+  ],
+  "lede": "Rock Paper Scissors against a computer that can learn your habits. Play endless rounds or a best-of match, or pass the device to a friend.",
+  "sections": [
+    {
+      "h": "Rules",
+      "p": [
+        "You and your opponent each pick Rock, Paper or Scissors, then both hands are shown. Rock crushes Scissors, Scissors cuts Paper and Paper covers Rock. The same move twice is a draw.",
+        "Play endless rounds, or choose Best of 3 or Best of 5 in the options. Against the computer, your win streak and best streak are tracked."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "How the computer chooses",
+      "dl": [
+        [
+          "Easy",
+          "Picks completely at random, so every move has the same chance."
+        ],
+        [
+          "Normal",
+          "After a few rounds it notices the move you use most and often plays the move that beats it."
+        ],
+        [
+          "Hard",
+          "Remembers what you tend to play after your last one or two moves and plays the counter. It adds a little randomness so it isn't predictable either."
+        ]
+      ],
+      "p": [
+        "To beat Hard, avoid patterns. Repeating after a win, or always switching to the move that would have beaten your last one, are the habits it learns fastest."
+      ]
+    },
+    {
+      "h": "Two players, one device",
+      "p": [
+        "Choose 2 Players in the options. Player 1 taps a move, which stays hidden. Player 2 then picks, and both hands are revealed together."
+      ]
+    },
+    {
+      "h": "Where it comes from",
+      "p": [
+        "Hand games like this have been played in East Asia for centuries. The version most of the world knows spread from Japan, where it's called janken, during the 20th century. Today it's used everywhere to settle quick decisions."
+      ]
+    }
+  ]
+}

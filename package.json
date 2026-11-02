@@ -1,0 +1,17 @@
+{
+  "name": "minigames-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "node build.mjs --preview",
+    "images": "node tools/make-images.mjs && node tools/logos.mjs",
+    "check": "node build.mjs && node tools/check.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "optionalDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
