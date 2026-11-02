@@ -321,7 +321,7 @@ ${header({ cats: false })}
   <div class="game-top">
     <div class="game-stage">
       <div class="game-frame" id="game-frame" style="--aw:${aw};--ah:${ah};--mw:${mw};--mh:${mh}" data-slug="${g.slug}" data-title="${esc(g.title)}" data-color="${g.color}">
-        <iframe src="${u(path + 'game.html')}" title="${esc(g.title)} game" allow="fullscreen; autoplay; gamepad" allowfullscreen loading="eager"></iframe>
+        <iframe src="${env.preview ? u(path + 'game.html') : path + 'game'}" title="${esc(g.title)} game" allow="fullscreen; autoplay; gamepad" allowfullscreen loading="eager"></iframe>
         <button class="fs-exit" type="button" hidden>${I.close}<span>Exit full screen</span></button>
       </div>
     </div>

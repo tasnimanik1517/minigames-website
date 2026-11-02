@@ -21,7 +21,10 @@ fs.mkdirSync(REVIEW, { recursive: true });
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.avif': 'image/avif', '.jpg': 'image/jpeg', '.png': 'image/png', '.ico': 'image/x-icon', '.xml': 'application/xml', '.webmanifest': 'application/manifest+json', '.txt': 'text/plain' };
 const server = http.createServer((rq, rs) => {
   let p = decodeURIComponent(new URL(rq.url, 'http://x').pathname);
+  // Same HTML handling as Cloudflare static assets: /x/game serves game.html, /x/game.html redirects to /x/game.
+  if (p.endsWith('.html') && !p.endsWith('/404.html')) { rs.writeHead(307, { location: p.endsWith('/index.html') ? p.slice(0, -10) : p.slice(0, -5) }); rs.end(); return; }
   if (p.endsWith('/')) p += 'index.html';
+  else if (!path.extname(p) && fs.existsSync(path.join(DIST, p + '.html'))) p += '.html';
   let f = path.join(DIST, p);
   if (!f.startsWith(DIST) || !fs.existsSync(f)) { rs.writeHead(404, { 'content-type': 'text/html' }); rs.end(fs.readFileSync(path.join(DIST, '404.html'))); return; }
   const body = fs.readFileSync(f);
@@ -89,7 +92,7 @@ async function play(slug, fn) {
   page.on('pageerror', e => errs.push(String(e)));
   page.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
   await page.goto(`${BASE}/${slug}/`, { waitUntil: 'load' });
-  const frame = page.frame({ url: /game\.html/ });
+  const frame = page.frame({ url: /\/game(\.html)?$/ });
   await frame.waitForSelector('#game .mg-root');
   const result = await fn(frame, page);
   await page.screenshot({ path: path.join(REVIEW, `play-${slug}.png`) });

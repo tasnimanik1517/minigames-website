@@ -196,9 +196,16 @@ write('/_headers', `/*
 /*.png
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
+/*/game
+  X-Robots-Tag: noindex
+  Content-Security-Policy: frame-ancestors 'self'
+
 /*/game.html
   X-Robots-Tag: noindex
   Content-Security-Policy: frame-ancestors 'self'
+
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
 
 /games.json
   Cache-Control: public, max-age=300
@@ -220,6 +227,10 @@ write('/_redirects', `# Old image URLs (shared on social media / indexed by imag
 /rock-paper-scissors-lizard-spock /rock-paper-scissors/ 301
 /rock-paper-scissors-lizard-spock/ /rock-paper-scissors/ 301
 /rock-paper-scissors-lizard-spock/* /rock-paper-scissors/ 301
+# Old internal template page.
+/game-template / 301
+/game-template/ / 301
+/game-template/* / 301
 /index.html / 301
 `);
 if (site.adsenseClient) write('/ads.txt', `google.com, ${site.adsenseClient.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n`);
