@@ -123,19 +123,27 @@ export function picture(g, { sizes = '(min-width: 1280px) 200px, (min-width: 860
 </picture>`;
 }
 
-export function tile(g, { featured = false, eager = false, priority = false } = {}) {
+export function tile(g, { featured = false, eager = false, priority = false, sizes: gridSizes } = {}) {
   const isNew = (Date.now() - Date.parse(g.added)) / 864e5 < 21;
-  const sizes = featured ? '(min-width: 1280px) 420px, (min-width: 560px) 46vw, 92vw' : undefined;
+  const sizes = featured ? '(min-width: 1280px) 420px, (min-width: 560px) 46vw, 92vw' : gridSizes;
   return `<a class="tile${featured ? ' is-featured' : ''}" href="${u('/' + g.slug + '/')}" style="--tc:${g.color}" data-title="${esc(g.title.toLowerCase())}" data-tags="${esc(g.categories.join(' '))}">
 <span class="tile-media">${picture(g, { eager, priority, sizes })}${isNew ? '<span class="badge">New</span>' : ''}</span>
 <span class="tile-info"><span class="tile-title">${esc(g.shortTitle || g.title)}</span><span class="tile-meta">${featured ? esc(g.tagline) : esc(catLabel(g)) + ' · ' + (g.players === '1' ? '1P' : g.players + 'P')}</span></span>
 </a>`;
 }
 
+/* With only a few games the grid uses fewer, bigger columns on wide screens (see .grid.max-N in site.css),
+ * so the image sizes hint changes with it. */
+const capSizes = {
+  3: '(min-width: 1320px) 420px, (min-width: 560px) 31vw, 46vw',
+  4: '(min-width: 1320px) 315px, (min-width: 860px) 23vw, (min-width: 560px) 31vw, 46vw',
+  5: '(min-width: 1320px) 250px, (min-width: 1100px) 19vw, (min-width: 860px) 23vw, (min-width: 560px) 31vw, 46vw',
+};
 export function grid(list, { featuredFirst = false, eagerCount = 4, label = '' } = {}) {
   const few = featuredFirst && list.length < 12;
-  return `<div class="grid-wrap"><div class="grid${few ? ' is-few' : ''}"${label ? ` aria-label="${esc(label)}"` : ''}>
-${list.map((g, i) => tile(g, { featured: featuredFirst && i === 0, eager: i < eagerCount, priority: i === 0 })).join('\n')}
+  const cap = list.length <= 5 ? Math.max(3, list.length) : 0;
+  return `<div class="grid-wrap"><div class="grid${few ? ' is-few' : ''}${cap ? ' max-' + cap : ''}"${label ? ` aria-label="${esc(label)}"` : ''}>
+${list.map((g, i) => tile(g, { featured: featuredFirst && i === 0, eager: i < eagerCount, priority: i === 0, sizes: cap ? capSizes[cap] : undefined })).join('\n')}
 </div></div>`;
 }
 

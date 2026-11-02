@@ -99,7 +99,8 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
 .site-header.is-searching .logo, .site-header.is-searching .header-actions { display: none; }
 .site-header.is-searching .search { display: flex; }
 @media (min-width: 680px) {
-  .search { display: flex; max-width: 440px; margin-left: 12px; }
+  .search { display: flex; max-width: 440px; margin-left: auto; }
+  .header-actions { display: none; }
   .search-open, .search-close { display: none; }
   .search input { padding-right: 14px; }
 }
@@ -148,6 +149,10 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
 @media (min-width: 860px) { .grid { --cols: 4; } }
 @media (min-width: 1100px) { .grid { --cols: 5; --gap: 14px; } }
 @media (min-width: 1280px) { .grid { --cols: 6; } }
+/* Only a few games: use fewer, bigger columns so the row is filled instead of half empty */
+@media (min-width: 860px) { .grid.max-3 { --cols: 3; } }
+@media (min-width: 1100px) { .grid.max-4 { --cols: 4; } }
+@media (min-width: 1280px) { .grid.max-5 { --cols: 5; } }
 .tile { display: flex; flex-direction: column; min-width: 0; text-decoration: none; border-radius: var(--radius); position: relative; }
 .tile-media {
   position: relative; display: block; flex: 1 1 auto; min-height: 0; aspect-ratio: 4 / 3; border-radius: var(--radius);
@@ -194,7 +199,9 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
 .page-cat .page-head h1::before { content: ""; width: 14px; height: 14px; border-radius: 5px; background: var(--cc); flex: 0 0 auto; }
 .page-head p { margin: 0; color: var(--muted); max-width: 70ch; }
 .empty { color: var(--muted); padding: 24px 0; }
-.prose { max-width: 760px; }
+/* Text column: 760px wide but aligned to the same left edge as the rest of the page */
+.prose > * { max-width: 760px; }
+.prose > .ad-slot { margin-inline: 0; }
 .prose h2 { font-size: 22px; font-weight: 800; margin: 30px 0 10px; }
 .prose h3 { font-size: 17px; font-weight: 800; margin: 22px 0 6px; }
 .prose p, .prose li { color: color-mix(in srgb, var(--ink) 86%, var(--muted)); }
