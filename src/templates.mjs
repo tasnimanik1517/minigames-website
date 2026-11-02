@@ -39,8 +39,8 @@ export function head(p) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.description)}">
-<meta name="robots" content="${robots}">
-<link rel="canonical" href="${canonical}">
+<meta name="robots" content="${robots}">${p.noCanonical ? '' : `
+<link rel="canonical" href="${canonical}">`}
 <meta name="theme-color" content="#F3F4F8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#10121C" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="${u('/favicon.ico')}" sizes="32x32">
@@ -51,7 +51,7 @@ export function head(p) {
 <meta property="og:type" content="${p.ogType || 'website'}">
 <meta property="og:title" content="${esc(p.ogTitle || p.title)}">
 <meta property="og:description" content="${esc(p.description)}">
-<meta property="og:url" content="${canonical}">
+${p.noCanonical ? '' : `<meta property="og:url" content="${canonical}">`}
 <meta property="og:image" content="${og}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -383,7 +383,7 @@ ${scripts(ctx)}
 
 export function page404(ctx) {
   const top = [...ctx.games].sort((a, b) => b.popularity - a.popularity).slice(0, 6);
-  return `${head({ css: ctx.css, path: '/404', title: 'Page not found | ' + site.name, description: 'This page does not exist. Pick a game to play instead.', noindex: true })}
+  return `${head({ css: ctx.css, path: '/404', title: 'Page not found | ' + site.name, description: 'This page does not exist. Pick a game to play instead.', noindex: true, noCanonical: true })}
 <body class="page-404">
 ${header({ cats: false })}
 <main id="main">
