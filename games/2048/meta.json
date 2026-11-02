@@ -1,0 +1,205 @@
+{
+  "slug": "2048",
+  "title": "2048",
+  "seoTitle": "2048 – Play the Number Puzzle Online Free",
+  "description": "Play 2048 online free: slide the gems, merge matching numbers and forge the 2048 diamond. 3×3, 4×4 and 5×5 boards, undo, saved games, no download.",
+  "tagline": "Slide, merge and forge the 2048 gem.",
+  "categories": [
+    "puzzle"
+  ],
+  "engine": "slide2048",
+  "options": {
+    "size": 4
+  },
+  "aspect": "4 / 5",
+  "aspectMobile": "3 / 4",
+  "players": "1",
+  "time": "5–20 min",
+  "controls": [
+    [
+      "Arrow keys or WASD",
+      "Slide every gem in that direction"
+    ],
+    [
+      "Swipe",
+      "Slide on a phone or tablet"
+    ],
+    [
+      "Drag with the mouse",
+      "Slide on a computer without using keys"
+    ],
+    [
+      "U or Ctrl+Z",
+      "Undo the last move (three per game)"
+    ],
+    [
+      "N",
+      "Start a new game"
+    ]
+  ],
+  "added": "2026-11-03",
+  "updated": "2026-11-03",
+  "popularity": 92,
+  "featured": false,
+  "color": "#7B3FE4",
+  "aka": [
+    "2048 game",
+    "2048 puzzle",
+    "number merge",
+    "sliding number puzzle",
+    "twenty forty eight"
+  ],
+  "lede": "The sliding number puzzle, rebuilt with jewels. Every merge turns two matching gems into a rarer one, until you forge the rainbow 2048 diamond. Pick a 3×3, 4×4 or 5×5 board, keep three undos up your sleeve, and come back to your game whenever you like.",
+  "sections": [
+    {
+      "h": "How to play 2048",
+      "p": [
+        "Each move slides every gem on the board as far as it can go in one direction. When two gems with the same number bump into each other they merge into one gem worth their total, so two 8s become a 16, and two 16s become a 32.",
+        "After every move a new gem appears on a free square. It is usually a 2, and one time in ten it is a 4. The board slowly fills up, so the game is about making room faster than it runs out. When no slide and no merge is possible, the game is over."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "The gem ladder",
+      "p": [
+        "In this version every number has its own stone, so you can read the board by colour before you read the digits. The higher the number, the brighter the glow."
+      ],
+      "table": {
+        "head": [
+          "Number",
+          "Gem"
+        ],
+        "rows": [
+          [
+            "2",
+            "Pale aquamarine"
+          ],
+          [
+            "4",
+            "Mint"
+          ],
+          [
+            "8",
+            "Topaz"
+          ],
+          [
+            "16",
+            "Amber"
+          ],
+          [
+            "32",
+            "Ruby"
+          ],
+          [
+            "64",
+            "Pink spinel"
+          ],
+          [
+            "128",
+            "Gold"
+          ],
+          [
+            "256",
+            "Emerald"
+          ],
+          [
+            "512",
+            "Sapphire"
+          ],
+          [
+            "1024",
+            "Amethyst"
+          ],
+          [
+            "2048",
+            "Rainbow diamond"
+          ],
+          [
+            "4096 and up",
+            "Onyx with gold numbers"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "Three board sizes",
+      "dl": [
+        [
+          "3×3 Small",
+          "Only nine squares, so every move counts. The goal here is the 512 sapphire; 1024 is a real achievement."
+        ],
+        [
+          "4×4 Classic",
+          "The original challenge. Forge the 2048 diamond, then keep going for 4096."
+        ],
+        [
+          "5×5 Big",
+          "Twenty-five squares give you room to recover from mistakes. A relaxed way to reach 2048 and a good board for learning the corner method."
+        ]
+      ]
+    },
+    {
+      "h": "Strategy that actually works",
+      "p": [
+        "Most winning games follow the same plan: park your biggest gem in one corner and never let it leave."
+      ],
+      "ol": [
+        "Pick a corner, for example bottom left, and slide mostly down and left so your largest gem stays there.",
+        "Build a falling chain along the bottom row: biggest in the corner, then the next biggest beside it, and so on. Merges then roll along the chain like dominoes.",
+        "Keep the bottom row full. If it has a gap, a slide to the right can pull your corner gem out of place.",
+        "Use the third direction (right, in this example) when you have to, and avoid the fourth (up) unless there is no other move.",
+        "Merge small gems early. A board full of scattered 2s and 4s fills up quickly.",
+        "Look one move ahead: after you slide, a new gem drops into a random empty square, and it can land where you least want it.",
+        "Save your three undos for real emergencies, such as a gem landing in your corner."
+      ]
+    },
+    {
+      "h": "How many moves and points a 2048 takes",
+      "p": [
+        "New gems arrive as 2s and 4s, worth 2.2 on average, and every move adds exactly one. Collecting the 2048 worth of value inside a single gem therefore needs at least about 930 moves, and a real game takes more because other gems are always on the board.",
+        "Every merge adds the new gem's number to your score. If a 2048 gem is built entirely from 2s, all the merges along the way add up to exactly 20,480 points, which is why scores around 20,000 usually mean the diamond is close."
+      ]
+    },
+    {
+      "h": "Where 2048 came from",
+      "p": [
+        "The original 2048 was made by Italian developer Gabriele Cirulli and released for free in March 2014. He built it over a weekend, and its slide and merge idea came from the mobile game Threes!, by way of an earlier take on it called 1024.",
+        "Within weeks it was being played by millions of people, and its open source code led to countless versions. This one keeps the classic rules and adds its own gem art, three board sizes, undo and saved games."
+      ]
+    },
+    {
+      "h": "More games to try",
+      "p": [
+        "Enjoy merging? Drop fruit into a jar and grow a watermelon in [[fruit-merge]], or fill rows and columns in [[block-puzzle]]. For a puzzle with no time pressure at all, sort coloured balls in [[ball-sort]]. More brain teasers are in [[cat:puzzle|puzzle games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Does the game end at 2048?",
+          "No. When you forge the 2048 diamond you can keep going on the same board and aim for 4096 and beyond."
+        ],
+        [
+          "Is my game saved?",
+          "Yes. Your current game and best score are saved on this device for each board size, so you can close the page and carry on later."
+        ],
+        [
+          "How does undo work?",
+          "You get three undos per game. Each one takes back your last move, including the points it scored. You cannot undo twice in a row."
+        ],
+        [
+          "Why did a 4 appear instead of a 2?",
+          "One new gem in ten is a 4. It is random, so plan for it."
+        ],
+        [
+          "Can I play without a keyboard?",
+          "Yes. Swipe on a phone or tablet, or drag across the board with your mouse."
+        ]
+      ]
+    }
+  ]
+}

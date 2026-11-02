@@ -1,0 +1,121 @@
+/* 2048: jewel gems on a velvet tray. The game keeps its own dark palette in both site themes. */
+.t48 {
+  --g-bg: #1C1236; --g-surface: #2B2050; --g-surface-2: #382A63; --g-ink: #F7F3FF; --g-muted: #C4B8E8; --g-line: #4B3C7C;
+  --g-brand: #FF6A3D; --g-brand-edge: #C24A22; --g-accent: #FFD15C; --g-good: #3CCB86; --g-bad: #FF6B6E; --g-focus: #9DB8FF;
+  --g-shadow: 0 1px 0 rgba(0, 0, 0, .4), 0 14px 34px -12px rgba(0, 0, 0, .8);
+  color-scheme: dark; color: var(--g-ink);
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, .06) 0 1.5px, transparent 2px) 0 0 / 38px 38px,
+    radial-gradient(120% 75% at 50% 0%, #4C2F88 0%, #26174A 55%, #150D2A 100%);
+}
+.t48 .mg-hud { gap: 6px; }
+.t48-score, .t48-best { position: relative; min-width: 84px; justify-content: space-between; }
+.t48-plus {
+  position: absolute; left: 50%; top: -2px; font-weight: 900; font-size: 15px; color: #FFE27A; pointer-events: none;
+  text-shadow: 0 1px 6px rgba(255, 200, 60, .6); animation: t48-plus .75s ease-out forwards;
+}
+.t48-undo { position: relative; }
+.t48-undo:disabled { opacity: .42; cursor: default; }
+.t48-count {
+  position: absolute; right: -5px; top: -5px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px;
+  background: var(--g-accent); color: #3A2A00; font: 900 11px/18px var(--g-font); font-style: normal; text-align: center;
+}
+.t48-main { flex: 1 1 auto; min-height: 0; container-type: size; display: grid; place-items: center; padding: 0 10px; touch-action: none; }
+.t48-stage { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.t48-board {
+  position: relative; width: min(100cqw - 12px, 100cqh - 34px, 560px); aspect-ratio: 1; border-radius: 22px;
+  background-color: #2A1A50;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='v'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .9  0 0 0 0 1  0 0 0 .07 0'/></filter><rect width='220' height='220' filter='url(%23v)'/></svg>"),
+    radial-gradient(120% 100% at 28% 12%, #4D3290 0%, #2B1B55 58%, #1B1038 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 214, 120, .62), inset 0 0 0 5px #1A1036, inset 0 0 0 6px rgba(255, 214, 120, .22),
+    inset 0 10px 24px rgba(0, 0, 0, .45), 0 2px 0 rgba(255, 214, 120, .25), 0 22px 44px -16px rgba(0, 0, 0, .85);
+}
+.t48-cells, .t48-tiles { position: absolute; inset: var(--gap, 8px); }
+.t48-cells { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: var(--gap, 8px); }
+.t48-cells span {
+  border-radius: 16%; background: rgba(9, 3, 24, .36);
+  box-shadow: inset 0 3px 7px rgba(0, 0, 0, .55), inset 0 -1px 0 rgba(255, 255, 255, .07), 0 1px 0 rgba(255, 255, 255, .05);
+}
+.t48-fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+.t48-tile {
+  position: absolute; left: 0; top: 0; width: var(--ts, 60px); height: var(--ts, 60px); z-index: 1;
+  transform: translate(calc(var(--x) * (var(--ts, 60px) + var(--gap, 8px))), calc(var(--y) * (var(--ts, 60px) + var(--gap, 8px))));
+  transition: transform .11s ease-in-out; will-change: transform;
+}
+.t48-tile.is-gone { z-index: 0; }
+
+/* the gem: gradient body, bevel, edge, glow, a facet shine and a glare */
+.t48-face {
+  --e: var(--ts, 60px);
+  position: absolute; inset: 0; border-radius: 17%; display: grid; place-items: center; overflow: hidden;
+  background: linear-gradient(155deg, var(--c1) 0%, var(--c2) 58%, var(--c3) 100%);
+  box-shadow:
+    inset 0 calc(var(--e) * .035) 0 rgba(255, 255, 255, .6), inset 0 calc(var(--e) * -.055) 0 rgba(0, 0, 0, .2),
+    0 calc(var(--e) * .045) 0 var(--edge), 0 calc(var(--e) * .1) calc(var(--e) * .14) calc(var(--e) * -.05) rgba(0, 0, 0, .6),
+    0 0 calc(var(--e) * var(--gl, 0)) var(--glow, transparent);
+  color: var(--ink);
+}
+.t48-face::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(122deg, rgba(255, 255, 255, .42) 0 21%, rgba(255, 255, 255, 0) 21.5% 61%, rgba(255, 255, 255, .14) 61.5% 70%, rgba(255, 255, 255, 0) 70.5%);
+}
+.t48-face::after {
+  content: ""; position: absolute; left: 12%; right: 30%; top: 7%; height: 22%; border-radius: 50%; pointer-events: none;
+  background: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, 0));
+}
+.t48-face b {
+  position: relative; z-index: 1; font-weight: 900; line-height: 1; letter-spacing: -.045em; font-variant-numeric: tabular-nums;
+  font-size: calc(var(--e) * var(--fs, .46)); text-shadow: 0 calc(var(--e) * .02) 0 var(--tsh, rgba(0, 0, 0, .28));
+}
+.t48-face.d3 { --fs: .38; } .t48-face.d4 { --fs: .3; } .t48-face.d5 { --fs: .245; } .t48-face.d6 { --fs: .205; }
+.t48-face.v2 { --c1: #F4FCFF; --c2: #C3E8FB; --c3: #8DCBEE; --edge: #5C9AC6; --ink: #1D4466; --tsh: rgba(255, 255, 255, .55); }
+.t48-face.v4 { --c1: #E6FFF7; --c2: #8FEDD3; --c3: #43C7A5; --edge: #279174; --ink: #0E4A3B; --tsh: rgba(255, 255, 255, .5); }
+.t48-face.v8 { --c1: #FFF5C9; --c2: #FFD167; --c3: #F4A321; --edge: #BE760C; --ink: #5A3300; --tsh: rgba(255, 255, 255, .5); }
+.t48-face.v16 { --c1: #FFDDB6; --c2: #FF9B4C; --c3: #EF6914; --edge: #AE4408; --ink: #fff; }
+.t48-face.v32 { --c1: #FFB9BE; --c2: #FF5C68; --c3: #D72537; --edge: #981322; --ink: #fff; }
+.t48-face.v64 { --c1: #FFB6DD; --c2: #F24B9D; --c3: #C01470; --edge: #860A4E; --ink: #fff; }
+.t48-face.v128 { --c1: #FFF9CF; --c2: #FFDB3F; --c3: #E5A700; --edge: #A27100; --ink: #5A3A00; --tsh: rgba(255, 255, 255, .5); --glow: rgba(255, 214, 64, .55); --gl: .2; }
+.t48-face.v256 { --c1: #CBFFD9; --c2: #41D77B; --c3: #129848; --edge: #0A6630; --ink: #fff; --glow: rgba(65, 215, 123, .5); --gl: .22; }
+.t48-face.v512 { --c1: #CDE0FF; --c2: #508CFF; --c3: #1E4ED4; --edge: #133496; --ink: #fff; --glow: rgba(80, 140, 255, .58); --gl: .25; }
+.t48-face.v1024 { --c1: #ECD9FF; --c2: #A55EFF; --c3: #6A1EDF; --edge: #46109E; --ink: #fff; --glow: rgba(165, 94, 255, .62); --gl: .28; }
+.t48-face.v2048 {
+  --edge: #7E3FCB; --ink: #fff; --glow: rgba(255, 255, 255, .75); --gl: .34;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 34%),
+    conic-gradient(from 200deg at 55% 55%, #FF7AD9, #FFD36E, #79FFB4, #6FD3FF, #B98CFF, #FF7AD9);
+}
+.t48-face.v2048 b { text-shadow: 0 0 calc(var(--e) * .08) rgba(120, 40, 200, .9), 0 calc(var(--e) * .02) 0 rgba(70, 20, 120, .6); }
+.t48-face.v2048::before { background: linear-gradient(115deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, .7) 45%, rgba(255, 255, 255, 0) 60%) -150% 0 / 250% 100% no-repeat; animation: t48-shine 2.6s ease-in-out infinite; }
+.t48-face.vmax { --c1: #575D7E; --c2: #262A42; --c3: #0D0F1E; --edge: #04050C; --ink: #FFD66B; --glow: rgba(255, 214, 107, .5); --gl: .3; }
+
+.t48-face.is-new { animation: t48-in .16s .09s ease-out both; }
+.t48-face.is-merged { animation: t48-pop .21s .07s ease-out both; }
+.t48-board.bump-0 { animation: t48-bump-0 .17s ease-out; } .t48-board.bump-1 { animation: t48-bump-1 .17s ease-out; }
+.t48-board.bump-2 { animation: t48-bump-2 .17s ease-out; } .t48-board.bump-3 { animation: t48-bump-3 .17s ease-out; }
+.t48-hint { margin: 0; min-height: 18px; font-size: 13px; color: var(--g-muted); text-align: center; transition: opacity .4s; }
+.t48-hint.is-hidden { opacity: 0; }
+.t48-bar { display: flex; justify-content: center; padding: 4px 10px 12px; }
+.t48-toast { background: linear-gradient(135deg, #FFE27A, #FFB23F); color: #3A2400; top: 58px; box-shadow: 0 6px 18px -6px rgba(255, 190, 60, .7); }
+.t48-gem { position: relative; width: 112px; height: 112px; --ts: 112px; margin-top: 4px; animation: t48-float 2.4s ease-in-out infinite; }
+.t48-card .mg-big { color: #FFE27A; }
+
+@keyframes t48-in { from { transform: scale(.15); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes t48-pop { 0% { transform: scale(.45); opacity: 0; } 55% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes t48-plus { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -26px); opacity: 0; } }
+@keyframes t48-shine { 0%, 35% { background-position: -150% 0; } 75%, 100% { background-position: 250% 0; } }
+@keyframes t48-float { 50% { transform: translateY(-6px) rotate(-2deg); } }
+@keyframes t48-bump-0 { 40% { transform: translateY(-5px); } } @keyframes t48-bump-1 { 40% { transform: translateX(5px); } }
+@keyframes t48-bump-2 { 40% { transform: translateY(5px); } } @keyframes t48-bump-3 { 40% { transform: translateX(-5px); } }
+
+/* still frame for cover art */
+.t48.is-showcase .mg-hud, .t48.is-showcase .t48-bar, .t48.is-showcase .t48-hint { display: none !important; }
+.t48.is-showcase .t48-main { padding: 0; }
+.t48.is-showcase .t48-board { width: 820px; transform: rotate(-3deg); }
+.t48.is-showcase .t48-tile { transition: none; }
+.t48.is-showcase .t48-face { animation: none; }
+.t48-spare { position: absolute; width: 170px; height: 170px; --ts: 170px; filter: drop-shadow(0 18px 18px rgba(0, 0, 0, .45)); }
+.t48-spare.s1 { left: 58px; top: 120px; transform: rotate(-16deg); }
+.t48-spare.s2 { left: 120px; bottom: 110px; width: 120px; height: 120px; --ts: 120px; transform: rotate(12deg); }
+.t48-spare.s3 { right: 64px; top: 360px; transform: rotate(14deg); }

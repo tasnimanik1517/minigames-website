@@ -1,0 +1,159 @@
+{
+  "slug": "perfect-circle",
+  "title": "Perfect Circle",
+  "seoTitle": "Perfect Circle – Can You Draw a Perfect Circle?",
+  "description": "Draw a circle around the planet in one go and see how round it is, to a tenth of a percent. Earn badges from Potato to Giotto's O, then watch a moon fly it.",
+  "tagline": "Draw an orbit. How round can you go?",
+  "categories": [
+    "skill",
+    "casual"
+  ],
+  "engine": "circle",
+  "options": {},
+  "aspect": "16 / 10",
+  "aspectMobile": "3 / 4",
+  "players": "1",
+  "time": "1 min",
+  "controls": [
+    [
+      "Press and drag around the planet",
+      "Draw your circle with the mouse or one finger"
+    ],
+    [
+      "Go all the way round",
+      "The game scores the circle when you get back to the start"
+    ],
+    [
+      "Lift your finger or the mouse button",
+      "Finish early (a few points come off)"
+    ],
+    [
+      "Draw again",
+      "Start a new try at any time"
+    ]
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "popularity": 86,
+  "featured": false,
+  "color": "#19C9A0",
+  "aka": [
+    "draw a perfect circle",
+    "perfect circle game",
+    "circle drawing test",
+    "how round is your circle",
+    "freehand circle challenge"
+  ],
+  "lede": "Can you draw a perfect circle freehand? It is one of the oldest tests of a steady hand, and here you draw it as an orbit: one smooth loop around a small blue planet, in one go. The game measures how round it is to a tenth of a percent, shows the perfect circle you were aiming for and sends a little moon flying along your orbit.",
+  "sections": [
+    {
+      "h": "How to play Perfect Circle",
+      "p": [
+        "Press anywhere on the sky and draw a loop around the planet without lifting your finger or the mouse button. Your line glows green where it follows a smooth circle and turns yellow, orange and finally red where it wobbles away from it. The big number at the top shows how round your circle is so far.",
+        "As soon as you have gone all the way round, the game scores your circle, draws the perfect circle as a dashed line and lets a moon fly along your orbit. There are only three rules: go around the planet, not through it; make the circle more than twice as wide as the planet; and go at least most of the way round. If you stop a little short, each missing degree costs 0.15 points."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "How the score works",
+      "p": [
+        "The game measures the distance from the middle of the planet to points spaced evenly along your line. The average of those distances is the radius of your circle, and the score depends on how far the line strays from it. Even spacing means that slow, careful parts of the line do not count more than quick ones.",
+        "A circle that matches its radius exactly scores 100%. Every 1% of average wobble takes 4.5 points off, so a circle whose radius wanders by 2% on average scores about 91%. Stopping short costs 0.15 points for each degree you leave out."
+      ]
+    },
+    {
+      "h": "Orbit badges",
+      "table": {
+        "head": [
+          "Badge",
+          "Score"
+        ],
+        "rows": [
+          [
+            "🥔 Potato",
+            "Under 50%"
+          ],
+          [
+            "🥚 Egg",
+            "50% to 69.9%"
+          ],
+          [
+            "🍪 Cookie",
+            "70% to 79.9%"
+          ],
+          [
+            "🍊 Orange",
+            "80% to 87.9%"
+          ],
+          [
+            "🌕 Full Moon",
+            "88% to 93.9%"
+          ],
+          [
+            "🔮 Crystal Ball",
+            "94% to 96.9%"
+          ],
+          [
+            "⭕ Giotto's O",
+            "97% or more"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "The story of Giotto's O",
+      "p": [
+        "The top badge is named after a story told by Giorgio Vasari in his Lives of the Artists, published in 1550. Pope Benedict XI, the story goes, sent a courtier to collect sample drawings from painters, so that he could choose who would decorate St Peter's in Rome. When the courtier reached Giotto in Florence, the painter took a sheet of paper and a pen dipped in red, pressed his arm against his side to turn it into a compass, and drew a single circle.",
+        "The courtier thought he was being made fun of, but the Pope and his advisers understood: a circle that round, drawn freehand in one stroke, showed more skill than any picture. The story gave Tuscany a saying, 'rounder than Giotto's O', which Vasari explains was a joke, because the word tondo meant both perfectly round and slow-witted."
+      ]
+    },
+    {
+      "h": "Tips for a rounder circle",
+      "ol": [
+        "Move from your elbow or shoulder, not your wrist, just as Giotto locked his arm against his side.",
+        "Draw at a steady, medium speed. Going very slowly makes the line shake, and rushing flattens it into an oval.",
+        "Look at the planet in the middle rather than at your fingertip, and think about keeping the same distance from it all the way round.",
+        "Make it bigger. Small circles turn every tiny wobble into a big percentage.",
+        "On a phone, rest the side of your hand on the screen edge or the table to steady it.",
+        "Take a breath and draw in one smooth movement. Hesitating at the start shows up as a bump."
+      ]
+    },
+    {
+      "h": "Why circles are so hard to draw",
+      "p": [
+        "Your arm works like a set of hinges. To move a fingertip in a circle, your shoulder, elbow and wrist all have to speed up and slow down at just the right moments, and any mismatch turns the circle into an egg or an oval. Most people also draw a little faster in some directions than others, which pulls one side of the circle out.",
+        "Circles are special in maths, too: of all the shapes you can draw with a line of a given length, a circle encloses the most area. Soap bubbles show the same idea in three dimensions: a round bubble holds the most air for the least soap film, which is why bubbles float as spheres."
+      ]
+    },
+    {
+      "h": "More skill tests",
+      "p": [
+        "A steady hand is one skill; speed is another. Find out how quickly you react in the [[reaction-time-test]], or how many words per minute you can manage in the [[typing-speed-test]]. For something calmer, mix new things together in [[alchemy-lab]]. You can find every test in [[cat:skill|skill games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Where do I have to start?",
+          "Anywhere you like, at any distance from the planet. Clockwise and anticlockwise both work."
+        ],
+        [
+          "Why did my circle not get a score?",
+          "It has to go around the planet without touching it, be more than twice as wide as the planet and go at least most of the way round. The message at the top tells you which rule you missed."
+        ],
+        [
+          "Is it easier with a mouse or a finger?",
+          "Both work. A mouse is usually steadier, a finger feels more natural. Your best score is kept either way."
+        ],
+        [
+          "Is my best score saved?",
+          "Yes. Your best score and the number of tries are saved in this browser on this device."
+        ]
+      ]
+    }
+  ]
+}

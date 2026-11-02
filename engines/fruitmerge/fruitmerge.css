@@ -1,0 +1,27 @@
+/* Fruit Merge: a glass jar on a sunny lemon-and-mint kitchen backdrop. */
+.fm {
+  --g-bg: #FFF6D8; --g-surface: #FFFFFF; --g-surface-2: #FFF1C2; --g-ink: #3A2A12; --g-muted: #7A6440; --g-line: #F2DFA6;
+  --g-brand: #FF7A2E; --g-brand-edge: #CF5512; --g-accent: #FFD43B;
+  color-scheme: light; color: var(--g-ink);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, .7) 0 60px, transparent 61px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .22) 0 28px, transparent 28px 56px),
+    linear-gradient(180deg, #FFE98A 0%, #FFD86B 38%, #BFEBC8 38.2%, #A9E3B9 100%);
+}
+.fm .mg-pill, .fm .mg-icon-btn { background: rgba(255, 255, 255, .9); box-shadow: inset 0 0 0 1.5px rgba(200, 150, 60, .25), 0 3px 0 rgba(180, 120, 30, .12); }
+.fm-score { min-width: 90px; justify-content: space-between; }
+.fm-next { align-items: center; padding-right: 6px; }
+.fm-nextcv { width: 26px; height: 26px; display: block; }
+.fm-main { flex: 1 1 auto; min-height: 0; position: relative; touch-action: none; }
+.fm-cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: none; }
+.fm-ladder { display: flex; justify-content: center; align-items: center; gap: 2px; padding: 4px 8px 10px; flex-wrap: wrap; }
+.fm-step { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; opacity: .35; filter: grayscale(.7); transition: opacity .3s, filter .3s, transform .3s; }
+.fm-step canvas { width: 26px; height: 26px; }
+.fm-step.got { opacity: 1; filter: none; }
+.fm-step.got:last-of-type { transform: scale(1.1); }
+.fm-toast { background: linear-gradient(135deg, #FFE066, #FF9F43); color: #4A2600; top: 58px; }
+.fm-card canvas { width: 96px; height: 96px; }
+.fm-card .mg-big { color: #E8590C; }
+
+/* still frame for cover art */
+.fm.is-showcase .mg-hud, .fm.is-showcase .fm-ladder { display: none !important; }

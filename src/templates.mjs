@@ -271,7 +271,25 @@ ${scripts(ctx)}
 </html>`;
 }
 
+/* In-text links written in meta.json: [[slug]] or [[slug|anchor text]] for a game, [[cat:skill|skill games]]
+ * for a category. A link is only made when the target is live, so scheduled games appear as plain text
+ * until their release day (pages are rebuilt every release day). */
+let LIVE = new Map(), TITLES = {};
+function rich(t) {
+  return esc(t).replace(/\[\[(cat:)?([a-z0-9-]+)(?:\|([^\]]+))?\]\]/g, (m, isCat, slug, label) => {
+    if (isCat) {
+      const c = categoryBySlug[slug];
+      const text = label || (c ? c.name + ' games' : slug);
+      return c && c.count > 0 ? `<a href="${u('/' + slug + '-games/')}">${text}</a>` : text;
+    }
+    const g = LIVE.get(slug);
+    const text = label || esc(g ? g.title : TITLES[slug] || slug);
+    return g && g.slug !== env.currentGame ? `<a href="${u('/' + slug + '/')}">${text}</a>` : text;
+  });
+}
+
 function renderSection(sec, g) {
+  const esc = rich; // every text field in a section may carry [[links]]
   const paras = (sec.p || []).map(t => `<p>${esc(t)}</p>`).join('');
   const after = !!(sec.dl || sec.table);
   let out = `<h2>${esc(sec.h)}</h2>`;
@@ -294,6 +312,7 @@ function breadcrumbs(items) {
 }
 
 export function pageGame(ctx, g) {
+  LIVE = new Map(ctx.games.map(o => [o.slug, o])); TITLES = ctx.titles || {}; env.currentGame = g.slug;
   const path = '/' + g.slug + '/';
   const primary = categoryBySlug[g.categories[0]];
   const [aw, ah] = g.aspect.split('/').map(s => +s.trim());
@@ -350,7 +369,7 @@ ${header({ cats: false })}
   </section>
   <article class="wrap game-article prose">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="${u('/')}">Home</a>${I.chevron}<a href="${u('/' + primary.slug + '-games/')}">${esc(primary.name)} games</a>${I.chevron}<span aria-current="page">${esc(g.title)}</span></nav>
-    <p class="lede">${esc(g.lede)}</p>
+    <p class="lede">${rich(g.lede)}</p>
     ${g.sections.map((sec, i) => renderSection(sec, g) + (i === 1 ? adSlot('gameContent') : '')).join('\n    ')}
     <p class="updated">Updated ${fmtDate(g.updated)}</p>
   </article>

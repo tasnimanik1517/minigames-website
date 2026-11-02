@@ -49,8 +49,13 @@ function copyDir(src, dst) {
 }
 
 /* ---------- load + validate games ---------- */
+// Release schedule: a game goes live on its "added" date, Bangladesh time. A daily GitHub Action
+// (.github/workflows/daily-release.yml) pushes an empty commit on release days so Cloudflare rebuilds.
+// `--all` (or MG_ALL=1, or a preview build) includes scheduled games too, for local testing.
+const ALL = PREVIEW || process.argv.includes('--all') || process.env.MG_ALL === '1';
+const TODAY = process.env.MG_TODAY || new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 const errors = [];
-const games = fs.readdirSync(path.join(ROOT, 'games'))
+const allGames = fs.readdirSync(path.join(ROOT, 'games'))
   .filter(d => fs.existsSync(path.join(ROOT, 'games', d, 'meta.json')))
   .map(d => {
     const g = JSON.parse(rd(`games/${d}/meta.json`));
@@ -63,9 +68,12 @@ const games = fs.readdirSync(path.join(ROOT, 'games'))
     for (const img of ['thumb-400.webp', 'thumb-400.avif', 'thumb-800.webp', 'thumb-800.avif', 'og.jpg', 'pin.jpg', 'icon-96.webp']) {
       if (!fs.existsSync(path.join(ROOT, 'public', d, img))) errors.push(`${d}: missing image public/${d}/${img} (run: node tools/make-images.mjs)`);
     }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(g.added || '')) errors.push(`${d}: "added" must be a YYYY-MM-DD date`);
     return g;
   });
 if (errors.length) { console.error('Build failed:\n  ' + errors.join('\n  ')); process.exit(1); }
+const games = allGames.filter(g => ALL || g.added <= TODAY);
+const scheduled = allGames.filter(g => !games.includes(g)).sort((a, b) => a.added < b.added ? -1 : 1);
 
 for (const c of categories) c.count = games.filter(g => g.categories.includes(c.slug)).length;
 const related = {};
@@ -80,7 +88,11 @@ const css = minCss(rd('src/styles/site.css'));
 const js = minJs(rd('src/scripts/site.js'));
 const jsPath = `/assets/site.${hash(js)}.js`;
 write(jsPath, js);
-copyDir(path.join(ROOT, 'public'), OUT);
+for (const e of fs.readdirSync(path.join(ROOT, 'public'), { withFileTypes: true })) { // images of scheduled games stay out until release day
+  if (e.isDirectory() && scheduled.some(g => g.slug === e.name)) continue;
+  const s = path.join(ROOT, 'public', e.name), d = path.join(OUT, e.name);
+  if (e.isDirectory()) { fs.mkdirSync(d, { recursive: true }); copyDir(s, d); } else fs.copyFileSync(s, d);
+}
 
 function recentInline() {
   // Runs while the page is parsed, so the "Continue playing" row is in place before the first paint (no layout shift).
@@ -91,7 +103,8 @@ r.forEach(function(s){var g=G[s];if(!g||n>=10)return;h+='<a class="tile" href="$
 if(h){document.getElementById('recent-row').innerHTML=h;document.getElementById('recent').hidden=false}}catch(e){}})();`);
 }
 
-const ctx = { games, css, assets: { js: jsPath }, related, recentInline: recentInline() };
+const ctx = { games, css, assets: { js: jsPath }, related, recentInline: recentInline(),
+  titles: Object.fromEntries(allGames.map(g => [g.slug, g.title])) };
 
 /* ---------- pages ---------- */
 page('/', () => T.pageHome(ctx));
@@ -239,3 +252,5 @@ if (site.adsenseClient) write('/ads.txt', `google.com, ${site.adsenseClient.repl
 let total = 0, files = 0;
 (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else { total += fs.statSync(p).size; files++; } } })(OUT);
 console.log(`Built ${games.length} games, ${files} files, ${(total / 1024).toFixed(0)} KB -> ${path.relative(ROOT, OUT)}${esbuild ? '' : ' (no esbuild: JS not minified)'}`);
+console.log(ALL ? `All ${allGames.length} games included (scheduled ones too).`
+  : `Release date ${TODAY}: ${games.length} live, ${scheduled.length} scheduled${scheduled.length ? ` (next: ${scheduled[0].title} on ${scheduled[0].added})` : ''}.`);

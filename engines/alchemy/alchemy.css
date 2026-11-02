@@ -1,0 +1,185 @@
+/* Alchemy Lab: a night-time magic workbench with a chalk circle; elements are cards with big emoji. */
+.al {
+  --g-bg: #1B1236; --g-surface: #2B1F55; --g-surface-2: #382A6B; --g-ink: #F6F1FF; --g-muted: #BDB2E0; --g-line: rgba(255, 255, 255, .14);
+  --g-brand: #FF5FA8; --g-brand-edge: #C2306F; --g-brand-ink: #FFFFFF; --g-accent: #FFD15C; --g-focus: #FFD15C;
+  --al-gold: #FFD15C; --al-pink: #FF6FB5; --al-mint: #5EF2C2;
+  --al-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+  color-scheme: dark; color: var(--g-ink); overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 8% 0%, rgba(255, 111, 181, .22), transparent 70%),
+    radial-gradient(55% 55% at 100% 100%, rgba(94, 242, 194, .15), transparent 70%),
+    linear-gradient(165deg, #2C1C59 0%, #1D1340 55%, #150D30 100%);
+}
+.al-emoji { font-family: var(--al-emoji); font-style: normal; font-weight: 400; line-height: 1.05; }
+
+/* top bar */
+.al .mg-hud { padding: 8px 10px 6px; min-height: 0; flex-wrap: nowrap; }
+.al .mg-pill, .al .mg-icon-btn, .al-btn, .al-sort {
+  background: rgba(255, 255, 255, .1); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .13); color: var(--g-ink);
+}
+.al .mg-pill small { color: var(--g-muted); }
+.al-count b { color: var(--al-gold); }
+.al-count.is-bump { animation: al-bump .45s ease; }
+.al-btn, .al-sort {
+  appearance: none; border: 0; height: 38px; padding: 0 12px; border-radius: 12px; font-weight: 800; font-size: 14px;
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; flex: 0 0 auto;
+}
+.al-btn span { font-family: var(--al-emoji); font-size: 17px; line-height: 1; }
+.al-btn svg { width: 19px; height: 19px; display: block; }
+.al-btn i { font-style: normal; }
+@media (hover: hover) { .al .mg-icon-btn:hover, .al-btn:hover, .al-sort:hover { background: rgba(255, 255, 255, .17); } }
+@media (max-width: 400px) { .al-btn { padding: 0 10px; } .al-btn i { display: none; } }
+
+/* the table and the list */
+.al-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 8px; padding: 0 10px 10px; }
+.al-lab {
+  position: relative; flex: 1 1 auto; min-height: 150px; border-radius: 20px; overflow: hidden; touch-action: none; isolation: isolate;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .075) 1.2px, transparent 1.9px) 0 0 / 22px 22px,
+    radial-gradient(75% 75% at 50% 48%, #44308A 0%, #30225F 58%, #261B4F 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .09), inset 0 -40px 60px -40px rgba(0, 0, 0, .5), 0 12px 30px -18px rgba(0, 0, 0, .7);
+}
+.al-lab::before { /* a chalk circle on the table, slowly turning */
+  content: ""; position: absolute; left: 50%; top: 50%; height: 86%; max-height: 420px; aspect-ratio: 1; z-index: -1; pointer-events: none;
+  transform: translate(-50%, -50%);
+  /* circle, square, triangle, circle (the old alchemists' sign for the philosopher's stone),
+     with the signs for fire, earth, water and air on the outer ring */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%23FFD68C' stroke-linejoin='round'%3E%3Cg stroke-opacity='.24' stroke-width='1.1'%3E%3Ccircle cx='100' cy='100' r='90'/%3E%3Ccircle cx='100' cy='100' r='83' stroke-dasharray='2 4' stroke-width='.8'/%3E%3Cpath d='M41.3 41.3H158.7V158.7H41.3Z'/%3E%3Cpath d='M100 41.3 158.7 158.7H41.3Z'/%3E%3Ccircle cx='100' cy='122.4' r='36.3'/%3E%3C/g%3E%3Cg stroke-opacity='.5' stroke-width='1.5'%3E%3Cpath d='M100 3 107 15H93Z'/%3E%3Cpath d='M190 107 197 95H183Z M184 101H196'/%3E%3Cpath d='M100 197 107 185H93Z'/%3E%3Cpath d='M10 93 17 105H3Z M4 99H16'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  animation: al-turn 90s linear infinite;
+}
+.al-labhint {
+  position: absolute; left: 14px; right: 14px; bottom: 12px; margin: 0; z-index: 1; text-align: center; pointer-events: none;
+  font-size: 13px; font-weight: 700; color: rgba(233, 226, 255, .72); text-wrap: balance;
+}
+
+/* elements on the table */
+.al-item {
+  position: absolute; z-index: 2; transform: translate(-50%, -50%); appearance: none; border: 0; background: none; padding: 0; margin: 0;
+  color: inherit; font: inherit; cursor: grab; touch-action: none; -webkit-touch-callout: none;
+}
+.al-item:focus-visible { outline: none; }
+.al-item:focus-visible .al-card { outline: 3px solid var(--g-focus); outline-offset: 3px; }
+.al-card {
+  display: grid; justify-items: center; gap: 3px; min-width: 64px; max-width: 108px; padding: 8px 10px 6px; border-radius: 17px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F2EBFF 100%); color: #2A1B58;
+  box-shadow: 0 2px 0 rgba(70, 40, 140, .4), 0 12px 22px -10px rgba(0, 0, 0, .65); transition: box-shadow .15s, transform .15s;
+}
+.al-card .al-emoji { font-size: 31px; }
+.al-name { font-size: 11.5px; font-weight: 800; line-height: 1.12; text-align: center; letter-spacing: .01em; }
+.al-card .al-name { max-width: 88px; }
+@media (hover: hover) {
+  .al-item:hover .al-card { transform: translateY(-2px); box-shadow: 0 4px 0 rgba(70, 40, 140, .4), 0 16px 26px -10px rgba(0, 0, 0, .7); }
+}
+.al-item.is-sel .al-card {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 0 3px var(--al-gold), 0 0 26px 3px rgba(255, 209, 92, .6), 0 12px 22px -10px rgba(0, 0, 0, .65);
+}
+.al-item.is-target .al-card { transform: scale(1.12); box-shadow: 0 0 0 3px var(--al-pink), 0 0 30px 5px rgba(255, 111, 181, .65); }
+.al-item.is-drag { z-index: 8; cursor: grabbing; }
+.al-item.is-drag .al-card, .al-ghost .al-card {
+  transform: scale(1.1) rotate(-3deg); transition: none;
+  box-shadow: 0 6px 0 rgba(70, 40, 140, .35), 0 26px 32px -12px rgba(0, 0, 0, .75);
+}
+.al-ghost { z-index: 20; pointer-events: none; }
+.al-card.is-pop { animation: al-pop .32s cubic-bezier(.2, 1.5, .4, 1) backwards; }
+.al-card.is-born { animation: al-born .75s cubic-bezier(.2, 1.3, .4, 1) backwards; }
+.al-card.nope { animation: al-nope .42s ease; }
+.al-card.is-still { box-shadow: 0 0 0 3px var(--al-gold), 0 0 0 10px rgba(255, 209, 92, .22), 0 0 50px 14px rgba(255, 190, 80, .5); transform: scale(1.12); }
+
+/* message banner on the table */
+.al-banner {
+  position: absolute; left: 50%; top: 12px; z-index: 9; transform: translateX(-50%); max-width: calc(100% - 24px); width: max-content;
+  padding: 8px 16px; border-radius: 999px; font-weight: 900; font-size: 15px; line-height: 1.25; text-align: center; pointer-events: none; opacity: 0;
+  background: rgba(16, 10, 36, .86); color: #fff; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .12);
+}
+.al-banner .al-emoji { font-size: 1.2em; vertical-align: -.12em; margin: 0 .08em; }
+.al-banner.is-on { animation: al-banner 2.4s ease both; }
+.al-banner.is-new { background: linear-gradient(90deg, #FFE68A, #FFB86B 52%, #FF92C9); color: #3B1240; box-shadow: 0 12px 30px -8px rgba(255, 140, 120, .65); }
+.al-banner.is-hint { background: linear-gradient(90deg, #86F7D6, #96CEFF); color: #0D2A3A; border-radius: 16px; }
+.al-banner.is-hint.is-on { animation-duration: 4.2s; }
+.al-banner.is-soft { background: rgba(16, 10, 36, .86); color: #ECE6FF; }
+.al-banner.is-still { animation: none; opacity: 1; }
+
+.al-spark {
+  position: absolute; z-index: 12; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; pointer-events: none;
+  box-shadow: 0 0 10px 2px currentColor; animation: al-spark .7s cubic-bezier(.15, .8, .3, 1) forwards;
+}
+
+/* list of discovered elements: a strip under the table on phones, a column beside it on wide screens */
+.al-side { flex: 0 0 auto; height: clamp(150px, 37vh, 262px); display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+.al-tools { display: flex; gap: 6px; align-items: center; flex: 0 0 auto; }
+.al-search {
+  flex: 1 1 auto; min-width: 0; height: 38px; border: 0; border-radius: 12px; padding: 0 10px 0 34px; margin: 0;
+  font: inherit; font-size: 15px; font-weight: 700; color: var(--g-ink); -webkit-user-select: text; user-select: text;
+  background: rgba(255, 255, 255, .1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CFC6EE' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m15.5 15.5 5 5'/%3E%3C/svg%3E") 11px 50% / 16px 16px no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .13); -webkit-appearance: none; appearance: none;
+}
+.al-search::placeholder { color: rgba(233, 226, 255, .55); }
+.al-search::-webkit-search-cancel-button { filter: invert(1) brightness(1.4); }
+.al-search:focus-visible { outline: 2px solid var(--g-focus); outline-offset: 0; }
+.al-sort { padding: 0 11px; font-size: 13px; min-width: 70px; justify-content: center; }
+.al-list {
+  flex: 1 1 auto; min-height: 0; display: grid; gap: 6px; padding: 1px 1px 4px;
+  grid-auto-flow: column; grid-template-rows: repeat(auto-fill, minmax(54px, 1fr)); grid-auto-columns: 72px;
+  overflow-x: auto; overflow-y: hidden; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, .28) transparent;
+}
+.al-chip {
+  appearance: none; border: 0; margin: 0; position: relative; display: grid; justify-items: center; align-content: center; gap: 2px;
+  padding: 5px 3px 4px; border-radius: 13px; min-width: 0; font: inherit; color: var(--g-ink); cursor: grab; touch-action: pan-x;
+  background: rgba(255, 255, 255, .085); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); -webkit-touch-callout: none;
+  transition: transform .1s, background .15s;
+}
+.al-chip .al-emoji { font-size: 24px; }
+.al-chip .al-name {
+  font-size: 10.5px; color: #ECE6FF; max-width: 100%; overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere;
+}
+@media (hover: hover) { .al-chip:hover { background: rgba(255, 255, 255, .16); } }
+.al-chip:active { transform: scale(.94); }
+.al-chip.is-final { background: linear-gradient(180deg, rgba(255, 209, 92, .16), rgba(255, 209, 92, .06)); box-shadow: inset 0 0 0 1.5px rgba(255, 209, 92, .42); }
+.al-chip.is-new::after {
+  content: ""; position: absolute; top: 5px; right: 5px; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--al-pink); box-shadow: 0 0 0 2px #241850, 0 0 8px var(--al-pink);
+}
+.al-chip.is-hinted { background: rgba(94, 242, 194, .22); box-shadow: inset 0 0 0 2px var(--al-mint), 0 0 18px rgba(94, 242, 194, .5); animation: al-hinted .9s ease-in-out 3; }
+.al-empty { grid-row: 1 / -1; grid-column: 1 / -1; margin: 0; padding: 12px; color: var(--g-muted); font-size: 13px; font-weight: 700; white-space: nowrap; }
+
+@media (min-width: 600px) and (min-aspect-ratio: 1/1) {
+  .al-body { flex-direction: row; }
+  .al-side { width: clamp(220px, 31%, 310px); height: auto; }
+  .al-list {
+    grid-auto-flow: row; grid-template-rows: none; grid-auto-rows: max-content; grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+    grid-auto-columns: auto; align-content: start; overflow-x: hidden; overflow-y: auto;
+  }
+  .al-chip { touch-action: pan-y; min-height: 58px; }
+}
+
+/* dialogs */
+.al .mg-card { box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 24px 50px -16px rgba(0, 0, 0, .8); }
+.al-bigemoji { font-family: var(--al-emoji); font-size: 64px; line-height: 1; filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .4)); }
+
+/* still frame for cover art */
+.al.is-showcase { zoom: 2.5; }
+.al.is-showcase .mg-hud, .al.is-showcase .al-tools, .al.is-showcase .al-labhint { display: none !important; }
+.al.is-showcase .al-body { padding-top: 10px; }
+.al.is-showcase .al-lab::before { animation: none; }
+
+@keyframes al-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes al-bump { 40% { transform: scale(1.14); } }
+@keyframes al-pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes al-born {
+  0% { transform: scale(.2) rotate(-14deg); opacity: 0; }
+  55% { transform: scale(1.24) rotate(3deg); opacity: 1; box-shadow: 0 0 0 10px rgba(255, 209, 92, .35), 0 0 50px 14px rgba(255, 209, 92, .65); }
+  100% { transform: scale(1) rotate(0); }
+}
+@keyframes al-nope {
+  20% { transform: translateX(-6px) rotate(-4deg); } 40% { transform: translateX(6px) rotate(4deg); }
+  60% { transform: translateX(-4px) rotate(-2deg); } 80% { transform: translateX(3px); }
+}
+@keyframes al-banner {
+  0% { opacity: 0; transform: translate(-50%, -10px) scale(.92); } 9% { opacity: 1; transform: translate(-50%, 0) scale(1.04); }
+  15% { transform: translate(-50%, 0) scale(1); } 82% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, -4px); }
+}
+@keyframes al-spark { to { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; } }
+@keyframes al-hinted { 50% { transform: scale(1.09); } }

@@ -1,0 +1,185 @@
+{
+  "slug": "block-puzzle",
+  "title": "Block Puzzle",
+  "seoTitle": "Block Puzzle – Free Online Game, No Time Limit",
+  "description": "Play Block Puzzle online free: drag jelly blocks onto the board, fill rows and columns to clear them and chain big combos. No timer, saved games, no download.",
+  "tagline": "Fill a line, watch it pop, chain the combo.",
+  "categories": [
+    "puzzle",
+    "casual"
+  ],
+  "engine": "blocks",
+  "options": {
+    "size": 8
+  },
+  "aspect": "3 / 4",
+  "aspectMobile": "3 / 5",
+  "players": "1",
+  "time": "5–15 min",
+  "controls": [
+    [
+      "Drag a piece",
+      "Pick it up from the tray and drop it on the board"
+    ],
+    [
+      "Tap a piece, then tap the board",
+      "Place it without dragging"
+    ],
+    [
+      "1, 2, 3",
+      "Choose a piece with the keyboard"
+    ],
+    [
+      "Arrow keys, then Enter",
+      "Move the outline and place the piece"
+    ],
+    [
+      "Esc",
+      "Put the chosen piece back"
+    ]
+  ],
+  "added": "2026-11-04",
+  "updated": "2026-11-04",
+  "popularity": 90,
+  "featured": false,
+  "color": "#FF4D7E",
+  "aka": [
+    "block puzzle game",
+    "block placement puzzle",
+    "line clear puzzle",
+    "jelly blocks",
+    "tetromino puzzle"
+  ],
+  "lede": "A calm puzzle with a satisfying pop. You get three jelly pieces at a time; drop them anywhere they fit, and every full row or column bursts and makes room. There is no clock and no gravity, so every move is yours to think through.",
+  "sections": [
+    {
+      "h": "How to play Block Puzzle",
+      "p": [
+        "Three pieces wait in the tray under the board. Drag each one into a space where all of its blocks fit. Pieces cannot be turned, so a corner piece that opens to the left always opens to the left.",
+        "When a row or a column is completely filled, it clears and those squares are free again. Once all three pieces are placed you get three new ones. The game ends when none of the pieces you are holding fits anywhere on the board."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "Scoring",
+      "p": [
+        "Every block you place is worth one point. The real points come from clearing lines, and clearing several at once is worth far more than clearing them one by one."
+      ],
+      "table": {
+        "head": [
+          "What you do",
+          "8×8 board",
+          "10×10 board"
+        ],
+        "rows": [
+          [
+            "Place a piece",
+            "1 per block",
+            "1 per block"
+          ],
+          [
+            "Clear 1 line",
+            "80",
+            "100"
+          ],
+          [
+            "Clear 2 lines at once",
+            "240",
+            "300"
+          ],
+          [
+            "Clear 3 lines at once",
+            "480",
+            "600"
+          ],
+          [
+            "Clear 4 lines at once",
+            "800",
+            "1,000"
+          ],
+          [
+            "Empty the whole board",
+            "+240 bonus",
+            "+300 bonus"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "Combos",
+      "p": [
+        "Clear lines on several turns in a row and you build a combo. The counter next to your score shows it, and each step adds half again to your line points: the second clear in a row pays 1.5 times, the third twice, the fourth two and a half times, and so on.",
+        "You do not have to clear on every single placement. The combo survives two placements without a clear, and ends on the third. That leaves room to set up the next big clear without losing your streak."
+      ]
+    },
+    {
+      "h": "Tips for long games",
+      "ol": [
+        "Keep a 3×3 space open somewhere. The big square is the piece that ends most games.",
+        "Leave room for the long pieces too: a free row or column of five keeps the 1×5 bar safe.",
+        "Avoid leaving single empty squares surrounded by blocks. Only the one-block piece can fill them.",
+        "Place the most awkward piece first, while the board still has the most choices.",
+        "Build lines near the edges and corners and keep the middle open, so every shape still has a home.",
+        "A grey piece in the tray has no place on the board right now. Clear a line before you are left holding only grey pieces.",
+        "Set up two lines that finish with the same piece, then clear them together for the double bonus."
+      ]
+    },
+    {
+      "h": "Two board sizes",
+      "dl": [
+        [
+          "8×8 Classic",
+          "The standard board. Tight enough that every placement matters, with 80 points for a single line."
+        ],
+        [
+          "10×10 Big",
+          "More room to plan and to recover from a bad deal. Lines are longer, so each clear is worth more."
+        ]
+      ]
+    },
+    {
+      "h": "Fair deals and saved games",
+      "p": [
+        "When a new set of three pieces is dealt, the game checks that at least one of them fits, so you never lose to a deal you could not play. The 37 shapes, from the single block to the 3×3 square, come up at different rates; small and medium pieces are the most common.",
+        "Your board, your pieces and your score are saved on this device after every move, separately for each board size, along with your best score."
+      ]
+    },
+    {
+      "h": "A puzzle made of polyominoes",
+      "p": [
+        "Every piece in this game is a polyomino: a shape made of squares joined edge to edge. The mathematician Solomon Golomb gave them that name in 1953 and later wrote a whole book about them. Dominoes have two squares, trominoes three, tetrominoes four and pentominoes five.",
+        "Puzzles where you fill a grid with polyominoes have been around in print for a long time. Placing them one at a time and clearing full lines is a newer idea that became popular on phones, because a game can be paused after any move and picked up again later."
+      ]
+    },
+    {
+      "h": "More games to try",
+      "p": [
+        "If you like fitting things together, try [[2048]] next, or sort colourful tubes in [[ball-sort]]. When you want something more playful, mix new things together in [[alchemy-lab]]. More are in [[cat:puzzle|puzzle games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Can I rotate the pieces?",
+          "No. Like most games of this kind, pieces always keep the shape you see in the tray. Planning around that is part of the puzzle."
+        ],
+        [
+          "Is there a time limit?",
+          "No. Take as long as you like over each move."
+        ],
+        [
+          "Why is one of my pieces grey?",
+          "It does not fit anywhere on the board at the moment. It becomes usable again when a line clears and opens up space."
+        ],
+        [
+          "How do I play on a phone?",
+          "Drag the piece with your finger. It floats a little above your fingertip so you can see where it will land, and the squares light up before you let go."
+        ]
+      ]
+    }
+  ]
+}

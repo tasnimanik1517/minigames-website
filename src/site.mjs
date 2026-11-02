@@ -73,6 +73,11 @@ export const categories = [
     intro: 'Word games that test your vocabulary and spelling.',
   },
   {
+    slug: 'skill', name: 'Skill', color: '#E8367F',
+    icon: 'M9.5 2h5v2h-5Z M11 3.5h2v2.6h-2Z M12 5.5a8 8 0 1 0 0 16a8 8 0 1 0 0-16Z M12 7.5a6 6 0 1 1 0 12a6 6 0 1 1 0-12Z M11 9.5h2v3.9l2.4 1.4-1 1.7-3.4-2Z',
+    intro: 'Quick tests of speed and precision: how fast you type, how quickly you react and how steady your hand is. Each one takes about a minute, keeps your best score and shows how you compare with other people.',
+  },
+  {
     slug: 'sports', name: 'Sports', color: '#22A6E0',
     icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 3 3 2-1 3.5h-4L9 7l3-2Zm-6.4 4.3L8 10.5l1.2 3.7-2.3 2.7A7.9 7.9 0 0 1 5.6 9.3Zm12.8 0a7.9 7.9 0 0 1-1.3 7.6l-2.3-2.7 1.2-3.7 2.4-1.2ZM10 16h4l1.6 2.6a8 8 0 0 1-7.2 0L10 16Z',
     intro: 'Sports games for quick matches: shoot, score and beat your best.',

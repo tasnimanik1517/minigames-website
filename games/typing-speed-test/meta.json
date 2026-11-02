@@ -1,0 +1,177 @@
+{
+  "slug": "typing-speed-test",
+  "title": "Typing Speed Test",
+  "seoTitle": "Typing Speed Test – Check Your WPM, Free",
+  "description": "Free typing speed test: type common words or fun facts for 15, 30 or 60 seconds and get your WPM, accuracy, a speed badge and your trickiest keys.",
+  "tagline": "How many words per minute can you type?",
+  "categories": [
+    "skill",
+    "word"
+  ],
+  "engine": "typing",
+  "options": {},
+  "aspect": "16 / 10",
+  "aspectMobile": "4 / 5",
+  "players": "1",
+  "time": "1 min",
+  "controls": [
+    [
+      "Type the words",
+      "The clock starts with your first key"
+    ],
+    [
+      "Space",
+      "Move on to the next word"
+    ],
+    [
+      "Backspace",
+      "Fix a letter in the word you are typing"
+    ],
+    [
+      "Tab or Esc",
+      "Start a new test"
+    ],
+    [
+      "Tap the text on a phone",
+      "Open your keyboard"
+    ]
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "popularity": 88,
+  "featured": false,
+  "color": "#FF4F9A",
+  "aka": [
+    "typing test",
+    "wpm test",
+    "words per minute test",
+    "keyboard speed test",
+    "typing speed"
+  ],
+  "lede": "This free typing speed test shows how fast you type in words per minute. Pick a 15, 30 or 60 second test, type the words as they appear and see your WPM, your accuracy and the keys that trip you up. A colourful keyboard shows which finger belongs on each key, so the test doubles as touch typing practice.",
+  "sections": [
+    {
+      "h": "How the typing test works",
+      "p": [
+        "Choose a time and a kind of text in the options under the text box: common English words, or short fun facts with capital letters and full stops. The clock starts with your first key press, so take your time to get ready.",
+        "Letters you type correctly turn dark, mistakes turn red, and a finished word with a mistake gets a wavy red line. Press space to move to the next word. Backspace fixes letters in the word you are typing, but you cannot go back to an earlier word, so check each word before you press space."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "How your speed is worked out",
+      "p": [
+        "Typing speed is measured in words per minute (WPM), where one word means five characters, spaces included. That way a test full of long words and a test full of short ones are measured the same way. Only words you typed correctly count towards your WPM. For example, 150 correct characters in 30 seconds is 30 words in half a minute, or 60 WPM.",
+        "Raw WPM counts everything you typed, mistakes included, so it is always at least as high as your WPM. Accuracy is the share of your key presses that were right. A wrong letter you later fixed with Backspace still counts as a miss, which is why accuracy rewards typing carefully the first time."
+      ]
+    },
+    {
+      "h": "Speed badges",
+      "p": [
+        "Every result earns a badge. The row of badges under the text box on a phone lights up the ones you have reached for that kind of test."
+      ],
+      "table": {
+        "head": [
+          "Badge",
+          "Speed"
+        ],
+        "rows": [
+          [
+            "🐢 Steady Turtle",
+            "Under 20 WPM"
+          ],
+          [
+            "🐇 Quick Rabbit",
+            "20 to 34 WPM"
+          ],
+          [
+            "🦊 Clever Fox",
+            "35 to 49 WPM"
+          ],
+          [
+            "🐎 Galloping Horse",
+            "50 to 64 WPM"
+          ],
+          [
+            "🐆 Cheetah",
+            "65 to 79 WPM"
+          ],
+          [
+            "🦅 Falcon",
+            "80 to 99 WPM"
+          ],
+          [
+            "🚀 Rocket",
+            "100 WPM or more"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "How fast do most people type?",
+      "p": [
+        "In 2018 researchers from Aalto University and the University of Cambridge studied 136 million keystrokes from about 168,000 volunteers who took an online typing test. On ordinary keyboards they averaged about 52 WPM, and the fastest typed 120 WPM or more. Faster typists also made fewer mistakes, so speed and accuracy tend to grow together.",
+        "A follow-up study in 2019 looked at 37,000 volunteers typing on phones and found an average of about 36 WPM. Most of them typed with both thumbs, which was clearly faster than using one thumb or a single finger. Your result card compares you with the right group: keyboard typists on a computer, phone typists on a touch screen."
+      ]
+    },
+    {
+      "h": "Touch typing and the rainbow keyboard",
+      "p": [
+        "Touch typing means typing without looking at the keys, using all ten fingers. Rest your fingers on the home row: A, S, D and F for the left hand and J, K, L and the semicolon for the right. Most keyboards have small bumps on F and J so you can find the home row by feel.",
+        "On the keyboard below the text, each colour belongs to one finger. The little fingers press the pink and magenta keys at the edges, the index fingers share the two green and teal columns in the middle, and the thumbs press space. The key you need next glows, and for a capital letter the guide also lights the shift key on the other hand, which is how touch typists do it. You can turn the guide off in the options once you know the way."
+      ]
+    },
+    {
+      "h": "Tips to type faster",
+      "ol": [
+        "Aim for accuracy first. Fixing mistakes costs more time than typing a little slower.",
+        "Look at the screen, not at your hands. It feels slow at first, but it is the habit that makes fast typists fast.",
+        "Keep an even rhythm instead of rushing easy words and stalling on hard ones.",
+        "Practise little and often. A few short tests a day beat one long session a week.",
+        "Check the keys you missed most on your result card and give them extra practice.",
+        "Switch to fun facts when common words feel easy. Capitals and punctuation are a real test of finger skills.",
+        "Sit up, relax your shoulders and keep your wrists level. Tense hands are slow hands."
+      ]
+    },
+    {
+      "h": "Why the keys are in QWERTY order",
+      "p": [
+        "The QWERTY layout, named after the first six letters on the top row, comes from the typewriters that Christopher Latham Sholes developed in the 1870s and that went on sale in 1874. A popular story says the letters were arranged to stop the metal arms of early typewriters from jamming. Historians also point to the telegraph operators who were among the first users. Whatever the reason, the layout stuck, and more than 150 years later it is still on most keyboards and phone screens."
+      ]
+    },
+    {
+      "h": "More skill tests",
+      "p": [
+        "Typing is all about fast, accurate fingers. To see how quickly you respond to a signal, try the [[reaction-time-test]], and for a test of a steady hand, draw an orbit in [[perfect-circle]]. All of them are collected in [[cat:skill|skill games]], and if words are your thing, there is more in [[cat:word|word games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "What is a good typing speed?",
+          "Around 40 to 60 WPM is comfortable everyday typing, and the large study above found an average of about 52 WPM on keyboards. Over 80 WPM is fast, and 100 WPM or more is rare."
+        ],
+        [
+          "Why is my raw WPM higher than my WPM?",
+          "Raw WPM counts every character you typed, while WPM only counts words you typed correctly. The bigger the gap, the more mistakes slipped through."
+        ],
+        [
+          "Does fixing a mistake lower my accuracy?",
+          "Yes, a little. The wrong key press still counts as a miss, but fixing it means the word counts towards your WPM."
+        ],
+        [
+          "Can I take the test on a phone or tablet?",
+          "Yes. Tap the text to open your keyboard and start typing. On touch screens your result is compared with the average for phone typists."
+        ],
+        [
+          "Is my best score saved?",
+          "Yes. Your best WPM for each test length and text type is saved in this browser on this device."
+        ]
+      ]
+    }
+  ]
+}

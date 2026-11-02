@@ -51,6 +51,15 @@ export const covers = {
   'snake': () => engineCover('snake', { cols: 12, rows: 9, showcase: true }),
   'tic-tac-toe': () => engineCover('tictactoe', { size: 3, win: 3, showcase: true }, 'body'),
   'rock-paper-scissors': rps,
+  '2048': () => engineCover('slide2048', { size: 4, showcase: true }, 'body'),
+  'block-puzzle': () => engineCover('blocks', { size: 8, showcase: true }, 'body'),
+  'ball-sort': () => engineCover('ballsort', { showcase: true }, 'body'),
+  'memory-match': () => engineCover('memory', { showcase: true }, 'body'),
+  'fruit-merge': () => engineCover('fruitmerge', { showcase: true }, 'body'),
+  'alchemy-lab': () => engineCover('alchemy', { showcase: true }, 'body'),
+  'typing-speed-test': () => engineCover('typing', { showcase: true }, 'body'),
+  'reaction-time-test': () => engineCover('reaction', { showcase: true }, 'body'),
+  'perfect-circle': () => engineCover('circle', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */

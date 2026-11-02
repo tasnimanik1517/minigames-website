@@ -1,0 +1,171 @@
+{
+  "slug": "memory-match",
+  "title": "Memory Match",
+  "seoTitle": "Memory Match – Free Card Matching Game for 1 or 2 Players",
+  "description": "Play Memory Match online free: flip two cards, find the pairs and earn three stars. Four sizes, four picture sets, solo or two players on one screen.",
+  "tagline": "Flip, remember, match. Can you get three stars?",
+  "categories": [
+    "casual",
+    "two-player",
+    "classic"
+  ],
+  "engine": "memory",
+  "options": {},
+  "aspect": "1 / 1",
+  "aspectMobile": "3 / 4",
+  "players": "1–2",
+  "time": "1–4 min",
+  "controls": [
+    [
+      "Click or tap a card",
+      "Turn it over"
+    ],
+    [
+      "Arrow keys",
+      "Move between cards"
+    ],
+    [
+      "Enter or Space",
+      "Turn over the selected card"
+    ]
+  ],
+  "added": "2026-11-06",
+  "updated": "2026-11-06",
+  "popularity": 86,
+  "featured": false,
+  "color": "#8B5CF6",
+  "aka": [
+    "memory game",
+    "concentration card game",
+    "pairs game",
+    "pelmanism",
+    "matching pairs"
+  ],
+  "lede": "The classic pairs game with a friendly face. Turn over two cards at a time and keep every pair you find. Play alone against the clock and your move count, or take turns with a friend on the same screen, with animals, sweets, sea creatures or space pictures on the cards.",
+  "sections": [
+    {
+      "h": "How to play Memory Match",
+      "p": [
+        "All cards start face down, and every picture appears on exactly two of them. Turn over any two cards. If the pictures match, the pair stays face up. If they do not, both cards turn back over, and your job is to remember what was where.",
+        "In a solo game every pair of cards you turn counts as one move, and the clock starts with your first card. Find all the pairs in as few moves as possible."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "Sizes and stars",
+      "p": [
+        "Choose how many cards to play with in the options under the board. Your stars depend on how many moves you needed, compared with the number of pairs."
+      ],
+      "table": {
+        "head": [
+          "Size",
+          "Cards",
+          "Pairs",
+          "3 stars",
+          "2 stars"
+        ],
+        "rows": [
+          [
+            "Easy",
+            "12",
+            "6",
+            "9 moves or fewer",
+            "14 or fewer"
+          ],
+          [
+            "Normal",
+            "16",
+            "8",
+            "12 or fewer",
+            "18 or fewer"
+          ],
+          [
+            "Hard",
+            "20",
+            "10",
+            "15 or fewer",
+            "22 or fewer"
+          ],
+          [
+            "Expert",
+            "30",
+            "15",
+            "23 or fewer",
+            "33 or fewer"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "Two players on one screen",
+      "p": [
+        "Switch to 2 players and hand the device back and forth. The pill at the top glows for whoever's turn it is. Find a pair and you score a point and go again; miss and the turn passes to the other player. When the last pair is found, the player with more pairs wins, and an equal count is a tie.",
+        "Two-player games are about more than your own memory: every card your opponent turns over is free information for you, so watch their turns as closely as your own."
+      ]
+    },
+    {
+      "h": "Picture sets",
+      "dl": [
+        [
+          "Animals",
+          "Pandas, foxes, owls, frogs, unicorns and more, the easiest set for young players because every picture has a name they know."
+        ],
+        [
+          "Sweets",
+          "Doughnuts, cupcakes, lollipops and cakes. Several pictures share colours, which makes this set a little trickier."
+        ],
+        [
+          "Ocean",
+          "Fish, octopuses, crabs, turtles and whales on soft blue cards."
+        ],
+        [
+          "Space",
+          "Rockets, planets, comets and astronauts on dark cards, with some pictures that look alike on purpose."
+        ]
+      ]
+    },
+    {
+      "h": "How to remember more cards",
+      "ol": [
+        "Say the picture's name in your head when a card turns over: 'fox, top left'. Words stick better than images alone.",
+        "Turn cards over in a fixed order, for example row by row, so you always know which cards you have already seen.",
+        "When your first card shows a picture you have seen before, turn over its partner. When it is new, turn a card you have not seen yet: you might get lucky, and if not you have learned another card.",
+        "Group the cards you know into small chunks, such as 'the corner pair' or 'the two cats in the middle row'.",
+        "Do not waste moves on cards you already know do not match."
+      ]
+    },
+    {
+      "h": "Why it is harder than it looks",
+      "p": [
+        "Your working memory, the part that keeps track of things right now, holds only a handful of items at once. Researchers have long debated the number: George Miller's famous 1956 paper suggested about seven, and later work points to closer to four chunks for most people. A board of 30 cards is far beyond that, which is why the naming and chunking tricks above make such a difference.",
+        "The game itself is old and has many names. It is often called Concentration, which was also the name of an American television quiz built around it, and in Britain it is known as Pairs or Pelmanism."
+      ]
+    },
+    {
+      "h": "More games to try",
+      "p": [
+        "Train a different skill with the [[reaction-time-test]], or play a friend at [[tic-tac-toe]]. For a relaxed game of discovery, try [[alchemy-lab]]. More games for two are in [[cat:two-player|2 player games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Are my best scores saved?",
+          "Yes. Your best result for each size, fewest moves first and then the fastest time, is saved on this device."
+        ],
+        [
+          "Is it good for children?",
+          "Yes. Easy mode with the Animals set is a gentle start, and there are no timers that end the game, so nobody runs out of time."
+        ],
+        [
+          "Does the board change every game?",
+          "Yes. The pictures are chosen at random from the set and shuffled each time."
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "slug": "reaction-time-test",
+  "title": "Reaction Time Test",
+  "seoTitle": "Reaction Time Test – How Fast Are Your Reflexes?",
+  "description": "Free reaction time test: wait for the green screen, five red start lights or a beep, then tap as fast as you can. Five tries, average in milliseconds.",
+  "tagline": "Wait for it… wait for it… tap!",
+  "categories": [
+    "skill",
+    "casual"
+  ],
+  "engine": "reaction",
+  "options": {},
+  "aspect": "16 / 10",
+  "aspectMobile": "3 / 4",
+  "players": "1",
+  "time": "1 min",
+  "controls": [
+    [
+      "Tap or click the big panel",
+      "Start a try, then react to the signal"
+    ],
+    [
+      "Space or Enter",
+      "Works just like a tap"
+    ],
+    [
+      "Signal button at the top",
+      "Switch between colour, start lights and sound"
+    ]
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "popularity": 87,
+  "featured": false,
+  "color": "#6A4BFF",
+  "aka": [
+    "reaction test",
+    "reflex test",
+    "reaction speed test",
+    "lights out reaction test",
+    "click reaction time"
+  ],
+  "lede": "This free reaction time test measures how quickly you respond, in milliseconds. Wait for the signal, then tap the moment it comes. Do it five times and get your average, plus a badge from Sleepy Sloth to Lightning. Test yourself with a colour change, a row of red start lights or a beep, and find out whether your eyes or your ears are faster.",
+  "sections": [
+    {
+      "h": "How the reaction time test works",
+      "p": [
+        "Tap the panel to start a try. It turns red and you wait. After a random pause the signal comes, and you tap as fast as you can. The time between the signal and your tap is your reaction time for that try, measured in milliseconds, or thousandths of a second.",
+        "Tap too early and the try does not count: you get a Too soon message and simply try again. A tap less than a tenth of a second after the signal does not count either, because nobody reacts that fast, so it must have been a guess. After five good tries you see your average, your fastest try and your badge. The waiting time changes every try, between about one and a half and almost five seconds, so guessing does not help."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "Three ways to test yourself",
+      "dl": [
+        [
+          "🟢 Colour",
+          "The classic test. The red panel turns bright green, and you tap. The colour changes in a single screen frame, with no fade, so the change is as sudden as possible."
+        ],
+        [
+          "🚦 Start lights",
+          "Five pairs of red lights switch on one after another, then they all go out together after a random pause. React to the lights going out, just like drivers at the start of a motor race."
+        ],
+        [
+          "👂 Sound",
+          "The panel stays the same and you listen for a beep. Turn your sound on first. This mode shows how your hearing compares with your eyesight."
+        ]
+      ]
+    },
+    {
+      "h": "Reaction badges",
+      "p": [
+        "Your badge depends on the average of your five tries. Each signal keeps its own best score, so you can try to earn a better badge in all three."
+      ],
+      "table": {
+        "head": [
+          "Badge",
+          "Average reaction time"
+        ],
+        "rows": [
+          [
+            "⚡ Lightning",
+            "Under 170 ms"
+          ],
+          [
+            "🐍 Striking Snake",
+            "170 to 199 ms"
+          ],
+          [
+            "🐸 Fly-catching Frog",
+            "200 to 239 ms"
+          ],
+          [
+            "🐱 Pouncing Cat",
+            "240 to 279 ms"
+          ],
+          [
+            "🐶 Playful Puppy",
+            "280 to 329 ms"
+          ],
+          [
+            "🐨 Cosy Koala",
+            "330 to 399 ms"
+          ],
+          [
+            "🦥 Sleepy Sloth",
+            "400 ms or more"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "What is a good reaction time?",
+      "p": [
+        "Lab studies of simple reaction time, where you respond to one expected signal with one movement, usually find averages of around 200 to 250 milliseconds for young adults reacting to a light. Most people react to a sound a little faster than to a light, which you can check for yourself with the sound mode.",
+        "Reaction times are usually quickest in the late teens and twenties and slow down gradually with age. Tiredness slows everyone down, and so does trying to do two things at once. That is why your score can change from one day, or even one hour, to the next."
+      ]
+    },
+    {
+      "h": "Why your device matters",
+      "p": [
+        "Every device adds a small delay between the real world and the game. A typical screen shows a new picture 60 times a second, about every 17 milliseconds, and touch screens and mice need a moment to report your tap. Wireless and Bluetooth headphones can delay sound by a tenth of a second or more, so use speakers or wired headphones for the sound test.",
+        "This test does what it can on its side: it changes the screen and starts the clock in the same frame, and it times your tap from the moment your finger or key went down, not from when the game got around to handling it. For a fair comparison with your earlier scores, use the same device each time."
+      ]
+    },
+    {
+      "h": "Tips for faster reactions",
+      "ol": [
+        "Get comfortable before you start: rest your finger just above the screen, or keep it on the mouse button or space bar.",
+        "Look at the middle of the panel and relax. Tense muscles are slower to start moving.",
+        "Do not try to guess when the signal will come. The pause is random, and a jump start costs you more time than it saves.",
+        "Take a few rounds. Most people get a little faster as they warm up.",
+        "Compare signals. If your sound score is much slower than your colour score, check whether your headphones are wireless."
+      ]
+    },
+    {
+      "h": "Reaction time in sport",
+      "p": [
+        "In sprinting, starting blocks measure how quickly each runner pushes off after the gun. Under World Athletics rules a reaction faster than one tenth of a second counts as a false start, because that is thought to be too quick to be a reaction to the sound rather than a guess. In motor racing, cars start when a row of red lights goes out after a random pause, so drivers cannot predict the exact moment, the idea behind the start lights mode here."
+      ]
+    },
+    {
+      "h": "More skill tests",
+      "p": [
+        "Quick reactions help in lots of games. See how they carry over to a keyboard in the [[typing-speed-test]], or swap speed for precision and draw the roundest circle you can in [[perfect-circle]]. There are more short challenges in [[cat:skill|skill games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Why is my reaction time slower on my phone?",
+          "Touch screens take a little longer to register a tap than a mouse button or a key, and many phones add their own small delay. Compare scores from the same device."
+        ],
+        [
+          "Does a jump start count against me?",
+          "No. A tap before the signal just shows a Too soon message, and you try that turn again."
+        ],
+        [
+          "Why is my sound score so different?",
+          "Some people are faster with sound, as studies suggest, but wireless headphones and some phone speakers add delay to the beep. Try with speakers or wired headphones."
+        ],
+        [
+          "What does ms mean?",
+          "Milliseconds, or thousandths of a second. 250 ms is a quarter of a second."
+        ],
+        [
+          "Is my best score saved?",
+          "Yes. Your best average for each signal is saved in this browser on this device."
+        ]
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@
     "build": "node build.mjs",
     "preview": "node build.mjs --preview",
     "images": "node tools/make-images.mjs && node tools/logos.mjs",
-    "check": "node build.mjs && node tools/check.mjs"
+    "check": "node build.mjs --all && node tools/check.mjs"
   },
   "engines": {
     "node": ">=20"

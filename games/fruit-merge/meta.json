@@ -1,0 +1,194 @@
+{
+  "slug": "fruit-merge",
+  "title": "Fruit Merge",
+  "seoTitle": "Fruit Merge – Drop and Combine Fruit, Free Online",
+  "description": "Play Fruit Merge online free: drop fruit into the jar, match two of a kind to grow a bigger fruit and chain merges all the way up to the watermelon.",
+  "tagline": "Drop, bump, merge, grow a watermelon.",
+  "categories": [
+    "casual",
+    "arcade",
+    "puzzle"
+  ],
+  "engine": "fruitmerge",
+  "options": {},
+  "aspect": "3 / 4",
+  "aspectMobile": "5 / 8",
+  "players": "1",
+  "time": "5–15 min",
+  "controls": [
+    [
+      "Move the mouse or your finger",
+      "Aim the fruit above the jar"
+    ],
+    [
+      "Click, or lift your finger",
+      "Drop the fruit"
+    ],
+    [
+      "Arrow keys or A and D",
+      "Aim with the keyboard"
+    ],
+    [
+      "Space, Enter or Down arrow",
+      "Drop"
+    ]
+  ],
+  "added": "2026-11-07",
+  "updated": "2026-11-07",
+  "popularity": 91,
+  "featured": false,
+  "color": "#FF8A1F",
+  "aka": [
+    "fruit merge game",
+    "merge fruits",
+    "drop and merge",
+    "watermelon merge",
+    "fruit drop puzzle"
+  ],
+  "lede": "A bouncy, juicy puzzle with real physics. Drop small fruit into the jar; when two of the same kind touch, they squeeze into the next bigger fruit, and one merge can set off the next. Climb the ladder from a tiny blueberry to a giant watermelon before the jar overflows.",
+  "sections": [
+    {
+      "h": "How to play Fruit Merge",
+      "p": [
+        "Aim the fruit at the top of the jar and drop it. Fruit rolls, bumps and stacks like real objects. When two fruits of the same kind touch, they merge into one fruit of the next size up, right where they met, and the jar makes room.",
+        "Only the five smallest fruits are ever dropped in; everything bigger has to be grown by merging. The game ends when the fruit piles up past the dashed line at the top and stays there for about two seconds. The line flashes red as a warning first."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "The fruit ladder and points",
+      "p": [
+        "Each merge scores the points of the fruit it creates. The strip under the jar shows the whole ladder and lights up every fruit you have made in this game."
+      ],
+      "table": {
+        "head": [
+          "Step",
+          "Fruit",
+          "Points for making it"
+        ],
+        "rows": [
+          [
+            "1",
+            "Blueberry",
+            "Dropped in"
+          ],
+          [
+            "2",
+            "Cherry",
+            "3"
+          ],
+          [
+            "3",
+            "Strawberry",
+            "6"
+          ],
+          [
+            "4",
+            "Lime",
+            "10"
+          ],
+          [
+            "5",
+            "Plum",
+            "15"
+          ],
+          [
+            "6",
+            "Orange",
+            "21"
+          ],
+          [
+            "7",
+            "Apple",
+            "28"
+          ],
+          [
+            "8",
+            "Peach",
+            "36"
+          ],
+          [
+            "9",
+            "Mango",
+            "45"
+          ],
+          [
+            "10",
+            "Coconut",
+            "55"
+          ],
+          [
+            "11",
+            "Melon",
+            "66"
+          ],
+          [
+            "12",
+            "Watermelon",
+            "78"
+          ],
+          [
+            "Two watermelons",
+            "Both vanish",
+            "200"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "Chains and combos",
+      "p": [
+        "A new fruit appears where its two parents met, and it is bigger than either of them, so it often lands against another fruit of its own size and merges again. Three or more merges within about a second count as a combo, and every merge in a combo scores double.",
+        "The next fruit is shown at the top, so you always know what is coming. Blueberries and cherries arrive most often; a plum, the largest fruit that can be dropped, turns up about one time in twenty."
+      ]
+    },
+    {
+      "h": "Tips for a big score",
+      "ol": [
+        "Build in one corner. Keep your largest fruit at the bottom of one side and let sizes shrink as they move away from it, like a staircase.",
+        "Do not bury small fruit under big ones. A blueberry trapped at the bottom will never meet its partner.",
+        "Drop each fruit next to its match, not on top of the pile. Fruit slides off round tops in ways that are hard to predict.",
+        "Keep the middle of the jar lower than the sides, so new fruit rolls towards the pairs you are building.",
+        "Use the next-fruit preview to plan two drops ahead.",
+        "When the line starts flashing, drop small fruit where it can merge straight away. A quick merge lowers the pile."
+      ]
+    },
+    {
+      "h": "Built with its own physics",
+      "p": [
+        "Every fruit is a circle in a small physics simulation that runs eight times per screen refresh: gravity pulls, overlapping fruit push each other apart in proportion to their size, and the walls and floor of the jar keep everything in. Big fruit shove small fruit around more than the other way round, which is why a fresh melon can lift half the jar.",
+        "The fruit pictures are drawn in code too, with their own faces, and painted once per screen size so the game stays smooth on phones."
+      ]
+    },
+    {
+      "h": "More games to try",
+      "p": [
+        "If merging is your favourite part, try [[2048]], where matching gems combine into bigger ones. For a puzzle without physics, fill lines in [[block-puzzle]]. More relaxed games are in [[cat:casual|casual games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Is it possible to make a watermelon?",
+          "Yes, although it takes patience. It needs 2,048 blueberries' worth of merges, so good planning matters more than luck."
+        ],
+        [
+          "Is my game saved?",
+          "Yes. The position of every fruit and your score are saved on this device every couple of seconds, so you can close the page and continue later."
+        ],
+        [
+          "Why did I lose when the fruit was only briefly over the line?",
+          "It must stay above the line for about two seconds, and fruit you just dropped does not count while it is falling. A pile that settles above the line ends the game."
+        ],
+        [
+          "Can I play with a keyboard?",
+          "Yes. Aim with the arrow keys or A and D and drop with Space, Enter or the down arrow."
+        ]
+      ]
+    }
+  ]
+}

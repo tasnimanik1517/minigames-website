@@ -1,0 +1,202 @@
+{
+  "slug": "ball-sort",
+  "title": "Ball Sort",
+  "seoTitle": "Ball Sort Puzzle – Sort the Colours, Free Online Levels",
+  "description": "Play Ball Sort online free: move marbles between glass tubes until each holds one colour. Endless solvable levels, hints, undo and colour-blind symbols.",
+  "tagline": "One colour per tube. Calm, clever, endless.",
+  "categories": [
+    "puzzle",
+    "casual"
+  ],
+  "engine": "ballsort",
+  "options": {},
+  "aspect": "4 / 3",
+  "aspectMobile": "3 / 4",
+  "players": "1",
+  "time": "2–5 min per level",
+  "controls": [
+    [
+      "Tap a tube, then another tube",
+      "Lift the top marble and drop it into the second tube"
+    ],
+    [
+      "Tap the same tube again",
+      "Put the marble back down"
+    ],
+    [
+      "1 to 9, 0, Q, W, E, R",
+      "Choose tubes 1 to 14 with the keyboard"
+    ],
+    [
+      "U or Ctrl+Z",
+      "Undo a move"
+    ],
+    [
+      "H",
+      "Show a hint"
+    ],
+    [
+      "Shift+R",
+      "Restart the level"
+    ]
+  ],
+  "added": "2026-11-05",
+  "updated": "2026-11-05",
+  "popularity": 88,
+  "featured": false,
+  "color": "#1C9AB8",
+  "aka": [
+    "ball sort puzzle",
+    "color sort",
+    "colour sorting game",
+    "sort balls in tubes",
+    "marble sort"
+  ],
+  "lede": "A soothing sorting puzzle with real depth. Lift a marble from one glass tube, drop it on a marble of the same colour or into an empty tube, and keep going until every tube holds a single colour. Levels never run out, and each one is checked by a solver before you see it, so there is always a way through.",
+  "sections": [
+    {
+      "h": "How to play Ball Sort",
+      "p": [
+        "Tap a tube to lift its top marble, then tap the tube you want to move it to. A marble can land in an empty tube, or on top of a marble of the same colour, as long as that tube is not already full. Each tube holds four marbles.",
+        "A tube is finished when it holds four marbles of one colour; its rim turns gold. The level is solved when every colour has a tube of its own. Only the top marble of a tube can move, so most of the puzzle is about digging out the colours that are buried underneath."
+      ]
+    },
+    {
+      "h": "Controls",
+      "controls": true
+    },
+    {
+      "h": "How the levels get harder",
+      "p": [
+        "Each level adds colours over time while the number of spare tubes stays at two, so you have less room to work with as the board grows. From level 22 on, every level has the full set of twelve colours."
+      ],
+      "table": {
+        "head": [
+          "Levels",
+          "Colours",
+          "Tubes"
+        ],
+        "rows": [
+          [
+            "1–2",
+            "3",
+            "5"
+          ],
+          [
+            "3–4",
+            "4",
+            "6"
+          ],
+          [
+            "5–7",
+            "5",
+            "7"
+          ],
+          [
+            "8–9",
+            "6",
+            "8"
+          ],
+          [
+            "10–12",
+            "7",
+            "9"
+          ],
+          [
+            "13–14",
+            "8",
+            "10"
+          ],
+          [
+            "15–16",
+            "9",
+            "11"
+          ],
+          [
+            "17–19",
+            "10",
+            "12"
+          ],
+          [
+            "20–21",
+            "11",
+            "13"
+          ],
+          [
+            "22 and up",
+            "12",
+            "14"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "Every level can be solved",
+      "p": [
+        "Levels are not drawn by hand. Each one is built from its level number: the marbles are shuffled into the tubes, and a solver then plays the level through before you ever see it. If the solver cannot finish, the shuffle is thrown away and a new one is tried. That means every level has at least one solution, and level 37 is the same puzzle for every player, so you can compare notes with a friend.",
+        "Shuffles that start out too tidy, with lots of matching marbles already stacked together, are thrown away as well, so the early levels are easy because they are small, not because they are half solved."
+      ]
+    },
+    {
+      "h": "Hints, undo and the extra tube",
+      "dl": [
+        [
+          "Hint",
+          "Asks the solver for a good next move from where you are now and lights up the two tubes. If your current position has no way out, it tells you to undo instead."
+        ],
+        [
+          "Undo",
+          "Takes back moves one at a time, as many as you like. Undoing counts as a move in your total, so a clean solve shows a lower number."
+        ],
+        [
+          "Extra tube",
+          "Adds one more empty tube, once per level. Useful when you are completely stuck; the result screen notes that you used it."
+        ]
+      ]
+    },
+    {
+      "h": "Strategy",
+      "ol": [
+        "Treat the empty tubes as your workspace. Try not to fill both of them with different colours at the same time, or you run out of room.",
+        "Before you move, look for a marble that can go onto a matching colour. Those moves cost nothing.",
+        "Work on uncovering one buried colour at a time instead of moving marbles around at random.",
+        "When a tube holds only one colour, keep stacking that colour there and finish it. A finished tube can be ignored for the rest of the level.",
+        "Count how many marbles of a colour are still buried. A colour with all four near the top is a quick win.",
+        "If you are going round in circles, undo several moves and try a different first move. Undo is unlimited."
+      ]
+    },
+    {
+      "h": "Colour-blind symbols",
+      "p": [
+        "Twelve colours are a lot to tell apart, especially for players with colour vision deficiency. Turn on symbols in the options below the tubes and every marble gets a small white shape as well: a circle, a triangle, a square, a diamond, a star, a heart and so on. The puzzle then works without telling colours apart at all. The choice is remembered on this device."
+      ]
+    },
+    {
+      "h": "More games to try",
+      "p": [
+        "For another calm, colourful puzzle, try [[block-puzzle]] or merge gems in [[2048]]. If you like discovering things step by step, [[alchemy-lab]] has 266 elements to find. More are in [[cat:puzzle|puzzle games]]."
+      ]
+    },
+    {
+      "h": "Questions",
+      "faq": [
+        [
+          "Can I move more than one marble at once?",
+          "No. One marble moves at a time, which is what makes the deeper levels a real puzzle."
+        ],
+        [
+          "Is my progress saved?",
+          "Yes. Your level, the position of every marble and your moves are saved on this device, so you can close the page in the middle of a level."
+        ],
+        [
+          "What happens if I get stuck?",
+          "Use Hint for a suggestion, undo a few moves, add the extra tube, or restart the level. You never need to skip a level."
+        ],
+        [
+          "Can I play an earlier level again?",
+          "You can start again from level 1 in the options. Because levels come from their number, they will be exactly the same as before."
+        ]
+      ]
+    }
+  ]
+}

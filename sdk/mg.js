@@ -83,6 +83,10 @@
     }
   });
 
+  var guardEl = null, guardUntil = 0;
+  document.addEventListener('click', function (e) { // keyboard clicks have detail 0
+    if (guardEl && e.detail === 0 && performance.now() < guardUntil && guardEl.contains(e.target)) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
   var MG = {
     slug: slug,
     store: {
@@ -90,6 +94,8 @@
       set: function (k, v) { lsSet('mg:' + slug + ':' + k, v); }
     },
     sfx: sfx,
+    /** Play a single synth note: tone(frequencyHz, seconds, wave, volume, slideToHz, delaySeconds). Respects mute. */
+    tone: function (f, d, type, vol, slide, delay) { tone(f, d, type, vol, slide, delay); },
     sound: {
       get muted() { return muted; },
       set: function (m) { muted = !!m; lsSet('mg:muted', muted); post('sound', { muted: muted }); },
@@ -140,6 +146,13 @@
         }
         if (e < 1700) requestAnimationFrame(f); else c.remove();
       })(t0);
+    },
+    /** Focus a dialog button, but ignore key presses on it for a moment, so a key that was still being
+     *  pressed in the game (space, Enter) cannot press "Play again" by accident. Clicks and taps work at once. */
+    focusSafe: function (el, ms) {
+      if (!el) return;
+      guardEl = el; guardUntil = performance.now() + (ms || 650);
+      try { el.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
     },
     vibrate: function (ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { /* ignore */ } },
     /** Size a canvas for the device pixel ratio; returns the 2D context scaled to CSS pixels. */
