@@ -35,7 +35,29 @@
    'Engine=⚙️|Electricity=🔌|Light Bulb=💡|Brain=🧠|Computer=💻|Internet=🌐|Email=📧|Phone=📱|Television=📺|Video Game=🎮|' +
    'Movie=🎬|Telescope=🔭|Microscope=🔬|Camera=📷|Photo=🖼️|Selfie=🤳|Emoji=😀|' +
    'Sound=🔊|Voice=🗣️|Music=🎵|Song=🎶|Dance=💃|Guitar=🎸|Drum=🥁|Headphones=🎧|Microphone=🎤|' +
-   'Money=💰|Bank=🏦|Shop=🏪|Toy=🪀|Teddy Bear=🧸|Ball=⚽|Kite=🪁|Balloon=🎈|Party=🎉').split('|').forEach(function (p) {
+   'Money=💰|Bank=🏦|Shop=🏪|Toy=🪀|Teddy Bear=🧸|Ball=⚽|Kite=🪁|Balloon=🎈|Party=🎉|' +
+   'Flour=🥣|Dough=🫓~⚪|Pasta=🍝|Noodles=🍜|Pancake=🥞|Waffle=🧇|Butter=🧈|Croissant=🥐|Baguette=🥖|Salt=🧂|' +
+   'Pretzel=🥨|Pie=🥧|Dumpling=🥟|Taco=🌮|Rice=🍚|Burrito=🌯|Sushi=🍣|Curry=🍛|Potato=🥔|Fries=🍟|' +
+   'Grapes=🍇|Wine=🍷|Beer=🍺|Champagne=🍾|Orange=🍊|Watermelon=🍉|Pineapple=🍍|Peach=🍑|Pear=🍐|Cherry=🍒|' +
+   'Strawberry=🍓|Blueberry=🫐~🔷|Olive=🫒~🟢|Oil=🫗~🍶|Avocado=🥑|Coconut=🥥|Garlic=🧄|Onion=🧅|Bell Pepper=🫑~🍏|Chili=🌶️|' +
+   'Cucumber=🥒|Broccoli=🥦|Omelette=🍳|Bacon=🥓|Steak=🥩|Meat=🍖|Bubble Tea=🧋~🍹|Elephant=🐘|Zebra=🦓|Donkey=🫏~🐴|' +
+   'Deer=🦌|Kangaroo=🦘|Sloth=🦥|Otter=🦦|Beaver=🦫~🐀|Squirrel=🐿️|Moose=🫎~🐃|Rhino=🦏|Hippo=🦛|Bison=🦬~🐂|' +
+   'Orangutan=🦧|Gorilla=🦍|Polar Bear=🐻‍❄️~⛄|Llama=🦙|Turkey=🦃|Jellyfish=🪼~🎐|Squid=🦑|Shrimp=🦐|Lobster=🦞|Starfish=🌟|' +
+   'Scorpion=🦂|Worm=🪱~〰️|Mosquito=🦟|Grasshopper=🦗|Potted Plant=🪴~🌺|Clover=🍀|Lavender=🪻~💜|Full Moon=🌕|Knife=🔪|Sword=⚔️|' +
+   'Scissors=✂️|Thread=🧵|Needle=🪡~📌|Clothing=👕|Rope=🪢~➰|Chain=⛓️|Lock=🔒|Key=🔑|Magnet=🧲|Battery=🔋|' +
+   'Candle=🕯️|Lamp=🪔|Lantern=🏮|Mirror=🪞~📀|Bucket=🪣~🗑️|Shovel=⛏️|Ladder=🪜~🏗️|Saw=🪚~🗡️|Wrench=🔧|Soap=🧼|' +
+   'Bubbles=🫧~🔵|Perfume=🧴|Chair=🪑|Bed=🛏️|Sofa=🛋️|Door=🚪|Window=🪟~🌅|Map=🗺️|Compass=🧭|Glasses=👓|' +
+   'Necklace=📿|Helmet=⛑️|Hat=👒|Dress=👗|Coat=🧥|Tie=👔|Pants=👖|Scarf=🧣|Gloves=🧤|Socks=🧦|' +
+   'Shoes=👟|Tent=🏕️|Apartment=🏢|Skyscraper=🌆|Hotel=🏨|Hospital=🏥|Restaurant=🍽️|Museum=🏛️|Theater=🎭|Circus=🎪|' +
+   'Playground=🛝~🎠|Bridge=🌉|Road=🛣️|Statue=🗽|Pyramid=🔺|Temple=🛕|Church=⛪|Mosque=🕌|Synagogue=🕍|University=🎓|' +
+   'Factory=🏭|Power Plant=☢️|Airport=🛫|Station=🚉|Anchor=⚓|Tower=🗼|Laboratory=⚗️|Doctor=👨‍⚕️|Teacher=🧑‍🏫|Student=🧑‍🎓|' +
+   'Scientist=🧑‍🔬|Engineer=🧑‍🔧|Artist=👨‍🎨|Singer=👨‍🎤|Police=👮|Firefighter=🧑‍🚒|Pilot=🧑‍✈️|Soldier=💂|Shield=🛡️|Knight=♞|' +
+   'Pirate=🏴‍☠️~☠️|Baker=🧑‍🍳|Hunter=🏹|Fisherman=🎣|Gardener=🧑‍🌾|Writer=🖋️|Photographer=📸|Musician=🧑‍🎤|Baby=👶|Vampire=🧛|' +
+   'Zombie=🧟|Superhero=🦸|Elf=🧝|Troll=🧌~👹|Skeleton=💀|Bone=🦴|Spell Book=📕|Medicine=💊|Blood=🩸|Eye=👁️|' +
+   'Atom=⚛️|Plastic=🛍️|Feather=🪶~✒️|Piano=🎹|Violin=🎻|Trumpet=🎺|Saxophone=🎷|Flute=🪈~📯|Banjo=🪕|Accordion=🪗~🎼|' +
+   'Radio=📻|Puzzle=🧩|Chess=♟️|Dice=🎲|Cards=🃏|Frisbee=🥏|Trophy=🏆|Medal=🏅|Basketball=🏀|Bowling=🎳|' +
+   'Boxing=🥊|Barbecue=🍗|Confetti=🎊|Dream=💭|Motorcycle=🏍️|Truck=🚚|Bus=🚌|Ambulance=🚑|Fire Truck=🚒|Police Car=🚓|' +
+   'Taxi=🚕|Race Car=🏎️|Helicopter=🚁|Skateboard=🛹|Roller Skate=🛼~🥾').split('|').forEach(function (p) {
     var i = p.indexOf('='), v = p.slice(i + 1).split('~');
     EMOJI[p.slice(0, i)] = v[0]; if (v[1]) OLDER[p.slice(0, i)] = v[1];
   });
@@ -109,7 +131,64 @@
    'Air+Wave=Sound|Sound+Human=Voice|Sound+Love=Music|Music+Bird=Song|Voice+Music=Song|Music+Human=Dance|Music+Wood=Guitar|' +
    'Sound+Wood=Drum|Music+Electricity=Headphones|Song+Electricity=Microphone|Gold+Paper=Money|Money+House=Bank|Money+Box=Shop|' +
    'Human+Box=Toy|Bear+Toy=Teddy Bear|Toy+Air=Ball|Toy+Wind=Kite|Paper+Wind=Kite|Love+Air=Balloon|Balloon+Birthday Cake=Party|' +
-   'Music+Balloon=Party|Party+Music=Dance').split('|');
+   'Music+Balloon=Party|Party+Music=Dance|' +
+   // cooking and food (expansion)
+   'Wheat+Stone=Flour|Flour+Water=Dough|Dough+Egg=Pasta|Pasta+Water=Noodles|Dough+Fire=Pancake|Dough+Metal=Waffle|Milk+Tool=Butter|Dough+Butter=Croissant|Dough+Heat=Baguette|' +
+   'Ocean+Sun=Salt|Dough+Salt=Pretzel|Dough+Fruit=Pie|Dough+Vegetable=Dumpling|Dough+Cow=Taco|Plant+Water=Rice|Dough+Rice=Burrito|Rice+Fish=Sushi|Rice+Heat=Curry|' +
+   'Vegetable+Earth=Potato|Potato+Fire=Fries|Fruit+Rain=Grapes|Grapes+Time=Wine|Wheat+Time=Beer|Wine+Explosion=Champagne|Fruit+Rainbow=Orange|Fruit+Lake=Watermelon|Fruit+Crown=Pineapple|' +
+   'Fruit+Rose=Peach|Fruit+Autumn=Pear|Fruit+Love=Cherry|Fruit+Seed=Strawberry|Fruit+Forest=Blueberry|Tree+Fruit=Olive|Olive+Tool=Oil|Fruit+Stone=Avocado|Fruit+Island=Coconut|' +
+   'Plant+Vegetable=Garlic|Vegetable+Leaf=Onion|Vegetable+Rainbow=Bell Pepper|Vegetable+Fire=Chili|Vegetable+Pond=Cucumber|Vegetable+Tree=Broccoli|Egg+Heat=Omelette|Pig+Fire=Bacon|Cow+Fire=Steak|' +
+   'Animal+Tool=Meat|Milk+Tea=Bubble Tea|' +
+   // animals and creatures (expansion)
+   'Animal+Earth=Elephant|Horse+Paint=Zebra|Horse+Earth=Donkey|Animal+Leaf=Deer|Rabbit+Desert=Kangaroo|Animal+Time=Sloth|Animal+Pond=Otter|Animal+Wood=Beaver|Animal+Seed=Squirrel|' +
+   'Animal+Snow=Moose|Elephant+Stone=Rhino|Animal+Lake=Hippo|Cow+Grass=Bison|Monkey+Forest=Orangutan|Monkey+Energy=Gorilla|Bear+Snow=Polar Bear|Sheep+Mountain=Llama|Bird+Farmer=Turkey|' +
+   'Ocean+Energy=Jellyfish|Fish+Octopus=Squid|Ocean+Insect=Shrimp|Crab+Stone=Lobster|Ocean+Star=Starfish|Spider+Desert=Scorpion|Mud+Insect=Worm|Insect+Lake=Mosquito|Insect+Meadow=Grasshopper|' +
+   // plants and sky (expansion)
+   'Plant+Clay=Potted Plant|Plant+Magic=Clover|Flower+Night=Lavender|Moon+Light=Full Moon|' +
+   // tools and household (expansion)
+   'Tool+Metal=Knife|Knife+King=Sword|Paper+Metal=Scissors|Wool+Tool=Thread|Metal+Thread=Needle|Needle+Thread=Clothing|Grass+Tool=Rope|Metal+Metal=Chain|Metal+Box=Lock|' +
+   'Lock+Tool=Key|Metal+Earth=Magnet|Metal+Electricity=Battery|Fire+Thread=Candle|Fire+Metal=Lamp|Candle+Paper=Lantern|Glass+Metal=Mirror|Tool+Water=Bucket|Tool+Earth=Shovel|' +
+   'Wood+House=Ladder|Metal+Wood=Saw|Tool+Engine=Wrench|Water+Energy=Soap|Soap+Air=Bubbles|Flower+Glass=Perfume|Wood+Stone=Chair|Wood+Night=Bed|Bed+Chair=Sofa|' +
+   'Wood+Wall=Door|Wall+Glass=Window|Paper+Earth=Map|Map+Magnet=Compass|Glass+Eye=Glasses|Chain+Gold=Necklace|Metal+Bicycle=Helmet|Clothing+Sun=Hat|Clothing+Flower=Dress|' +
+   'Clothing+Cold=Coat|Clothing+King=Tie|Clothing+Stone=Pants|Wool+Cold=Scarf|Wool+Ice=Gloves|Wool+Wool=Socks|Clothing+Earth=Shoes|' +
+   // buildings and places (expansion)
+   'Wool+Wood=Tent|House+City=Apartment|Apartment+Sky=Skyscraper|Bed+City=Hotel|House+Medicine=Hospital|Cook+House=Restaurant|House+Art=Museum|House+Movie=Theater|Party+Tent=Circus|' +
+   'Toy+Tree=Playground|Stone+Lake=Bridge|Stone+Earth=Road|Stone+Human=Statue|Stone+Desert=Pyramid|Stone+House=Temple|House+Angel=Church|House+Moon=Mosque|House+Star=Synagogue|' +
+   'School+City=University|House+Engine=Factory|Factory+Energy=Power Plant|Airplane+House=Airport|Train+House=Station|Metal+Ship=Anchor|Castle+Sky=Tower|House+Potion=Laboratory|' +
+   // people and fantasy (expansion)
+   'Human+Medicine=Doctor|Human+Book=Teacher|Human+School=Student|Human+Laboratory=Scientist|Human+Engine=Engineer|Human+Art=Artist|Human+Song=Singer|Human+Car=Police|Human+Water=Firefighter|' +
+   'Human+Airplane=Pilot|Human+Sword=Soldier|King+Metal=Shield|Human+Shield=Knight|Human+Ship=Pirate|Human+Bread=Baker|Human+Forest=Hunter|Human+Boat=Fisherman|Human+Garden=Gardener|' +
+   'Human+Pencil=Writer|Human+Camera=Photographer|Human+Guitar=Musician|Love+Family=Baby|Human+Bat=Vampire|Ghost+Human=Zombie|Human+Energy=Superhero|Human+Leaf=Elf|Human+Mountain=Troll|' +
+   'Animal+Stone=Bone|Human+Bone=Skeleton|Book+Magic=Spell Book|' +
+   // science and nature (expansion)
+   'Potion+Life=Medicine|Life+Energy=Blood|Human+Light=Eye|Energy+Stone=Atom|Oil+Energy=Plastic|Bird+Wind=Feather|Atom+Atom=Energy|' +
+   // music, games and fun (expansion)
+   'Music+Tool=Piano|Guitar+Love=Violin|Music+Metal=Trumpet|Music+Gold=Saxophone|Music+Bamboo=Flute|Guitar+Wood=Banjo|Music+Box=Accordion|Sound+Box=Radio|Toy+Brain=Puzzle|' +
+   'Toy+King=Chess|Toy+Box=Dice|Paper+Toy=Cards|Toy+Stone=Frisbee|Gold+Video Game=Trophy|Gold+Ball=Medal|Toy+Orange=Basketball|Ball+Stone=Bowling|Human+Gloves=Boxing|' +
+   'Meat+Fire=Barbecue|Party+Paper=Confetti|Night+Human=Dream|' +
+   // transport (expansion)
+   'Bicycle+Engine=Motorcycle|Car+Box=Truck|Car+City=Bus|Car+Medicine=Ambulance|Car+Water=Fire Truck|Car+Police=Police Car|Car+Money=Taxi|Car+Energy=Race Car|Airplane+Metal=Helicopter|' +
+   'Wood+Wheel=Skateboard|Shoes+Wheel=Roller Skate|' +
+   // follow-on chains (expansion)
+   'Pancake+Chocolate=Cake|Waffle+Chocolate=Cookie|Croissant+Cheese=Sandwich|Baguette+Garlic=Bread|Pretzel+Beer=Party|Pie+Ice Cream=Cake|Dumpling+Water=Soup|Taco+Chili=Burrito|Burrito+Vegetable=Sandwich|' +
+   'Sushi+Human=Cook|Curry+Potato=Soup|Fries+Meat=Burger|Beer+Meat=Barbecue|Champagne+Party=Fireworks|Watermelon+Ice=Juice|Pineapple+Coconut=Juice|Peach+Ice=Ice Cream|Pear+Cheese=Salad|' +
+   'Cherry+Cake=Birthday Cake|Strawberry+Chocolate=Candy|Blueberry+Dough=Pie|Avocado+Bread=Sandwich|Coconut+Water=Milk|Garlic+Vampire=Human|Onion+Eye=Water|Bell Pepper+Cheese=Pizza|Chili+Chocolate=Candy|' +
+   'Cucumber+Water=Juice|Broccoli+Cheese=Soup|Omelette+Bread=Sandwich|Bacon+Egg=Omelette|Steak+Wine=Restaurant|Bubble Tea+Ice=Ice Cream|Zebra+Water=Horse|Donkey+Human=Farmer|Deer+Snow=Santa|' +
+   'Kangaroo+Gloves=Boxing|Sloth+Night=Dream|Otter+Shell=Pearl|Beaver+House=Hut|Squirrel+Seed=Tree|Moose+Mountain=Goat|Rhino+Energy=Dinosaur|Hippo+Mud=Pig|Bison+Human=Cow|' +
+   'Orangutan+Time=Human|Gorilla+Banana=Monkey|Polar Bear+Sun=Bear|Llama+Wool=Clothing|Turkey+Family=Party|Jellyfish+Energy=Light|Squid+Water=Octopus|Shrimp+Rice=Sushi|Lobster+Butter=Restaurant|' +
+   'Starfish+Sky=Star|Scorpion+Magic=Potion|Worm+Rain=Fish|Mosquito+Blood=Vampire|Grasshopper+Violin=Music|Potted Plant+Sun=Flower|Clover+Rainbow=Gold|Lavender+Water=Perfume|Full Moon+Human=Vampire|' +
+   'Scissors+Paper=Confetti|Rope+Tree=Playground|Key+Door=House|Battery+Toy=Robot|Lamp+Magic=Genie|Lantern+Sky=Fireworks|Mirror+Phone=Selfie|Bucket+Sand=Castle|Shovel+Earth=Garden|' +
+   'Ladder+Cloud=Sky|Saw+Tree=Wood|Wrench+Metal=Tool|Bubbles+Human=Party|Perfume+Love=Party|Sofa+Television=Movie|Window+Sun=Day|Compass+Ocean=Pirate|Glasses+Human=Teacher|' +
+   'Necklace+Human=Queen|Helmet+Human=Soldier|Hat+Magic=Rabbit|Dress+Dance=Party|Coat+Snow=Scarf|Tie+Money=Bank|Scarf+Snow=Snowman|Socks+Santa=Gift|Skyscraper+Airplane=Airport|' +
+   'Hotel+Water=Island|Hospital+Baby=Family|Restaurant+Human=Cook|Museum+Stone=Statue|Theater+Night=Movie|Circus+Elephant=Party|Playground+Human=Party|Bridge+Train=Station|Road+House=Village|' +
+   'Statue+Magic=Human|Pyramid+Human=King|Temple+Magic=Wizard|Church+Human=Angel|Mosque+Sun=Desert|Synagogue+Book=Library|University+Human=Teacher|Power Plant+Energy=Electricity|Airport+Space=Rocket|' +
+   'Station+Car=Bus|Anchor+Ocean=Island|Tower+Dragon=Castle|Doctor+Bacteria=Medicine|Teacher+Student=School|Scientist+Space=Astronaut|Engineer+Metal=Robot|Artist+Stone=Statue|Singer+Microphone=Song|' +
+   'Firefighter+Fire=Steam|Pilot+Rocket=Astronaut|Soldier+Castle=Knight|Knight+Dragon=King|Pirate+Map=Island|Baker+Flour=Bread|Hunter+Animal=Meat|Fisherman+Ocean=Whale|Gardener+Tree=Forest|' +
+   'Writer+Paper=Book|Photographer+Time=Movie|Musician+Radio=Song|Baby+Time=Human|Vampire+Sun=Ghost|Zombie+Human=Ghost|Superhero+Explosion=Fireworks|Elf+Magic=Fairy|Troll+Bridge=Statue|' +
+   'Skeleton+Night=Ghost|Spell Book+Magic=Potion|Plastic+Metal=Car|Feather+Paper=Letter|Piano+Human=Musician|Violin+Human=Musician|Trumpet+King=Party|Saxophone+City=Night|Flute+Snake=Music|' +
+   'Banjo+Party=Music|Accordion+Wind=Music|Puzzle+Toy=Video Game|Chess+Brain=Computer|Dice+Gold=Money|Cards+Human=Party|Frisbee+Dog=Toy|Trophy+Human=Party|Medal+Human=Soldier|' +
+   'Basketball+Human=Trophy|Bowling+Night=Party|Barbecue+Human=Party|Confetti+Birthday Cake=Party|Dream+Night=Ghost|Motorcycle+Police=Police Car|Truck+City=Bus|Bus+Human=City|Ambulance+Doctor=Hospital|' +
+   'Fire Truck+Fire=House|Police Car+Human=Police|Taxi+Night=City|Race Car+Fire=Explosion|Helicopter+City=Airport|Skateboard+Human=Toy|Roller Skate+Party=Dance').split('|');
   var BOOK = {}, USED = {};
   function pairKey(a, b) { return a < b ? a + '+' + b : b + '+' + a; }
   RECIPES.forEach(function (r) {
