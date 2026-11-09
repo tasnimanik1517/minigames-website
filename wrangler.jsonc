@@ -3,10 +3,12 @@
 // `npx wrangler deploy` (main) or `npx wrangler preview` (other branches).
 {
   "name": "minigames-website",
+  "main": "worker.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
   "preview_urls": true,
   "assets": {
+    "binding": "ASSETS",
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
