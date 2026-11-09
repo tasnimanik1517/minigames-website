@@ -57,7 +57,34 @@
    'Atom=⚛️|Plastic=🛍️|Feather=🪶~✒️|Piano=🎹|Violin=🎻|Trumpet=🎺|Saxophone=🎷|Flute=🪈~📯|Banjo=🪕|Accordion=🪗~🎼|' +
    'Radio=📻|Puzzle=🧩|Chess=♟️|Dice=🎲|Cards=🃏|Frisbee=🥏|Trophy=🏆|Medal=🏅|Basketball=🏀|Bowling=🎳|' +
    'Boxing=🥊|Barbecue=🍗|Confetti=🎊|Dream=💭|Motorcycle=🏍️|Truck=🚚|Bus=🚌|Ambulance=🚑|Fire Truck=🚒|Police Car=🚓|' +
-   'Taxi=🚕|Race Car=🏎️|Helicopter=🚁|Skateboard=🛹|Roller Skate=🛼~🥾').split('|').forEach(function (p) {
+   'Taxi=🚕|Race Car=🏎️|Helicopter=🚁|Skateboard=🛹|Roller Skate=🛼~🥾' +
+   '|Mango=🥭|Kiwi=🥝|Melon=🍈|Peanut=🥜|Kebab=🥙|Falafel=🧆|Dango=🍡|Whiskey=🥃|Cocktail=🍸|Fondue=🫕~🔘|' +
+   'Bagel=🥯|Pudding=🍮|Fortune Cookie=🥠|Maple Syrup=🍁|Skewer=🍢|Sundae=🍨|Bento Box=🍱|Teapot=🫖~⬜|Fork=🍴|' +
+   'Spoon=🥄|Chopsticks=🥢|Picnic=🧺|Canned Food=🥫|Paella=🥘|Tamale=🫔~🟣|Mate=🧉|Fish Cake=🍥|Ginger=🫚~🟡|' +
+   'Sweet Potato=🍠|Eggplant=🍆|Peas=🫛~💚|Beans=🫘~🔴|Kale=🥬|Shaved Ice=🍧|Onigiri=🍙|Rice Cracker=🍘' +
+   '|Pufferfish=🐡|Sponge=🧽|Seal=🦭|Leopard=🐆|Ram=🐏|Hamster=🐹|Rooster=🐓|Chick=🐤|Dove=🕊️|Dodo=🦤~⬛|' +
+   'Mammoth=🦣~⏹️|Brontosaurus=🦕|Badger=🦡|Skunk=🦨|Raccoon=🦝|Poodle=🐩|Fly=🪰~🔲|Beetle=🪲~🔳|Cockroach=🪳~⏺️|' +
+   'Spider Web=🕸️|Crow=🐦‍⬛~🖤|Canoe=🛶|Yacht=🛥️|Ferry=⛴️|Speedboat=🚤|Life Buoy=🛟~⭕|Diving Mask=🤿|Demon=👿|' +
+   'Goblin=👺|Invader=👾' +
+   '|Toolbox=🧰|Screwdriver=🪛~🔸|Fire Extinguisher=🧯|Toothbrush=🪥~🔹|Razor=🪒~▪️|Safety Pin=🧷|Boomerang=🪃~🔻|' +
+   'Piñata=🪅~✳️|Disco Ball=🪩~💠|Nesting Doll=🪆~👧|Sign=🪧~▫️|Elevator=🛗~◻️|Haunted House=🏚️|Stadium=🏟️|' +
+   'Roller Coaster=🎢|SUV=🚙|Semi Truck=🚛|Monorail=🚝|Bullet Train=🚄|Metro=🚇|Tram=🚊|Scooter=🛵|' +
+   'Kick Scooter=🛴|Railway=🛤️|Gas Station=⛽|Parachute=🪂~◽|Petri Dish=🧫|Syringe=💉|Bandage=🩹|Stethoscope=🩺|' +
+   'X-Ray=🩻~◼️|Abacus=🧮|Ruler=📏|Magnifying Glass=🔎|Flashlight=🔦|Monitor=🖥️|Printer=🖨️|Keyboard=⌨️|' +
+   'Computer Mouse=🖱️|Floppy Disk=💾|CD=💿|Video Tape=📼|Video Camera=📹|Movie Camera=🎥|Podcast=🎙️|' +
+   'Conga=🪘~🔶|Maracas=🪇~❇️|Calendar=📅|Paperclip=📎|Pin=📍|Pen=🖊️|Crayon=🖍️|Link=🔗|Stopwatch=⏱️' +
+   '|Tooth=🦷|Ear=👂|Nose=👃|Tongue=👅|Beard=🧔|Heart=🫀~💓|Lungs=🫁~⏸️|Villain=🦹|Detective=🕵️|' +
+   'Construction Worker=👷|Programmer=🧑‍💻|Office Worker=🧑‍💼|Meditation=🧘|Sauna=🧖|Bathtub=🛁|Shower=🚿|' +
+   'Toilet=🚽|Plunger=🪠~⏯️|Rugby=🏉|Baseball=⚾|Tennis=🎾|Volleyball=🏐|Ping Pong=🏓|Badminton=🏸|Goal=🥅|Golf=⛳|' +
+   'Ski=🎿|Sled=🛷|Curling=🥌|Darts=🎯|Joystick=🕹️|Slot Machine=🎰|Mahjong=🀄|Ice Skate=⛸️|Hockey=🏒|' +
+   'Lacrosse=🥍|Cricket=🏏|Fencing=🤺|Gym=🏋️|Kimono=👘|Sari=🥻|Swimsuit=🩱|Shorts=🩳|Flip Flops=🩴~🥿|' +
+   'High Heels=👠|Boots=👢|Top Hat=🎩|Cap=🧢|Purse=👛|Handbag=👜|Briefcase=💼|Backpack=🎒|Suitcase=🧳|' +
+   'Lipstick=💄|Nail Polish=💅|Comb=🪮~⏭️' +
+   '|Shamrock=☘️|Mount Fuji=🗻|Scroll=📜|Skeleton Key=🗝️|Bell=🔔|Scales=⚖️|Hook=🪝~⏮️|Satellite Dish=📡|Mall=🏬|' +
+   'Barber Shop=💈|Fan=🪭~🌂|Parasol=⛱️|Goggles=🥽|Face Mask=😷|Smartwatch=⌚|Speaker=🔈|Fax Machine=📠|' +
+   'Telephone=☎️|Shopping Cart=🛒|Ribbon=🎀|Mailbox=📮|Cabinet=🗄️|Traffic Light=🚦|Faucet=🚰|Notebook=📔|' +
+   'Journal=📓|Newspaper=📰|Flag=🚩|Ticket=🎟️|ID Card=🪪~📇|Credit Card=💳|ATM=🏧|Receipt=🧾|Memo=📝|' +
+   'Dollar Bill=💵').split('|').forEach(function (p) {
     var i = p.indexOf('='), v = p.slice(i + 1).split('~');
     EMOJI[p.slice(0, i)] = v[0]; if (v[1]) OLDER[p.slice(0, i)] = v[1];
   });
@@ -188,7 +215,147 @@
    'Skeleton+Night=Ghost|Spell Book+Magic=Potion|Plastic+Metal=Car|Feather+Paper=Letter|Piano+Human=Musician|Violin+Human=Musician|Trumpet+King=Party|Saxophone+City=Night|Flute+Snake=Music|' +
    'Banjo+Party=Music|Accordion+Wind=Music|Puzzle+Toy=Video Game|Chess+Brain=Computer|Dice+Gold=Money|Cards+Human=Party|Frisbee+Dog=Toy|Trophy+Human=Party|Medal+Human=Soldier|' +
    'Basketball+Human=Trophy|Bowling+Night=Party|Barbecue+Human=Party|Confetti+Birthday Cake=Party|Dream+Night=Ghost|Motorcycle+Police=Police Car|Truck+City=Bus|Bus+Human=City|Ambulance+Doctor=Hospital|' +
-   'Fire Truck+Fire=House|Police Car+Human=Police|Taxi+Night=City|Race Car+Fire=Explosion|Helicopter+City=Airport|Skateboard+Human=Toy|Roller Skate+Party=Dance').split('|');
+   'Fire Truck+Fire=House|Police Car+Human=Police|Taxi+Night=City|Race Car+Fire=Explosion|Helicopter+City=Airport|Skateboard+Human=Toy|Roller Skate+Party=Dance' +
+   // round 2: kitchen and world food
+   '|Tree+Heat=Mango|Fruit+Grass=Kiwi|Grass+Sun=Melon|Seed+Sand=Peanut|Skewer+Meat=Kebab|Beans+Fire=Falafel|' +
+   'Rice+Steam=Dango|Beer+Time=Whiskey|Juice+Ice=Cocktail|Cheese+Fire=Fondue|Dough+Water=Bagel|Milk+Egg=Pudding|' +
+   'Cookie+Paper=Fortune Cookie|Tree+Fire=Maple Syrup|Wood+Knife=Skewer|Ice Cream+Chocolate=Sundae|' +
+   'Rice+Box=Bento Box|Tea+Clay=Teapot|Knife+Stone=Fork|Metal+Heat=Spoon|Bamboo+Wood=Chopsticks|' +
+   'Sandwich+Grass=Picnic|Metal+Vegetable=Canned Food|Rice+Squid=Paella|Corn+Dough=Tamale|Leaf+Tea=Mate|' +
+   'Fish+Flour=Fish Cake|Plant+Earth=Ginger|Potato+Sun=Sweet Potato|Plant+Moon=Eggplant|Grass+Seed=Peas|' +
+   'Seed+Sun=Beans|Plant+Leaf=Kale|Juice+Snow=Shaved Ice|Rice+Salt=Onigiri|Rice+Fire=Rice Cracker|' +
+   'Skewer+Vegetable=Kebab|Ice Cream+Mango=Sundae|Whiskey+Ice=Cocktail|Rice+Milk=Pudding|Dough+Steam=Tamale|' +
+   'Mango+Ice=Shaved Ice|Chopsticks+Rice=Bento Box|Peanut+Chocolate=Candy|Peanut+Dough=Cookie|' +
+   'Kebab+Bread=Sandwich|Falafel+Bread=Sandwich|Dango+Honey=Candy|Whiskey+Honey=Medicine|Cocktail+Night=Party|' +
+   'Fondue+Night=Party|Bagel+Cheese=Pizza|Pudding+Chocolate=Cake|Pudding+Cookie=Pie|' +
+   'Fortune Cookie+Crystal Ball=Magic|Fortune Cookie+Paper=Letter|Maple Syrup+Snow=Candy|Skewer+Fire=Barbecue|' +
+   'Sundae+Party=Birthday Cake|Bento Box+Fish=Sushi|Bento Box+Train=Picnic|Teapot+Fire=Tea|Fork+Knife=Tool|' +
+   'Spoon+Ice Cream=Sundae|Chopsticks+Sushi=Restaurant|Picnic+Wine=Party|Canned Food+Fire=Soup|' +
+   'Paella+Lemon=Restaurant|Mate+Fire=Tea|Fish Cake+Soup=Noodles|Fish Cake+Rice=Sushi|Ginger+Tea=Medicine|' +
+   'Ginger+Garlic=Curry|Ginger+Dough=Cookie|Sweet Potato+Fire=Fries|Eggplant+Tomato=Curry|Eggplant+Cheese=Pizza|' +
+   'Peas+Vegetable=Salad|Peas+Fire=Soup|Beans+Rice=Burrito|Beans+Tomato=Soup|Kale+Fire=Fries|Melon+Meat=Salad|' +
+   'Honey+Lemon=Tea|Egg+Butter=Omelette|Tomato+Cheese=Pizza|Oil+Potato=Fries|Milk+Chocolate=Pudding|' +
+   'Banana+Milk=Juice|Banana+Fruit=Salad|Lemon+Tea=Lemonade|Fire+Mushroom=Soup|Egg+Tomato=Omelette' +
+   // round 2: creatures and sea
+   '|Fish+Air=Pufferfish|Coral+Water=Sponge|Otter+Ice=Seal|Tiger+Forest=Leopard|Goat+Mountain=Ram|' +
+   'Mouse+Seed=Hamster|Chicken+Sunrise=Rooster|Egg+Time=Chick|Bird+Love=Dove|Bird+Island=Dodo|' +
+   'Elephant+Snow=Mammoth|Dinosaur+Plant=Brontosaurus|Fox+Earth=Badger|Animal+Perfume=Skunk|Animal+Night=Raccoon|' +
+   'Dog+Scissors=Poodle|Insect+Wind=Fly|Insect+Stone=Beetle|Insect+House=Cockroach|Spider+Thread=Spider Web|' +
+   'Bird+Charcoal=Crow|Tree+Water=Canoe|Boat+Money=Yacht|Boat+Car=Ferry|Boat+Energy=Speedboat|' +
+   'Plastic+Air=Life Buoy|Glasses+Ocean=Diving Mask|Ghost+Fire=Demon|Elf+Night=Goblin|Alien+Video Game=Invader|' +
+   'Elephant+Ice=Mammoth|Chicken+Egg=Chick|Pufferfish+Knife=Sushi|Pufferfish+Water=Fish|Sponge+Soap=Bubbles|' +
+   'Sponge+Ocean=Coral|Seal+Ball=Circus|Leopard+Clothing=Dress|Ram+Mountain=Goat|Ram+Sheep=Wool|' +
+   'Hamster+Wheel=Energy|Hamster+Seed=Sunflower|Rooster+Chicken=Egg|Rooster+Clock=Sunrise|Chick+Time=Chicken|' +
+   'Chick+Grass=Bird|Dove+Magic=Angel|Dove+House=Bird|Dodo+Time=Ghost|Mammoth+Time=Elephant|' +
+   'Brontosaurus+Time=Oil|Badger+Forest=Animal|Skunk+Flower=Perfume|Skunk+Water=Soap|Raccoon+City=Animal|' +
+   'Raccoon+Forest=Animal|Poodle+Clothing=Dress|Poodle+Water=Dog|Fly+Spider=Spider Web|Fly+Bee=Insect|' +
+   'Beetle+Metal=Car|Beetle+Flower=Ladybug|Cockroach+House=Ant|Spider Web+Insect=Spider|Spider Web+House=Ghost|' +
+   'Crow+Night=Ghost|Crow+Gold=Ring|Canoe+Water=Boat|Canoe+Fish=Fisherman|Yacht+Night=Party|Ferry+Ocean=Ship|' +
+   'Speedboat+Water=Wave|Life Buoy+Ocean=Boat|Diving Mask+Ocean=Coral|Demon+Fire=Explosion|Demon+Night=Vampire|' +
+   'Goblin+Gold=Money|Goblin+Forest=Troll|Invader+Computer=Video Game|Invader+Space=Alien|Chicken+Fire=Barbecue|' +
+   'Moon+Wolf=Ghost|Night+Spider=Ghost|Horse+Human=Knight|Dog+Human=Family|Fish+Knife=Sushi|Ocean+Turtle=Island|' +
+   'Ocean+Whale=Wave|Bee+Tree=Honey|Ant+House=Insect|Butterfly+Flower=Garden|Frog+Magic=King|Ice+Penguin=Snow|' +
+   'Crab+Ocean=Sushi|Fire+Lobster=Restaurant' +
+   // round 2: home tools and tech
+   '|Box+Tool=Toolbox|Knife+Tool=Screwdriver|Metal+Air=Fire Extinguisher|Plastic+Wood=Toothbrush|' +
+   'Knife+Plastic=Razor|Metal+Needle=Safety Pin|Air+Wood=Boomerang|Candy+Paper=Piñata|Light+Mirror=Disco Ball|' +
+   'Paint+Wood=Nesting Doll|Letter+Wood=Sign|Metal+Skyscraper=Elevator|Ghost+House=Haunted House|' +
+   'Ball+City=Stadium|Mountain+Train=Roller Coaster|Car+Mountain=SUV|Engine+Truck=Semi Truck|' +
+   'Electricity+Train=Monorail|Lightning+Train=Bullet Train|City+Train=Metro|Road+Train=Tram|' +
+   'Bicycle+Electricity=Scooter|Metal+Skateboard=Kick Scooter|Metal+Road=Railway|Car+Oil=Gas Station|' +
+   'Air+Umbrella=Parachute|Bacteria+Laboratory=Petri Dish|Glass+Needle=Syringe|Medicine+Thread=Bandage|' +
+   'Doctor+Metal=Stethoscope|Camera+Skeleton=X-Ray|Thread+Wood=Abacus|Pencil+Wood=Ruler|' +
+   'Book+Glass=Magnifying Glass|Battery+Light Bulb=Flashlight|Computer+Television=Monitor|Computer+Paper=Printer|' +
+   'Computer+Piano=Keyboard|Computer+Mouse=Computer Mouse|Computer+Plastic=Floppy Disk|Music+Plastic=CD|' +
+   'Movie+Plastic=Video Tape|Camera+Movie=Video Camera|Camera+Time=Movie Camera|Internet+Microphone=Podcast|' +
+   'Drum+Wood=Conga|Sand+Wood=Maracas|Paper+Time=Calendar|Needle+Paper=Paperclip|Map+Metal=Pin|' +
+   'Feather+Plastic=Pen|Paint+Pencil=Crayon|Chain+Computer=Link|Clock+Metal=Stopwatch|Castle+Ghost=Haunted House|' +
+   'Energy+Train=Bullet Train|Apartment+Metal=Elevator|Doctor+Skeleton=X-Ray|Computer+Music=CD|' +
+   'Internet+Radio=Podcast|House+Toolbox=Home|Screwdriver+Wrench=Toolbox|Fire+Fire Extinguisher=Smoke|' +
+   'Clothing+Safety Pin=Dress|Boomerang+Dog=Toy|Party+Piñata=Candy|Disco Ball+Party=Dance|Disco Ball+Music=Dance|' +
+   'Nesting Doll+Paint=Art|Road+Sign=City|Elevator+Skyscraper=Hotel|Elevator+Hotel=Apartment|' +
+   'Haunted House+Night=Ghost|Haunted House+Pumpkin=Party|Ball+Stadium=Trophy|Human+Stadium=Party|' +
+   'Human+Roller Coaster=Party|Circus+Roller Coaster=Party|Family+SUV=Car|Road+Semi Truck=City|' +
+   'City+Monorail=Station|Bullet Train+City=Station|Bullet Train+Energy=Electricity|Metro+Night=City|' +
+   'Metro+Station=Train|City+Tram=Road|Road+Scooter=Motorcycle|Human+Kick Scooter=Toy|Railway+Train=Station|' +
+   'Car+Gas Station=Road|Human+Parachute=Sky|Bacteria+Petri Dish=Medicine|Doctor+Syringe=Medicine|' +
+   'Bandage+Blood=Medicine|Bandage+Doctor=Hospital|Doctor+Stethoscope=Hospital|Doctor+X-Ray=Medicine|' +
+   'Abacus+Brain=Computer|Pencil+Ruler=Art|Magnifying Glass+Sun=Fire|Flashlight+Night=Light|' +
+   'Flashlight+House=Lamp|Monitor+Television=Movie|Paper+Printer=Book|Paperclip+Paper=Letter|' +
+   'Keyboard+Computer=Internet|Computer Mouse+Computer=Video Game|Floppy Disk+Time=Computer|CD+Music=Song|' +
+   'CD+Radio=Music|Television+Video Tape=Movie|Human+Video Camera=Movie|Light+Movie Camera=Movie|' +
+   'Headphones+Podcast=Music|Conga+Party=Music|Conga+Music=Dance|Maracas+Music=Party|Maracas+Party=Dance|' +
+   'Calendar+Clock=Time|Map+Pin=City|Human+Pen=Writer|Crayon+Paper=Art|Internet+Link=Email|' +
+   'Race Car+Stopwatch=Trophy|House+Tool=Home|Computer+Human=Robot|Paper+Tree=Book|Camera+Light=Photo|' +
+   'Station+Train=City|Car+Road=City|Doctor+Human=Hospital|Boat+Water=Ship|Stone+Stone=Mountain' +
+   // round 2: body people sports fashion
+   '|Bone+Milk=Tooth|Animal+Sound=Ear|Flower+Human=Nose|Human+Voice=Tongue|Human+Time=Beard|Life+Love=Heart|' +
+   'Air+Human=Lungs|Night+Superhero=Villain|Human+Magnifying Glass=Detective|Human+Toolbox=Construction Worker|' +
+   'Human+Internet=Programmer|Briefcase+Human=Office Worker|Brain+Time=Meditation|Heat+House=Sauna|' +
+   'House+Water=Bathtub|House+Rain=Shower|Chair+House=Toilet|Toilet+Tool=Plunger|Ball+Grass=Rugby|' +
+   'Ball+Wood=Baseball|Ball+Wind=Tennis|Ball+Sand=Volleyball|Ball+Plastic=Ping Pong|Ball+Feather=Badminton|' +
+   'Metal+Rope=Goal|Grass+Metal=Golf|Shoes+Snow=Ski|Snow+Wood=Sled|Ice+Stone=Curling|Feather+Metal=Darts|' +
+   'Plastic+Video Game=Joystick|Metal+Money=Slot Machine|Dragon+Puzzle=Mahjong|Ice+Shoes=Ice Skate|' +
+   'Ice+Wood=Hockey|Ball+Rope=Lacrosse|Ball+Bat=Cricket|Knight+Sword=Fencing|House+Metal=Gym|Dress+Flower=Kimono|' +
+   'Clothing+Gold=Sari|Clothing+Water=Swimsuit|Pants+Scissors=Shorts|Sand+Shoes=Flip Flops|' +
+   'Dress+Shoes=High Heels|Rain+Shoes=Boots|Hat+Party=Top Hat|Hat+Sun=Cap|Handbag+Money=Purse|' +
+   'Clothing+Metal=Handbag|Money+Suitcase=Briefcase|Clothing+School=Backpack|Box+Clothing=Suitcase|' +
+   'Mirror+Paint=Lipstick|Glass+Paint=Nail Polish|Mirror+Plastic=Comb|Magnifying Glass+Night=Detective|' +
+   'House+Soap=Bathtub|Doctor+Tooth=Medicine|Time+Tooth=Bone|Ear+Music=Headphones|Ear+Human=Sound|' +
+   'Flower+Nose=Perfume|Tongue+Voice=Song|Beard+Magic=Wizard|Beard+Human=King|Doctor+Heart=Medicine|' +
+   'Heart+Love=Family|Air+Lungs=Voice|Lungs+Water=Bubbles|Explosion+Villain=Superhero|Night+Villain=Ghost|' +
+   'Detective+Night=Police|Book+Detective=Movie|Construction Worker+Metal=Skyscraper|' +
+   'Construction Worker+Wood=House|Computer+Programmer=Robot|Computer+Office Worker=Email|' +
+   'Office Worker+Paper=Letter|Meditation+Night=Dream|Sauna+Water=Steam|Bathtub+Soap=Bubbles|Bathtub+Duck=Toy|' +
+   'Shower+Water=Rain|Human+Rugby=Trophy|Baseball+Stadium=Trophy|Stadium+Tennis=Party|Sand+Volleyball=Party|' +
+   'Human+Ping Pong=Toy|Badminton+Human=Toy|Goal+Human=Trophy|Golf+Human=Party|Mountain+Ski=Snow|Santa+Sled=Gift|' +
+   'Darts+Human=Party|Joystick+Video Game=Computer|Human+Joystick=Video Game|Money+Slot Machine=Gold|' +
+   'Family+Mahjong=Party|Human+Ice Skate=Dance|Hockey+Human=Trophy|Human+Lacrosse=Party|Cricket+Stadium=Trophy|' +
+   'Fencing+Sword=Knight|Fencing+Human=Soldier|Doctor+Gym=Medicine|Human+Kimono=Party|Flower+Kimono=Dress|' +
+   'Human+Sari=Dress|Ocean+Swimsuit=Wave|Flip Flops+Water=Shoes|Dress+High Heels=Party|Boots+Rain=Puddle|' +
+   'Magic+Top Hat=Rabbit|Human+Top Hat=King|Cap+Sun=Sunglasses|Handbag+Party=Dress|Money+Purse=Bank|' +
+   'Airplane+Suitcase=Airport|Hotel+Suitcase=Apartment|Human+Lipstick=Party|Nail Polish+Party=Dress|' +
+   'Comb+Mirror=Perfume|Backpack+School=Student|Backpack+Mountain=Tent|Baby+Doctor=Hospital|King+Queen=Family|' +
+   'Ball+Human=Toy|Stone+Sword=King|Doctor+Time=Medicine|Baby+Love=Family|Human+House=Family|Human+Money=Bank|' +
+   'Human+Star=Superhero|Human+Ice=Snowman' +
+   // round 2: nature places everyday
+   '|Clover+Rain=Shamrock|Island+Mountain=Mount Fuji|Letter+Time=Scroll|Key+Skeleton=Skeleton Key|' +
+   'Church+Metal=Bell|Gold+Metal=Scales|Fish+Metal=Hook|Metal+Satellite=Satellite Dish|City+Shop=Mall|' +
+   'Scissors+Shop=Barber Shop|Bamboo+Paper=Fan|Sun+Umbrella=Parasol|Glasses+Water=Goggles|' +
+   'Clothing+Doctor=Face Mask|Clock+Phone=Smartwatch|Metal+Sound=Speaker|Paper+Phone=Fax Machine|' +
+   'Electricity+Voice=Telephone|Box+Wheel=Shopping Cart|Clothing+Scissors=Ribbon|Box+Letter=Mailbox|' +
+   'Box+Wood=Cabinet|Electricity+Road=Traffic Light|Metal+Water=Faucet|Paper+School=Notebook|Book+Night=Journal|' +
+   'Day+Paper=Newspaper|Clothing+Wind=Flag|Movie+Paper=Ticket|Human+Paper=ID Card|Money+Plastic=Credit Card|' +
+   'Bank+Metal=ATM|Paper+Shop=Receipt|Brain+Paper=Memo|Money+Paper=Dollar Bill|Church+Time=Bell|' +
+   'Clock+Computer=Smartwatch|Phone+Time=Telephone|Paper+Train=Ticket|Bank+Computer=ATM|Rain+Shamrock=Rainbow|' +
+   'Gold+Shamrock=Money|Mount Fuji+Tree=Garden|Cloud+Mount Fuji=Sky|Magic+Scroll=Spell Book|Book+Scroll=Library|' +
+   'Door+Skeleton Key=House|Lock+Skeleton Key=Door|Bell+Time=Clock|Bell+Music=Song|Gold+Scales=Bank|' +
+   'Hook+Fish=Fisherman|Hook+Rope=Anchor|Satellite+Satellite Dish=Space|Satellite Dish+Television=Movie|' +
+   'Mall+Shop=City|Human+Mall=Party|Barber Shop+Mirror=Comb|Barber Shop+House=Shop|Air+Fan=Wind|' +
+   'Parasol+Rain=Umbrella|Goggles+Snow=Ski|Goggles+Ocean=Diving Mask|Doctor+Face Mask=Hospital|' +
+   'Bacteria+Face Mask=Medicine|Smartwatch+Time=Clock|Phone+Smartwatch=Computer|Music+Speaker=Party|' +
+   'Radio+Speaker=Music|Fax Machine+Paper=Letter|Fax Machine+Time=Email|Human+Telephone=Voice|' +
+   'Shop+Shopping Cart=Money|Human+Shopping Cart=Shop|Gift+Ribbon=Party|Dress+Ribbon=Party|Letter+Mailbox=Email|' +
+   'Human+Mailbox=Letter|Book+Cabinet=Library|Cabinet+Door=House|Car+Traffic Light=Road|Road+Traffic Light=City|' +
+   'Faucet+House=Bathtub|Notebook+Pencil=Book|Human+Notebook=Writer|Journal+Night=Dream|Journal+Time=Book|' +
+   'Human+Newspaper=Student|Fire+Newspaper=Smoke|Castle+Flag=King|Confetti+Flag=Party|Station+Ticket=Train|' +
+   'Airplane+Ticket=Airport|Human+ID Card=Police|Bank+ID Card=Money|Credit Card+Money=Bank|' +
+   'Credit Card+Shop=Money|ATM+Human=Money|Money+Receipt=Shop|Human+Memo=Student|Letter+Memo=Paper|' +
+   'Bank+Dollar Bill=Money|Dollar Bill+Gold=Bank|House+Tree=Garden|Book+Tree=Library|Bank+Money=Gold|' +
+   'Human+Shop=Money' +
+   // round 2: cross combos
+   '|Moon+Star=Night|Cloud+Mountain=Snow|Smoke+Air=Cloud|Ice+Ocean=Glacier|Dog+Sheep=Wool|Cat+Fish=Animal|' +
+   'Flour+Fire=Bread|Fire+Milk=Cheese|Fire+Tomato=Soup|Chocolate+Coffee=Cake|Grapes+Sun=Juice|Moon+Ocean=Wave|' +
+   'Computer+Book=Internet|Car+Fire=Explosion|Moon+Rocket=Space|Dragon+Wizard=Magic|Rainbow+Unicorn=Magic|' +
+   'Fairy+Flower=Garden|Human+Skeleton=Ghost|Ghost+Zombie=Night|Ocean+Pirate=Ship|Farmer+Wheat=Bread|' +
+   'Doctor+Plant=Medicine|Atom+Scientist=Energy|Airplane+Pilot=Sky|Castle+Knight=King|Guitar+Musician=Song|' +
+   'Gift+Santa=Christmas Tree|Fire+Pumpkin=Ghost|Fire+Snowman=Puddle|Brain+Computer=Robot|Drum+Party=Music|' +
+   'Headphones+Music=Song|Noodles+Water=Soup|Cheese+Wine=Party|Champagne+Night=Party|Egg+Vegetable=Omelette|' +
+   'Beaver+Tree=Wood|Flower+Potted Plant=Garden|Flower+Lavender=Perfume|King+Sword=Knight|Candle+Fire=Lamp|' +
+   'Lamp+Night=Light|Human+Mirror=Selfie|Cold+Scarf=Snowman|Apartment+City=Skyscraper|Art+Museum=Statue|' +
+   'Circus+Human=Party|Student+University=Teacher|Factory+Metal=Car|City+Power Plant=Electricity|Key+Lock=Door|' +
+   'Bed+Night=Dream|Glasses+Sun=Sunglasses|Snow+Volcano=Water|Fire+Life=Energy|Desert+Night=Cactus|' +
+   'Forest+Night=Owl|House+Snow=Christmas Tree|Honey+Tea=Medicine|Orange+Water=Juice|Cheese+Rice=Curry').split('|');
   var BOOK = {}, USED = {};
   function pairKey(a, b) { return a < b ? a + '+' + b : b + '+' + a; }
   RECIPES.forEach(function (r) {
