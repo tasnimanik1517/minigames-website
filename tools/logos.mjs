@@ -161,12 +161,12 @@ const memoryEmblem = `<style>${mmcss}
 const fruitEmblem = `<div id="game"></div><script>window.GAME_OPTIONS={emblem:true}</script><script>${fs.readFileSync(path.join(ROOT, 'sdk/mg.js'), 'utf8')}
 ${fs.readFileSync(path.join(ROOT, 'engines/fruitmerge/fruitmerge.js'), 'utf8')}</script>`;
 
-// Alchemy Lab: an alembic glowing in the middle of the chalk circle, with fire, water and a sparkle.
-const alchemyCircle = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='#FFD68C' stroke-linejoin='round'><g stroke-opacity='.42' stroke-width='1.3'><circle cx='100' cy='100' r='90'/><circle cx='100' cy='100' r='83' stroke-dasharray='2 4' stroke-width='.9'/><path d='M41.3 41.3H158.7V158.7H41.3Z'/><path d='M100 41.3 158.7 158.7H41.3Z'/><circle cx='100' cy='122.4' r='36.3'/></g><g stroke-opacity='.75' stroke-width='2'><path d='M100 3 107 15H93Z'/><path d='M190 107 197 95H183Z M184 101H196'/><path d='M100 197 107 185H93Z'/><path d='M10 93 17 105H3Z M4 99H16'/></g></svg>`);
-const alchemyEmblem = `<style>
+// Endless Craft: an alembic glowing in the middle of the chalk circle, with fire, water and a sparkle.
+const craftCircle = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='#FFD68C' stroke-linejoin='round'><g stroke-opacity='.42' stroke-width='1.3'><circle cx='100' cy='100' r='90'/><circle cx='100' cy='100' r='83' stroke-dasharray='2 4' stroke-width='.9'/><path d='M41.3 41.3H158.7V158.7H41.3Z'/><path d='M100 41.3 158.7 158.7H41.3Z'/><circle cx='100' cy='122.4' r='36.3'/></g><g stroke-opacity='.75' stroke-width='2'><path d='M100 3 107 15H93Z'/><path d='M190 107 197 95H183Z M184 101H196'/><path d='M100 197 107 185H93Z'/><path d='M10 93 17 105H3Z M4 99H16'/></g></svg>`);
+const craftEmblem = `<style>
 .al{position:absolute;left:24px;top:24px;width:976px;height:976px;border-radius:230px;overflow:hidden;
  background:radial-gradient(62% 58% at 50% 50%,#6C46D8 0%,#3D2683 56%,#231650 100%);box-shadow:inset 0 0 0 12px rgba(255,255,255,.12)}
-.al .ring{position:absolute;inset:58px;background:url("data:image/svg+xml,${alchemyCircle}") center/contain no-repeat}
+.al .ring{position:absolute;inset:58px;background:url("data:image/svg+xml,${craftCircle}") center/contain no-repeat}
 .al .glow{position:absolute;left:488px;top:520px;width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;background:radial-gradient(circle,rgba(255,206,110,.62),rgba(255,206,110,0) 66%)}
 .al .flask{position:absolute;left:488px;top:500px;font-size:470px;transform:translate(-50%,-50%);filter:drop-shadow(0 26px 30px rgba(20,8,50,.55))}
 .al .fire{position:absolute;left:128px;top:610px;font-size:210px;transform:rotate(-12deg);filter:drop-shadow(0 16px 18px rgba(20,8,50,.5))}
@@ -261,13 +261,13 @@ const wordmarks = {
   'ball-sort': wordmark({ text: 'Ball Sort', size: 196, fill: ['#E8FDFF', '#7FE6F5', '#25A9C9'], outline: '#06303D', depth: '#031C24', tilt: -3 }),
   'memory-match': wordmark({ lines: ['Memory', 'Match'], size: 168, fill: ['#FFE3F3', '#E879C6', '#8B5CF6'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
   'fruit-merge': wordmark({ lines: ['Fruit', 'Merge'], size: 172, fill: ['#FFF6B0', '#FFB23F', '#F04E2E'], outline: '#4A1A08', depth: '#2E0E03', tilt: -3 }),
-  'alchemy-lab': wordmark({ lines: ['Alchemy', 'Lab'], size: 172, fill: ['#FFF4C2', '#FFC94D', '#FF7AC8'], outline: '#2A0F4A', depth: '#160830', tilt: -3 }),
+  'endless-craft': wordmark({ lines: ['Endless', 'Craft'], size: 172, fill: ['#FFF4C2', '#FFC94D', '#FF7AC8'], outline: '#2A0F4A', depth: '#160830', tilt: -3 }),
   'perfect-circle': wordmark({ lines: ['Perfect', 'Circle'], size: 168, fill: ['#F0FFFA', '#8FF5D8', '#19C9A0'], outline: '#06302A', depth: '#031C18', tilt: -3 }),
   'reaction-time-test': wordmark({ lines: ['Reaction', 'Time Test'], size: 150, fill: ['#FFFFFF', '#C9B8FF', '#7C5CFF'], outline: '#1E0F5C', depth: '#120838', tilt: -3 }),
   'typing-speed-test': wordmark({ lines: ['Typing', 'Speed Test'], size: 148, fill: ['#FFF3F8', '#FF9AC8', '#FF4F9A'], outline: '#3A0F2A', depth: '#22071A', tilt: -3 }),
   'whack-a-mole': wordmark({ lines: ['Whack-a-', 'Mole!'], size: 168, fill: ['#FFE9A8', '#FFB03A', '#E07B24'], outline: '#4A2408', depth: '#2E1503', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'alchemy-lab': alchemyEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

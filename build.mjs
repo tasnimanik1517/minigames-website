@@ -240,6 +240,10 @@ write('/_redirects', `# Old image URLs (shared on social media / indexed by imag
 /rock-paper-scissors-lizard-spock /rock-paper-scissors/ 301
 /rock-paper-scissors-lizard-spock/ /rock-paper-scissors/ 301
 /rock-paper-scissors-lizard-spock/* /rock-paper-scissors/ 301
+# Alchemy Lab retired 2026-11-10: its book lives on inside Endless Craft.
+/alchemy-lab /endless-craft/ 301
+/alchemy-lab/ /endless-craft/ 301
+/alchemy-lab/* /endless-craft/ 301
 # Old internal template page.
 /game-template / 301
 /game-template/ / 301

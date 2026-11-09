@@ -1,6 +1,8 @@
-/* Alchemy Lab engine: mix two elements on the lab table to discover new ones.
- * The recipe book is written by hand: every element has its own emoji, and the order of a pair never matters.
- * Options: { showcase: true } still frame for cover art. */
+/* Endless Craft engine: mix two elements on the table to discover new ones, without end.
+ * Classic pairs resolve instantly from the hand-written recipe book below; any pair the book
+ * does not know is invented on the spot by an AI (GET /api/craft) and remembered on this
+ * device, and if the AI cannot be reached the mix fizzles into a by-product instead.
+ * The order of a pair never matters. Options: { showcase: true } still frame for cover art. */
 (function () {
   'use strict';
   var MG = window.MG, h = MG.h;
@@ -444,8 +446,7 @@
 
   /* ---------- DOM ---------- */
   var countEl = h('b');
-  var countPill = h('span', { class: 'mg-pill al-count', title: 'Elements found' }, h('small', { text: 'Found' }), countEl);
-  var hintBtn = h('button', { class: 'al-btn', type: 'button', 'aria-label': 'Hint', html: '<span aria-hidden="true">💡</span><i>Hint</i>' });
+  var countPill = h('span', { class: 'mg-pill al-count', title: 'Elements discovered' }, h('small', { text: 'Discovered' }), countEl);
   var clearBtn = h('button', { class: 'al-btn', type: 'button', 'aria-label': 'Clear the table', html: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9.5 7V4.5h5V7M6.5 7l1 12.5h9l1-12.5M10 11v5M14 11v5"/></svg><i>Clear</i>' });
   var resetBtn = h('button', { class: 'mg-icon-btn', type: 'button', 'aria-label': 'Start over', title: 'Start over',
     html: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3.5 4.5v5h5"/></svg>' });
@@ -459,7 +460,7 @@
   var side = h('div', { class: 'al-side' }, h('div', { class: 'al-tools' }, search, sortBtn), listEl);
   var overlay = h('div', { class: 'mg-overlay', hidden: true });
   var root = h('div', { class: 'mg-root al' },
-    h('div', { class: 'mg-hud' }, countPill, h('span', { class: 'mg-spacer' }), hintBtn, clearBtn, resetBtn, soundBtn),
+    h('div', { class: 'mg-hud' }, countPill, h('span', { class: 'mg-spacer' }), clearBtn, resetBtn, soundBtn),
     h('div', { class: 'al-body' }, lab, side), overlay);
   document.getElementById('game').append(root);
 
@@ -469,7 +470,7 @@
 
   /* ---------- the list of discovered elements ---------- */
   function chip(name) {
-    var fin = !USED[name];
+    var fin = !isAI[name] && !USED[name]; // AI elements can always be mixed further, so they are never "final"
     return h('button', { class: 'al-chip' + (fresh[name] ? ' is-new' : '') + (fin ? ' is-final' : ''), type: 'button', 'data-name': name,
       title: fin ? name + ': a final element, no recipe makes or uses it' : name, 'aria-label': name + (fin ? ', final element' : '') },
       h('span', { class: 'al-emoji', 'aria-hidden': 'true', text: EMOJI[name] }), h('span', { class: 'al-name', text: name }));
@@ -481,7 +482,7 @@
     listEl.innerHTML = '';
     if (!n) frag.append(h('p', { class: 'al-empty', text: 'Nothing here yet. Keep mixing!' }));
     listEl.append(frag);
-    countEl.textContent = found.length + ' / ' + ALL.length;
+    countEl.textContent = String(found.length);
     sortBtn.textContent = sortMode === 'az' ? 'A–Z' : 'Newest';
     sortBtn.setAttribute('aria-label', 'Order: ' + (sortMode === 'az' ? 'A to Z' : 'newest first') + '. Change order');
   }
@@ -544,24 +545,55 @@
   }
 
   /* ---------- mixing ---------- */
+  /* AI discoveries live beside the book: `aiList` is what the AI has invented for this
+   * player ([name, emoji] pairs, saved), `isAI` marks those names, and `pairCache`
+   * remembers pair -> result so a repeated pair never asks the AI twice. The saved
+   * 'found' list only ever holds book elements; AI names join `found` at load from aiList. */
+  var pairCache = MG.store.get('pairs', null);
+  if (!pairCache || typeof pairCache !== 'object') pairCache = {};
+  var aiList = MG.store.get('ai', null);
+  if (!Array.isArray(aiList)) aiList = [];
+  var isAI = {};
+  function registerAI(name, emoji) { // returns false when the name is unusable as a discovery
+    if (BYPRODUCT[name] || ALL.indexOf(name) >= 0) return false;
+    if (!EMOJI[name]) EMOJI[name] = emoji;
+    if (!isAI[name]) {
+      isAI[name] = 1;
+      var known = false;
+      aiList.forEach(function (p) { if (p[0] === name) known = true; });
+      if (!known) { aiList.push([name, EMOJI[name]]); MG.store.set('ai', aiList); }
+    }
+    return true;
+  }
+  aiList.slice().forEach(function (p) { if (p && p[0]) registerAI(p[0], p[1]); });
+  Object.keys(isAI).forEach(function (n) { if (found.indexOf(n) < 0) found.push(n); });
+  function saveFound() { MG.store.set('found', found.filter(function (n) { return !isAI[n]; })); }
+
   function mix(a, b) {
-    var res = BOOK[pairKey(a.name, b.name)];
-    if (!res) { fizzle(a, b); return; }
+    var key = pairKey(a.name, b.name), res = BOOK[key];
+    if (res) { resolveMix(a, b, res, false); return; }
+    var cached = pairCache[key];
+    if (cached && cached.n) {
+      if (ALL.indexOf(cached.n) >= 0 || registerAI(cached.n, cached.e)) { resolveMix(a, b, cached.n, true); return; }
+    }
+    craft(a, b, key);
+  }
+  function resolveMix(a, b, res, viaAI) {
     var x = b.x, y = b.y;
     removeItem(a); removeItem(b);
     var isNew = found.indexOf(res) < 0;
     var it = addItem(res, x, y, isNew ? 'is-born' : 'is-pop');
     sparkle(it.el, isNew ? 18 : 8);
     if (isNew) {
-      found.push(res); fresh[res] = 1; MG.store.set('found', found);
-      say([{ e: EMOJI[res] }, ' New: ' + res + '!'], 'is-new');
+      found.push(res); fresh[res] = 1; saveFound();
+      if (viaAI) say([{ e: '✨' }, ' New element: ' + res + '!'], 'is-new');
+      else say([{ e: EMOJI[res] }, ' New: ' + res + '!'], 'is-new');
       [523, 659, 784, 1047].forEach(function (f, i) { MG.tone(f, 0.14, 'triangle', 0.055, 0, i * 0.07); });
       MG.vibrate(15);
       countPill.classList.remove('is-bump'); void countPill.offsetWidth; countPill.classList.add('is-bump');
       renderList(); updateHint();
       var c = chipFor(res); if (c) reveal(c);
-      if (found.length === ALL.length) setTimeout(allDone, 900);
-      else if (found.length % 25 === 0) { MG.confetti(120); MG.sfx.win(); }
+      if (found.length % 25 === 0) { MG.confetti(120); MG.sfx.win(); }
       MG.event('discover', { name: res, count: found.length });
     } else {
       say([{ e: EMOJI[res] }, ' ' + res], '');
@@ -569,6 +601,54 @@
     }
     if (kbd) try { it.el.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
     save();
+  }
+  /* A pair the book does not know: ask the AI to invent the result. While waiting, the
+   * target item pulses; any failure (offline, 503, timeout, a bad answer) falls back to
+   * the fizzle by-product, so a mix always ends in something. */
+  var inflight = {};
+  function craft(a, b, key) {
+    if (inflight[key]) { say([{ e: '✨' }, ' Crafting…'], 'is-soft'); return; }
+    inflight[key] = 1;
+    var cardEl = b.el.firstChild;
+    cardEl.classList.add('is-crafting');
+    say([{ e: '✨' }, ' Crafting…'], 'is-soft');
+    MG.tone(520, 0.1, 'sine', 0.03);
+    var done = false, timer = null;
+    function settle(ok, name, emoji) {
+      if (done) return; done = true;
+      delete inflight[key];
+      cardEl.classList.remove('is-crafting');
+      if (timer) clearTimeout(timer);
+      var onTable = items.indexOf(a) >= 0 && items.indexOf(b) >= 0;
+      if (ok && ALL.indexOf(name) < 0 && !registerAI(name, emoji)) ok = false; // by-product names are not discoveries
+      if (ok) {
+        pairCache[key] = { n: name, e: EMOJI[name] };
+        MG.store.set('pairs', pairCache);
+        if (onTable) { resolveMix(a, b, name, true); return; }
+        // the player cleared the table mid-craft: the discovery still counts
+        if (found.indexOf(name) < 0) {
+          found.push(name); fresh[name] = 1; saveFound(); renderList(); updateHint();
+          say([{ e: '✨' }, ' New element: ' + name + '!'], 'is-new');
+          MG.event('discover', { name: name, count: found.length });
+        }
+        return;
+      }
+      if (onTable) fizzle(a, b);
+      else say([{ e: '🧪' }, ' The mix fizzled out.'], 'is-soft');
+    }
+    var ctrl = null;
+    try {
+      if (window.AbortController) { ctrl = new AbortController(); timer = setTimeout(function () { ctrl.abort(); }, 12000); }
+      fetch('/api/craft?a=' + encodeURIComponent(a.name) + '&b=' + encodeURIComponent(b.name), ctrl ? { signal: ctrl.signal } : undefined)
+        .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+        .then(function (d) {
+          var name = d && typeof d.name === 'string' ? d.name.trim() : '';
+          var emoji = d && typeof d.emoji === 'string' ? d.emoji.trim() : '';
+          if (!name || name.length > 40 || !emoji) { settle(false); return; }
+          settle(true, name, emoji);
+        })
+        .catch(function () { settle(false); });
+    } catch (e) { settle(false); }
   }
   function fizzle(a, b) { // no recipe for this pair: the natures of the two decide the byproduct
     var res = FIZZ[pairKey(tagOf(a.name), tagOf(b.name))] || 'Mixture';
@@ -598,22 +678,6 @@
       root.append(s); setTimeout(function (x) { return function () { x.remove(); }; }(s), 700);
     }
   }
-  function hint() {
-    var opts = [];
-    RECIPES.forEach(function (r) {
-      var m = r.split('='), ab = m[0].split('+');
-      if (found.indexOf(m[1]) < 0 && found.indexOf(ab[0]) >= 0 && found.indexOf(ab[1]) >= 0) opts.push([ab[0], ab[1], m[1]]);
-    });
-    if (!opts.length) { say([{ e: '🏆' }, ' You have found everything!'], 'is-new'); return; }
-    var p = opts[(Math.random() * opts.length) | 0], show = Math.random() < 0.5 ? p[0] : p[1];
-    say([{ e: '💡' }, ' Try ', { e: EMOJI[show] }, ' ' + show + ' with something to make ', { e: EMOJI[p[2]], sr: true }], 'is-hint');
-    if (query) { query = ''; search.value = ''; renderList(); }
-    var c = chipFor(show);
-    if (c) { c.classList.add('is-hinted'); reveal(c); setTimeout(function () { c.classList.remove('is-hinted'); }, 3200); }
-    MG.tone(880, 0.08, 'sine', 0.04); MG.tone(1175, 0.1, 'sine', 0.035, 0, 0.08);
-    MG.event('hint', { count: found.length });
-  }
-
   /* ---------- dialogs ---------- */
   function dialog(emoji, title, text, buttons) {
     overlay.innerHTML = '';
@@ -624,25 +688,20 @@
     MG.focusSafe(buttons[buttons.length - 1]);
   }
   function closeOverlay() { overlay.hidden = true; overlay.innerHTML = ''; }
-  function allDone() {
-    MG.sfx.win(); MG.confetti(200);
-    var ok = h('button', { class: 'mg-btn', type: 'button', text: 'Keep playing' });
-    ok.addEventListener('click', closeOverlay);
-    dialog('⚗️', 'Master alchemist!', 'You discovered all ' + ALL.length + ' elements. Every recipe in the book is yours.', [ok]);
-    MG.event('win', { count: found.length });
-  }
   function askReset() {
     var no = h('button', { class: 'mg-btn is-secondary', type: 'button', text: 'Cancel' });
     var yes = h('button', { class: 'mg-btn', type: 'button', text: 'Start over' });
     no.addEventListener('click', closeOverlay);
     yes.addEventListener('click', function () {
       closeOverlay(); found = BASE.slice(); fresh = {}; query = ''; search.value = '';
-      MG.store.set('found', found); items.slice().forEach(removeItem); select(null);
+      aiList = []; isAI = {}; pairCache = {};
+      MG.store.set('ai', aiList); MG.store.set('pairs', pairCache); saveFound();
+      items.slice().forEach(removeItem); select(null);
       addItem('Water', 34, 50, 'is-pop'); addItem('Fire', 66, 50, 'is-pop');
       renderList(); updateHint(); save(); MG.sfx.tap();
-      say([{ e: '⚗️' }, ' A fresh start. Good luck!'], 'is-soft');
+      say([{ e: '♾️' }, ' A fresh start. Good luck!'], 'is-soft');
     });
-    dialog('⚗️', 'Start over?', 'This forgets the ' + found.length + ' elements you have found. You keep Water, Fire, Earth and Air.', [no, yes]);
+    dialog('♾️', 'Start over?', 'This forgets the ' + found.length + ' elements you have discovered, including everything the AI invented for you. You keep Water, Fire, Earth and Air.', [no, yes]);
   }
   function save() {
     if (o.showcase) return;
@@ -738,7 +797,6 @@
     e.preventDefault(); kbd = true;
     tap({ chipName: c ? c.getAttribute('data-name') : null, item: el ? itemOf(el) : null });
   });
-  hintBtn.addEventListener('click', hint);
   clearBtn.addEventListener('click', function () { items.slice().forEach(removeItem); select(null); save(); MG.tone(300, 0.08, 'sine', 0.03, 200); });
   resetBtn.addEventListener('click', askReset);
   soundBtn.addEventListener('click', function () { MG.sound.toggle(); renderSound(); });

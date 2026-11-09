@@ -1,4 +1,4 @@
-/* Alchemy Lab: a night-time magic workbench with a chalk circle; elements are cards with big emoji. */
+/* Endless Craft: a night-time magic workbench with a chalk circle; elements are cards with big emoji. */
 .al {
   --g-bg: #1B1236; --g-surface: #2B1F55; --g-surface-2: #382A6B; --g-ink: #F6F1FF; --g-muted: #BDB2E0; --g-line: rgba(255, 255, 255, .14);
   --g-brand: #FF5FA8; --g-brand-edge: #C2306F; --g-brand-ink: #FFFFFF; --g-accent: #FFD15C; --g-focus: #FFD15C;
@@ -81,6 +81,10 @@
   box-shadow: 0 6px 0 rgba(70, 40, 140, .35), 0 26px 32px -12px rgba(0, 0, 0, .75);
 }
 .al-ghost { z-index: 20; pointer-events: none; }
+.al-card.is-crafting {
+  animation: al-craft .8s ease-in-out infinite;
+  box-shadow: 0 0 0 3px var(--al-mint), 0 0 28px 5px rgba(94, 242, 194, .55), 0 12px 22px -10px rgba(0, 0, 0, .65);
+}
 .al-card.is-pop { animation: al-pop .32s cubic-bezier(.2, 1.5, .4, 1) backwards; }
 .al-card.is-born { animation: al-born .75s cubic-bezier(.2, 1.3, .4, 1) backwards; }
 .al-card.nope { animation: al-nope .42s ease; }
@@ -95,8 +99,6 @@
 .al-banner .al-emoji { font-size: 1.2em; vertical-align: -.12em; margin: 0 .08em; }
 .al-banner.is-on { animation: al-banner 2.4s ease both; }
 .al-banner.is-new { background: linear-gradient(90deg, #FFE68A, #FFB86B 52%, #FF92C9); color: #3B1240; box-shadow: 0 12px 30px -8px rgba(255, 140, 120, .65); }
-.al-banner.is-hint { background: linear-gradient(90deg, #86F7D6, #96CEFF); color: #0D2A3A; border-radius: 16px; }
-.al-banner.is-hint.is-on { animation-duration: 4.2s; }
 .al-banner.is-soft { background: rgba(16, 10, 36, .86); color: #ECE6FF; }
 .al-banner.is-still { animation: none; opacity: 1; }
 
@@ -142,7 +144,6 @@
   content: ""; position: absolute; top: 5px; right: 5px; width: 9px; height: 9px; border-radius: 50%;
   background: var(--al-pink); box-shadow: 0 0 0 2px #241850, 0 0 8px var(--al-pink);
 }
-.al-chip.is-hinted { background: rgba(94, 242, 194, .22); box-shadow: inset 0 0 0 2px var(--al-mint), 0 0 18px rgba(94, 242, 194, .5); animation: al-hinted .9s ease-in-out 3; }
 .al-empty { grid-row: 1 / -1; grid-column: 1 / -1; margin: 0; padding: 12px; color: var(--g-muted); font-size: 13px; font-weight: 700; white-space: nowrap; }
 
 @media (min-width: 600px) and (min-aspect-ratio: 1/1) {
@@ -182,4 +183,4 @@
   15% { transform: translate(-50%, 0) scale(1); } 82% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, -4px); }
 }
 @keyframes al-spark { to { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; } }
-@keyframes al-hinted { 50% { transform: scale(1.09); } }
+@keyframes al-craft { 50% { transform: scale(1.08) rotate(1.6deg); } }

@@ -90,7 +90,10 @@ async function play(slug, fn) {
   const page = await ctx.newPage();
   const errs = [];
   page.on('pageerror', e => errs.push(String(e)));
-  page.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
+  // /api/craft is answered by the production Worker and does not exist on the local
+  // checker server; Endless Craft's play leans on that on purpose (fizzle fallback),
+  // so its expected 404 is not a problem. Every other console error still counts.
+  page.on('console', m => { if (m.type() === 'error' && !(m.location().url || '').includes('/api/craft')) errs.push(m.text()); });
   await page.goto(`${BASE}/${slug}/`, { waitUntil: 'load' });
   const frame = page.frame({ url: /\/game(\.html)?$/ });
   await frame.waitForSelector('#game .mg-root');
@@ -183,7 +186,7 @@ plays['fruit-merge'] = await play('fruit-merge', async (f) => {
   const s = await f.evaluate(() => JSON.parse(localStorage.getItem('mg:fruit-merge:state') || 'null'));
   return { fruits: s && s.fruits.length, score: await f.textContent('.fm-score b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden) };
 });
-plays['alchemy-lab'] = await play('alchemy-lab', async (f) => {
+plays['endless-craft'] = await play('endless-craft', async (f) => {
   const page = f.page(), cdp = await page.context().newCDPSession(page);
   const count = () => f.textContent('.al-count b');
   const table = () => f.$$eval('.al-item', l => l.map(e => e.querySelector('.al-name').textContent).join(','));
@@ -206,9 +209,13 @@ plays['alchemy-lab'] = await play('alchemy-lab', async (f) => {
   // finger drag on the table: Fire onto Mud makes brick
   await finger(await itemBox('Fire'), await itemBox('Mud'), 0);
   out.itemDrag = [await count(), await table()];
-  await f.tap('.al-btn[aria-label="Hint"]'); await f.waitForTimeout(150);
-  out.hint = await f.$$eval('.al-chip.is-hinted', l => l.length);
-  out.saved = await f.evaluate(() => JSON.parse(localStorage.getItem('mg:alchemy-lab:found')).length);
+  // an unknown pair asks the AI; the local checker has no Worker, so the call fails and
+  // the mix must fizzle into a by-product instead of hanging: Fire + Brick -> Sludge.
+  await f.tap('.al-chip[data-name="Fire"]'); await f.waitForTimeout(150);
+  for (const e of await f.$$('.al-item')) if ((await e.$eval('.al-name', x => x.textContent)) === 'Brick') { await e.tap(); break; }
+  await f.waitForTimeout(900);
+  out.fizzle = [await count(), await f.textContent('.al-banner'), await table()];
+  out.saved = await f.evaluate(() => JSON.parse(localStorage.getItem('mg:endless-craft:found')).length);
   return out;
 });
 plays['typing-speed-test'] = await play('typing-speed-test', async (f) => {
