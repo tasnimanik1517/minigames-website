@@ -109,7 +109,10 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
 .cats { border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
 .cats-row {
   display: flex; gap: 8px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: x proximity; scroll-padding-inline: 16px;
+}
+@media (min-width: 768px) {
+  .cats-row { justify-content: space-between; }
 }
 .cats-row::-webkit-scrollbar { display: none; }
 .chip {
