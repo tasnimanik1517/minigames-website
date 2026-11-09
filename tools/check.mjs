@@ -252,6 +252,14 @@ plays['perfect-circle'] = await play('perfect-circle', async (f) => {
   await f.waitForTimeout(300);
   return { head: await f.$eval('.ci-head', e => e.innerText.replace(/\n/g, ' / ')), best: await f.evaluate(() => localStorage.getItem('mg:perfect-circle:best')) };
 });
+plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
+  // start a round, whack the first mole that pops up, read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForSelector('.wk-hole.is-up', { timeout: 5000 });
+  await f.tap('.wk-hole.is-up');
+  await f.waitForTimeout(200);
+  return { score: await f.textContent('.mg-pill b'), holes: await f.$$eval('.wk-hole', l => l.length) };
+});
 /* page weight (compressed HTML) */
 const weights = {};
 for (const u of ['/', '/snake/', '/snake/game.html', '/tic-tac-toe/game.html', '/rock-paper-scissors/game.html']) {

@@ -208,6 +208,29 @@ const circleEmblem = `<style>
 .pc .moon{position:absolute;left:668px;top:150px;width:128px;height:128px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFFCEB,#DCCB92);box-shadow:0 0 44px 10px rgba(255,240,200,.55)}
 </style><div class="pc">${circleStars}<div class="orbit"></div><div class="planet"></div><div class="moon"></div></div>`;
 
+// Whack-a-Mole: a mole popping out of the middle hole of a grassy tile, two empty holes beside it.
+const whackEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<radialGradient id="wg" cx=".35" cy=".25" r="1.1"><stop offset="0" stop-color="#93CC5E"/><stop offset=".6" stop-color="#5E9438"/><stop offset="1" stop-color="#3E6B21"/></radialGradient>
+<radialGradient id="wm" cx=".5" cy=".28" r=".95"><stop offset="0" stop-color="#B98A5C"/><stop offset=".58" stop-color="#96683C"/><stop offset="1" stop-color="#755026"/></radialGradient>
+<radialGradient id="wp" cx=".5" cy=".42" r=".8"><stop offset="0" stop-color="#120B06"/><stop offset=".55" stop-color="#120B06"/><stop offset=".8" stop-color="#33200F"/><stop offset="1" stop-color="#54351B"/></radialGradient>
+<linearGradient id="wgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="wtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#wtile)"><rect width="1024" height="1024" fill="url(#wg)"/>
+<g fill="#fff" opacity=".16"><circle cx="150" cy="180" r="7"/><circle cx="860" cy="140" r="9"/><circle cx="940" cy="430" r="6"/><circle cx="90" cy="480" r="8"/><circle cx="700" cy="90" r="6"/><circle cx="330" cy="110" r="6"/></g>
+<ellipse cx="238" cy="742" rx="158" ry="58" fill="#8A5F38"/><ellipse cx="238" cy="730" rx="140" ry="50" fill="url(#wp)"/>
+<ellipse cx="786" cy="742" rx="158" ry="58" fill="#8A5F38"/><ellipse cx="786" cy="730" rx="140" ry="50" fill="url(#wp)"/>
+<ellipse cx="512" cy="772" rx="216" ry="76" fill="#8A5F38"/><ellipse cx="512" cy="758" rx="196" ry="66" fill="url(#wp)"/>
+<g><circle cx="384" cy="392" r="52" fill="#755026"/><circle cx="640" cy="392" r="52" fill="#755026"/>
+<ellipse cx="512" cy="590" rx="196" ry="224" fill="url(#wm)"/>
+<circle cx="446" cy="528" r="21" fill="#17100B"/><circle cx="578" cy="528" r="21" fill="#17100B"/>
+<circle cx="453" cy="520" r="7" fill="#fff"/><circle cx="585" cy="520" r="7" fill="#fff"/>
+<ellipse cx="512" cy="592" rx="50" ry="31" fill="#E88CA0"/><ellipse cx="496" cy="580" rx="17" ry="10" fill="#F6B8C4"/>
+<rect x="494" y="632" width="36" height="40" rx="7" fill="#FFFDF5"/></g>
+<ellipse cx="512" cy="776" rx="220" ry="74" fill="#7C4F2A"/><ellipse cx="512" cy="762" rx="196" ry="58" fill="#96683C" opacity=".65"/>
+<g fill="#FFC22E"><path d="M186 300l13 34 34 13-34 13-13 34-13-34-34-13 34-13Z"/><path d="M842 268l10 26 26 10-26 10-10 26-10-26-26-10 26-10Z"/></g>
+<rect width="1024" height="560" fill="url(#wgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -242,8 +265,9 @@ const wordmarks = {
   'perfect-circle': wordmark({ lines: ['Perfect', 'Circle'], size: 168, fill: ['#F0FFFA', '#8FF5D8', '#19C9A0'], outline: '#06302A', depth: '#031C18', tilt: -3 }),
   'reaction-time-test': wordmark({ lines: ['Reaction', 'Time Test'], size: 150, fill: ['#FFFFFF', '#C9B8FF', '#7C5CFF'], outline: '#1E0F5C', depth: '#120838', tilt: -3 }),
   'typing-speed-test': wordmark({ lines: ['Typing', 'Speed Test'], size: 148, fill: ['#FFF3F8', '#FF9AC8', '#FF4F9A'], outline: '#3A0F2A', depth: '#22071A', tilt: -3 }),
+  'whack-a-mole': wordmark({ lines: ['Whack-a-', 'Mole!'], size: 168, fill: ['#FFE9A8', '#FFB03A', '#E07B24'], outline: '#4A2408', depth: '#2E1503', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'alchemy-lab': alchemyEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'alchemy-lab': alchemyEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

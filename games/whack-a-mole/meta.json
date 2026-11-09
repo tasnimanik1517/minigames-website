@@ -1,0 +1,151 @@
+{
+  "added": "2026-11-09",
+  "aka": [
+    "whack a mole",
+    "whac-a-mole",
+    "mole whacking game",
+    "whack the mole",
+    "fairground mole game"
+  ],
+  "aspect": "16 / 10",
+  "aspectMobile": "3 / 4",
+  "categories": [
+    "arcade",
+    "casual"
+  ],
+  "color": "#5E9438",
+  "controls": [
+    [
+      "Tap or click a mole",
+      "Whack it for one point"
+    ],
+    [
+      "Tap or click an empty hole",
+      "Nothing bad happens, it just counts as a miss"
+    ],
+    [
+      "Pause button at the top",
+      "Pause the round (it also pauses by itself if you switch tabs)"
+    ],
+    [
+      "Play again button",
+      "Start a fresh 30-second round"
+    ]
+  ],
+  "description": "Whack-a-Mole online free: moles pop up from nine holes for 30 seconds. Tap them before they duck back down and chase your best score as they speed up.",
+  "engine": "whack",
+  "featured": false,
+  "lede": "The fairground classic, in your browser. Moles pop up from nine holes, grin at you and duck back down again, and you have 30 seconds to whack as many as you can. It starts gently and ends in a blur: by the last few seconds each mole stays up for less than half a second, and two can be up at once. Your best score is saved, so there is always one more mole to beat.",
+  "options": {},
+  "players": "1",
+  "popularity": 85,
+  "sections": [
+    {
+      "h": "How to play Whack-a-Mole",
+      "p": [
+        "Press Start whacking and watch the holes. A mole pops up from a random hole and stays up for a moment, less than a second at first. Tap or click it before it ducks back down to score one point. Tap an empty hole and nothing bad happens: there is no penalty and no lost time, it just counts as a miss when your accuracy is worked out at the end.",
+        "The round lasts 30 seconds, shown at the top of the screen. When the clock runs out you see how many moles you whacked, your accuracy, how many got away, and a badge for your score. If you beat your best score, the new one is saved on this device."
+      ]
+    },
+    {
+      "controls": true,
+      "h": "Controls"
+    },
+    {
+      "h": "How the round speeds up",
+      "p": [
+        "At the start a mole stays up for about 950 milliseconds, nearly a full second, and there is only ever one mole up at a time. The longer the round goes on, the shorter that moment gets, shrinking steadily until a mole near the end stays up for under 500 milliseconds, with only a short pause before the next one pops up.",
+        "About 12 seconds in, the moles stop taking turns: two can be up at once, in different holes, and you have to choose which one to go for first. The last five seconds are marked by the clock turning red, and the last three tick out loud, so keep your finger hovering and your eyes on the middle holes, where you can reach the corners fastest."
+      ]
+    },
+    {
+      "h": "Whacking badges",
+      "table": {
+        "head": [
+          "Badge",
+          "Moles whacked"
+        ],
+        "rows": [
+          [
+            "🌱 Seedling",
+            "Under 10"
+          ],
+          [
+            "🐾 Mole Spotter",
+            "10 to 14"
+          ],
+          [
+            "🔨 Handy Whacker",
+            "15 to 19"
+          ],
+          [
+            "⚡ Quick Hands",
+            "20 to 24"
+          ],
+          [
+            "🏆 Mole Master",
+            "25 to 29"
+          ],
+          [
+            "👑 Whack-a-Mole Champion",
+            "30 or more"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "From the fairground to the browser",
+      "p": [
+        "Whack-a-Mole began as a fairground and arcade machine. The first one was built in 1976 by Aaron Fechter of Creative Engineering in Florida, after he saw a similar Japanese game in which players hit moles with a mallet as they rose out of a cabinet. His version, with a soft mallet and moles that popped up from a row of holes, spread to carnivals and arcades all over the world.",
+        "The game gave everyday English a phrase: people now say a problem is like whack-a-mole when fixing it in one place makes it pop up somewhere else. The moles here are made of pixels rather than machinery, and your finger is the mallet, but the feeling is the same one players have chased since 1976."
+      ]
+    },
+    {
+      "h": "Tips for whacking more moles",
+      "ol": [
+        "Rest your eyes on the middle hole and watch the whole field at once. You spot movement at the edges faster with your side vision than by staring at one hole.",
+        "Keep your finger or mouse just above the field, ready to move, rather than resting it on the screen or desk.",
+        "Move in straight lines from hole to hole and tap decisively. Wild swiping overshoots the mole and wastes the moment it is up.",
+        "When two moles are up, whack the one that appeared first: it is the one about to duck back down.",
+        "On a phone, hold the device in one hand and tap with a finger of the other. One thumb alone has to stretch too far across the field."
+      ]
+    },
+    {
+      "h": "More arcade games",
+      "p": [
+        "For another test of quick reactions, see how fast you can tap when the signal comes in the [[reaction-time-test]]. If you would rather steer than whack, eat eggs and grow longer in the classic [[snake]]. You can find every fast, fairground-style game in [[cat:arcade|arcade games]]."
+      ]
+    },
+    {
+      "faq": [
+        [
+          "What happens if I tap an empty hole?",
+          "Nothing bad. There is no penalty and the clock keeps running as normal. The tap counts as a miss, which only affects the accuracy figure on the results screen."
+        ],
+        [
+          "How long is a round?",
+          "30 seconds. The clock at the top counts down, turns red for the last five seconds, and the round ends where it stands when it reaches zero."
+        ],
+        [
+          "Do the moles really get faster?",
+          "Yes. A mole stays up for about 950 milliseconds at the start and under 500 milliseconds near the end, and after about 12 seconds two moles can be up at the same time."
+        ],
+        [
+          "Is my best score saved?",
+          "Yes. Your best score is saved in this browser on this device, and it is shown at the top of the screen and on the start card."
+        ],
+        [
+          "Can I pause the round?",
+          "Yes. Use the pause button at the top, and the round also pauses by itself if you switch to another tab or app, so the clock never runs while you are not looking."
+        ]
+      ],
+      "h": "Questions"
+    }
+  ],
+  "seoTitle": "Whack-a-Mole – Play the Classic Whacking Game Online",
+  "slug": "whack-a-mole",
+  "tagline": "Thirty seconds. Nine holes. How many moles can you whack?",
+  "time": "1 min",
+  "title": "Whack-a-Mole",
+  "updated": "2026-11-09"
+}

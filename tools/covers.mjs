@@ -60,6 +60,7 @@ export const covers = {
   'typing-speed-test': () => engineCover('typing', { showcase: true }, 'body'),
   'reaction-time-test': () => engineCover('reaction', { showcase: true }, 'body'),
   'perfect-circle': () => engineCover('circle', { showcase: true }, 'body'),
+  'whack-a-mole': () => engineCover('whack', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */

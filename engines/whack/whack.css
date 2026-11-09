@@ -1,0 +1,81 @@
+/* Whack-a-Mole: a grassy fairground field with nine dirt holes and one very smug mole. */
+.wk {
+  --g-bg: #EAF6DC; --g-surface: #FFFDF5; --g-surface-2: #DDEFC8; --g-ink: #243312; --g-muted: #5F7350; --g-line: #C4DC9F;
+  --g-brand: #D96C1E; --g-brand-edge: #A34E10; --g-accent: #FFC22E; --g-focus: #2F6BFF;
+  --wk-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  color-scheme: light; color: var(--g-ink); overflow: hidden;
+  background: radial-gradient(80% 55% at 0% 0%, #D9F2B8 0%, rgba(217, 242, 184, 0) 60%), radial-gradient(70% 55% at 100% 100%, #FFE9BE 0%, rgba(255, 233, 190, 0) 60%), #EFF8E0;
+}
+.wk .mg-hud { flex-wrap: nowrap; }
+.wk .mg-pill, .wk .mg-icon-btn { background: #fff; box-shadow: 0 1px 0 rgba(36, 51, 18, .05), 0 6px 14px -8px rgba(90, 120, 40, .5), inset 0 0 0 1px rgba(110, 160, 60, .16); }
+.wk .mg-pill b { color: var(--g-brand); }
+.wk .mg-pill.is-low b { color: var(--g-bad); }
+@media (max-width: 430px) { .wk .mg-pill { padding: 6px 8px; font-size: 14px; } .wk .mg-icon-btn { width: 34px; height: 34px; } }
+.wk-main { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 2px 12px 14px; }
+.wk-msg { font-size: clamp(15px, 3.8vmin, 19px); font-weight: 900; letter-spacing: -.01em; min-height: 1.35em; text-align: center; }
+
+/* the field */
+.wk-board {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 2.4vmin, 16px);
+  width: min(94vw, 500px); padding: clamp(12px, 3vmin, 22px); border-radius: 28px; position: relative;
+  background: radial-gradient(circle, rgba(255, 255, 255, .28) 0 2.5px, transparent 3.5px) 0 0/34px 34px, linear-gradient(165deg, #82BC4E, #5E9438 70%, #548631);
+  box-shadow: 0 18px 36px -18px rgba(46, 80, 20, .65), inset 0 2px 0 rgba(255, 255, 255, .35), inset 0 -8px 18px rgba(30, 60, 10, .35);
+}
+.wk-hole {
+  appearance: none; -webkit-appearance: none; border: 0; background: transparent; padding: 0; margin: 0;
+  position: relative; aspect-ratio: 1 / .88; border-radius: 18px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.wk-hole::before { /* dirt mound behind the opening */
+  content: ""; position: absolute; left: 1%; right: 1%; bottom: 0; height: 46%; border-radius: 50%;
+  background: radial-gradient(60% 90% at 50% 30%, #A97C50 0%, #8A5F38 55%, rgba(110, 69, 37, 0) 100%);
+}
+.wk-pit { /* the dark opening */
+  position: absolute; left: 9%; right: 9%; bottom: 7%; height: 36%; border-radius: 50%; z-index: 1;
+  background: radial-gradient(ellipse at 50% 42%, #120B06 0 52%, #33200F 78%, #54351B 100%);
+  box-shadow: inset 0 7px 10px rgba(0, 0, 0, .8), 0 2px 0 rgba(255, 255, 255, .18);
+}
+.wk-burrow { position: absolute; inset: 0; overflow: hidden; border-radius: 18px; z-index: 2; }
+.wk-lip { /* front lip of dirt, so the mole slides out from inside the hole */
+  position: absolute; left: 5%; right: 5%; bottom: -4%; height: 27%; border-radius: 50%; z-index: 3; pointer-events: none;
+  background: radial-gradient(70% 110% at 50% 0%, #96683C 0%, #7C4F2A 60%, #66401F 100%);
+  box-shadow: inset 0 5px 7px rgba(30, 15, 0, .45);
+}
+
+/* the mole */
+.wk-mole {
+  position: absolute; left: 19%; bottom: 9%; width: 62%; aspect-ratio: 1 / 1.02; display: block;
+  transform: translateY(115%); transition: transform .13s ease-out;
+  background: radial-gradient(circle at 50% 28%, #B98A5C 0%, #96683C 58%, #755026 100%);
+  border-radius: 48% 48% 44% 44% / 58% 58% 38% 38%;
+  box-shadow: inset 0 -9px 13px rgba(40, 20, 0, .35), inset 0 6px 9px rgba(255, 235, 200, .35);
+}
+.wk-hole.is-up .wk-mole { transform: translateY(4%); }
+.wk-hole.is-bonked .wk-mole { transform: translateY(14%) scale(1.1, .8) rotate(-7deg); transition-duration: .07s; }
+.wk-ear { position: absolute; top: -3%; width: 27%; aspect-ratio: 1; border-radius: 50%; background: #755026; box-shadow: inset 0 0 0 3px rgba(255, 220, 180, .35); }
+.wk-ear.is-l { left: 4%; } .wk-ear.is-r { right: 4%; }
+.wk-eye { position: absolute; top: 29%; width: 11%; aspect-ratio: 1; border-radius: 50%; background: #17100B; }
+.wk-eye::after { content: ""; position: absolute; left: 18%; top: 14%; width: 38%; aspect-ratio: 1; border-radius: 50%; background: #fff; }
+.wk-eye.is-l { left: 26%; } .wk-eye.is-r { right: 26%; }
+.wk-nose {
+  position: absolute; left: 50%; top: 43%; width: 25%; height: 14%; transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(circle at 40% 32%, #F6B8C4 0%, #E88CA0 65%, #D96E88 100%); box-shadow: 0 1px 2px rgba(40, 20, 0, .3);
+}
+.wk-tooth { position: absolute; left: 50%; top: 59%; width: 13%; height: 15%; transform: translateX(-50%); background: #FFFDF5; border-radius: 0 0 3px 3px; box-shadow: inset 0 0 0 1px rgba(40, 20, 0, .15); }
+.wk-hole.is-miss .wk-pit { animation: wk-shake .18s ease; }
+@keyframes wk-shake { 25% { transform: translateX(-2.5%); } 75% { transform: translateX(2.5%); } }
+.wk-pop {
+  position: absolute; left: 50%; top: 0; z-index: 5; transform: translateX(-50%); pointer-events: none;
+  font-size: clamp(17px, 4.6vmin, 23px); font-weight: 900; color: #fff; text-shadow: 0 2px 0 var(--g-brand-edge), 0 3px 8px rgba(60, 30, 0, .45);
+  animation: wk-rise .5s ease-out both;
+}
+@keyframes wk-rise { from { opacity: 0; transform: translate(-50%, 6px) scale(.7); } 25% { opacity: 1; } to { opacity: 0; transform: translate(-50%, -20px) scale(1.1); } }
+
+/* result card */
+.wk-card { gap: 10px; }
+.wk-badge { font-family: var(--wk-emoji); font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(110, 69, 37, .35)); }
+.wk-score { display: grid; justify-items: center; line-height: 1; }
+.wk-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.wk-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.wk.is-showcase { zoom: 2; }
+.wk.is-showcase .mg-icon-btn { display: none; }
