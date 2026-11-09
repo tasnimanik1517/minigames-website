@@ -23,7 +23,7 @@
       "Steer the snake"
     ],
     [
-      "Swipe",
+      "Tap or swipe",
       "Steer on a phone or tablet"
     ],
     [
@@ -108,7 +108,7 @@
       "faq": [
         [
           "Can I play Snake on my phone?",
-          "Yes. Just swipe anywhere on the board to turn. It works in any modern mobile browser."
+          "Yes. Tap the board in the direction you want to go, or swipe anywhere on the board to turn. It works in any modern mobile browser."
         ],
         [
           "Why eggs instead of apples?",

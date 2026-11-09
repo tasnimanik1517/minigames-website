@@ -649,7 +649,7 @@
         h('div', { class: 'mg-field' }, h('span', { class: 'mg-label', text: 'Mode' }), modeSeg()),
         h('button', { class: 'mg-btn', type: 'button', onclick: function () { start(); }, text: over ? 'Play again' : 'Play' }),
         bestLine,
-        h('p', { class: 'mg-hint', html: matchMedia('(pointer: coarse)').matches ? 'Swipe to steer' : '<span class="mg-kbd">←</span> <span class="mg-kbd">↑</span> <span class="mg-kbd">→</span> <span class="mg-kbd">↓</span> or <span class="mg-kbd">WASD</span> to steer · <span class="mg-kbd">Space</span> pause' }));
+        h('p', { class: 'mg-hint', html: matchMedia('(pointer: coarse)').matches ? 'Tap or swipe to steer' : '<span class="mg-kbd">←</span> <span class="mg-kbd">↑</span> <span class="mg-kbd">→</span> <span class="mg-kbd">↓</span> or <span class="mg-kbd">WASD</span> to steer · <span class="mg-kbd">Space</span> pause' }));
     }
     overlay.append(card); overlay.hidden = false;
     var btn = card.querySelector('.mg-btn');
@@ -666,17 +666,30 @@
     } else if (e.key === 'Enter' && (state === 'idle' || state === 'over') && document.activeElement === document.body) { e.preventDefault(); start(); }
   });
   var touch = null;
+  function steerTo(clientX, clientY) { // tap-to-steer: turn toward the tapped point, measured from the snake's head
+    if (state !== 'running' || !snake.length) return;
+    var r = canvas.getBoundingClientRect(); if (!r.width) return;
+    var gx = (clientX - r.left) / r.width * CW, gy = (clientY - r.top) / r.height * CH;
+    var dx = gx - (M + (snake[0].x + 0.5) * cell), dy = gy - (M + (snake[0].y + 0.5) * cell);
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < cell * 0.5) return;
+    input(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
+  }
   stage.addEventListener('touchstart', function (e) { var t = e.changedTouches[0]; touch = { x: t.clientX, y: t.clientY, moved: false }; }, { passive: true });
   stage.addEventListener('touchmove', function (e) {
     if (!touch) return;
     e.preventDefault();
     var t = e.changedTouches[0], dx = t.clientX - touch.x, dy = t.clientY - touch.y;
-    if (Math.max(Math.abs(dx), Math.abs(dy)) < 22) return;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 14) return;
     input(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
     touch = { x: t.clientX, y: t.clientY, moved: true };
   }, { passive: false });
-  stage.addEventListener('touchend', function () {
-    if (touch && !touch.moved) { if (state === 'idle' || state === 'over') start(); else if (state === 'paused') resume(); }
+  stage.addEventListener('touchend', function (e) {
+    if (touch && !touch.moved) {
+      var t = e.changedTouches[0];
+      if (state === 'running') { if (t) steerTo(t.clientX, t.clientY); }
+      else if (state === 'idle' || state === 'over') start();
+      else if (state === 'paused') resume();
+    }
     touch = null;
   });
   overlay.addEventListener('click', function (e) {
@@ -685,7 +698,8 @@
   });
   stage.addEventListener('click', function (e) {
     if (e.pointerType === 'touch') return;
-    if (state === 'idle' || state === 'over') start(); else if (state === 'paused') resume();
+    if (state === 'running') steerTo(e.clientX, e.clientY);
+    else if (state === 'idle' || state === 'over') start(); else if (state === 'paused') resume();
   });
 
   /* ---------------------------------------------------------------- boot */
