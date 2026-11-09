@@ -56,9 +56,12 @@ async function craft(url, env, ctx) {
 
   if (!env.GROQ_API_KEY) return json({ error: 'unconfigured' }, 503);
 
-  let res;
-  try {
-    res = await fetch(GROQ_URL, {
+  // gpt-oss is a reasoning model: without reasoning_effort "low" it can spend
+  // the whole token budget on hidden reasoning and return empty content, so
+  // keep the effort low and the budget comfortably above it. One retry covers
+  // transient upstream errors and the occasional empty reply.
+  async function askGroq() {
+    const res = await fetch(GROQ_URL, {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + env.GROQ_API_KEY,
@@ -67,7 +70,8 @@ async function craft(url, env, ctx) {
       body: JSON.stringify({
         model: GROQ_MODEL,
         temperature: 0.2,
-        max_tokens: 120,
+        max_tokens: 400,
+        reasoning_effort: 'low',
         response_format: { type: 'json_object' },
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
@@ -75,17 +79,22 @@ async function craft(url, env, ctx) {
         ],
       }),
     });
-  } catch (e) {
-    return json({ error: 'busy' }, 503);
+    if (!res.ok) throw new Error('upstream ' + res.status); // covers Groq 429 and other upstream errors
+    const data = await res.json();
+    return parseResult(data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content);
   }
-  if (!res.ok) return json({ error: 'busy' }, 503); // covers Groq 429 and other upstream errors
 
   let out = null;
-  try {
-    const data = await res.json();
-    out = parseResult(data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content);
-  } catch (e) { /* fall through to bad_result */ }
-  if (!out) return json({ error: 'bad_result' }, 502);
+  let failure = 'bad_result';
+  for (let attempt = 0; attempt < 2 && !out; attempt++) {
+    try {
+      out = await askGroq();
+      failure = 'bad_result';
+    } catch (e) {
+      failure = 'busy';
+    }
+  }
+  if (!out) return json({ error: failure }, failure === 'busy' ? 503 : 502);
 
   // A pair's result never changes: cache forever at the edge and in browsers.
   const response = json(out, 200, { 'Cache-Control': 'public, max-age=31536000, immutable' });
