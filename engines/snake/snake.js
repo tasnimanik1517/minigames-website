@@ -173,7 +173,7 @@
 
   /* ---------------------------------------------------------------- rendering */
   var cell = 16, M = 12, W = 0, H = 0, CW = 0, CH = 0, ctx = null, bg = null, scalePat = null, DPR = 1;
-  var SN = { edge: '#1C3510', base: '#4C9628', top: 'rgba(170,222,96,.55)', spine: 'rgba(226,248,170,.24)', blotch: 'rgba(36,74,18,.62)', spot: 'rgba(206,240,132,.55)', headA: '#7CC444', headB: '#3E7D21', plate: 'rgba(38,84,20,.7)', dead: '#C7343A' };
+  var SN = { edge: '#5C0A10', base: '#C1272D', top: 'rgba(255,150,110,.5)', spine: 'rgba(255,226,175,.3)', blotch: '#16110E', spot: 'rgba(255,231,190,.45)', headA: '#4C4C52', headB: '#121214', plate: 'rgba(158,30,38,.85)', dead: '#B8B2A8' };
   function isDark() {
     var t = document.documentElement.getAttribute('data-theme');
     if (t === 'dark') return true; if (t === 'light') return false;
@@ -197,8 +197,8 @@
   function buildBackground() {
     var dark = isDark();
     var P = dark
-      ? { g1: '#34552A', g2: '#22391C', bladeD: '#16290F', bladeL: '#57843B', soil: '#55412A', moss: '#3F6B2A', check: 'rgba(255,255,255,.035)', stoneA: '#7C7A70', stoneB: '#4A4943', vign: 'rgba(0,0,0,.35)' }
-      : { g1: '#86B852', g2: '#5E9535', bladeD: '#3E6C23', bladeL: '#B4DC78', soil: '#94713F', moss: '#4E8A2C', check: 'rgba(255,255,255,.06)', stoneA: '#B3B0A2', stoneB: '#7A776B', vign: 'rgba(20,40,10,.28)' };
+      ? { g1: '#2F4E27', g2: '#1F3419', bladeD: '#14260E', bladeL: '#4E7A35', soil: '#4E3A22', moss: '#3A6326', check: 'rgba(255,255,255,.035)', stoneA: '#73716A', stoneB: '#43423D', vign: 'rgba(0,0,0,.35)', dapple: 'rgba(190,220,130,.06)' }
+      : { g1: '#7CA950', g2: '#568735', bladeD: '#3A6521', bladeL: '#A9D06E', soil: '#8A6A3C', moss: '#477E2A', check: 'rgba(255,255,255,.045)', stoneA: '#B8B4A6', stoneB: '#716E62', vign: 'rgba(20,40,10,.30)', dapple: 'rgba(255,246,190,.10)' };
     bg = document.createElement('canvas');
     bg.width = Math.round(CW * DPR); bg.height = Math.round(CH * DPR);
     var b = bg.getContext('2d'); b.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -212,6 +212,13 @@
       rg.addColorStop(0, R() < 0.4 ? P.soil : P.moss); rg.addColorStop(1, 'rgba(0,0,0,0)');
       b.globalAlpha = 0.18 + R() * 0.16; b.fillStyle = rg; b.fillRect(x - r, y - r, r * 2, r * 2);
     }
+    for (i = 0; i < Math.round(COLS * ROWS / 22); i++) { // dappled sunlight falling through the canopy
+      x = R() * CW; y = R() * CH; r = (1.6 + R() * 3.2) * cell;
+      rg = b.createRadialGradient(x, y, 0, x, y, r);
+      rg.addColorStop(0, P.dapple); rg.addColorStop(1, 'rgba(0,0,0,0)');
+      b.globalAlpha = 0.5 + R() * 0.5; b.fillStyle = rg; b.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+    b.globalAlpha = 1;
     b.lineCap = 'round';
     var blades = Math.round(CW * CH / (cell * cell) * 26);
     for (i = 0; i < blades; i++) { // grass texture
@@ -241,6 +248,7 @@
       b.globalAlpha = 0.6; b.fillStyle = 'rgba(0,0,0,.35)'; b.beginPath(); b.ellipse(rx * .2, ry * .35, rx, ry, 0, 0, 7); b.fill();
       var pg = b.createRadialGradient(-rx * .4, -ry * .4, 0, 0, 0, rx * 1.2); pg.addColorStop(0, P.stoneA); pg.addColorStop(1, P.stoneB);
       b.globalAlpha = 0.75; b.fillStyle = pg; b.beginPath(); b.ellipse(0, 0, rx, ry, 0, 0, 7); b.fill();
+      b.globalAlpha = 0.13; b.fillStyle = '#FFFFFF'; b.beginPath(); b.ellipse(-rx * .3, -ry * .42, rx * .45, ry * .28, -0.4, 0, 7); b.fill();
     } else if (k < 0.7) { // fallen leaf
       var L = cell * (0.22 + R() * 0.16), Wd = L * 0.42, hue = R();
       b.globalAlpha = 0.55;
@@ -278,6 +286,7 @@
         var sg = b.createRadialGradient(-rx * .4, -ry * .5, 0, 0, 0, rx * 1.15);
         sg.addColorStop(0, P.stoneA); sg.addColorStop(1, P.stoneB);
         b.fillStyle = sg; b.beginPath(); b.ellipse(0, 0, rx, ry, 0, 0, 7); b.fill();
+        b.globalAlpha = 0.14; b.fillStyle = '#FFFFFF'; b.beginPath(); b.ellipse(-rx * .28, -ry * .42, rx * .5, ry * .3, -0.4, 0, 7); b.fill(); b.globalAlpha = 1;
         if (R() < 0.35) { b.globalAlpha = 0.45; b.fillStyle = P.moss; b.beginPath(); b.ellipse(rx * .2, -ry * .3, rx * .55, ry * .4, .3, 0, 7); b.fill(); b.globalAlpha = 1; }
         b.restore();
       }
@@ -305,7 +314,7 @@
     var s = Math.max(4, Math.round(cell * 0.2)), c = document.createElement('canvas');
     c.width = s * 2; c.height = s * 2;
     var x = c.getContext('2d');
-    x.strokeStyle = 'rgba(16,38,8,.55)'; x.lineWidth = Math.max(0.7, s * 0.12);
+    x.strokeStyle = 'rgba(46,6,8,.5)'; x.lineWidth = Math.max(0.7, s * 0.12);
     [[0, 0], [s, 0], [2 * s, 0], [s / 2, s], [1.5 * s, s], [0, 2 * s], [s, 2 * s], [2 * s, 2 * s], [-s / 2, s], [2.5 * s, s]].forEach(function (p) {
       x.beginPath(); x.ellipse(p[0], p[1], s * 0.52, s * 0.62, 0, 0, Math.PI); x.stroke();
     });
@@ -405,28 +414,38 @@
       // shadow on the ground
       if (!SKIP.shadow && quality >= 1) {
       ctx.save(); ctx.translate(cell * 0.09, cell * 0.14);
-      ctx.fillStyle = 'rgba(10,25,5,.30)'; outline(run, s0, width); ctx.fill();
+      ctx.fillStyle = 'rgba(8,22,4,.34)'; outline(run, s0, width); ctx.fill();
       ctx.restore(); }
       ctx.fillStyle = flash ? SN.dead : SN.edge; outline(run, s0, function (s) { return width(s) + Math.max(1.4, cell * 0.06); }); ctx.fill();
       ctx.fillStyle = flash ? SN.dead : SN.base; outline(run, s0, width); ctx.fill();
-      // markings: dark saddles with pale flecks along the back
+      // markings: near-black bands around the body (coral-snake style), clipped to the silhouette so they span the full width
       var spacing = cell * 0.82, end = s0 + (run.length - 1) * run.step;
-      for (var k = Math.ceil(s0 / spacing); !SKIP.marks && quality >= 1 && k * spacing < end; k++) {
-        var s = k * spacing; if (s < taper * 0.35 || s > total - cell * 0.75) continue;
-        var p = run[Math.min(run.length - 1, Math.round((s - s0) / run.step))], ww = width(s);
-        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
-        ctx.fillStyle = SN.blotch; ctx.beginPath(); ctx.ellipse(0, 0, cell * 0.2, ww * 0.42, 0, 0, 7); ctx.fill();
-        ctx.fillStyle = SN.spot;
-        ctx.beginPath(); ctx.ellipse(cell * 0.36, ww * 0.3, cell * 0.06, ww * 0.08, 0, 0, 7); ctx.fill();
-        ctx.beginPath(); ctx.ellipse(cell * 0.36, -ww * 0.3, cell * 0.06, ww * 0.08, 0, 0, 7); ctx.fill();
+      if (!SKIP.marks && quality >= 1) {
+        ctx.save(); outline(run, s0, width); ctx.clip();
+        for (var k = Math.ceil(s0 / spacing); k * spacing < end; k++) {
+          var s = k * spacing; if (s < taper * 0.35 || s > total - cell * 0.75) continue;
+          var p = run[Math.min(run.length - 1, Math.round((s - s0) / run.step))], ww = width(s);
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
+          ctx.fillStyle = SN.blotch; ctx.beginPath(); ctx.ellipse(0, 0, cell * 0.2, ww * 0.62, 0, 0, 7); ctx.fill();
+          ctx.restore();
+        }
         ctx.restore();
+        for (k = Math.ceil(s0 / spacing); k * spacing < end; k++) { // subtle cream scale flecks on the red just past each band
+          s = k * spacing; if (s < taper * 0.35 || s > total - cell * 0.75) continue;
+          p = run[Math.min(run.length - 1, Math.round((s - s0) / run.step))]; ww = width(s);
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
+          ctx.fillStyle = SN.spot;
+          ctx.beginPath(); ctx.ellipse(cell * 0.38, ww * 0.3, cell * 0.05, ww * 0.07, 0, 0, 7); ctx.fill();
+          ctx.beginPath(); ctx.ellipse(cell * 0.38, -ww * 0.3, cell * 0.05, ww * 0.07, 0, 0, 7); ctx.fill();
+          ctx.restore();
+        }
       }
       if (scalePat && !SKIP.scales && quality >= 3) { ctx.save(); ctx.globalAlpha = 0.3; ctx.fillStyle = scalePat; outline(run, s0, width); ctx.fill(); ctx.restore(); }
       // rounded shading: shadowed flanks, then soft lighter bands toward the lit side, then a thin specular line
-      if (!SKIP.bands && quality >= 2) { ctx.fillStyle = 'rgba(10,30,4,.22)'; outline(run, s0, width, 0.1); ctx.fill(); }
+      if (!SKIP.bands && quality >= 2) { ctx.fillStyle = 'rgba(40,4,6,.22)'; outline(run, s0, width, 0.1); ctx.fill(); }
       // level of detail: very long snakes get fewer shading passes so the frame rate stays smooth on phones
       (SKIP.bands || quality < 1 ? [] : quality < 3 ? [[0.5, 0.26]] : [[0.78, 0.12], [0.56, 0.13], [0.34, 0.14]]).forEach(function (b) {
-        ctx.fillStyle = 'rgba(190,236,110,' + b[1] + ')'; outline(run, s0, function (s) { return width(s) * b[0]; }, -0.08); ctx.fill();
+        ctx.fillStyle = 'rgba(255,206,120,' + b[1] + ')'; outline(run, s0, function (s) { return width(s) * b[0]; }, -0.08); ctx.fill();
       });
       ctx.strokeStyle = SN.spine; ctx.lineWidth = Math.max(1, cell * 0.06); ctx.lineCap = 'round';
       ctx.beginPath();
@@ -479,19 +498,19 @@
     }
     ctx.fillStyle = flash ? SN.dead : SN.edge; shape(1.07); ctx.fill();
     var hg = ctx.createRadialGradient(0.12 * c, -0.14 * c, 0, 0.1 * c, 0, 0.62 * c);
-    hg.addColorStop(0, flash ? '#F06A6E' : SN.headA); hg.addColorStop(1, flash ? SN.dead : SN.headB);
+    hg.addColorStop(0, flash ? '#E9E3D9' : SN.headA); hg.addColorStop(1, flash ? SN.dead : SN.headB);
     ctx.fillStyle = hg; shape(1); ctx.fill();
     ctx.strokeStyle = SN.plate; ctx.lineWidth = Math.max(0.8, c * 0.045); ctx.lineCap = 'round'; // head plates
     ctx.beginPath(); ctx.moveTo(-0.22 * c, -0.12 * c); ctx.quadraticCurveTo(0.12 * c, -0.2 * c, 0.34 * c, -0.12 * c);
     ctx.moveTo(-0.22 * c, 0.12 * c); ctx.quadraticCurveTo(0.12 * c, 0.2 * c, 0.34 * c, 0.12 * c);
     ctx.moveTo(-0.05 * c, 0); ctx.lineTo(0.3 * c, 0); ctx.stroke();
     ctx.fillStyle = SN.blotch; ctx.beginPath(); ctx.ellipse(-0.16 * c, 0, 0.12 * c, 0.09 * c, 0, 0, 7); ctx.fill();
-    ctx.fillStyle = 'rgba(15,30,8,.85)'; // nostrils
+    ctx.fillStyle = 'rgba(0,0,0,.85)'; // nostrils
     ctx.beginPath(); ctx.ellipse(0.53 * c, -0.07 * c, 0.03 * c, 0.02 * c, 0.3, 0, 7); ctx.fill();
     ctx.beginPath(); ctx.ellipse(0.53 * c, 0.07 * c, 0.03 * c, 0.02 * c, -0.3, 0, 7); ctx.fill();
     [-1, 1].forEach(function (sd) { // amber eyes with slit pupils
       var ex = 0.24 * c, ey = 0.27 * c * sd, er = 0.105 * c;
-      ctx.fillStyle = '#132A0B'; ctx.beginPath(); ctx.arc(ex, ey, er * 1.22, 0, 7); ctx.fill();
+      ctx.fillStyle = '#050505'; ctx.beginPath(); ctx.arc(ex, ey, er * 1.22, 0, 7); ctx.fill();
       var ig = ctx.createRadialGradient(ex - er * .3, ey - er * .3, 0, ex, ey, er);
       ig.addColorStop(0, '#FFF0A0'); ig.addColorStop(.6, '#F2B630'); ig.addColorStop(1, '#B9741A');
       ctx.fillStyle = ig; ctx.beginPath(); ctx.arc(ex, ey, er, 0, 7); ctx.fill();
@@ -528,10 +547,13 @@
     }
     if (pop <= 0) return;
     ctx.save(); ctx.translate(x, y); ctx.rotate((e.tilt || 0.2) + wob);
+    var halo = ctx.createRadialGradient(0, 0, 0, 0, 0, ry * 1.9); // soft warm halo so the egg always reads against the grass
+    halo.addColorStop(0, golden ? 'rgba(255,220,110,.34)' : 'rgba(255,248,214,.26)'); halo.addColorStop(1, 'rgba(255,248,214,0)');
+    ctx.fillStyle = halo; ctx.beginPath(); ctx.ellipse(0, 0, rx * 2, ry * 1.9, 0, 0, 7); ctx.fill();
     ctx.fillStyle = 'rgba(10,20,5,.28)'; ctx.beginPath(); ctx.ellipse(c * 0.05, ry * 0.92, rx * 1.05, ry * 0.32, 0, 0, 7); ctx.fill();
     var g = ctx.createRadialGradient(-rx * 0.4, -ry * 0.45, 0, 0, 0, ry * 1.2);
     if (golden) { g.addColorStop(0, '#FFF8C8'); g.addColorStop(.45, '#FFC93A'); g.addColorStop(1, '#B97800'); }
-    else { g.addColorStop(0, '#FFFFFF'); g.addColorStop(.5, '#F3E9D6'); g.addColorStop(1, '#CDB894'); }
+    else { g.addColorStop(0, '#FFFFFF'); g.addColorStop(.5, '#F3E9D6'); g.addColorStop(1, '#C6AC7E'); }
     ctx.fillStyle = g; eggShape(rx, ry); ctx.fill();
     ctx.strokeStyle = golden ? 'rgba(150,95,0,.6)' : 'rgba(120,95,60,.45)'; ctx.lineWidth = Math.max(0.8, c * 0.025); ctx.stroke();
     if (!golden) { // speckles

@@ -39,23 +39,23 @@ const N=pts.length;const T=pts.map((p,i)=>{const a=pts[Math.max(0,i-1)],b=pts[Ma
 const L=N;function W(i){const u=i/L;let w=92;if(u<.06)w*=.86;w*=.92+.12*Math.sin(Math.PI*Math.min(1,u*1.1));if(u>.78)w*=Math.max(.16,1-(u-.78)/.22*.84);return w}
 function outline(scale,shift){x.beginPath();for(let i=0;i<N;i++){const h=W(i)*scale/2,o=shift?W(i)*shift:0;x.lineTo(pts[i][0]-T[i][1]*(h+o),pts[i][1]+T[i][0]*(h+o))}for(let i=N-1;i>=0;i--){const h=W(i)*scale/2,o=shift?W(i)*shift:0;x.lineTo(pts[i][0]+T[i][1]*(h-o),pts[i][1]-T[i][0]*(h-o))}x.closePath()}
 x.save();x.translate(14,24);x.fillStyle='rgba(8,30,6,.42)';x.filter='blur(6px)';outline(1);x.fill();x.restore();x.filter='none';
-x.fillStyle='#173A0E';outline(1.08);x.fill();
-x.fillStyle='#4C9A28';outline(1);x.fill();
-x.fillStyle='rgba(10,30,4,.25)';outline(1,.1);x.fill();
-// saddle markings + pale flecks
-for(let i=40;i<N-10;i+=17){const p=pts[i],t=T[i],w=W(i);x.save();x.translate(p[0],p[1]);x.rotate(Math.atan2(t[1],t[0]));x.fillStyle='rgba(28,64,14,.62)';x.beginPath();x.ellipse(0,0,22,w*.42,0,0,7);x.fill();x.fillStyle='rgba(214,244,140,.6)';x.beginPath();x.ellipse(38,w*.3,7,w*.08,0,0,7);x.fill();x.beginPath();x.ellipse(38,-w*.3,7,w*.08,0,0,7);x.fill();x.restore()}
-[[.78,.12],[.56,.14],[.34,.16]].forEach(b=>{x.fillStyle='rgba(196,240,112,'+b[1]+')';outline(b[0],-.08);x.fill()});
+x.fillStyle='#5C0A10';outline(1.08);x.fill();
+x.fillStyle='#C1272D';outline(1);x.fill();
+x.fillStyle='rgba(40,4,6,.25)';outline(1,.1);x.fill();
+// black bands + pale flecks
+for(let i=40;i<N-10;i+=17){const p=pts[i],t=T[i],w=W(i);x.save();x.translate(p[0],p[1]);x.rotate(Math.atan2(t[1],t[0]));x.fillStyle='rgba(14,11,9,.94)';x.beginPath();x.ellipse(0,0,22,w*.5,0,0,7);x.fill();x.fillStyle='rgba(255,231,190,.5)';x.beginPath();x.ellipse(38,w*.3,7,w*.08,0,0,7);x.fill();x.beginPath();x.ellipse(38,-w*.3,7,w*.08,0,0,7);x.fill();x.restore()}
+[[.78,.12],[.56,.14],[.34,.16]].forEach(b=>{x.fillStyle='rgba(255,206,120,'+b[1]+')';outline(b[0],-.08);x.fill()});
 // scales: tiny arcs along the body
-x.strokeStyle='rgba(14,40,6,.35)';x.lineWidth=2;for(let i=8;i<N-6;i+=3){const p=pts[i],t=T[i],w=W(i);for(let k=-2;k<=2;k++){const ox=p[0]-t[1]*k*w*.18,oy=p[1]+t[0]*k*w*.18;x.beginPath();x.arc(ox,oy,5,Math.atan2(t[1],t[0])-1.2,Math.atan2(t[1],t[0])+1.2);x.stroke()}}
-x.strokeStyle='rgba(230,252,180,.35)';x.lineWidth=5;x.lineCap='round';x.beginPath();for(let i=6;i<N*.82;i++){const w=W(i)*.16;x.lineTo(pts[i][0]+T[i][1]*w,pts[i][1]-T[i][0]*w)}x.stroke();
+x.strokeStyle='rgba(46,6,8,.35)';x.lineWidth=2;for(let i=8;i<N-6;i+=3){const p=pts[i],t=T[i],w=W(i);for(let k=-2;k<=2;k++){const ox=p[0]-t[1]*k*w*.18,oy=p[1]+t[0]*k*w*.18;x.beginPath();x.arc(ox,oy,5,Math.atan2(t[1],t[0])-1.2,Math.atan2(t[1],t[0])+1.2);x.stroke()}}
+x.strokeStyle='rgba(255,226,175,.35)';x.lineWidth=5;x.lineCap='round';x.beginPath();for(let i=6;i<N*.82;i++){const w=W(i)*.16;x.lineTo(pts[i][0]+T[i][1]*w,pts[i][1]-T[i][0]*w)}x.stroke();
 // head at the start of the line, facing away from the body
 const hp=pts[0],ht=T[0],ang=Math.atan2(-ht[1],-ht[0]);x.save();x.translate(hp[0],hp[1]);x.rotate(ang);const s=1.7;
 function head(g){x.beginPath();x.moveTo(-40*s,-44*s*g);x.bezierCurveTo(10*s,-64*s*g,58*s,-50*s*g,76*s,-8*s*g);x.quadraticCurveTo(84*s,0,76*s,8*s*g);x.bezierCurveTo(58*s,50*s*g,10*s,64*s*g,-40*s,44*s*g);x.closePath()}
 x.strokeStyle='#D21F45';x.lineWidth=7;x.lineCap='round';x.beginPath();x.moveTo(78*s,0);x.lineTo(112*s,0);x.moveTo(110*s,0);x.lineTo(130*s,-12*s);x.moveTo(110*s,0);x.lineTo(130*s,12*s);x.stroke();
-x.fillStyle='#173A0E';head(1.07);x.fill();let hg=x.createRadialGradient(14*s,-18*s,0,10*s,0,80*s);hg.addColorStop(0,'#86CC48');hg.addColorStop(1,'#3B7A1F');x.fillStyle=hg;head(1);x.fill();
-x.strokeStyle='rgba(34,80,18,.75)';x.lineWidth=5;x.beginPath();x.moveTo(-26*s,-15*s);x.quadraticCurveTo(14*s,-25*s,42*s,-15*s);x.moveTo(-26*s,15*s);x.quadraticCurveTo(14*s,25*s,42*s,15*s);x.stroke();
-x.fillStyle='rgba(15,30,8,.85)';x.beginPath();x.ellipse(66*s,-9*s,4*s,2.5*s,.3,0,7);x.fill();x.beginPath();x.ellipse(66*s,9*s,4*s,2.5*s,-.3,0,7);x.fill();
-[-1,1].forEach(sd=>{const ex=30*s,ey=34*s*sd,er=13*s;x.fillStyle='#132A0B';x.beginPath();x.arc(ex,ey,er*1.22,0,7);x.fill();let ig=x.createRadialGradient(ex-er*.3,ey-er*.3,0,ex,ey,er);ig.addColorStop(0,'#FFF0A0');ig.addColorStop(.6,'#F2B630');ig.addColorStop(1,'#B9741A');x.fillStyle=ig;x.beginPath();x.arc(ex,ey,er,0,7);x.fill();x.fillStyle='#0B0D08';x.beginPath();x.ellipse(ex+er*.1,ey,er*.22,er*.82,0,0,7);x.fill();x.fillStyle='#fff';x.beginPath();x.arc(ex-er*.35,ey-er*.38*sd,er*.22,0,7);x.fill()});
+x.fillStyle='#101012';head(1.07);x.fill();let hg=x.createRadialGradient(14*s,-18*s,0,10*s,0,80*s);hg.addColorStop(0,'#55555A');hg.addColorStop(1,'#131315');x.fillStyle=hg;head(1);x.fill();
+x.strokeStyle='rgba(158,30,38,.8)';x.lineWidth=5;x.beginPath();x.moveTo(-26*s,-15*s);x.quadraticCurveTo(14*s,-25*s,42*s,-15*s);x.moveTo(-26*s,15*s);x.quadraticCurveTo(14*s,25*s,42*s,15*s);x.stroke();
+x.fillStyle='rgba(0,0,0,.85)';x.beginPath();x.ellipse(66*s,-9*s,4*s,2.5*s,.3,0,7);x.fill();x.beginPath();x.ellipse(66*s,9*s,4*s,2.5*s,-.3,0,7);x.fill();
+[-1,1].forEach(sd=>{const ex=30*s,ey=34*s*sd,er=13*s;x.fillStyle='#050505';x.beginPath();x.arc(ex,ey,er*1.22,0,7);x.fill();let ig=x.createRadialGradient(ex-er*.3,ey-er*.3,0,ex,ey,er);ig.addColorStop(0,'#FFF0A0');ig.addColorStop(.6,'#F2B630');ig.addColorStop(1,'#B9741A');x.fillStyle=ig;x.beginPath();x.arc(ex,ey,er,0,7);x.fill();x.fillStyle='#0B0D08';x.beginPath();x.ellipse(ex+er*.1,ey,er*.22,er*.82,0,0,7);x.fill();x.fillStyle='#fff';x.beginPath();x.arc(ex-er*.35,ey-er*.38*sd,er*.22,0,7);x.fill()});
 x.restore();
 // egg in a straw nest
 x.save();x.translate(838,420);x.lineCap='round';for(let i=0;i<14;i++){const a0=R()*6.28;x.strokeStyle=R()<.5?'#A57A3E':'#7A5428';x.lineWidth=7;x.beginPath();x.ellipse(0,52,88,30,0,a0,a0+1+R());x.stroke()}
@@ -253,7 +253,7 @@ function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt
 <text class="w" x="512" y="300" fill="none" stroke="#fff" stroke-opacity=".35" style="stroke-width:5px" transform="translate(-3 -5)">${text}</text></g></svg>`;
 }
 const wordmarks = {
-  'snake': wordmark({ text: 'Snake', fill: ['#D9FF7A', '#7DD43A', '#2F8F24'], outline: '#123A0C', depth: '#0B2607', tilt: -4 }),
+  'snake': wordmark({ text: 'Snake', fill: ['#FFC9B0', '#E23A2E', '#7E0E16'], outline: '#2A0508', depth: '#180305', tilt: -4 }),
   'tic-tac-toe': wordmark({ text: 'Tic Tac Toe', size: 168, fill: ['#fff', '#fff'], outline: '#3A1D08', depth: '#2A1405', letters: [['Tic ', '#FF6A3D'], ['Tac ', '#4F86FF'], ['Toe', '#FFC93A']] }),
   'rock-paper-scissors': wordmark({ lines: ['Rock Paper', 'Scissors!'], size: 150, fill: ['#FFF3A0', '#FFC22E', '#FF8A1F'], outline: '#2A1030', depth: '#1A0820', italic: true, tilt: -3 }),
   '2048': wordmark({ text: '2048', size: 260, fill: ['#FFFFFF', '#FFD36E', '#FF7AD9', '#8C5CFF'], outline: '#24104A', depth: '#150833', tilt: -3 }),
