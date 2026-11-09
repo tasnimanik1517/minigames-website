@@ -62,7 +62,7 @@
       "h": "How to play Alchemy Lab",
       "p": [
         "Your elements are listed under the table on a phone and beside it on a bigger screen. Put two of them together and, if they belong together, they turn into something new. A new discovery glows gold, gets a bell-like chime and joins your list with a pink dot, so you can always spot your latest finds.",
-        "If two elements do not combine, both simply wiggle and stay where they are, so there is nothing to lose by trying. The counter at the top shows how many of the 692 elements you have found. There is no timer and no way to fail: play for five minutes or come back to the same lab for weeks."
+        "If two elements have no recipe of their own, they fizzle into a simple by-product such as Mixture or Sludge instead, and you can always take more of any element you have found from your list, so there is nothing to lose by trying. The counter at the top shows how many of the 692 elements you have found. There is no timer and no way to fail: play for five minutes or come back to the same lab for weeks."
       ]
     },
     {
@@ -149,7 +149,7 @@
     {
       "h": "Final elements and saved progress",
       "p": [
-        "Some discoveries are the end of their line: a unicorn, a pizza or a black hole does not mix into anything else. These final elements have a gold edge in your list, so you do not waste time trying them. Collect them all the same, because they count towards your total.",
+        "Some discoveries are the end of their line: a unicorn, a pizza or a black hole does not mix into anything new — mixing one only fizzles into a by-product. These final elements have a gold edge in your list, so you can spot them at a glance. Collect them all the same, because they count towards your total.",
         "Your discoveries and the elements on your table are saved in this browser on this device, so you can close the page and carry on later. The round arrow button at the top starts a new game with just the four basics, after asking you first."
       ]
     },

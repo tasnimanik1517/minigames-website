@@ -363,6 +363,64 @@
     BOOK[pairKey(ab[0], ab[1])] = m[1]; USED[ab[0]] = USED[ab[1]] = 1;
   });
   var ALL = Object.keys(EMOJI), BASE = ['Water', 'Fire', 'Earth', 'Air'];
+
+  /* ---------- fizzle: what a mix with no recipe of its own falls back to ---------- */
+  // Byproducts are not discoveries. They join EMOJI (so cards and saved tables can render
+  // them) only now that ALL has counted the real elements, and they never enter `found`:
+  // the counter, the chip list, hints and the win check only ever see the recipe book.
+  var BYPRODUCT = {};
+  ('Mixture=♻️|Sludge=💩|Goo=🫠~😶|Vapor=😶‍🌫️~🫥|Cinders=🧨|Essence=🧿|Shards=✴️|Pulp=🟧|Dust Pile=🟫|Murk=🌚').split('|').forEach(function (p) {
+    var i = p.indexOf('='), v = p.slice(i + 1).split('~'), n = p.slice(0, i);
+    EMOJI[n] = v[0]; if (v[1]) OLDER[n] = v[1]; BYPRODUCT[n] = 1;
+  });
+  // Every element has one nature; the pair of natures decides the byproduct.
+  var TAGLIST = {
+    liquid: 'Water|Puddle|Pond|Lake|Ocean|Wave|Rain|Paint|Oil|Soap|Perfume|Nail Polish',
+    fire: 'Fire|Lava|Heat|Volcano|Explosion|Fireworks|Candle|Lamp|Lantern',
+    earth: 'Earth|Mud|Dust|Mountain|Earthquake|Desert',
+    air: 'Air|Steam|Mist|Wind|Cloud|Storm|Tornado|Hurricane|Sky|Night|Day|Rainbow|Sunrise|Sunset|Smoke|Sound|Voice|Music|Song|Balloon|Bubbles',
+    energy: 'Energy|Lightning|Sun|Moon|Star|Space|Galaxy|Universe|Black Hole|Planet|Comet|Meteor|Eclipse|Light|Time|Electricity|Full Moon|Atom',
+    plant: 'Plant|Grass|Meadow|Tree|Forest|Leaf|Autumn|Flower|Sunflower|Rose|Bouquet|Garden|Cactus|Mushroom|Fruit|Seed|Bamboo|Wheat|Christmas Tree|Potted Plant|Clover|Lavender|Shamrock',
+    animal: 'Life|Bacteria|Fish|Frog|Lizard|Dinosaur|Bird|Egg|Chicken|Owl|Penguin|Duck|Swan|Flamingo|Parrot|Peacock|Eagle|Bat|Insect|Bee|Butterfly|Ladybug|Ant|Snail|Turtle|Crab|Whale|Dolphin|Shark|Octopus|Coral|Animal|Cow|Horse|Giraffe|Camel|Goat|Monkey|Bear|Panda|Koala|Pig|Sheep|Rabbit|Hedgehog|Lion|Tiger|Crocodile|Snake|Spider|Dog|Fox|Wolf|Cat|Mouse|Alien|Elephant|Zebra|Donkey|Deer|Kangaroo|Sloth|Otter|Beaver|Squirrel|Moose|Rhino|Hippo|Bison|Orangutan|Gorilla|Polar Bear|Llama|Turkey|Jellyfish|Squid|Shrimp|Lobster|Starfish|Scorpion|Worm|Mosquito|Grasshopper|Skeleton|Bone|Feather|Pufferfish|Sponge|Seal|Leopard|Ram|Hamster|Rooster|Chick|Dove|Dodo|Mammoth|Brontosaurus|Badger|Skunk|Raccoon|Poodle|Fly|Beetle|Cockroach|Spider Web|Crow',
+    human: 'King|Queen|Art|Human|Love|Family|Farmer|Cook|Gift|Santa|Astronaut|Brain|Dance|Party|Doctor|Teacher|Student|Scientist|Engineer|Artist|Singer|Police|Firefighter|Pilot|Soldier|Knight|Pirate|Baker|Hunter|Fisherman|Gardener|Writer|Photographer|Musician|Baby|Blood|Eye|Picnic|Tooth|Ear|Nose|Tongue|Beard|Heart|Lungs|Detective|Construction Worker|Programmer|Office Worker|Meditation',
+    food: 'Honey|Banana|Bread|Milk|Cheese|Tomato|Pizza|Sandwich|Hot Dog|Burger|Cake|Birthday Cake|Cupcake|Donut|Cookie|Ice Cream|Candy|Lollipop|Chocolate|Juice|Lemon|Lemonade|Tea|Coffee|Vegetable|Salad|Soup|Corn|Popcorn|Pumpkin|Flour|Dough|Pasta|Noodles|Pancake|Waffle|Butter|Croissant|Baguette|Pretzel|Pie|Dumpling|Taco|Rice|Burrito|Sushi|Curry|Potato|Fries|Grapes|Wine|Beer|Champagne|Orange|Watermelon|Pineapple|Peach|Pear|Cherry|Strawberry|Blueberry|Olive|Avocado|Coconut|Garlic|Onion|Bell Pepper|Chili|Cucumber|Broccoli|Omelette|Bacon|Steak|Meat|Bubble Tea|Barbecue|Mango|Kiwi|Melon|Peanut|Kebab|Falafel|Dango|Whiskey|Cocktail|Fondue|Bagel|Pudding|Fortune Cookie|Maple Syrup|Sundae|Bento Box|Canned Food|Paella|Tamale|Mate|Fish Cake|Ginger|Sweet Potato|Eggplant|Peas|Beans|Kale|Shaved Ice|Onigiri|Rice Cracker',
+    metal: 'Metal|Gold|Silver|Ring|Crown|Tool|Money|Knife|Sword|Scissors|Needle|Chain|Lock|Key|Magnet|Bucket|Shovel|Saw|Wrench|Compass|Necklace|Anchor|Shield|Trumpet|Saxophone|Fork|Spoon|Toolbox|Screwdriver|Razor|Safety Pin|Skeleton Key|Bell|Scales|Hook|Shopping Cart|Mailbox|Faucet|Credit Card|ATM|Dollar Bill',
+    mineral: 'Stone|Sand|Glass|Sunglasses|Clay|Brick|Wall|Charcoal|Diamond|Shell|Pearl|Salt|Mirror|Glasses|Teapot|Disco Ball|Petri Dish|Syringe|Magnifying Glass',
+    wood: 'Wheel|Box|Paper|Book|Pencil|Letter|Wood|Nest|Guitar|Drum|Ladder|Chair|Bed|Sofa|Door|Window|Map|Piano|Violin|Flute|Banjo|Accordion|Puzzle|Chess|Cards|Confetti|Skewer|Chopsticks|Boomerang|Piñata|Nesting Doll|Sign|Abacus|Ruler|Conga|Maracas|Calendar|Paperclip|Pin|Pen|Crayon|Mahjong|Scroll|Fan|Cabinet|Notebook|Journal|Newspaper|Ticket|ID Card|Receipt|Memo',
+    cloth: 'Umbrella|Wool|Kite|Thread|Clothing|Rope|Hat|Dress|Coat|Tie|Pants|Scarf|Gloves|Socks|Shoes|Tent|Life Buoy|Diving Mask|Parachute|Bandage|Kimono|Sari|Swimsuit|Shorts|Flip Flops|High Heels|Boots|Top Hat|Cap|Purse|Handbag|Briefcase|Backpack|Suitcase|Parasol|Goggles|Face Mask|Ribbon|Flag',
+    machine: 'Clock|Tractor|Robot|UFO|Rocket|Satellite|Airplane|Car|Bicycle|Train|Boat|Ship|Engine|Light Bulb|Computer|Internet|Email|Phone|Television|Video Game|Movie|Telescope|Microscope|Camera|Photo|Selfie|Emoji|Headphones|Microphone|Toy|Teddy Bear|Ball|Battery|Helmet|Medicine|Plastic|Radio|Dice|Frisbee|Trophy|Medal|Basketball|Bowling|Boxing|Motorcycle|Truck|Bus|Ambulance|Fire Truck|Police Car|Taxi|Race Car|Helicopter|Skateboard|Roller Skate|Canoe|Yacht|Ferry|Speedboat|Invader|Fire Extinguisher|Toothbrush|Elevator|Roller Coaster|SUV|Semi Truck|Monorail|Bullet Train|Metro|Tram|Scooter|Kick Scooter|Stethoscope|X-Ray|Flashlight|Monitor|Printer|Keyboard|Computer Mouse|Floppy Disk|CD|Video Tape|Video Camera|Movie Camera|Podcast|Link|Stopwatch|Plunger|Rugby|Baseball|Tennis|Volleyball|Ping Pong|Badminton|Goal|Golf|Ski|Sled|Curling|Darts|Joystick|Slot Machine|Ice Skate|Hockey|Lacrosse|Cricket|Fencing|Gym|Lipstick|Comb|Satellite Dish|Smartwatch|Speaker|Fax Machine|Telephone|Traffic Light',
+    magic: 'Dragon|Unicorn|Ghost|Magic|Potion|Crystal Ball|Genie|Wizard|Fairy|Mermaid|Angel|Vampire|Zombie|Superhero|Elf|Troll|Spell Book|Dream|Demon|Goblin|Villain',
+    cold: 'Cold|Ice|Snow|Glacier|Snowman',
+    place: 'Island|House|Village|City|Castle|School|Library|Oasis|Home|Hut|Bank|Shop|Apartment|Skyscraper|Hotel|Hospital|Restaurant|Museum|Theater|Circus|Playground|Bridge|Road|Statue|Pyramid|Temple|Church|Mosque|Synagogue|University|Factory|Power Plant|Airport|Station|Tower|Laboratory|Haunted House|Stadium|Railway|Gas Station|Sauna|Bathtub|Shower|Toilet|Mount Fuji|Mall|Barber Shop'
+  };
+  var TAGS = {};
+  Object.keys(TAGLIST).forEach(function (t) { TAGLIST[t].split('|').forEach(function (n) { TAGS[n] = t; }); });
+  var FIZZ = {};
+  ('air+air=Vapor|air+animal=Mixture|air+cloth=Mixture|air+cold=Vapor|air+earth=Dust Pile|air+energy=Vapor|air+fire=Vapor|air+food=Dust Pile|' +
+   'air+human=Mixture|air+liquid=Vapor|air+machine=Mixture|air+magic=Essence|air+metal=Mixture|air+mineral=Dust Pile|air+mix=Mixture|air+place=Vapor|' +
+   'air+plant=Dust Pile|air+wood=Dust Pile|animal+animal=Goo|animal+cloth=Mixture|animal+cold=Mixture|animal+earth=Mixture|animal+energy=Essence|' +
+   'animal+fire=Cinders|animal+food=Mixture|animal+human=Mixture|animal+liquid=Sludge|animal+machine=Mixture|animal+magic=Essence|animal+metal=Mixture|' +
+   'animal+mineral=Mixture|animal+mix=Mixture|animal+place=Mixture|animal+plant=Pulp|animal+wood=Mixture|cloth+cloth=Pulp|cloth+cold=Mixture|' +
+   'cloth+earth=Dust Pile|cloth+energy=Essence|cloth+fire=Cinders|cloth+food=Goo|cloth+human=Mixture|cloth+liquid=Goo|cloth+machine=Mixture|' +
+   'cloth+magic=Essence|cloth+metal=Mixture|cloth+mineral=Dust Pile|cloth+mix=Mixture|cloth+place=Dust Pile|cloth+plant=Pulp|cloth+wood=Pulp|' +
+   'cold+cold=Sludge|cold+earth=Murk|cold+energy=Essence|cold+fire=Vapor|cold+food=Goo|cold+human=Mixture|cold+liquid=Sludge|cold+machine=Mixture|' +
+   'cold+magic=Murk|cold+metal=Mixture|cold+mineral=Dust Pile|cold+mix=Murk|cold+place=Dust Pile|cold+plant=Pulp|cold+wood=Shards|earth+earth=Dust Pile|' +
+   'earth+energy=Essence|earth+fire=Sludge|earth+food=Pulp|earth+human=Mixture|earth+liquid=Sludge|earth+machine=Dust Pile|earth+magic=Essence|' +
+   'earth+metal=Dust Pile|earth+mineral=Dust Pile|earth+mix=Mixture|earth+place=Dust Pile|earth+plant=Pulp|earth+wood=Dust Pile|energy+energy=Essence|' +
+   'energy+fire=Cinders|energy+food=Essence|energy+human=Essence|energy+liquid=Vapor|energy+machine=Shards|energy+magic=Essence|energy+metal=Shards|' +
+   'energy+mineral=Essence|energy+mix=Mixture|energy+place=Essence|energy+plant=Essence|energy+wood=Essence|fire+fire=Cinders|fire+food=Cinders|' +
+   'fire+human=Cinders|fire+liquid=Vapor|fire+machine=Shards|fire+magic=Essence|fire+metal=Sludge|fire+mineral=Sludge|fire+mix=Cinders|fire+place=Cinders|' +
+   'fire+plant=Cinders|fire+wood=Cinders|food+food=Goo|food+human=Mixture|food+liquid=Goo|food+machine=Mixture|food+magic=Essence|food+metal=Mixture|' +
+   'food+mineral=Mixture|food+mix=Mixture|food+place=Mixture|food+plant=Mixture|food+wood=Pulp|human+human=Mixture|human+liquid=Mixture|' +
+   'human+machine=Mixture|human+magic=Essence|human+metal=Mixture|human+mineral=Mixture|human+mix=Mixture|human+place=Mixture|human+plant=Mixture|' +
+   'human+wood=Mixture|liquid+liquid=Mixture|liquid+machine=Sludge|liquid+magic=Essence|liquid+metal=Sludge|liquid+mineral=Sludge|liquid+mix=Sludge|' +
+   'liquid+place=Sludge|liquid+plant=Goo|liquid+wood=Goo|machine+machine=Shards|machine+magic=Essence|machine+metal=Shards|machine+mineral=Shards|' +
+   'machine+mix=Mixture|machine+place=Shards|machine+plant=Shards|machine+wood=Shards|magic+magic=Essence|magic+metal=Essence|magic+mineral=Essence|' +
+   'magic+mix=Essence|magic+place=Essence|magic+plant=Essence|magic+wood=Essence|metal+metal=Shards|metal+mineral=Shards|metal+mix=Mixture|' +
+   'metal+place=Shards|metal+plant=Shards|metal+wood=Shards|mineral+mineral=Dust Pile|mineral+mix=Mixture|mineral+place=Dust Pile|mineral+plant=Pulp|' +
+   'mineral+wood=Dust Pile|mix+mix=Mixture|mix+place=Mixture|mix+plant=Mixture|mix+wood=Mixture|place+place=Dust Pile|place+plant=Pulp|' +
+   'place+wood=Dust Pile|plant+plant=Pulp|plant+wood=Pulp|wood+wood=Shards').split('|').forEach(function (r) { var m = r.split('='); FIZZ[m[0]] = m[1]; });
+  function tagOf(name) { return BYPRODUCT[name] ? 'mix' : (TAGS[name] || 'mix'); }
   var EMOJI_FONT = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla",sans-serif';
 
   // An emoji this device cannot draw comes out as a plain box in the text colour; colour emoji never do.
@@ -413,7 +471,7 @@
   function chip(name) {
     var fin = !USED[name];
     return h('button', { class: 'al-chip' + (fresh[name] ? ' is-new' : '') + (fin ? ' is-final' : ''), type: 'button', 'data-name': name,
-      title: fin ? name + ': a final element, it does not mix any further' : name, 'aria-label': name + (fin ? ', final element' : '') },
+      title: fin ? name + ': a final element, no recipe makes or uses it' : name, 'aria-label': name + (fin ? ', final element' : '') },
       h('span', { class: 'al-emoji', 'aria-hidden': 'true', text: EMOJI[name] }), h('span', { class: 'al-name', text: name }));
   }
   function renderList() {
@@ -488,12 +546,7 @@
   /* ---------- mixing ---------- */
   function mix(a, b) {
     var res = BOOK[pairKey(a.name, b.name)];
-    if (!res) {
-      [a, b].forEach(function (it) { var c = it.el.firstChild; c.classList.remove('nope'); void c.offsetWidth; c.classList.add('nope'); });
-      MG.tone(190, 0.12, 'sine', 0.04, 140);
-      say([{ e: '🤔' }, ' Nothing happened. Try another pair'], 'is-soft');
-      save(); return;
-    }
+    if (!res) { fizzle(a, b); return; }
     var x = b.x, y = b.y;
     removeItem(a); removeItem(b);
     var isNew = found.indexOf(res) < 0;
@@ -514,6 +567,17 @@
       say([{ e: EMOJI[res] }, ' ' + res], '');
       MG.tone(660, 0.1, 'triangle', 0.045); MG.tone(880, 0.1, 'sine', 0.025, 0, 0.06);
     }
+    if (kbd) try { it.el.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+    save();
+  }
+  function fizzle(a, b) { // no recipe for this pair: the natures of the two decide the byproduct
+    var res = FIZZ[pairKey(tagOf(a.name), tagOf(b.name))] || 'Mixture';
+    var x = b.x, y = b.y;
+    removeItem(a); removeItem(b);
+    var it = addItem(res, x, y, 'is-pop');
+    sparkle(it.el, 4);
+    say([{ e: '🧪' }, ' The mix fizzles into ', { e: EMOJI[res] }, ' ' + res], 'is-soft');
+    MG.tone(240, 0.15, 'sine', 0.04, 160);
     if (kbd) try { it.el.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
     save();
   }
@@ -704,7 +768,7 @@
     renderList();
     var start = MG.store.get('lab', null);
     (Array.isArray(start) ? start : [['Water', 34, 50], ['Fire', 66, 50]]).forEach(function (p) {
-      if (p && EMOJI[p[0]] && found.indexOf(p[0]) >= 0) addItem(p[0], +p[1] || 50, +p[2] || 50);
+      if (p && EMOJI[p[0]] && (found.indexOf(p[0]) >= 0 || BYPRODUCT[p[0]])) addItem(p[0], +p[1] || 50, +p[2] || 50);
     });
     updateHint();
   }
