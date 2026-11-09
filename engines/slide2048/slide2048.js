@@ -350,6 +350,7 @@
   main.addEventListener('pointerdown', function (e) {
     if (!overlay.hidden || (e.pointerType === 'mouse' && e.button !== 0)) return;
     sid = e.pointerId; sx = e.clientX; sy = e.clientY;
+    try { main.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
   });
   main.addEventListener('pointerup', function (e) {
     if (e.pointerId !== sid) return;

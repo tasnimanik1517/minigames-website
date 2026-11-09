@@ -24,7 +24,7 @@
   var size = MG.store.get('size', 'normal'); if (!SIZES[size]) size = 'normal';
   var theme = MG.store.get('theme', 'animals'); if (!THEMES[theme]) theme = 'animals';
   var mode = MG.store.get('mode', 'solo'); if (mode !== 'solo' && mode !== 'duo') mode = 'solo';
-  var deck = [], open = [], matched = 0, moves = 0, streak = 0, started = 0, elapsed = 0, timer = 0, lock = false, over = false;
+  var deck = [], open = [], matched = 0, moves = 0, streak = 0, started = 0, elapsed = 0, lastTick = 0, timer = 0, lock = false, over = false;
   var player = 1, pts = { 1: 0, 2: 0 }, focusIdx = 0;
 
   /* ---------- DOM ---------- */
@@ -69,7 +69,7 @@
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = (Math.random() * (i + 1)) | 0, t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function newGame() {
     closeOverlay();
-    clearInterval(timer); timer = 0; started = 0; elapsed = 0;
+    clearInterval(timer); timer = 0; started = 0; elapsed = 0; lastTick = 0;
     var n = SIZES[size][0] * SIZES[size][1] / 2;
     var pics = shuffle(THEMES[theme].items.slice()).slice(0, n);
     deck = shuffle(pics.concat(pics).map(function (p, i) { return { pic: p, tint: TINTS[pics.indexOf(p) % TINTS.length], up: false, done: false, id: i }; }));
@@ -113,11 +113,16 @@
     root.setAttribute('data-player', player);
   }
   function clock(ms) { var s = Math.floor(ms / 1000); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
-  function tickClock() { elapsed = Date.now() - started; if (mode === 'solo') pillB.querySelector('b').textContent = clock(elapsed); }
+  function accumulate() { // bank the time since the last tick, but only while a run is live, no card is open and the tab is in front
+    var now = Date.now();
+    if (started && !over && overlay.hidden && !document.hidden) elapsed += now - lastTick;
+    lastTick = now;
+  }
+  function tickClock() { accumulate(); if (mode === 'solo') pillB.querySelector('b').textContent = clock(elapsed); }
   function flip(i) {
     var c = deck[i];
     if (lock || over || c.up || c.done || !overlay.hidden) return;
-    if (!started) { started = Date.now(); timer = setInterval(tickClock, 500); }
+    if (!started) { started = lastTick = Date.now(); timer = setInterval(tickClock, 500); }
     c.up = true; open.push(c); focusIdx = i;
     MG.tone(520 + open.length * 90, 0.06, 'triangle', 0.045);
     paint();
@@ -152,7 +157,7 @@
   }
   function stars() { var p = deck.length / 2; return moves <= Math.ceil(p * 1.5) ? 3 : moves <= Math.ceil(p * 2.2) ? 2 : 1; }
   function finish() {
-    over = true; clearInterval(timer); tickClock();
+    clearInterval(timer); accumulate(); over = true;
     var again = h('button', { class: 'mg-btn', type: 'button', text: 'Play again' });
     again.addEventListener('click', function () { MG.adBreak('next', 'memory-again', newGame); });
     if (mode === 'solo') {
@@ -206,6 +211,8 @@
     if (d) { e.preventDefault(); focusCard(document.activeElement && document.activeElement.classList.contains('mm-card') ? focusIdx + d : focusIdx); }
     else if ((e.key === 'Enter' || e.key === ' ') && !(document.activeElement && document.activeElement.classList.contains('mm-card'))) { e.preventDefault(); flip(focusIdx); }
   });
+
+  MG.onPause(accumulate); // bank the visible time the moment the tab or an ad takes over, so away time never lands in elapsed
 
   /* ---------- start ---------- */
   renderSound();

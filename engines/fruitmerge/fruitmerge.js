@@ -219,7 +219,7 @@
     var s = MG.store.get('state', null);
     if (!s || !s.fruits) { newGame(); return; }
     fruits = []; s.fruits.forEach(function (p) { if (p[2] >= 0 && p[2] < FRUIT.length) add(p[2], p[0], p[1], 0); });
-    fruits.forEach(function (f) { f.born -= 3000; });
+    dangerT = 0; // a restored jar gets a grace period: fruit ages (set in add) and the danger timer start fresh, so the pile can settle first
     score = s.score || 0; current = s.current || 0; next = s.next || 0; biggest = s.biggest || 0; bestBefore = best;
     markLadder(); drawNext(); hud();
   }
@@ -307,7 +307,7 @@
   /* ---------- input ---------- */
   function toWorld(clientX) { var b = cv.getBoundingClientRect(); return (clientX - b.left - ox) / scale; }
   var down = false;
-  cv.addEventListener('pointerdown', function (e) { if (over || !overlay.hidden) return; down = true; aimX = toWorld(e.clientX); });
+  cv.addEventListener('pointerdown', function (e) { if (over || !overlay.hidden) return; down = true; aimX = toWorld(e.clientX); try { cv.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ } });
   cv.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse' || down) aimX = toWorld(e.clientX); });
   cv.addEventListener('pointerup', function (e) { if (!down) return; down = false; aimX = toWorld(e.clientX); drop(); });
   cv.addEventListener('pointercancel', function () { down = false; });

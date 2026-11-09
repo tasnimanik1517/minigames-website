@@ -142,7 +142,8 @@
       h('span', { text: words(s) + ' ' + (touch ? 'Draw again to beat it.' : 'Draw again to beat it.') }));
     renderHud();
     orbit(st.R);
-    if (s >= 90) { MG.sfx.win(); if (isBest && tries > 1) MG.confetti(110); } else if (s >= 70) MG.sfx.good(); else MG.tone(392, 0.18, 'triangle', 0.05);
+    if (s >= 90) MG.sfx.win(); else if (s >= 70) MG.sfx.good(); else MG.tone(392, 0.18, 'triangle', 0.05);
+    if (isBest && tries > 1) MG.confetti(s >= 90 ? 110 : 80); // any new best earns a celebration, bigger at the top band
     MG.event('game_over', { score: s });
   }
   function idle() {

@@ -143,13 +143,13 @@
       h('div', { class: 'rt-badge', 'aria-hidden': 'true', text: r[1] }),
       h('div', null, h('small', { class: 'mg-label', text: 'Your reaction badge' }), h('h2', { class: 'mg-title', text: r[2] })),
       h('div', { class: 'rt-score' }, h('span', { class: 'mg-big', text: a }), h('span', { text: 'ms average' })),
-      isBest && prev ? h('span', { class: 'mg-badge', text: 'New best!' }) : null,
+      isBest ? h('span', { class: 'mg-badge', text: 'New best!' }) : null,
       h('div', { class: 'rt-list' }, times.map(function (t) { return h('span', { class: t === fast ? 'is-fast' : t === slow ? 'is-slow' : '', text: t }); })),
       h('p', { class: 'mg-sub', text: 'Fastest try ' + fast + ' ms. ' + lab + (prev && !isBest ? ' Your best average: ' + prev.avg + ' ms.' : '') }),
       h('div', { class: 'mg-row' }, change, again)));
     overlay.hidden = false;
     MG.focusSafe(again, 700);
-    if (isBest && prev) { MG.confetti(120); MG.sfx.win(); } else MG.sfx.good();
+    if (isBest) { MG.confetti(120); MG.sfx.win(); } else MG.sfx.good();
     MG.event('game_over', { score: a, mode: mode });
   }
 

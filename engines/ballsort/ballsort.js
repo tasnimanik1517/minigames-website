@@ -131,7 +131,7 @@
       var b = Math.min(bW, bH, 54);
       if (!best || b > best.b + 0.5) best = { b: b, per: per };
     }
-    shelf.style.setProperty('--b', Math.max(14, Math.floor(best.b)) + 'px');
+    shelf.style.setProperty('--b', Math.max(24, Math.floor(best.b)) + 'px');
     shelf.style.setProperty('--per', best.per);
     fxCtx = null;
   }
@@ -225,7 +225,7 @@
   function anyMove() { for (var s = 0; s < tubes.length; s++) for (var d = 0; d < tubes.length; d++) if (canMove(s, d)) return true; return false; }
   function undo() {
     if (!history.length || busy || won) return;
-    var m = history.pop(); moves++; selected = -1;
+    var m = history.pop(); selected = -1;
     doMove(m[1], m[0], false);
     MG.tone(520, 0.07, 'triangle', 0.04, 400);
   }

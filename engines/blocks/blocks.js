@@ -75,10 +75,11 @@
     boardEl.innerHTML = ''; cellEls = [];
     boardEl.style.setProperty('--n', n);
     for (var i = 0; i < n * n; i++) {
-      var c = h('div', { class: 'bp-cell', role: 'gridcell', 'data-i': String(i) });
+      var c = h('div', { class: 'bp-cell', role: 'gridcell', 'data-i': String(i), tabindex: i === cursor.r * n + cursor.c ? '0' : '-1' });
       cellEls.push(c); boardEl.append(c);
     }
     root.setAttribute('data-size', n);
+    syncCursor();
   }
 
   /* ---------- rules ---------- */
@@ -301,7 +302,12 @@
     r = Math.max(0, Math.min(r, n - s.h)); c = Math.max(0, Math.min(c, n - s.w));
     if (!place(sel, r, c)) { MG.tone(140, 0.08, 'sine', 0.04); }
   });
-  function aim(r, c) { cursor.r = Math.max(0, Math.min(n - 1, r)); cursor.c = Math.max(0, Math.min(n - 1, c)); renderBoard(); }
+  function syncCursor() { // roving tabindex: only the cursor cell is in the tab order, and focus follows it while the board holds focus
+    var idx = cursor.r * n + cursor.c;
+    cellEls.forEach(function (el, i) { el.tabIndex = i === idx ? 0 : -1; });
+    if (document.activeElement && boardEl.contains(document.activeElement)) { try { cellEls[idx].focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+  }
+  function aim(r, c) { cursor.r = Math.max(0, Math.min(n - 1, r)); cursor.c = Math.max(0, Math.min(n - 1, c)); syncCursor(); renderBoard(); }
   document.addEventListener('keydown', function (e) {
     if (!overlay.hidden) { if (e.key === 'Escape' && overlayKind !== 'over') { closeOverlay(); e.preventDefault(); } return; }
     if (busy || over) return;

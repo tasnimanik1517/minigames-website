@@ -72,6 +72,7 @@
   var aScore = h('b', { text: '0' }), bScore = h('b', { text: '0' }), dScore = h('b', { text: '0' });
   var aLabel = h('small'), bLabel = h('small');
   var streakEl = h('b', { text: '0' });
+  var streakPill = h('span', { class: 'mg-pill rps-streak', title: 'Win streak' }, h('small', { text: 'Streak' }), streakEl);
   var soundBtn = h('button', { class: 'mg-icon-btn', type: 'button' });
   var rulesBtn = h('button', { class: 'mg-icon-btn', type: 'button', 'aria-label': 'Show rules', title: 'Rules', html: ICON.rules });
   var handA = h('div', { class: 'rps-hand is-a', 'aria-hidden': 'true', text: ALL.rock.e });
@@ -117,7 +118,7 @@
       h('span', { class: 'mg-pill rps-a' }, aLabel, aScore),
       h('span', { class: 'mg-pill' }, h('small', { text: 'Draw' }), dScore),
       h('span', { class: 'mg-pill rps-b' }, bLabel, bScore),
-      h('span', { class: 'mg-pill rps-streak', title: 'Win streak' }, h('small', { text: 'Streak' }), streakEl),
+      streakPill,
       h('span', { class: 'mg-spacer' }), FIVE ? rulesBtn : null, soundBtn),
     h('div', { class: 'rps-main' }, arena, h('div', { class: 'rps-text' }, result, detail), buttons, histEl),
     h('div', { class: 'rps-bar' }, opts.el),
@@ -136,6 +137,7 @@
     bLabel.textContent = opp === 'cpu' ? 'CPU' : 'P2';
     nameA.textContent = opp === 'cpu' ? 'You' : 'Player 1';
     nameB.textContent = opp === 'cpu' ? 'Computer' : 'Player 2';
+    streakPill.hidden = opp === 'pvp'; // the streak only counts against the computer
     if (opts) opts.refresh();
   }
   function target() { return match === 'bo3' ? 2 : match === 'bo5' ? 3 : 0; }
@@ -219,13 +221,13 @@
     overlay.innerHTML = '';
     var again = h('button', { class: 'mg-btn', type: 'button', text: 'New match' });
     again.addEventListener('click', function () { MG.adBreak('next', 'rps-match', resetMatch); });
-    overlay.append(h('div', { class: 'mg-card' },
+    overlay.append(h('div', { class: 'mg-card', role: 'dialog', 'aria-modal': 'true' },
       h('h2', { class: 'mg-title', text: title }),
       h('div', { class: 'mg-big', text: score.a + ' – ' + score.b }),
       opp === 'cpu' ? h('p', { class: 'mg-hint', text: 'Best win streak: ' + bestStreak }) : null,
       again));
     overlay.hidden = false;
-    setTimeout(function () { try { again.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }, 50);
+    MG.focusSafe(again);
   }
   function showRules() {
     overlay.innerHTML = '';
@@ -235,9 +237,9 @@
     }); });
     var close = h('button', { class: 'mg-btn is-small', type: 'button', text: 'Got it' });
     close.addEventListener('click', function () { overlay.hidden = true; });
-    overlay.append(h('div', { class: 'mg-card rps-rules-card' }, h('h2', { class: 'mg-title', text: 'Rules' }), list, close));
+    overlay.append(h('div', { class: 'mg-card rps-rules-card', role: 'dialog', 'aria-modal': 'true' }, h('h2', { class: 'mg-title', text: 'Rules' }), list, close));
     overlay.hidden = false;
-    try { close.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+    MG.focusSafe(close);
   }
   overlay.addEventListener('click', function (e) { if (e.target === overlay && !matchOver) overlay.hidden = true; });
 

@@ -25,8 +25,9 @@
 .bs .mg-icon-btn:disabled { opacity: .4; cursor: default; }
 .bs-main { flex: 1 1 auto; min-height: 0; display: grid; place-items: center; padding: 6px 8px 0; }
 .bs-shelf {
-  --b: 40px; --per: 6; display: grid; grid-template-columns: repeat(var(--per), auto); justify-content: center; align-content: center;
+  --b: 40px; --per: 6; display: grid; grid-template-columns: repeat(var(--per), auto); justify-content: safe center; align-content: safe center;
   gap: calc(var(--b) * .7) 10px; padding-top: calc(var(--b) * 1.1);
+  max-width: 100%; max-height: 100%; overflow: auto; /* tubes keep a tappable size (see the 24px floor in layout); a cramped frame scrolls instead of shrinking them away */
 }
 .bs-tube {
   appearance: none; border: 0; background: none; padding: 0 0 4px; cursor: pointer; position: relative;

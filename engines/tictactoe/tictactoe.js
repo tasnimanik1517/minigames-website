@@ -255,7 +255,7 @@
     if (line) drawWinLine(line);
     rootEl.classList.add('is-over'); nextBtn.hidden = false;
     render();
-    setTimeout(function () { if (over) { try { nextBtn.focus({ preventScroll: true }); } catch (e) { /* ignore */ } } }, 60);
+    setTimeout(function () { if (over) MG.focusSafe(nextBtn); }, 60);
   }
   function drawWinLine(line) {
     var a = line[0], b = line[line.length - 1], s = 100 / N;

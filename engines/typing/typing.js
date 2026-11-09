@@ -75,7 +75,7 @@
   var best = MG.store.get('best', null) || {}, tests = MG.store.get('tests', 0) || 0;
 
   /* ---------- state ---------- */
-  var target = [], typed = [], wi = 0, cur = '', running = false, finished = false, t0 = 0, timer = 0;
+  var target = [], typed = [], wi = 0, cur = '', running = false, finished = false, t0 = 0, timer = 0, pausedAt = 0;
   var ok = 0, bad = 0, miss = {}, samples = [], streak = 0, shift = 0, queue = [];
 
   /* ---------- DOM ---------- */
@@ -253,7 +253,7 @@
     if (cur && target[wi].indexOf(cur) === 0) good += cur.length;
     return [good, all];
   }
-  function elapsed() { return Math.min(cfg.time, (performance.now() - t0) / 1000); }
+  function elapsed() { return Math.min(cfg.time, ((pausedAt || performance.now()) - t0) / 1000); }
   function speeds(sec) { var c = chars(), m = Math.max(sec, 0.001) / 60; return [Math.round(c[0] / 5 / m), Math.round(c[1] / 5 / m)]; }
   function accuracy() { return ok + bad ? Math.round(ok / (ok + bad) * 1000) / 10 : 100; }
   function live() {
@@ -282,7 +282,7 @@
     if (isBest && sp[0] > 0) { best[key] = { wpm: sp[0], acc: acc }; MG.store.set('best', best); }
     tests++; MG.store.set('tests', tests);
     guideNext(); timeEl.textContent = '0'; wpmEl.textContent = sp[0]; accEl.textContent = Math.floor(acc) + '%';
-    showResult(sp[0], sp[1], acc, isBest && sp[0] > 0 && !!prev, prev);
+    showResult(sp[0], sp[1], acc, isBest && sp[0] > 0, prev);
     MG.event('game_over', { score: sp[0], mode: key });
   }
 
@@ -344,7 +344,7 @@
   /* ---------- a new test ---------- */
   function saveCfg() { MG.store.set('cfg', cfg); opts.refresh(); }
   function newTest() {
-    clearInterval(timer); running = false; finished = false;
+    clearInterval(timer); running = false; finished = false; pausedAt = 0;
     target = []; typed = []; wi = 0; cur = ''; ok = 0; bad = 0; miss = {}; samples = []; streak = 0; shift = 0; queue = [];
     while (words.firstChild !== caret) words.firstChild.remove();
     words.style.transform = '';
@@ -382,7 +382,13 @@
       : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
     soundBtn.setAttribute('aria-label', MG.sound.muted ? 'Turn sound on' : 'Turn sound off');
   }
-  MG.onPause(function () { if (running && document.hidden) { newTest(); status.textContent = 'Test stopped when you left the page'; } });
+  MG.onPause(function () { // freeze the clock while the tab is hidden instead of wiping the test
+    if (running && document.hidden && !pausedAt) { pausedAt = performance.now(); status.textContent = 'Test paused while you were away'; }
+  });
+  function resumeTest() { if (running && pausedAt) { t0 += performance.now() - pausedAt; pausedAt = 0; status.textContent = ''; } }
+  MG.onResume(resumeTest);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) resumeTest(); });
+  window.addEventListener('focus', resumeTest);
   window.addEventListener('resize', function () { placeCaret(); });
 
   /* ---------- start ---------- */

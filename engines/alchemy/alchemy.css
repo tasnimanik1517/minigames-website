@@ -21,7 +21,7 @@
 .al-count b { color: var(--al-gold); }
 .al-count.is-bump { animation: al-bump .45s ease; }
 .al-btn, .al-sort {
-  appearance: none; border: 0; height: 38px; padding: 0 12px; border-radius: 12px; font-weight: 800; font-size: 14px;
+  appearance: none; border: 0; height: 44px; min-height: 44px; padding: 0 12px; border-radius: 12px; font-weight: 800; font-size: 14px;
   display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; flex: 0 0 auto;
 }
 .al-btn span { font-family: var(--al-emoji); font-size: 17px; line-height: 1; }
