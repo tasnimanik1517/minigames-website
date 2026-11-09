@@ -100,7 +100,10 @@
     if (state !== 'running') return;
     var nd = DIRS[name], last = queue.length ? queue[queue.length - 1] : dir;
     if (nd === last || (nd.x === -last.x && nd.y === -last.y)) return;
-    if (queue.length < 3) queue.push(nd);
+    if (queue.length < 3) {
+      queue.push(nd);
+      if (acc > interval / 2) acc = interval; // turn now, not at the end of the tick: the next frame steps at once
+    }
   }
   function start(firstDir) {
     if (state === 'running' || state === 'dying') return;
@@ -666,40 +669,46 @@
     } else if (e.key === 'Enter' && (state === 'idle' || state === 'over') && document.activeElement === document.body) { e.preventDefault(); start(); }
   });
   var touch = null;
-  function steerTo(clientX, clientY) { // tap-to-steer: turn toward the tapped point, measured from the snake's head
+  function steerTo(clientX, clientY) { // tap-to-steer: turn toward the tapped point, measured from the head as drawn
     if (state !== 'running' || !snake.length) return;
     var r = canvas.getBoundingClientRect(); if (!r.width) return;
     var gx = (clientX - r.left) / r.width * CW, gy = (clientY - r.top) / r.height * CH;
-    var dx = gx - (M + (snake[0].x + 0.5) * cell), dy = gy - (M + (snake[0].y + 0.5) * cell);
+    // the drawn head sits part-way from the neck cell to the head cell (the same lerp bodyRuns draws with)
+    var hd = snake[0], nk = snake[1], f = Math.min(acc / interval, 1), hx, hy;
+    if (nk && adjacent(nk, hd)) { hx = lerp(px(nk.x), px(hd.x), f); hy = lerp(px(nk.y), px(hd.y), f); }
+    else { hx = px(hd.x); hy = px(hd.y); }
+    var dx = gx - hx, dy = gy - hy;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < cell * 0.5) return;
     input(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
   }
-  stage.addEventListener('touchstart', function (e) { var t = e.changedTouches[0]; touch = { x: t.clientX, y: t.clientY, moved: false }; }, { passive: true });
+  stage.addEventListener('touchstart', function (e) {
+    var t = e.changedTouches[0];
+    touch = { x: t.clientX, y: t.clientY, moved: false };
+    if (state === 'running') steerTo(t.clientX, t.clientY); // steer on finger-down, not on lift
+  }, { passive: true });
   stage.addEventListener('touchmove', function (e) {
     if (!touch) return;
     e.preventDefault();
     var t = e.changedTouches[0], dx = t.clientX - touch.x, dy = t.clientY - touch.y;
-    if (Math.max(Math.abs(dx), Math.abs(dy)) < 14) return;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 10) return;
     input(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
     touch = { x: t.clientX, y: t.clientY, moved: true };
   }, { passive: false });
-  stage.addEventListener('touchend', function (e) {
-    if (touch && !touch.moved) {
-      var t = e.changedTouches[0];
-      if (state === 'running') { if (t) steerTo(t.clientX, t.clientY); }
-      else if (state === 'idle' || state === 'over') start();
-      else if (state === 'paused') resume();
-    }
+  stage.addEventListener('touchend', function () {
+    if (touch && !touch.moved) { if (state === 'idle' || state === 'over') start(); else if (state === 'paused') resume(); }
     touch = null;
   });
   overlay.addEventListener('click', function (e) {
     if (e.target !== overlay) return;
     if (state === 'paused') resume(); else if (state === 'idle' || state === 'over') start();
   });
+  stage.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'touch') return; // touch steers through the touch events above
+    if (state === 'running') steerTo(e.clientX, e.clientY);
+  });
   stage.addEventListener('click', function (e) {
     if (e.pointerType === 'touch') return;
-    if (state === 'running') steerTo(e.clientX, e.clientY);
-    else if (state === 'idle' || state === 'over') start(); else if (state === 'paused') resume();
+    if (state === 'idle' || state === 'over') start(); else if (state === 'paused') resume();
   });
 
   /* ---------------------------------------------------------------- boot */
