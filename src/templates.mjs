@@ -152,6 +152,16 @@ export function adSlot(name) {
   return `<div class="ad-slot ad-${name}"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="${site.adsenseClient}" data-ad-slot="${site.adSlots[name]}" data-ad-format="auto" data-full-width-responsive="true"></ins></div>`;
 }
 
+/* One card per category for the homepage "Browse by category" section: the category's most
+ * popular game provides the picture, the whole card links to the category page. */
+export function catCard(c, games) {
+  const top = games.filter(g => g.categories.includes(c.slug)).sort((a, b) => b.popularity - a.popularity)[0];
+  return `<a class="cat-card" href="${u('/' + c.slug + '-games/')}" style="--cc:${c.color}">
+<span class="cat-card-media">${picture(top, { sizes: '(min-width: 1280px) 300px, (min-width: 860px) 23vw, (min-width: 560px) 31vw, 46vw' })}</span>
+<span class="cat-card-info"><span class="cat-card-name"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="${c.icon}"/></svg>${esc(c.name)} games</span><span class="cat-card-count">${c.count} games</span></span>
+</a>`;
+}
+
 const trust = `<ul class="trust" aria-label="Why play here">
 <li>${I.bolt}Loads in a second</li>
 <li>${I.shield}No pop-ups</li>
@@ -197,11 +207,13 @@ ${header({ active: 'home' })}
   <script>${ctx.recentInline}</script>
   <section class="wrap" aria-labelledby="popular-h">
     <div class="section-head"><h2 id="popular-h">${sectioned ? 'Popular games' : 'All games'}</h2>${sectioned ? `<a class="see-all" href="${u('/all-games/')}">See all ${I.chevron}</a>` : ''}</div>
-    ${grid(sectioned ? popular.slice(0, 17) : popular, { featuredFirst: true, eagerCount: 5, label: 'Popular games' })}
+    ${grid(sectioned ? popular.slice(0, 8) : popular, { featuredFirst: true, eagerCount: 5, label: 'Popular games' })}
   </section>
   ${adSlot('home')}
-  ${sectioned ? `<section class="wrap" aria-labelledby="new-h"><div class="section-head"><h2 id="new-h">New games</h2></div>${grid(fresh.slice(0, 12), { eagerCount: 0 })}</section>
-  ${catsWithGames.map(c => `<section class="wrap" aria-labelledby="c-${c.slug}"><div class="section-head"><h2 id="c-${c.slug}">${esc(c.name)} games</h2><a class="see-all" href="${u('/' + c.slug + '-games/')}">See all ${I.chevron}</a></div>${grid(games.filter(g => g.categories.includes(c.slug)).sort((a, b) => b.popularity - a.popularity).slice(0, 12), { eagerCount: 0 })}</section>`).join('\n')}` : ''}
+  ${sectioned ? `<section class="wrap" aria-labelledby="new-h"><div class="section-head"><h2 id="new-h">New games</h2></div>${grid(fresh.slice(0, 6), { eagerCount: 0 })}</section>
+  <section class="wrap" aria-labelledby="cats-h"><div class="section-head"><h2 id="cats-h">Browse by category</h2><a class="see-all" href="${u('/all-games/')}">See all ${I.chevron}</a></div><div class="cat-cards">
+${catsWithGames.map(c => catCard(c, games)).join('\n')}
+</div></section>` : ''}
   <section class="wrap prose home-about" aria-labelledby="about-h">
     <h2 id="about-h">Mini games that just work</h2>
     <p>MiniGames.website is a collection of small, free games you can play straight away in your browser. Every game is built to load in about a second, even on a slow mobile connection, and to work the same on a phone, tablet or computer.</p>

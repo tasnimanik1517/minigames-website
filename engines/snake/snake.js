@@ -28,20 +28,14 @@
   var stage = h('div', { class: 'snake-stage' }, canvas);
   var overlay = h('div', { class: 'mg-overlay' });
   var live = h('div', { class: 'mg-sr', 'aria-live': 'polite' });
-  var pad = h('div', { class: 'snake-pad' }, h('div', { class: 'pad' }, padBtn('up', 'Up'), padBtn('left', 'Left'), padBtn('down', 'Down'), padBtn('right', 'Right')));
   var rootEl = h('div', { class: 'mg-root snake' + (SHOW ? ' is-showcase' : '') },
     h('div', { class: 'mg-hud' },
       h('span', { class: 'mg-pill' }, h('small', { text: 'Score' }), scoreEl),
       h('span', { class: 'mg-pill' }, h('small', { text: 'Best' }), bestEl),
       h('span', { class: 'mg-pill snake-mode' }, modeEl),
       h('span', { class: 'mg-spacer' }), pauseBtn, soundBtn),
-    stage, pad, overlay, live);
+    stage, overlay, live);
   document.getElementById('game').append(rootEl);
-  function padBtn(dir, label) {
-    var b = h('button', { class: 'pad-' + dir, type: 'button', 'aria-label': label, html: ICON.arrow });
-    b.addEventListener('pointerdown', function (e) { e.preventDefault(); input(dir); });
-    return b;
-  }
   function renderSoundBtn() {
     soundBtn.innerHTML = MG.sound.muted ? ICON.soundOff : ICON.soundOn;
     soundBtn.setAttribute('aria-label', MG.sound.muted ? 'Turn sound on' : 'Turn sound off');
@@ -80,7 +74,7 @@
     var cy = Math.floor(ROWS / 2);
     snake = [{ x: 6, y: cy }, { x: 5, y: cy }, { x: 4, y: cy }];
     prevTail = { x: 3, y: cy }; grew = false;
-    dir = DIRS.right; queue = []; score = 0; eaten = 0; interval = 135; bonus = null; bulges = [];
+    dir = DIRS.right; queue = []; score = 0; eaten = 0; interval = 175; bonus = null; bulges = [];
     particles = []; deathFlash = 0; acc = 0;
     placeFood(); updateHud();
   }
@@ -161,7 +155,7 @@
     for (var b = bulges.length - 1; b >= 0; b--) { bulges[b] += 0.62; if (bulges[b] > snake.length) bulges.splice(b, 1); }
     if (eats) {
       score += 1; eaten += 1;
-      interval = Math.max(62, 135 - eaten * 2.6);
+      interval = Math.max(88, 175 - eaten * 2.0);
       shell(nx, ny, false); MG.sfx.eat();
       bulges.push(0.2);
       placeFood();
@@ -655,7 +649,7 @@
         h('div', { class: 'mg-field' }, h('span', { class: 'mg-label', text: 'Mode' }), modeSeg()),
         h('button', { class: 'mg-btn', type: 'button', onclick: function () { start(); }, text: over ? 'Play again' : 'Play' }),
         bestLine,
-        h('p', { class: 'mg-hint', html: matchMedia('(pointer: coarse)').matches ? 'Swipe or use the arrows to steer' : '<span class="mg-kbd">←</span> <span class="mg-kbd">↑</span> <span class="mg-kbd">→</span> <span class="mg-kbd">↓</span> or <span class="mg-kbd">WASD</span> to steer · <span class="mg-kbd">Space</span> pause' }));
+        h('p', { class: 'mg-hint', html: matchMedia('(pointer: coarse)').matches ? 'Swipe to steer' : '<span class="mg-kbd">←</span> <span class="mg-kbd">↑</span> <span class="mg-kbd">→</span> <span class="mg-kbd">↓</span> or <span class="mg-kbd">WASD</span> to steer · <span class="mg-kbd">Space</span> pause' }));
     }
     overlay.append(card); overlay.hidden = false;
     var btn = card.querySelector('.mg-btn');
@@ -700,7 +694,7 @@
     var path = [];
     var run = function (x0, y0, dx, dy, n) { for (var i = 0; i < n; i++) path.push({ x: x0 + dx * i, y: y0 + dy * i }); };
     run(11, 7, -1, 0, 6); run(6, 6, 0, -1, 3); run(7, 4, 1, 0, 3); run(9, 3, 0, -1, 2); run(8, 2, -1, 0, 5); run(4, 3, 0, 1, 2); run(3, 4, -1, 0, 1);
-    snake = path.reverse(); prevTail = { x: 12, y: 7 }; grew = false; dir = DIRS.left; queue = []; score = 0; eaten = 0; interval = 135;
+    snake = path.reverse(); prevTail = { x: 12, y: 7 }; grew = false; dir = DIRS.left; queue = []; score = 0; eaten = 0; interval = 175;
     bulges = [6.5]; particles = []; travel = 3;
     food = { x: 1, y: 4, tilt: 0.3, born: -1e6, seed: 41 };
     bonus = { x: 10, y: 1, born: performance.now() - 1500, life: 5200 };

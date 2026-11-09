@@ -193,6 +193,31 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
 .recent-row .tile { scroll-snap-align: start; }
 .recent-row .tile-info { flex-basis: auto; padding-block: 6px 2px; }
 
+/* ------------------------------------------------------------- category cards (homepage) */
+.cat-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); }
+@media (min-width: 560px) { .cat-cards { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1100px) { .cat-cards { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+.cat-card { display: flex; flex-direction: column; min-width: 0; text-decoration: none; border-radius: var(--radius); }
+.cat-card-media {
+  position: relative; display: block; aspect-ratio: 4 / 3; border-radius: var(--radius);
+  overflow: hidden; background: var(--surface-2); box-shadow: var(--shadow-sm); transition: transform .18s ease, box-shadow .18s ease;
+}
+.cat-card-media::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 5px; background: var(--cc);
+}
+.cat-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+.cat-card-info { display: flex; flex-direction: column; justify-content: center; padding: 3px 4px 0; min-width: 0; }
+.cat-card-name { display: flex; align-items: center; gap: 6px; font-weight: 750; font-size: 15px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cat-card-name svg { flex: 0 0 auto; color: var(--cc); }
+.cat-card-count { color: var(--muted); font-size: 12.5px; line-height: 1.3; }
+@media (hover: hover) and (pointer: fine) {
+  .cat-card:hover .cat-card-media { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .cat-card:hover img { transform: scale(1.045); }
+}
+.cat-card:focus-visible { outline: none; }
+.cat-card:focus-visible .cat-card-media { outline: 3px solid var(--focus); outline-offset: 3px; }
+.cat-card:active .cat-card-media { transform: scale(.98); }
+
 /* ---------------------------------------------------------------- page heads + prose */
 .page-head { padding-block: 22px 8px; display: grid; gap: 6px; }
 .page-head h1 { font-size: clamp(26px, 6vw, 36px); font-weight: 850; display: flex; align-items: center; gap: 10px; }
