@@ -106,7 +106,8 @@
     if (rs.length < 8) return null;
     var R = rs.reduce(function (s, v) { return s + v; }, 0) / rs.length, v = 0;
     rs.forEach(function (r) { v += (r - R) * (r - R); });
-    return { R: R, dev: Math.sqrt(v / rs.length) / R };
+    // subtract a 2px noise floor (finger jitter doesn't shrink on small circles, so raw RMS unfairly penalises them)
+    return { R: R, dev: Math.sqrt(Math.max(0, v / rs.length - 4)) / R };
   }
   function score(st, deg) { return Math.max(0, Math.min(100, 100 * (1 - 4.5 * st.dev) - Math.max(0, 360 - deg) * 0.15)); }
   function fmt(s) { return (Math.floor(s * 10) / 10).toFixed(1) + '%'; }
@@ -133,14 +134,15 @@
     var s = Math.floor(score(st, deg) * 10) / 10, isBest = s > best, r = rank(s);
     tries++; MG.store.set('tries', tries);
     if (isBest) { best = s; MG.store.set('best', best); }
-    // repaint the whole line, coloured by how far each part is from the perfect circle
-    ix.clearRect(0, 0, W, H);
-    for (var i = 1; i < pts.length; i++) { var rr = Math.hypot(pts[i][0] - cx, pts[i][1] - cy); seg(pts[i - 1], pts[i], tint(Math.abs(rr - st.R) / st.R)); }
+    // reveal the score FIRST — the repaint below is slow (shadowBlur per segment) and must not block the result
     head.className = 'ci-head is-done'; head.innerHTML = '';
     head.append(h('b', { class: 'ci-num', text: fmt(s) }),
       h('span', { class: 'ci-rank', text: r[1] + ' ' + r[2] + (isBest && tries > 1 ? ' · New best!' : '') }),
       h('span', { text: words(s) + ' ' + (touch ? 'Draw again to beat it.' : 'Draw again to beat it.') }));
     renderHud();
+    // repaint the whole line, coloured by how far each part is from the perfect circle
+    ix.clearRect(0, 0, W, H);
+    for (var i = 1; i < pts.length; i++) { var rr = Math.hypot(pts[i][0] - cx, pts[i][1] - cy); seg(pts[i - 1], pts[i], tint(Math.abs(rr - st.R) / st.R)); }
     orbit(st.R);
     if (s >= 90) MG.sfx.win(); else if (s >= 70) MG.sfx.good(); else MG.tone(392, 0.18, 'triangle', 0.05);
     if (isBest && tries > 1) MG.confetti(s >= 90 ? 110 : 80); // any new best earns a celebration, bigger at the top band
@@ -154,7 +156,7 @@
 
   /* ---------- the moon flies your orbit ---------- */
   function orbit(R) {
-    var path = resample(pts.concat([pts[0]]), 2), n = path.length, t0 = performance.now(), period = 3200, laps = reduce ? 0 : 3;
+    var path = resample(pts.concat([pts[0]]), 2), n = path.length, t0 = performance.now(), period = 3200, laps = reduce ? 0 : 1;
     function moon(p, a) {
       fxx.globalAlpha = a;
       var g = fxx.createRadialGradient(p[0] - 3 * unit, p[1] - 3 * unit, 1, p[0], p[1], 10 * unit);
