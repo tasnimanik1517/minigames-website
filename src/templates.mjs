@@ -160,13 +160,6 @@ export function catCard(c, games) {
 </a>`;
 }
 
-const trust = `<ul class="trust" aria-label="Why play here">
-<li>${I.bolt}Loads in a second</li>
-<li>${I.shield}No pop-ups</li>
-<li>${I.user}No sign-up</li>
-<li>${I.phone}Phone friendly</li>
-</ul>`;
-
 function scripts(ctx) {
   return `<script src="${u(ctx.assets.js)}" defer></script>
 ${site.adsenseClient ? `<script>window.MG_ADS=${JSON.stringify(site.adsenseClient)}</script>` : ''}`;
@@ -196,7 +189,6 @@ ${header({ active: 'home' })}
 <main id="main">
   <section class="wrap home-intro">
     <h1>Free mini games, <span>ready to play</span></h1>
-    ${trust}
   </section>
   <section class="wrap recent" id="recent" hidden aria-labelledby="recent-h">
     <div class="section-head"><h2 id="recent-h">Continue playing</h2></div>
