@@ -123,12 +123,11 @@ export function picture(g, { sizes = '(min-width: 1280px) 200px, (min-width: 860
 </picture>`;
 }
 
-export function tile(g, { featured = false, eager = false, priority = false, sizes: gridSizes } = {}) {
+export function tile(g, { eager = false, priority = false, sizes } = {}) {
   const isNew = (Date.now() - Date.parse(g.added)) / 864e5 < 21;
-  const sizes = featured ? '(min-width: 1280px) 420px, (min-width: 560px) 46vw, 92vw' : gridSizes;
-  return `<a class="tile${featured ? ' is-featured' : ''}" href="${u('/' + g.slug + '/')}" style="--tc:${g.color}" data-title="${esc(g.title.toLowerCase())}" data-tags="${esc(g.categories.join(' '))}">
+  return `<a class="tile" href="${u('/' + g.slug + '/')}" style="--tc:${g.color}" data-title="${esc(g.title.toLowerCase())}" data-tags="${esc(g.categories.join(' '))}">
 <span class="tile-media">${picture(g, { eager, priority, sizes })}${isNew ? '<span class="badge">New</span>' : ''}</span>
-<span class="tile-info"><span class="tile-title">${esc(g.shortTitle || g.title)}</span><span class="tile-meta">${featured ? esc(g.tagline) : esc(catLabel(g)) + ' · ' + (g.players === '1' ? '1P' : g.players + 'P')}</span></span>
+<span class="tile-info"><span class="tile-title">${esc(g.shortTitle || g.title)}</span><span class="tile-meta">${esc(catLabel(g))} · ${g.players === '1' ? '1P' : g.players + 'P'}</span></span>
 </a>`;
 }
 
@@ -139,11 +138,10 @@ const capSizes = {
   4: '(min-width: 1320px) 315px, (min-width: 860px) 23vw, (min-width: 560px) 31vw, 46vw',
   5: '(min-width: 1320px) 250px, (min-width: 1100px) 19vw, (min-width: 860px) 23vw, (min-width: 560px) 31vw, 46vw',
 };
-export function grid(list, { featuredFirst = false, eagerCount = 4, label = '' } = {}) {
-  const few = featuredFirst && list.length < 12;
+export function grid(list, { eagerCount = 4, label = '' } = {}) {
   const cap = list.length <= 5 ? Math.max(3, list.length) : 0;
-  return `<div class="grid-wrap"><div class="grid${few ? ' is-few' : ''}${cap ? ' max-' + cap : ''}"${label ? ` aria-label="${esc(label)}"` : ''}>
-${list.map((g, i) => tile(g, { featured: featuredFirst && i === 0, eager: i < eagerCount, priority: i === 0, sizes: cap ? capSizes[cap] : undefined })).join('\n')}
+  return `<div class="grid-wrap"><div class="grid${cap ? ' max-' + cap : ''}"${label ? ` aria-label="${esc(label)}"` : ''}>
+${list.map((g, i) => tile(g, { eager: i < eagerCount, priority: i === 0, sizes: cap ? capSizes[cap] : undefined })).join('\n')}
 </div></div>`;
 }
 
@@ -187,7 +185,7 @@ export function pageHome(ctx) {
     title: 'MiniGames.website – Free Mini Games Online, No Download',
     ogTitle: 'MiniGames.website – Free mini games, ready to play',
     description: `Play ${games.length >= 10 ? games.length + ' ' : ''}free mini games online at MiniGames.website: Snake, Tic Tac Toe, Rock Paper Scissors and more. Instant play on phone or computer, no download or sign-up.`,
-    preload: `<link rel="preload" as="image" type="image/avif" imagesrcset="${u('/' + first.slug + '/thumb-400.avif')} 400w, ${u('/' + first.slug + '/thumb-800.avif')} 800w" imagesizes="(min-width: 1280px) 420px, (min-width: 560px) 46vw, 92vw" fetchpriority="high">\n`,
+    preload: `<link rel="preload" as="image" type="image/avif" imagesrcset="${u('/' + first.slug + '/thumb-400.avif')} 400w, ${u('/' + first.slug + '/thumb-800.avif')} 800w" imagesizes="(min-width: 1280px) 200px, (min-width: 860px) 23vw, (min-width: 560px) 31vw, 46vw" fetchpriority="high">\n`,
     jsonld: [
       { '@context': 'https://schema.org', '@type': 'WebSite', '@id': site.url + '/#website', name: site.name, alternateName: ['MiniGames', 'Mini Games Website', 'minigames.website'], url: site.url + '/', inLanguage: 'en', publisher: { '@id': site.url + '/#org' } },
       { '@context': 'https://schema.org', '@type': 'Organization', '@id': site.url + '/#org', name: site.name, url: site.url + '/', logo: { '@type': 'ImageObject', url: site.url + '/icon-512.png', width: 512, height: 512 } },
@@ -207,21 +205,15 @@ ${header({ active: 'home' })}
   <script>${ctx.recentInline}</script>
   <section class="wrap" aria-labelledby="popular-h">
     <div class="section-head"><h2 id="popular-h">${sectioned ? 'Popular games' : 'All games'}</h2>${sectioned ? `<a class="see-all" href="${u('/all-games/')}">See all ${I.chevron}</a>` : ''}</div>
-    ${grid(sectioned ? popular.slice(0, 8) : popular, { featuredFirst: true, eagerCount: 5, label: 'Popular games' })}
+    ${grid(sectioned ? popular.slice(0, 8) : popular, { eagerCount: 5, label: 'Popular games' })}
   </section>
   ${adSlot('home')}
   ${sectioned ? `<section class="wrap" aria-labelledby="new-h"><div class="section-head"><h2 id="new-h">New games</h2></div>${grid(fresh.slice(0, 6), { eagerCount: 0 })}</section>
   <section class="wrap" aria-labelledby="cats-h"><div class="section-head"><h2 id="cats-h">Browse by category</h2><a class="see-all" href="${u('/all-games/')}">See all ${I.chevron}</a></div><div class="cat-cards">
 ${catsWithGames.map(c => catCard(c, games)).join('\n')}
 </div></section>` : ''}
-  <section class="wrap prose home-about" aria-labelledby="about-h">
-    <h2 id="about-h">Mini games that just work</h2>
-    <p>MiniGames.website is a collection of small, free games you can play straight away in your browser. Every game is built to load in about a second, even on a slow mobile connection, and to work the same on a phone, tablet or computer.</p>
-    <p>There is nothing to download and no account to create. Your best scores are saved on your device, the game pauses when you switch tabs, and arrow keys control the game instead of scrolling the page.</p>
-    <h3>What can I play?</h3>
-    <p>Classics like <a href="${u('/snake/')}">Snake</a> and <a href="${u('/tic-tac-toe/')}">Tic Tac Toe</a>, and quick decision games like <a href="${u('/rock-paper-scissors/')}">Rock Paper Scissors</a>. New games are added regularly.</p>
-    <h3>Can I play with a friend?</h3>
-    <p>Yes. Games marked 2P let two people take turns on the same device. Look in the <a href="${u('/two-player-games/')}">2 Player games</a> section.</p>
+  <section class="wrap home-about">
+    <p>MiniGames.website collects small, free browser games — classics, puzzles and quick two-player games — and adds new ones regularly. <a href="${u('/about/')}">More about this site</a></p>
   </section>
 </main>
 ${footer()}

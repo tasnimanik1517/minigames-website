@@ -163,14 +163,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
 .tile-info { flex: 0 0 var(--info-h); display: flex; flex-direction: column; justify-content: center; padding: 3px 4px 0; min-width: 0; }
 .tile-title { font-weight: 750; font-size: 15px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tile-meta { color: var(--muted); font-size: 12.5px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tile.is-featured { grid-column: span 2; grid-row: span 2; }
-.tile.is-featured .tile-title { font-size: 19px; }
-.tile.is-featured .tile-meta { font-size: 13.5px; }
-@media (min-width: 560px) {
-  .grid.is-few .tile.is-featured { grid-column: auto; grid-row: auto; }
-  .grid.is-few .tile.is-featured .tile-title { font-size: 15px; }
-  .grid.is-few .tile.is-featured .tile-meta { font-size: 12.5px; }
-}
 .badge {
   position: absolute; top: 8px; left: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 850; font-size: 11px;
   letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
@@ -236,6 +228,8 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
 .prose a { color: var(--ink); text-decoration-color: color-mix(in srgb, var(--brand) 70%, transparent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .prose a:hover { text-decoration-color: var(--brand); }
 .home-about { padding-block: 26px 10px; }
+.home-about p { margin: 0; color: var(--muted); max-width: 70ch; }
+.home-about a { color: var(--ink); text-decoration-color: color-mix(in srgb, var(--brand) 70%, transparent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .static { padding-block: 24px 40px; }
 .static h1 { font-size: clamp(28px, 6vw, 38px); font-weight: 850; margin-bottom: 14px; }
 .static .meta { color: var(--muted); font-size: 14px; }
