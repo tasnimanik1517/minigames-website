@@ -244,6 +244,10 @@ write('/_redirects', `# Old image URLs (shared on social media / indexed by imag
 /alchemy-lab /endless-craft/ 301
 /alchemy-lab/ /endless-craft/ 301
 /alchemy-lab/* /endless-craft/ 301
+# Minesweeper retired 2026-11-11: players found it incomprehensible; removed at the owner's direction.
+/minesweeper /all-games/ 301
+/minesweeper/ /all-games/ 301
+/minesweeper/* /all-games/ 301
 # Old internal template page.
 /game-template / 301
 /game-template/ / 301
