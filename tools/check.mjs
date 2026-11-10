@@ -267,6 +267,19 @@ plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
   await f.waitForTimeout(200);
   return { score: await f.textContent('.mg-pill b'), holes: await f.$$eval('.wk-hole', l => l.length) };
 });
+plays['minesweeper'] = await play('minesweeper', async (f) => {
+  // reveal the centre cell, then flag a still-covered cell, read the mines pill
+  await f.click('.mn-cell >> nth=40');
+  await f.waitForTimeout(400);
+  const covered = await f.$$eval('.mn-cell:not(.is-open)', l => l.length);
+  const target = await f.evaluate(() => {
+    const cs = [...document.querySelectorAll('.mn-cell:not(.is-open)')];
+    return cs.length ? [...document.querySelectorAll('.mn-cell')].indexOf(cs[0]) : -1;
+  });
+  if (target >= 0) await f.click(`.mn-cell >> nth=${target}`, { button: 'right' });
+  await f.waitForTimeout(200);
+  return { mines: await f.textContent('.mg-pill b'), opened: await f.$$eval('.mn-cell.is-open', l => l.length), covered, flagged: await f.$$eval('.mn-cell.is-flag', l => l.length) };
+});
 /* page weight (compressed HTML) */
 const weights = {};
 for (const u of ['/', '/snake/', '/snake/game.html', '/tic-tac-toe/game.html', '/rock-paper-scissors/game.html']) {

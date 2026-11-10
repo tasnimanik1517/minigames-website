@@ -208,7 +208,35 @@ const circleEmblem = `<style>
 .pc .moon{position:absolute;left:668px;top:150px;width:128px;height:128px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFFCEB,#DCCB92);box-shadow:0 0 44px 10px rgba(255,240,200,.55)}
 </style><div class="pc">${circleStars}<div class="orbit"></div><div class="planet"></div><div class="moon"></div></div>`;
 
-// Whack-a-Mole: a mole popping out of the middle hole of a grassy tile, two empty holes beside it.
+// Minesweeper: a steel-blue minefield tile — raised cells with numbers, one black mine, one red flag.
+const minesEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E97AD"/><stop offset=".55" stop-color="#5B7C99"/><stop offset="1" stop-color="#3E5A75"/></linearGradient>
+<linearGradient id="mc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDF1F5"/><stop offset="1" stop-color="#C3CDD6"/></linearGradient>
+<linearGradient id="mo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="mb" cx=".38" cy=".32" r=".9"><stop offset="0" stop-color="#4A4A52"/><stop offset=".6" stop-color="#1C1C22"/><stop offset="1" stop-color="#000"/></radialGradient>
+<filter id="mds" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="8" dy="16" stdDeviation="10" flood-color="#16222E" flood-opacity=".45"/></filter>
+<clipPath id="mtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#mtile)"><rect width="1024" height="1024" fill="url(#mg)"/>
+<g fill="#fff" opacity=".12"><circle cx="150" cy="180" r="7"/><circle cx="860" cy="140" r="9"/><circle cx="940" cy="430" r="6"/><circle cx="90" cy="480" r="8"/><circle cx="700" cy="90" r="6"/><circle cx="330" cy="110" r="6"/></g>
+<g filter="url(#mds)">
+<g font-family="Poppins,DejaVu Sans,sans-serif" font-weight="700" font-size="120" text-anchor="middle">
+<rect x="176" y="176" width="196" height="196" rx="22" fill="url(#mc)"/><text x="274" y="316" fill="#1F4FDB">1</text>
+<rect x="392" y="176" width="196" height="196" rx="22" fill="#DDE3E9"/><text x="490" y="316" fill="#1E7B34">2</text>
+<rect x="608" y="176" width="196" height="196" rx="22" fill="url(#mc)"/><text x="706" y="316" fill="#D92B2B">3</text>
+<rect x="176" y="392" width="196" height="196" rx="22" fill="#DDE3E9"/><text x="274" y="532" fill="#1E7B34">2</text>
+<rect x="392" y="392" width="196" height="196" rx="22" fill="url(#mc)"/>
+<rect x="608" y="392" width="196" height="196" rx="22" fill="#DDE3E9"/><text x="706" y="532" fill="#1F4FDB">1</text>
+<rect x="176" y="608" width="196" height="196" rx="22" fill="url(#mc)"/>
+<rect x="392" y="608" width="196" height="196" rx="22" fill="#DDE3E9"/><text x="490" y="748" fill="#1F4FDB">1</text>
+<rect x="608" y="608" width="196" height="196" rx="22" fill="url(#mc)"/>
+</g>
+<g><g stroke="#14141A" stroke-width="16" stroke-linecap="round"><path d="M490 392v196M391 490h196M421 421l138 138M559 421L421 559"/></g><circle cx="490" cy="490" r="86" fill="url(#mb)"/><circle cx="462" cy="460" r="20" fill="#fff" opacity=".28"/></g>
+<g><path d="M706 648v140" stroke="#5A4632" stroke-width="16" stroke-linecap="round"/><path d="M706 648l92 38-92 38z" fill="#D92B2B"/></g>
+</g>
+<g fill="#FFC22E"><path d="M186 300l13 34 34 13-34 13-13 34-13-34-34-13 34-13Z"/><path d="M842 268l10 26 26 10-26 10-10 26-10-26-26-10 26-10Z"/></g>
+<rect width="1024" height="560" fill="url(#mo)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 const whackEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
 <radialGradient id="wg" cx=".35" cy=".25" r="1.1"><stop offset="0" stop-color="#93CC5E"/><stop offset=".6" stop-color="#5E9438"/><stop offset="1" stop-color="#3E6B21"/></radialGradient>
 <radialGradient id="wm" cx=".5" cy=".28" r=".95"><stop offset="0" stop-color="#B98A5C"/><stop offset=".58" stop-color="#96683C"/><stop offset="1" stop-color="#755026"/></radialGradient>
@@ -266,8 +294,9 @@ const wordmarks = {
   'reaction-time-test': wordmark({ lines: ['Reaction', 'Time Test'], size: 150, fill: ['#FFFFFF', '#C9B8FF', '#7C5CFF'], outline: '#1E0F5C', depth: '#120838', tilt: -3 }),
   'typing-speed-test': wordmark({ lines: ['Typing', 'Speed Test'], size: 148, fill: ['#FFF3F8', '#FF9AC8', '#FF4F9A'], outline: '#3A0F2A', depth: '#22071A', tilt: -3 }),
   'whack-a-mole': wordmark({ lines: ['Whack-a-', 'Mole!'], size: 168, fill: ['#FFE9A8', '#FFB03A', '#E07B24'], outline: '#4A2408', depth: '#2E1503', tilt: -3 }),
+  'minesweeper': wordmark({ text: 'Minesweeper', size: 138, fill: ['#FFFFFF', '#C9D8E8', '#5B7C99'], outline: '#1E2A38', depth: '#101820', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'minesweeper': minesEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
