@@ -281,6 +281,7 @@ function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt
 const wordmarks = {
   'snake': wordmark({ text: 'Snake', fill: ['#FFC9B0', '#E23A2E', '#7E0E16'], outline: '#2A0508', depth: '#180305', tilt: -4 }),
   'tic-tac-toe': wordmark({ text: 'Tic Tac Toe', size: 168, fill: ['#fff', '#fff'], outline: '#3A1D08', depth: '#2A1405', letters: [['Tic ', '#FF6A3D'], ['Tac ', '#4F86FF'], ['Toe', '#FFC93A']] }),
+  'tic-tac-toe-4x4-4-in-a-row': wordmark({ text: 'Tic Tac Toe 4×4', size: 108, fill: ['#fff', '#fff'], outline: '#3A1D08', depth: '#2A1405', letters: [['Tic ', '#FF6A3D'], ['Tac ', '#4F86FF'], ['Toe ', '#FFC93A'], ['4×4', '#8FF5D8']] }),
   'rock-paper-scissors': wordmark({ lines: ['Rock Paper', 'Scissors!'], size: 150, fill: ['#FFF3A0', '#FFC22E', '#FF8A1F'], outline: '#2A1030', depth: '#1A0820', italic: true, tilt: -3 }),
   '2048': wordmark({ text: '2048', size: 260, fill: ['#FFFFFF', '#FFD36E', '#FF7AD9', '#8C5CFF'], outline: '#24104A', depth: '#150833', tilt: -3 }),
   'block-puzzle': wordmark({ lines: ['Block', 'Puzzle'], size: 170, fill: ['#FFF7B0', '#FFC53D', '#FF4D7E'], outline: '#4A0E2E', depth: '#2E0619', tilt: -3 }),
@@ -294,7 +295,7 @@ const wordmarks = {
   'whack-a-mole': wordmark({ lines: ['Whack-a-', 'Mole!'], size: 168, fill: ['#FFE9A8', '#FFB03A', '#E07B24'], outline: '#4A2408', depth: '#2E1503', tilt: -3 }),
   'flappy-bird': wordmark({ lines: ['Flappy', 'Bird'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

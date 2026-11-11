@@ -231,12 +231,9 @@ https://:version.:subdomain.workers.dev/*
 write('/_redirects', `# Old image URLs (shared on social media / indexed by image search) keep working.
 /assets/rock-paper-scissors-lizard-spock.webp /rock-paper-scissors/thumb-800.webp 301
 /snake/thumbnail.webp /snake/thumb-800.webp 301
-/tic-tac-toe-4x4-4-in-a-row/thumbnail.webp /tic-tac-toe/thumb-800.webp 301
 /rock-paper-scissors-lizard-spock/thumbnail.webp /rock-paper-scissors/thumb-800.webp 301
 # Retired game variants: send visitors and search engines to the classic version.
-/tic-tac-toe-4x4-4-in-a-row /tic-tac-toe/ 301
-/tic-tac-toe-4x4-4-in-a-row/ /tic-tac-toe/ 301
-/tic-tac-toe-4x4-4-in-a-row/* /tic-tac-toe/ 301
+# (The 4x4 tic tac toe variant is NOT here: it became a real game again on 2026-11-11.)
 /rock-paper-scissors-lizard-spock /rock-paper-scissors/ 301
 /rock-paper-scissors-lizard-spock/ /rock-paper-scissors/ 301
 /rock-paper-scissors-lizard-spock/* /rock-paper-scissors/ 301

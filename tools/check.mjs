@@ -117,6 +117,19 @@ plays['tic-tac-toe'] = await play('tic-tac-toe', async (f) => {
   const marks = await f.$$eval('.ttt-cell', cs => cs.map(c => c.getAttribute('data-v') || '.').join(''));
   return { marks, status: await f.textContent('.ttt-status') };
 });
+plays['tic-tac-toe-4x4-4-in-a-row'] = await play('tic-tac-toe-4x4-4-in-a-row', async (f) => {
+  // Switch to 2 Players so the scripted line below is deterministic (no CPU replies).
+  await f.click('.mg-chip');
+  await f.waitForTimeout(300);
+  await f.evaluate(() => { const b = [...document.querySelectorAll('.mg-overlay .mg-seg button')].find(x => x.textContent === '2 Players'); if (b) b.click(); });
+  await f.waitForTimeout(200);
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(200);
+  // X takes the main diagonal (0, 5, 10, 15) for four in a row; O fills the top row (1, 2, 3).
+  for (const i of [0, 1, 5, 2, 10, 3, 15]) { await f.click(`.ttt-cell[data-i="${i}"]`); await f.waitForTimeout(140); }
+  const marks = await f.$$eval('.ttt-cell', cs => cs.map(c => c.getAttribute('data-v') || '.').join(''));
+  return { cells: await f.$$eval('.ttt-cell', cs => cs.length), marks, status: await f.textContent('.ttt-status') };
+});
 plays['rock-paper-scissors'] = await play('rock-paper-scissors', async (f) => {
   for (const k of ['r', 'p', 's', 'r']) { await f.press('body', k); await f.waitForTimeout(700); }
   const out = { result: await f.textContent('.rps-result'), detail: await f.textContent('.rps-detail'), history: await f.$$eval('.rps-history li', l => l.length) };

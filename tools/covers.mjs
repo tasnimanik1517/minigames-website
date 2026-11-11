@@ -50,6 +50,7 @@ body{background:#FFB21E}
 export const covers = {
   'snake': () => engineCover('snake', { cols: 12, rows: 9, showcase: true }),
   'tic-tac-toe': () => engineCover('tictactoe', { size: 3, win: 3, showcase: true }, 'body'),
+  'tic-tac-toe-4x4-4-in-a-row': () => engineCover('tictactoe4', { size: 4, win: 4, showcase: true }, 'body'),
   'rock-paper-scissors': rps,
   '2048': () => engineCover('slide2048', { size: 4, showcase: true }, 'body'),
   'block-puzzle': () => engineCover('blocks', { size: 8, showcase: true }, 'body'),
@@ -68,6 +69,7 @@ export const covers = {
 export const iconFocus = {
   'snake': [0.3, 0.5, 0.5],
   'tic-tac-toe': [0.5, 0.5, 0.8],
+  'tic-tac-toe-4x4-4-in-a-row': [0.5, 0.5, 0.8],
   'rock-paper-scissors': [0.5, 0.5, 0.95],
   'flappy-bird': [0.4, 0.47, 0.7],
 };
