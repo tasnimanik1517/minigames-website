@@ -8,9 +8,11 @@
   /* logical world */
   var W = 480, H = 640, GROUND = 72;
   var BIRD_X = 150, BIRD_R = 16;
-  var GRAVITY = 1500, FLAP_VY = -430, MAX_FALL = 780;
-  var PIPE_W = 78, PIPE_GAP = 168, PIPE_SPACING = 265;
-  var BASE_SPEED = 155, SPEED_PER_PIPE = 2, MAX_SPEED = 235;
+  /* tuned gentler 2026-11-11 (owner: too hard): wider gap, slower scroll,
+   * floatier gravity/flap pair, lower terminal fall speed */
+  var GRAVITY = 1350, FLAP_VY = -387, MAX_FALL = 700;
+  var PIPE_W = 78, PIPE_GAP = 205, PIPE_SPACING = 265;
+  var BASE_SPEED = 132, SPEED_PER_PIPE = 2, MAX_SPEED = 200;
   var MEDALS = [[0, '🥚', 'Egg'], [10, '🥉', 'Bronze Flapper'], [20, '🥈', 'Silver Flapper'],
     [30, '🥇', 'Gold Flapper'], [40, '💎', 'Platinum Flapper']];
   var best = +MG.store.get('best', 0) || 0;

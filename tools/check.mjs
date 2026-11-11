@@ -269,12 +269,17 @@ plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
 });
 plays['flappy-bird'] = await play('flappy-bird', async (f) => {
   // start a flight, then keep the bird alive with steady taps; stop when the
-  // game-over overlay appears (a tap on the overlay is not a flap)
+  // game-over overlay appears (a tap on the overlay is not a flap). Check for
+  // the overlay before each tap and keep taps short-timeout: with the gentler
+  // physics the dying fall can outlast a blind tap loop, and a tap aimed at
+  // the stage once the overlay is up would otherwise hang the checker.
   await f.click('.mg-overlay .mg-btn');
   let over = false;
-  for (let i = 0; i < 12 && !over; i++) {
-    await f.tap('.fp-stage');
-    await f.waitForTimeout(500);
+  for (let i = 0; i < 20 && !over; i++) {
+    over = await f.$eval('.mg-overlay', e => !e.hidden);
+    if (over) break;
+    try { await f.tap('.fp-stage', { timeout: 1500 }); } catch (e) { /* overlay appeared mid-tap */ }
+    await f.waitForTimeout(450);
     over = await f.$eval('.mg-overlay', e => !e.hidden);
   }
   await f.waitForTimeout(400);
