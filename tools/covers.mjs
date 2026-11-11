@@ -61,6 +61,7 @@ export const covers = {
   'reaction-time-test': () => engineCover('reaction', { showcase: true }, 'body'),
   'perfect-circle': () => engineCover('circle', { showcase: true }, 'body'),
   'whack-a-mole': () => engineCover('whack', { showcase: true }, 'body'),
+  'flappy-bird': () => engineCover('flappy', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -68,4 +69,5 @@ export const iconFocus = {
   'snake': [0.3, 0.5, 0.5],
   'tic-tac-toe': [0.5, 0.5, 0.8],
   'rock-paper-scissors': [0.5, 0.5, 0.95],
+  'flappy-bird': [0.4, 0.47, 0.7],
 };

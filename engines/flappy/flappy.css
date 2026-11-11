@@ -1,0 +1,22 @@
+/* Flappy Bird: bright sky, green pipes, one very determined little bird. */
+.fp {
+  --g-bg: #BFEFF2; --g-surface: #FFFDF5; --g-surface-2: #D8F2EE; --g-ink: #17303A; --g-muted: #4E7180; --g-line: #A8D8DC;
+  --g-brand: #E8481C; --g-brand-edge: #A82A0A; --g-accent: #FFC22E; --g-focus: #2F6BFF;
+  color-scheme: light; color: var(--g-ink); overflow: hidden;
+  background: linear-gradient(180deg, #4EC0CA 0%, #7ED8DE 70%, #C8F0E8 100%);
+}
+.fp .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.fp .mg-pill, .fp .mg-icon-btn { background: rgba(255, 255, 255, .92); box-shadow: 0 1px 0 rgba(23, 48, 58, .06), 0 6px 14px -8px rgba(20, 80, 90, .55), inset 0 0 0 1px rgba(60, 140, 150, .18); }
+.fp .mg-pill b { color: var(--g-brand); }
+@media (max-width: 430px) { .fp .mg-pill { padding: 6px 8px; font-size: 14px; } .fp .mg-icon-btn { width: 34px; height: 34px; } }
+.fp-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.fp-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* result card */
+.fp-card { gap: 10px; }
+.fp-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(20, 80, 90, .35)); }
+.fp-score { display: grid; justify-items: center; line-height: 1; }
+.fp-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.fp-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.fp.is-showcase .mg-hud { display: none; }

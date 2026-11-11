@@ -267,6 +267,20 @@ plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
   await f.waitForTimeout(200);
   return { score: await f.textContent('.mg-pill b'), holes: await f.$$eval('.wk-hole', l => l.length) };
 });
+plays['flappy-bird'] = await play('flappy-bird', async (f) => {
+  // start a flight, then keep the bird alive with steady taps; stop when the
+  // game-over overlay appears (a tap on the overlay is not a flap)
+  await f.click('.mg-overlay .mg-btn');
+  let over = false;
+  for (let i = 0; i < 12 && !over; i++) {
+    await f.tap('.fp-stage');
+    await f.waitForTimeout(500);
+    over = await f.$eval('.mg-overlay', e => !e.hidden);
+  }
+  await f.waitForTimeout(400);
+  return { score: await f.textContent('.mg-pill b'), best: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.fp-canvas', e => e.width > 0 && e.height > 0) };
+});
 /* page weight (compressed HTML) */
 const weights = {};
 for (const u of ['/', '/snake/', '/snake/game.html', '/tic-tac-toe/game.html', '/rock-paper-scissors/game.html']) {

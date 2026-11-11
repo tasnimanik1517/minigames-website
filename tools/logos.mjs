@@ -230,6 +230,33 @@ const whackEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><de
 <rect width="1024" height="560" fill="url(#wgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Flappy Bird: the little yellow bird threading the gap between two green pipes under a bright sky.
+const flappyEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="fs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4EC0CA"/><stop offset=".7" stop-color="#7ED8DE"/><stop offset="1" stop-color="#C8F0E8"/></linearGradient>
+<linearGradient id="fp" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8ED94A"/><stop offset=".18" stop-color="#74BF2E"/><stop offset=".55" stop-color="#5DAE1E"/><stop offset="1" stop-color="#4A8A16"/></linearGradient>
+<radialGradient id="fb" cx=".4" cy=".32" r=".9"><stop offset="0" stop-color="#FFE066"/><stop offset="1" stop-color="#F5B81D"/></radialGradient>
+<linearGradient id="fgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="ftile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#ftile)"><rect width="1024" height="1024" fill="url(#fs)"/>
+<circle cx="820" cy="150" r="62" fill="#FFF3A0"/><circle cx="820" cy="150" r="86" fill="#FFF3A0" opacity=".35"/>
+<g fill="#fff" opacity=".92"><ellipse cx="240" cy="180" rx="86" ry="30"/><ellipse cx="180" cy="192" rx="52" ry="20"/><ellipse cx="300" cy="192" rx="56" ry="22"/><ellipse cx="760" cy="330" rx="70" ry="24"/><ellipse cx="710" cy="340" rx="44" ry="17"/><ellipse cx="812" cy="340" rx="46" ry="18"/></g>
+<path d="M0 700 Q160 620 330 700 Q480 760 640 700 Q820 640 1024 700 L1024 1024 L0 1024 Z" fill="#8ED081"/>
+<path d="M0 760 Q200 700 380 760 Q560 810 760 760 Q900 730 1024 760 L1024 1024 L0 1024 Z" fill="#6DBF6B"/>
+<g stroke="#3E7A12" stroke-width="6"><rect x="596" y="24" width="190" height="330" fill="url(#fp)"/><rect x="580" y="300" width="222" height="66" rx="8" fill="url(#fp)"/><rect x="596" y="670" width="190" height="330" fill="url(#fp)"/><rect x="580" y="634" width="222" height="66" rx="8" fill="url(#fp)"/></g>
+<g fill="#fff" opacity=".28"><rect x="612" y="40" width="18" height="300"/><rect x="612" y="686" width="18" height="300"/><rect x="596" y="312" width="18" height="42"/><rect x="596" y="646" width="18" height="42"/></g>
+<g fill="#000" opacity=".12"><rect x="762" y="40" width="12" height="300"/><rect x="762" y="686" width="12" height="300"/></g>
+<g transform="translate(430 500) rotate(-8)">
+<path d="M-58 -6 L-96 -20 L-92 4 L-98 18 L-56 10 Z" fill="#F08A1D"/>
+<ellipse cx="0" cy="0" rx="86" ry="72" fill="url(#fb)" stroke="#C77F0A" stroke-width="7"/>
+<ellipse cx="8" cy="30" rx="52" ry="32" fill="#FFF3C4"/>
+<ellipse cx="-18" cy="8" rx="52" ry="30" fill="#F08A1D" stroke="#C77F0A" stroke-width="5" transform="rotate(-24)"/>
+<circle cx="34" cy="-28" r="30" fill="#fff"/><circle cx="42" cy="-28" r="15" fill="#17100B"/><circle cx="47" cy="-33" r="5" fill="#fff"/>
+<path d="M62 -14 L128 2 L62 20 Z" fill="#FF6A2B"/><path d="M62 18 L110 20 L62 34 Z" fill="#E8481C"/>
+</g>
+<g fill="#FFC22E"><path d="M150 780l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 820l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#fgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -265,8 +292,9 @@ const wordmarks = {
   'reaction-time-test': wordmark({ lines: ['Reaction', 'Time Test'], size: 150, fill: ['#FFFFFF', '#C9B8FF', '#7C5CFF'], outline: '#1E0F5C', depth: '#120838', tilt: -3 }),
   'typing-speed-test': wordmark({ lines: ['Typing', 'Speed Test'], size: 148, fill: ['#FFF3F8', '#FF9AC8', '#FF4F9A'], outline: '#3A0F2A', depth: '#22071A', tilt: -3 }),
   'whack-a-mole': wordmark({ lines: ['Whack-a-', 'Mole!'], size: 168, fill: ['#FFE9A8', '#FFB03A', '#E07B24'], outline: '#4A2408', depth: '#2E1503', tilt: -3 }),
+  'flappy-bird': wordmark({ lines: ['Flappy', 'Bird'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
