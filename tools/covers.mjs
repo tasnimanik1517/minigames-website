@@ -64,6 +64,7 @@ export const covers = {
   'whack-a-mole': () => engineCover('whack', { showcase: true }, 'body'),
   'flappy-bird': () => engineCover('flappy', { showcase: true }, 'body'),
   'stack': () => engineCover('stack', { showcase: true }, 'body'),
+  'breakout': () => engineCover('breakout', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -74,4 +75,5 @@ export const iconFocus = {
   'rock-paper-scissors': [0.5, 0.5, 0.95],
   'flappy-bird': [0.4, 0.47, 0.7],
   'stack': [0.5, 0.55, 0.7],
+  'breakout': [0.5, 0.45, 0.7],
 };

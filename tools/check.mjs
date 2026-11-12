@@ -287,6 +287,14 @@ plays['stack'] = await play('stack', async (f) => {
   for (let i = 0; i < 4; i++) { await f.tap('.st-canvas'); await f.waitForTimeout(650); }
   return { score: await f.textContent('.mg-pill b'), blocks: await f.evaluate(() => document.querySelectorAll('.st-canvas').length) };
 });
+plays['breakout'] = await play('breakout', async (f) => {
+  // start, launch the ball with a tap, let it fly at the wall, read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  await f.tap('.bo-canvas');
+  await f.waitForTimeout(2500);
+  return { score: await f.textContent('.mg-pill b'), lives: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden) };
+});
 plays['flappy-bird'] = await play('flappy-bird', async (f) => {
   // start a flight, then keep the bird alive with steady taps; stop when the
   // game-over overlay appears (a tap on the overlay is not a flap). Check for

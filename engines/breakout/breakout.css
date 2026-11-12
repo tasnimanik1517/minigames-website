@@ -1,0 +1,22 @@
+/* Breakout: a deep purple arcade hall, a neon paddle, and a wall of bright bricks. */
+.bo {
+  --g-bg: #241A4A; --g-surface: #FFFDF5; --g-surface-2: #E4DEFF; --g-ink: #241A4A; --g-muted: #6B6390; --g-line: #C9C0EC;
+  --g-brand: #E8481C; --g-brand-edge: #A82A0A; --g-accent: #FFC22E; --g-focus: #2F6BFF;
+  color-scheme: dark; color: #fff; overflow: hidden;
+  background: linear-gradient(180deg, #241A4A 0%, #3A2A7A 60%, #1C1550 100%);
+}
+.bo .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.bo .mg-pill, .bo .mg-icon-btn { background: rgba(255, 255, 255, .94); color: var(--g-ink); box-shadow: 0 1px 0 rgba(23, 48, 58, .06), 0 6px 14px -8px rgba(10, 5, 40, .7), inset 0 0 0 1px rgba(60, 140, 150, .18); }
+.bo .mg-pill b { color: var(--g-brand); }
+@media (max-width: 430px) { .bo .mg-pill { padding: 6px 8px; font-size: 14px; } .bo .mg-icon-btn { width: 34px; height: 34px; } }
+.bo-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.bo-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* result card */
+.bo-card { gap: 10px; }
+.bo-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(10, 5, 40, .5)); }
+.bo-score { display: grid; justify-items: center; line-height: 1; }
+.bo-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.bo-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.bo.is-showcase .mg-hud { display: none; }
