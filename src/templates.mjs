@@ -41,6 +41,7 @@ export function head(p) {
 <meta name="description" content="${esc(p.description)}">
 <meta name="robots" content="${robots}">${p.noCanonical ? '' : `
 <link rel="canonical" href="${canonical}">`}
+<meta name="p:domain_verify" content="23fe3549e74ba12234c8f6850047ac23">
 <meta name="theme-color" content="#F3F4F8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#10121C" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="${u('/favicon.ico')}" sizes="32x32">
