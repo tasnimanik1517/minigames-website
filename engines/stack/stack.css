@@ -1,0 +1,22 @@
+/* Stack: soft sky, a grassy strip, and one very tall rainbow tower. */
+.st {
+  --g-bg: #DCEBFF; --g-surface: #FFFDF5; --g-surface-2: #D8F2EE; --g-ink: #17303A; --g-muted: #4E7180; --g-line: #A8D8DC;
+  --g-brand: #E8481C; --g-brand-edge: #A82A0A; --g-accent: #FFC22E; --g-focus: #2F6BFF;
+  color-scheme: light; color: var(--g-ink); overflow: hidden;
+  background: linear-gradient(180deg, #FFE3F1 0%, #DCEBFF 55%, #C8F0E8 100%);
+}
+.st .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.st .mg-pill, .st .mg-icon-btn { background: rgba(255, 255, 255, .92); box-shadow: 0 1px 0 rgba(23, 48, 58, .06), 0 6px 14px -8px rgba(20, 80, 90, .55), inset 0 0 0 1px rgba(60, 140, 150, .18); }
+.st .mg-pill b { color: var(--g-brand); }
+@media (max-width: 430px) { .st .mg-pill { padding: 6px 8px; font-size: 14px; } .st .mg-icon-btn { width: 34px; height: 34px; } }
+.st-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.st-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* result card */
+.st-card { gap: 10px; }
+.st-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(20, 80, 90, .35)); }
+.st-score { display: grid; justify-items: center; line-height: 1; }
+.st-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.st-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.st.is-showcase .mg-hud { display: none; }

@@ -280,6 +280,13 @@ plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
   await f.waitForTimeout(200);
   return { score: await f.textContent('.mg-pill b'), holes: await f.$$eval('.wk-hole', l => l.length) };
 });
+plays['stack'] = await play('stack', async (f) => {
+  // start stacking, then drop the swinging block a few times and read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  for (let i = 0; i < 4; i++) { await f.tap('.st-canvas'); await f.waitForTimeout(650); }
+  return { score: await f.textContent('.mg-pill b'), blocks: await f.evaluate(() => document.querySelectorAll('.st-canvas').length) };
+});
 plays['flappy-bird'] = await play('flappy-bird', async (f) => {
   // start a flight, then keep the bird alive with steady taps; stop when the
   // game-over overlay appears (a tap on the overlay is not a flap). Check for

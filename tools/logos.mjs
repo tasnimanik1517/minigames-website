@@ -208,6 +208,32 @@ const circleEmblem = `<style>
 .pc .moon{position:absolute;left:668px;top:150px;width:128px;height:128px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFFCEB,#DCCB92);box-shadow:0 0 44px 10px rgba(255,240,200,.55)}
 </style><div class="pc">${circleStars}<div class="orbit"></div><div class="planet"></div><div class="moon"></div></div>`;
 
+// Stack: a little rainbow tower of rounded blocks, one more block swinging in above it.
+const stackEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3F1"/><stop offset=".55" stop-color="#DCEBFF"/><stop offset="1" stop-color="#C8F0E8"/></linearGradient>
+<linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="stile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#stile)"><rect width="1024" height="1024" fill="url(#sk)"/>
+<circle cx="820" cy="150" r="62" fill="#FFF3A0"/><circle cx="820" cy="150" r="86" fill="#FFF3A0" opacity=".35"/>
+<g fill="#fff" opacity=".92"><ellipse cx="240" cy="180" rx="86" ry="30"/><ellipse cx="180" cy="192" rx="52" ry="20"/><ellipse cx="300" cy="192" rx="56" ry="22"/></g>
+<rect x="0" y="880" width="1024" height="144" fill="#B7E3A8"/><rect x="0" y="880" width="1024" height="12" fill="#8ED081"/>
+<g stroke="rgba(0,0,0,.18)" stroke-width="4">
+<g fill="#FF5C8A"><rect x="302" y="786" width="420" height="94" rx="14"/></g>
+<g fill="#FF9F1C"><rect x="312" y="692" width="400" height="94" rx="14"/></g>
+<g fill="#FFD93D"><rect x="322" y="598" width="380" height="94" rx="14"/></g>
+<g fill="#6BCB3D"><rect x="332" y="504" width="360" height="94" rx="14"/></g>
+<g fill="#4EC0CA"><rect x="342" y="410" width="340" height="94" rx="14"/></g>
+<g fill="#7C5CFF"><rect x="352" y="316" width="320" height="94" rx="14"/></g>
+<g fill="#FF6B9D"><rect x="352" y="222" width="320" height="94" rx="14"/></g>
+</g>
+<g fill="#fff" opacity=".35"><rect x="316" y="792" width="392" height="12" rx="6"/><rect x="326" y="698" width="372" height="12" rx="6"/><rect x="336" y="604" width="352" height="12" rx="6"/><rect x="346" y="510" width="332" height="12" rx="6"/><rect x="356" y="416" width="312" height="12" rx="6"/><rect x="366" y="322" width="292" height="12" rx="6"/><rect x="366" y="228" width="292" height="12" rx="6"/></g>
+<g stroke="rgba(0,0,0,.2)" stroke-width="4" stroke-dasharray="10 12"><line x1="512" y1="222" x2="512" y2="150"/></g>
+<g fill="#FFC22E" stroke="rgba(0,0,0,.18)" stroke-width="4"><rect x="372" y="106" width="300" height="64" rx="12"/></g>
+<g fill="#fff" opacity=".4"><rect x="384" y="112" width="276" height="10" rx="5"/></g>
+<g fill="#FFC22E"><path d="M150 780l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 820l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#sg)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 const whackEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
 <radialGradient id="wg" cx=".35" cy=".25" r="1.1"><stop offset="0" stop-color="#93CC5E"/><stop offset=".6" stop-color="#5E9438"/><stop offset="1" stop-color="#3E6B21"/></radialGradient>
 <radialGradient id="wm" cx=".5" cy=".28" r=".95"><stop offset="0" stop-color="#B98A5C"/><stop offset=".58" stop-color="#96683C"/><stop offset="1" stop-color="#755026"/></radialGradient>
@@ -294,8 +320,9 @@ const wordmarks = {
   'typing-speed-test': wordmark({ lines: ['Typing', 'Speed Test'], size: 148, fill: ['#FFF3F8', '#FF9AC8', '#FF4F9A'], outline: '#3A0F2A', depth: '#22071A', tilt: -3 }),
   'whack-a-mole': wordmark({ lines: ['Whack-a-', 'Mole!'], size: 168, fill: ['#FFE9A8', '#FFB03A', '#E07B24'], outline: '#4A2408', depth: '#2E1503', tilt: -3 }),
   'flappy-bird': wordmark({ lines: ['Flappy', 'Bird'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
+  'stack': wordmark({ text: 'Stack', size: 250, fill: ['#FFE3F1', '#FF6B9D', '#E8487D'], outline: '#4A0E2E', depth: '#2E0619', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
