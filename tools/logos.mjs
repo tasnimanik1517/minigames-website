@@ -331,6 +331,28 @@ const doodleEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><d
 <rect width="1024" height="560" fill="url(#djgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Fruit Slice: a watermelon split in two, juice flying, and the blade swoosh across.
+const fruitSliceEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="fsk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB21E"/><stop offset=".55" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E8481C"/></linearGradient>
+<linearGradient id="fsgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="fstile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#fstile)"><rect width="1024" height="1024" fill="url(#fsk)"/>
+<g fill="#fff" opacity=".28"><circle cx="150" cy="180" r="10"/><circle cx="880" cy="140" r="12"/><circle cx="920" cy="420" r="8"/><circle cx="90" cy="520" r="9"/><circle cx="700" cy="90" r="8"/></g>
+<g transform="translate(512 470) rotate(-18)">
+<g transform="translate(-150 -40)"><path d="M0 -150 A150 150 0 0 1 0 150 L0 118 A118 118 0 0 0 0 -118 Z" fill="#2FA84F"/><path d="M0 -138 A138 138 0 0 1 0 138 L0 112 A112 112 0 0 0 0 -112 Z" fill="#FFF3D6"/><path d="M0 -112 A112 112 0 0 1 0 112 Z" fill="#FF5A6E"/>
+<g fill="#2B1A12"><ellipse cx="18" cy="-58" rx="7" ry="11"/><ellipse cx="34" cy="6" rx="7" ry="11"/><ellipse cx="10" cy="62" rx="7" ry="11"/><ellipse cx="48" cy="-28" rx="6" ry="10"/></g>
+<ellipse cx="-30" cy="-70" rx="26" ry="12" fill="#fff" opacity=".3" transform="rotate(-30)"/></g>
+<g transform="translate(150 40) scale(-1 1)"><path d="M0 -150 A150 150 0 0 1 0 150 L0 118 A118 118 0 0 0 0 -118 Z" fill="#2FA84F"/><path d="M0 -138 A138 138 0 0 1 0 138 L0 112 A112 112 0 0 0 0 -112 Z" fill="#FFF3D6"/><path d="M0 -112 A112 112 0 0 1 0 112 Z" fill="#FF5A6E"/>
+<g fill="#2B1A12"><ellipse cx="18" cy="-58" rx="7" ry="11"/><ellipse cx="34" cy="6" rx="7" ry="11"/><ellipse cx="10" cy="62" rx="7" ry="11"/></g></g>
+</g>
+<g transform="translate(512 470) rotate(-18)"><path d="M-330 40 Q0 -60 330 -40" stroke="#fff" stroke-width="22" stroke-linecap="round" fill="none" opacity=".95"/><path d="M-330 40 Q0 -60 330 -40" stroke="#FFE9A8" stroke-width="8" stroke-linecap="round" fill="none"/></g>
+<g><circle cx="210" cy="780" r="86" fill="#FF8A1F"/><ellipse cx="182" cy="752" rx="22" ry="12" fill="#fff" opacity=".35" transform="rotate(-30)"/><path d="M210 700 L216 676" stroke="#7A4A21" stroke-width="8" stroke-linecap="round"/><ellipse cx="232" cy="684" rx="20" ry="10" fill="#3FAE5A" transform="rotate(-30)"/></g>
+<g><circle cx="820" cy="760" r="72" fill="#FFD93D"/><ellipse cx="798" cy="736" rx="18" ry="10" fill="#fff" opacity=".4" transform="rotate(-30)"/><circle cx="886" cy="760" r="8" fill="#E8B800"/><circle cx="754" cy="760" r="8" fill="#E8B800"/></g>
+<g fill="#FF5A6E"><circle cx="330" cy="180" r="10"/><circle cx="690" cy="230" r="12"/><circle cx="620" cy="330" r="8"/><circle cx="180" cy="420" r="9"/></g>
+<g fill="#FFC22E"><path d="M150 300l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 560l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#fsgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -371,8 +393,9 @@ const wordmarks = {
   'stack': wordmark({ text: 'Stack', size: 250, fill: ['#FFE3F1', '#FF6B9D', '#E8487D'], outline: '#4A0E2E', depth: '#2E0619', tilt: -3 }),
   'breakout': wordmark({ text: 'Breakout', size: 150, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#241A4A', depth: '#160F30', tilt: -3 }),
   'doodle-jump': wordmark({ lines: ['Doodle', 'Jump'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
+  'fruit-slice': wordmark({ lines: ['Fruit', 'Slice'], size: 172, fill: ['#FFF6B0', '#FFB23F', '#F04E2E'], outline: '#4A1A08', depth: '#2E0E03', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

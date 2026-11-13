@@ -307,6 +307,31 @@ plays['doodle-jump'] = await play('doodle-jump', async (f) => {
   return { score: await f.textContent('.mg-pill b'), best: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
     overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.dj-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['fruit-slice'] = await play('fruit-slice', async (f, page) => {
+  // start slicing, then swipe across the board again and again at different heights and read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  const cdp = await page.context().newCDPSession(page);
+  const b = await (await f.$('.fs-canvas')).boundingBox();
+  const swipe = async (yFrac) => {
+    const y = b.y + b.height * yFrac;
+    const pts = [0.1, 0.3, 0.5, 0.7, 0.9].map(fr => ({ x: b.x + b.width * fr, y }));
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [pts[0]] });
+    for (let i = 1; i < pts.length; i++) {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [pts[i]] });
+      await f.waitForTimeout(40);
+    }
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  };
+  const heights = [0.3, 0.5, 0.65, 0.4, 0.55, 0.35];
+  for (let i = 0; i < heights.length; i++) {
+    await f.waitForTimeout(800);
+    await swipe(heights[i]);
+    if (await f.$eval('.mg-overlay', e => !e.hidden)) break;
+  }
+  await f.waitForTimeout(400);
+  return { score: await f.textContent('.mg-pill b'), lives: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.fs-canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['flappy-bird'] = await play('flappy-bird', async (f) => {
   // start a flight, then keep the bird alive with steady taps; stop when the
   // game-over overlay appears (a tap on the overlay is not a flap). Check for
