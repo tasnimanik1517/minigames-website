@@ -295,6 +295,18 @@ plays['breakout'] = await play('breakout', async (f) => {
   await f.waitForTimeout(2500);
   return { score: await f.textContent('.mg-pill b'), lives: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden) };
 });
+plays['doodle-jump'] = await play('doodle-jump', async (f) => {
+  // start the climb, steer left and right while it bounces, read the height pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(400);
+  for (let i = 0; i < 6; i++) {
+    await f.press('body', i % 2 ? 'ArrowLeft' : 'ArrowRight');
+    await f.waitForTimeout(650);
+  }
+  await f.waitForTimeout(500);
+  return { score: await f.textContent('.mg-pill b'), best: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.dj-canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['flappy-bird'] = await play('flappy-bird', async (f) => {
   // start a flight, then keep the bird alive with steady taps; stop when the
   // game-over overlay appears (a tap on the overlay is not a flap). Check for

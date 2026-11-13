@@ -1,0 +1,22 @@
+/* Doodle Jump: a bright sky, a bouncing doodler, and platforms to climb. */
+.dj {
+  --g-bg: #8ED0FA; --g-surface: #FFFDF5; --g-surface-2: #DCEFFF; --g-ink: #17324A; --g-muted: #5A7390; --g-line: #B9D9F2;
+  --g-brand: #2FA84F; --g-brand-edge: #1E7A35; --g-accent: #FFC22E; --g-focus: #2F6BFF;
+  color-scheme: light; color: #17324A; overflow: hidden;
+  background: linear-gradient(180deg, #5FB4F0 0%, #8ED0FA 60%, #C9ECFF 100%);
+}
+.dj .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.dj .mg-pill, .dj .mg-icon-btn { background: rgba(255, 255, 255, .94); color: var(--g-ink); box-shadow: 0 1px 0 rgba(23, 48, 58, .06), 0 6px 14px -8px rgba(10, 40, 70, .5), inset 0 0 0 1px rgba(60, 140, 150, .18); }
+.dj .mg-pill b { color: var(--g-brand); }
+@media (max-width: 430px) { .dj .mg-pill { padding: 6px 8px; font-size: 14px; } .dj .mg-icon-btn { width: 34px; height: 34px; } }
+.dj-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.dj-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* result card */
+.dj-card { gap: 10px; }
+.dj-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(10, 40, 70, .35)); }
+.dj-score { display: grid; justify-items: center; line-height: 1; }
+.dj-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.dj-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.dj.is-showcase .mg-hud { display: none; }

@@ -65,6 +65,7 @@ export const covers = {
   'flappy-bird': () => engineCover('flappy', { showcase: true }, 'body'),
   'stack': () => engineCover('stack', { showcase: true }, 'body'),
   'breakout': () => engineCover('breakout', { showcase: true }, 'body'),
+  'doodle-jump': () => engineCover('doodle', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -76,4 +77,5 @@ export const iconFocus = {
   'flappy-bird': [0.4, 0.47, 0.7],
   'stack': [0.5, 0.55, 0.7],
   'breakout': [0.5, 0.45, 0.7],
+  'doodle-jump': [0.5, 0.45, 0.7],
 };

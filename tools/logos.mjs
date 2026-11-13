@@ -306,6 +306,31 @@ const flappyEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><d
 <rect width="1024" height="560" fill="url(#fgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Doodle Jump: a green doodler bouncing up a bright sky past green, blue and brown platforms.
+const doodleEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="djsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5FB4F0"/><stop offset=".55" stop-color="#8ED0FA"/><stop offset="1" stop-color="#C9ECFF"/></linearGradient>
+<linearGradient id="djgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="djbody" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#8FE388"/><stop offset=".6" stop-color="#3FAE5A"/><stop offset="1" stop-color="#2B8A44"/></radialGradient>
+<clipPath id="djtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#djtile)"><rect width="1024" height="1024" fill="url(#djsky)"/>
+<circle cx="830" cy="150" r="62" fill="#FFD93D"/><circle cx="830" cy="150" r="86" fill="#FFD93D" opacity=".3"/>
+<g fill="#fff" opacity=".92"><ellipse cx="180" cy="220" rx="90" ry="34"/><ellipse cx="240" cy="200" rx="70" ry="30"/><ellipse cx="820" cy="420" rx="100" ry="36"/><ellipse cx="880" cy="398" rx="76" ry="30"/><ellipse cx="150" cy="620" rx="80" ry="30"/><ellipse cx="200" cy="602" rx="60" ry="26"/></g>
+<g stroke-linecap="round" fill="none"><path d="M120 690h4M880 240h4" stroke="#fff" stroke-width="6" stroke-dasharray="2 14" opacity=".7"/></g>
+<g><rect x="120" y="800" width="300" height="34" rx="17" fill="#2B8A44"/><rect x="120" y="794" width="300" height="34" rx="17" fill="#3FAE5A"/><rect x="132" y="798" width="276" height="10" rx="5" fill="#fff" opacity=".45"/></g>
+<g><rect x="620" y="640" width="260" height="34" rx="17" fill="#2F5FD0"/><rect x="620" y="634" width="260" height="34" rx="17" fill="#4F86FF"/><rect x="632" y="638" width="236" height="10" rx="5" fill="#fff" opacity=".45"/></g>
+<g><rect x="180" y="470" width="240" height="34" rx="17" fill="#8A5A2E"/><rect x="180" y="464" width="240" height="34" rx="17" fill="#B07A45"/><path d="M260 470l14 22M330 470l-10 22" stroke="#5A3214" stroke-width="6" stroke-linecap="round"/></g>
+<g stroke="#FF9F1C" stroke-width="10" stroke-linecap="round" fill="none"><path d="M690 634l24 -14 -24 -14 24 -14"/></g><rect x="672" y="566" width="56" height="16" rx="8" fill="#E8481C"/>
+<g transform="translate(512 380)"><ellipse cx="0" cy="118" rx="86" ry="14" fill="#000" opacity=".15"/>
+<circle r="98" fill="url(#djbody)"/><circle r="98" fill="none" stroke="#14522A" stroke-opacity=".5" stroke-width="6"/>
+<ellipse cx="-38" cy="92" rx="26" ry="12" fill="#2B8A44"/><ellipse cx="38" cy="92" rx="26" ry="12" fill="#2B8A44"/>
+<circle cx="-34" cy="-28" r="30" fill="#fff"/><circle cx="34" cy="-28" r="30" fill="#fff"/>
+<circle cx="-26" cy="-28" r="15" fill="#171A2B"/><circle cx="42" cy="-28" r="15" fill="#171A2B"/>
+<circle cx="-31" cy="-33" r="5" fill="#fff"/><circle cx="37" cy="-33" r="5" fill="#fff"/>
+<path d="M-28 34 Q0 56 28 34" stroke="#14522A" stroke-width="8" stroke-linecap="round" fill="none"/></g>
+<g fill="#FFC22E"><path d="M150 300l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 820l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#djgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -345,8 +370,9 @@ const wordmarks = {
   'flappy-bird': wordmark({ lines: ['Flappy', 'Bird'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
   'stack': wordmark({ text: 'Stack', size: 250, fill: ['#FFE3F1', '#FF6B9D', '#E8487D'], outline: '#4A0E2E', depth: '#2E0619', tilt: -3 }),
   'breakout': wordmark({ text: 'Breakout', size: 150, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#241A4A', depth: '#160F30', tilt: -3 }),
+  'doodle-jump': wordmark({ lines: ['Doodle', 'Jump'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
