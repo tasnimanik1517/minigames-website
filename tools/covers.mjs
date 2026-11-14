@@ -68,6 +68,7 @@ export const covers = {
   'doodle-jump': () => engineCover('doodle', { showcase: true }, 'body'),
   'fruit-slice': () => engineCover('slice', { showcase: true }, 'body'),
   'connect-four': () => engineCover('connect4', { showcase: true }, 'body'),
+  'space-invaders': () => engineCover('invaders', { showcase: true }),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -82,4 +83,5 @@ export const iconFocus = {
   'doodle-jump': [0.5, 0.45, 0.7],
   'fruit-slice': [0.5, 0.5, 0.7],
   'connect-four': [0.5, 0.5, 0.7],
+  'space-invaders': [0.5, 0.45, 0.7],
 };

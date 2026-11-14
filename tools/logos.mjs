@@ -374,6 +374,24 @@ const connectFourEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 102
 <rect width="1024" height="560" fill="url(#cfgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Space Invaders: pixel invaders in pink, green and cyan over deep space, the green cannon firing up.
+const spaceInvadersEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<radialGradient id="ivb" cx=".5" cy=".3" r="1.1"><stop offset="0" stop-color="#2A2060"/><stop offset=".6" stop-color="#1B1440"/><stop offset="1" stop-color="#0B1026"/></radialGradient>
+<linearGradient id="ivgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".14"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="ivtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#ivtile)"><rect width="1024" height="1024" fill="url(#ivb)"/>
+<g fill="#fff"><circle cx="120" cy="130" r="6"/><circle cx="240" cy="90" r="4"/><circle cx="360" cy="160" r="5"/><circle cx="700" cy="100" r="6"/><circle cx="820" cy="180" r="4"/><circle cx="920" cy="330" r="5"/><circle cx="90" cy="420" r="4"/><circle cx="180" cy="560" r="5"/><circle cx="860" cy="600" r="4"/><circle cx="940" cy="760" r="6"/><circle cx="120" cy="820" r="4"/><circle cx="640" cy="90" r="4"/></g>
+<g fill="#FF5A8A"><path d="M210 200h20v10H210Z M200 210h40v10H200Z M190 220h60v10H190Z M180 230h20v10H180Z M210 230h20v10H210Z M240 230h20v10H240Z M180 240h80v10H180Z M200 250h10v10H200Z M230 250h10v10H230Z M190 260h10v10H190Z M210 260h20v10H210Z M240 260h10v10H240Z M180 270h10v10H180Z M200 270h10v10H200Z M230 270h10v10H230Z M250 270h10v10H250Z"/></g>
+<g fill="#4EC0CA"><path d="M780 200h40v10H780Z M750 210h100v10H750Z M740 220h120v10H740Z M740 230h30v10H740Z M790 230h20v10H790Z M830 230h30v10H830Z M740 240h120v10H740Z M770 250h20v10H770Z M810 250h20v10H810Z M760 260h20v10H760Z M790 260h20v10H790Z M820 260h20v10H820Z M740 270h20v10H740Z M840 270h20v10H840Z"/></g>
+<g fill="#5CE65C"><path d="M463 380h14v14H463Z M547 380h14v14H547Z M477 394h14v14H477Z M533 394h14v14H533Z M463 408h98v14H463Z M449 422h28v14H449Z M491 422h42v14H491Z M547 422h28v14H547Z M435 436h154v14H435Z M435 450h14v14H435Z M463 450h98v14H463Z M575 450h14v14H575Z M449 464h14v14H449Z M477 464h14v14H477Z M533 464h14v14H533Z M561 464h14v14H561Z M477 478h28v14H477Z M533 478h28v14H533Z"/></g>
+<g><rect x="508" y="560" width="8" height="252" fill="#FFE066"/><rect x="500" y="560" width="24" height="252" fill="#FFE066" opacity=".25"/></g>
+<g fill="#7CFF6B"><rect x="462" y="860" width="100" height="34" rx="6"/><rect x="492" y="836" width="40" height="28"/><rect x="506" y="812" width="12" height="28"/></g>
+<g fill="#E8FFD8"><rect x="497" y="846" width="30" height="10"/></g>
+<rect x="60" y="910" width="904" height="4" fill="#1FA84F"/>
+<g fill="#FFC22E"><path d="M150 640l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 700l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#ivgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -416,8 +434,9 @@ const wordmarks = {
   'doodle-jump': wordmark({ lines: ['Doodle', 'Jump'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
   'fruit-slice': wordmark({ lines: ['Fruit', 'Slice'], size: 172, fill: ['#FFF6B0', '#FFB23F', '#F04E2E'], outline: '#4A1A08', depth: '#2E0E03', tilt: -3 }),
   'connect-four': wordmark({ lines: ['Connect', 'Four'], size: 168, fill: ['#FFE9A8', '#FFC22E', '#EA4A1F'], outline: '#1E2A6B', depth: '#0E1740', tilt: -3 }),
+  'space-invaders': wordmark({ lines: ['Space', 'Invaders'], size: 150, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0B1026', depth: '#05081A', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

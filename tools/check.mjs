@@ -286,6 +286,20 @@ plays['connect-four'] = await play('connect-four', async (f) => {
   return { cells: await f.$$eval('.cf-cell', cs => cs.length), marks, status: await f.textContent('.cf-status'),
     redWins: await f.textContent('.mg-hud .mg-pill:nth-child(1) b'), wins: await f.$$eval('.cf-cell.is-win', l => l.length) };
 });
+plays['space-invaders'] = await play('space-invaders', async (f) => {
+  // start defending, steer left and right while firing, then read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  for (let i = 0; i < 8; i++) {
+    await f.press('body', i % 2 ? 'ArrowLeft' : 'ArrowRight');
+    await f.press('body', 'Space');
+    await f.waitForTimeout(600);
+  }
+  await f.waitForTimeout(1500);
+  return { score: await f.textContent('.mg-pill b'), lives: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    wave: await f.textContent('.mg-hud .mg-pill:nth-child(3) b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden),
+    canvas: await f.$eval('.iv-canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
   // start a round, whack the first mole that pops up, read the score pill
   await f.click('.mg-overlay .mg-btn');

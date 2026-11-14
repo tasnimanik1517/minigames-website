@@ -1,0 +1,36 @@
+/* Space Invaders: deep space, neon green cannon, pixel invaders in pink, green and cyan. */
+.iv {
+  --g-bg: #0B1026; --g-surface: #1B1E2D; --g-surface-2: #252A3D; --g-ink: #F1F2F8; --g-muted: #A4A9C2;
+  --g-line: #30354D; --g-brand: #7CFF6B; --g-brand-ink: #0B2A06; --g-brand-edge: #1FA84F; --g-accent: #FFC22E;
+  --g-good: #3CCB86; --g-bad: #FF6B6E; --g-focus: #7EA2FF;
+  color-scheme: dark; color: var(--g-ink); overflow: hidden;
+  background: linear-gradient(180deg, #0B1026 0%, #1B1440 60%, #0B1026 100%);
+}
+.iv .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.iv .mg-pill, .iv .mg-icon-btn { background: rgba(255, 255, 255, .94); color: #171A2B; box-shadow: 0 1px 0 rgba(23, 26, 43, .06), 0 6px 14px -8px rgba(5, 5, 30, .7), inset 0 0 0 1px rgba(60, 140, 150, .18); }
+.iv .mg-pill b { color: #1FA84F; }
+@media (max-width: 430px) { .iv .mg-pill { padding: 6px 8px; font-size: 14px; } .iv .mg-icon-btn { width: 34px; height: 34px; } }
+.iv-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.iv-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* big thumb-friendly fire button for phones */
+.iv-fire {
+  appearance: none; border: 0; position: absolute; right: 14px; bottom: 14px; z-index: 5;
+  width: 72px; height: 72px; border-radius: 50%; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  background: radial-gradient(circle at 35% 30%, #FFE9A8 0%, #FFC22E 45%, #E07B24 100%);
+  color: #3A2400; font-weight: 900; font-size: 15px; letter-spacing: .04em;
+  box-shadow: 0 6px 0 rgba(120, 60, 0, .55), 0 12px 24px -8px rgba(0, 0, 0, .7), inset 0 2px 0 rgba(255, 255, 255, .5);
+  display: grid; place-items: center;
+}
+.iv-fire:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(120, 60, 0, .55), 0 6px 14px -8px rgba(0, 0, 0, .7), inset 0 2px 0 rgba(255, 255, 255, .5); }
+@media (hover: hover) and (pointer: fine) { .iv-fire { opacity: .85; } }
+
+/* result card */
+.iv-card { gap: 10px; }
+.iv-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(5, 5, 30, .5)); }
+.iv-score { display: grid; justify-items: center; line-height: 1; }
+.iv-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.iv-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.iv.is-showcase .mg-hud { display: none; }
+.iv.is-showcase .iv-fire { display: none; }
