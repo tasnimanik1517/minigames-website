@@ -272,6 +272,20 @@ plays['perfect-circle'] = await play('perfect-circle', async (f) => {
   await f.waitForTimeout(300);
   return { head: await f.$eval('.ci-head', e => e.innerText.replace(/\n/g, ' / ')), best: await f.evaluate(() => localStorage.getItem('mg:perfect-circle:best')) };
 });
+plays['connect-four'] = await play('connect-four', async (f) => {
+  // Switch to 2 Players so the scripted line below is deterministic (no CPU replies).
+  await f.click('.mg-chip');
+  await f.waitForTimeout(300);
+  await f.evaluate(() => { const b = [...document.querySelectorAll('.mg-overlay .mg-seg button')].find(x => x.textContent === '2 Players'); if (b) b.click(); });
+  await f.waitForTimeout(200);
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(200);
+  // Red wins vertically in column 4 (index 3): Red 3, Yellow 2, Red 3, Yellow 2, Red 3, Yellow 2, Red 3.
+  for (const c of [3, 2, 3, 2, 3, 2, 3]) { await f.click(`.cf-col[data-c="${c}"]`); await f.waitForTimeout(450); }
+  const marks = await f.$$eval('.cf-cell', cs => cs.map(c => c.getAttribute('data-v')).join(''));
+  return { cells: await f.$$eval('.cf-cell', cs => cs.length), marks, status: await f.textContent('.cf-status'),
+    redWins: await f.textContent('.mg-hud .mg-pill:nth-child(1) b'), wins: await f.$$eval('.cf-cell.is-win', l => l.length) };
+});
 plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
   // start a round, whack the first mole that pops up, read the score pill
   await f.click('.mg-overlay .mg-btn');

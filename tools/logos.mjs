@@ -353,6 +353,27 @@ const fruitSliceEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024
 <rect width="1024" height="560" fill="url(#fsgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Connect Four: a blue board with a red diagonal four in a row, yellow discs stacked below.
+const connectFourEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<radialGradient id="cfb" cx=".5" cy=".3" r="1"><stop offset="0" stop-color="#5C9BFF"/><stop offset=".6" stop-color="#2F6BFF"/><stop offset="1" stop-color="#1D4ED8"/></radialGradient>
+<radialGradient id="cfr" cx=".38" cy=".3" r=".95"><stop offset="0" stop-color="#FF9A78"/><stop offset=".5" stop-color="#EA4A1F"/><stop offset="1" stop-color="#B02C0B"/></radialGradient>
+<radialGradient id="cfy" cx=".38" cy=".3" r=".95"><stop offset="0" stop-color="#FFE9A8"/><stop offset=".5" stop-color="#FFC22E"/><stop offset="1" stop-color="#D99A00"/></radialGradient>
+<linearGradient id="cfgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="cftile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath>
+<pattern id="cfholes" width="120.6" height="116.7" patternUnits="userSpaceOnUse" patternTransform="translate(90 180)"><circle cx="60.3" cy="58.3" r="46" fill="#0B2A7A"/><circle cx="60.3" cy="58.3" r="46" fill="none" stroke="#0A2566" stroke-width="4"/></pattern></defs>
+<g clip-path="url(#cftile)"><rect width="1024" height="1024" fill="url(#cfb)"/>
+<g fill="#fff" opacity=".2"><circle cx="150" cy="110" r="8"/><circle cx="880" cy="90" r="10"/><circle cx="940" cy="470" r="7"/><circle cx="80" cy="500" r="8"/></g>
+<rect x="90" y="180" width="844" height="700" rx="56" fill="#2563EB"/>
+<rect x="90" y="180" width="844" height="700" rx="56" fill="url(#cfholes)"/>
+<g><circle cx="271" cy="822" r="47" fill="url(#cfy)"/><circle cx="391" cy="822" r="47" fill="url(#cfy)"/><circle cx="512" cy="822" r="47" fill="url(#cfy)"/><circle cx="633" cy="822" r="47" fill="url(#cfy)"/><circle cx="753" cy="822" r="47" fill="url(#cfy)"/><circle cx="874" cy="822" r="47" fill="url(#cfy)"/><circle cx="391" cy="705" r="47" fill="url(#cfy)"/><circle cx="512" cy="705" r="47" fill="url(#cfy)"/><circle cx="633" cy="705" r="47" fill="url(#cfy)"/><circle cx="512" cy="588" r="47" fill="url(#cfy)"/>
+<ellipse cx="256" cy="806" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="376" cy="806" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="497" cy="806" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="618" cy="806" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="738" cy="806" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="859" cy="806" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="376" cy="689" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="497" cy="689" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="618" cy="689" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/><ellipse cx="497" cy="572" rx="15" ry="8" fill="#fff" opacity=".5" transform="rotate(-24)"/></g>
+<g><circle cx="150" cy="822" r="47" fill="url(#cfr)"/><circle cx="271" cy="705" r="47" fill="url(#cfr)"/><circle cx="391" cy="588" r="47" fill="url(#cfr)"/><circle cx="512" cy="472" r="47" fill="url(#cfr)"/>
+<ellipse cx="135" cy="806" rx="15" ry="8" fill="#fff" opacity=".55" transform="rotate(-24)"/><ellipse cx="256" cy="689" rx="15" ry="8" fill="#fff" opacity=".55" transform="rotate(-24)"/><ellipse cx="376" cy="572" rx="15" ry="8" fill="#fff" opacity=".55" transform="rotate(-24)"/><ellipse cx="497" cy="456" rx="15" ry="8" fill="#fff" opacity=".55" transform="rotate(-24)"/>
+<circle cx="150" cy="822" r="54" fill="none" stroke="#fff" stroke-width="6" opacity=".9"/><circle cx="271" cy="705" r="54" fill="none" stroke="#fff" stroke-width="6" opacity=".9"/><circle cx="391" cy="588" r="54" fill="none" stroke="#fff" stroke-width="6" opacity=".9"/><circle cx="512" cy="472" r="54" fill="none" stroke="#fff" stroke-width="6" opacity=".9"/></g>
+<g fill="#FFC22E"><path d="M150 300l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 560l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#cfgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -394,8 +415,9 @@ const wordmarks = {
   'breakout': wordmark({ text: 'Breakout', size: 150, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#241A4A', depth: '#160F30', tilt: -3 }),
   'doodle-jump': wordmark({ lines: ['Doodle', 'Jump'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
   'fruit-slice': wordmark({ lines: ['Fruit', 'Slice'], size: 172, fill: ['#FFF6B0', '#FFB23F', '#F04E2E'], outline: '#4A1A08', depth: '#2E0E03', tilt: -3 }),
+  'connect-four': wordmark({ lines: ['Connect', 'Four'], size: 168, fill: ['#FFE9A8', '#FFC22E', '#EA4A1F'], outline: '#1E2A6B', depth: '#0E1740', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
