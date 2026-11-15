@@ -1,0 +1,35 @@
+/* Bubble Shooter: a bright sky, glossy bubbles, a chunky cannon at the bottom. */
+.bb {
+  --g-bg: #BFE3FF; --g-surface: #FFFFFF; --g-surface-2: #E3F2FF; --g-ink: #171A2B; --g-muted: #4A5878; --g-line: #B8D4F0;
+  --g-brand: #E8481C; --g-brand-edge: #A82A0A; --g-accent: #FFC22E; --g-focus: #2F6BFF;
+  color-scheme: light; color: var(--g-ink); overflow: hidden;
+  background: linear-gradient(180deg, #BFE3FF 0%, #E3F2FF 60%, #FFF7D6 100%);
+}
+.bb .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.bb .mg-pill, .bb .mg-icon-btn { background: rgba(255, 255, 255, .94); box-shadow: 0 1px 0 rgba(23, 26, 43, .06), 0 6px 14px -8px rgba(30, 80, 140, .5), inset 0 0 0 1px rgba(60, 120, 200, .18); }
+.bb .mg-pill b { color: #D93A10; }
+@media (max-width: 430px) { .bb .mg-pill { padding: 6px 8px; font-size: 14px; } .bb .mg-icon-btn { width: 34px; height: 34px; } }
+.bb-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.bb-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* big thumb-friendly shoot button for phones */
+.bb-fire {
+  appearance: none; border: 0; position: absolute; right: 14px; bottom: 14px; z-index: 5;
+  width: 72px; height: 72px; border-radius: 50%; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  background: radial-gradient(circle at 35% 30%, #FFE9A8 0%, #FFC22E 45%, #E07B24 100%);
+  color: #3A2400; font-weight: 900; font-size: 14px; letter-spacing: .04em;
+  box-shadow: 0 6px 0 rgba(120, 60, 0, .55), 0 12px 24px -8px rgba(0, 0, 0, .5), inset 0 2px 0 rgba(255, 255, 255, .5);
+  display: grid; place-items: center;
+}
+.bb-fire:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(120, 60, 0, .55), 0 6px 14px -8px rgba(0, 0, 0, .5), inset 0 2px 0 rgba(255, 255, 255, .5); }
+@media (hover: hover) and (pointer: fine) { .bb-fire { opacity: .85; } }
+
+/* result card */
+.bb-card { gap: 10px; }
+.bb-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(30, 80, 140, .4)); }
+.bb-score { display: grid; justify-items: center; line-height: 1; }
+.bb-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.bb-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.bb.is-showcase .mg-hud { display: none; }
+.bb.is-showcase .bb-fire { display: none; }

@@ -70,6 +70,7 @@ export const covers = {
   'connect-four': () => engineCover('connect4', { showcase: true }, 'body'),
   'space-invaders': () => engineCover('invaders', { showcase: true }),
   'simon-says': () => engineCover('simon', { showcase: true }, 'body'),
+  'bubble-shooter': () => engineCover('bubbles', { showcase: true }),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -86,4 +87,5 @@ export const iconFocus = {
   'connect-four': [0.5, 0.5, 0.7],
   'space-invaders': [0.5, 0.45, 0.7],
   'simon-says': [0.5, 0.5, 0.8],
+  'bubble-shooter': [0.5, 0.45, 0.7],
 };

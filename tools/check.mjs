@@ -317,6 +317,17 @@ plays['simon-says'] = await play('simon-says', async (f) => {
   await f.waitForTimeout(1200);
   return { round: await f.textContent('.mg-pill b'), pads: await f.$$eval('.sm-pad', l => l.length), seq: seq.join(',') };
 });
+plays['bubble-shooter'] = await play('bubble-shooter', async (f) => {
+  // start popping, then fire a few bubbles straight up and read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(400);
+  for (let i = 0; i < 3; i++) {
+    await f.press('body', 'Space');
+    await f.waitForTimeout(1400);
+  }
+  return { score: await f.textContent('.mg-pill b'), level: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.bb-canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['stack'] = await play('stack', async (f) => {
   // start stacking, then drop the swinging block a few times and read the score pill
   await f.click('.mg-overlay .mg-btn');

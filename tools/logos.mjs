@@ -413,6 +413,27 @@ const simonEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><de
 <rect width="1024" height="560" fill="url(#smgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Bubble Shooter: a glossy cluster of bubbles over a bright sky, one bubble flying in.
+const bubbleEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<radialGradient id="bbbg" cx=".5" cy=".25" r="1.1"><stop offset="0" stop-color="#BFE3FF"/><stop offset=".6" stop-color="#7FB8F0"/><stop offset="1" stop-color="#4A90D9"/></radialGradient>
+<radialGradient id="bbr" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#FCA5A5"/><stop offset=".55" stop-color="#EF4444"/><stop offset="1" stop-color="#991B1B"/></radialGradient>
+<radialGradient id="bbb" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#93C5FD"/><stop offset=".55" stop-color="#3B82F6"/><stop offset="1" stop-color="#1E40AF"/></radialGradient>
+<radialGradient id="bbg" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#86EFAC"/><stop offset=".55" stop-color="#22C55E"/><stop offset="1" stop-color="#166534"/></radialGradient>
+<radialGradient id="bby" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#FDE047"/><stop offset=".55" stop-color="#EAB308"/><stop offset="1" stop-color="#854D0E"/></radialGradient>
+<radialGradient id="bbp" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#D8B4FE"/><stop offset=".55" stop-color="#A855F7"/><stop offset="1" stop-color="#6B21A8"/></radialGradient>
+<linearGradient id="bbgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="bbtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#bbtile)"><rect width="1024" height="1024" fill="url(#bbbg)"/>
+<g fill="#fff" opacity=".65"><ellipse cx="180" cy="180" rx="120" ry="34"/><ellipse cx="850" cy="150" rx="130" ry="36"/><ellipse cx="820" cy="880" rx="140" ry="34"/></g>
+<g stroke="rgba(255,255,255,.4)" stroke-width="3"><circle cx="260" cy="300" r="80" fill="url(#bbr)"/><circle cx="420" cy="300" r="80" fill="url(#bbb)"/><circle cx="580" cy="300" r="80" fill="url(#bbg)"/><circle cx="740" cy="300" r="80" fill="url(#bby)"/><circle cx="340" cy="440" r="80" fill="url(#bbp)"/><circle cx="500" cy="440" r="80" fill="url(#bbr)"/><circle cx="660" cy="440" r="80" fill="url(#bbb)"/></g>
+<g fill="rgba(255,255,255,.85)"><ellipse cx="232" cy="272" rx="22" ry="12" transform="rotate(-35 232 272)"/><ellipse cx="392" cy="272" rx="22" ry="12" transform="rotate(-35 392 272)"/><ellipse cx="552" cy="272" rx="22" ry="12" transform="rotate(-35 552 272)"/><ellipse cx="712" cy="272" rx="22" ry="12" transform="rotate(-35 712 272)"/><ellipse cx="312" cy="412" rx="22" ry="12" transform="rotate(-35 312 412)"/><ellipse cx="472" cy="412" rx="22" ry="12" transform="rotate(-35 472 412)"/><ellipse cx="632" cy="412" rx="22" ry="12" transform="rotate(-35 632 412)"/></g>
+<g fill="#171A2B" opacity=".55"><circle cx="500" cy="640" r="10"/><circle cx="500" cy="690" r="10"/><circle cx="500" cy="740" r="10"/></g>
+<circle cx="500" cy="590" r="62" fill="url(#bbg)" stroke="rgba(255,255,255,.4)" stroke-width="3"/>
+<ellipse cx="478" cy="568" rx="17" ry="10" fill="rgba(255,255,255,.85)" transform="rotate(-35 478 568)"/>
+<g><rect x="472" y="800" width="56" height="110" rx="14" fill="#3A3350" transform="rotate(8 500 855)"/><circle cx="500" cy="880" r="86" fill="#241F38"/><circle cx="500" cy="880" r="86" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="5"/><circle cx="500" cy="880" r="52" fill="#5B5470"/></g>
+<rect width="1024" height="560" fill="url(#bbgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -457,8 +478,9 @@ const wordmarks = {
   'connect-four': wordmark({ lines: ['Connect', 'Four'], size: 168, fill: ['#FFE9A8', '#FFC22E', '#EA4A1F'], outline: '#1E2A6B', depth: '#0E1740', tilt: -3 }),
   'space-invaders': wordmark({ lines: ['Space', 'Invaders'], size: 150, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0B1026', depth: '#05081A', tilt: -3 }),
   'simon-says': wordmark({ lines: ['Simon', 'Says'], size: 168, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
+  'bubble-shooter': wordmark({ lines: ['Bubble', 'Shooter'], size: 168, fill: ['#E8F7FF', '#7FD4F5', '#0EA5E9'], outline: '#0B3D5C', depth: '#072A40', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
