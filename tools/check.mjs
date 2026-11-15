@@ -308,6 +308,15 @@ plays['whack-a-mole'] = await play('whack-a-mole', async (f) => {
   await f.waitForTimeout(200);
   return { score: await f.textContent('.mg-pill b'), holes: await f.$$eval('.wk-hole', l => l.length) };
 });
+plays['simon-says'] = await play('simon-says', async (f) => {
+  // start the pattern, wait for your turn, read the sequence off the board and repeat it
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForFunction(() => document.querySelector('.sm-msg').textContent.includes('Your turn'), { timeout: 15000 });
+  const seq = (await f.getAttribute('.sm-board', 'data-seq')).split(',').map(Number);
+  for (const i of seq) { await f.click(`.sm-pad:nth-child(${i + 1})`); await f.waitForTimeout(320); }
+  await f.waitForTimeout(1200);
+  return { round: await f.textContent('.mg-pill b'), pads: await f.$$eval('.sm-pad', l => l.length), seq: seq.join(',') };
+});
 plays['stack'] = await play('stack', async (f) => {
   // start stacking, then drop the swinging block a few times and read the score pill
   await f.click('.mg-overlay .mg-btn');

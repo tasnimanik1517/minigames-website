@@ -392,6 +392,27 @@ const spaceInvadersEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1
 <rect width="1024" height="560" fill="url(#ivgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Simon Says: the four glowing pads of the 1978 toy on a dark purple tile.
+const simonEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<radialGradient id="smb" cx=".5" cy=".3" r="1.1"><stop offset="0" stop-color="#2E2360"/><stop offset=".6" stop-color="#241B47"/><stop offset="1" stop-color="#17112E"/></radialGradient>
+<linearGradient id="smgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".14"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="smg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4ADE80"/><stop offset="1" stop-color="#16A34A"/></linearGradient>
+<linearGradient id="smr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F87171"/><stop offset="1" stop-color="#DC2626"/></linearGradient>
+<linearGradient id="smy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDE047"/><stop offset="1" stop-color="#EAB308"/></linearGradient>
+<linearGradient id="smu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60A5FA"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+<clipPath id="smtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#smtile)"><rect width="1024" height="1024" fill="url(#smb)"/>
+<g fill="#fff" opacity=".5"><circle cx="120" cy="130" r="5"/><circle cx="900" cy="120" r="4"/><circle cx="930" cy="820" r="5"/><circle cx="110" cy="860" r="4"/></g>
+<path d="M470 140 L350 140 Q140 140 140 350 L140 470 L470 470 Z" fill="url(#smg)"/>
+<path d="M554 140 L674 140 Q884 140 884 350 L884 470 L554 470 Z" fill="url(#smr)"/>
+<path d="M140 554 L140 674 Q140 884 350 884 L470 884 L470 554 Z" fill="url(#smy)"/>
+<path d="M554 554 L884 554 L884 674 Q884 884 674 884 L554 884 Z" fill="url(#smu)"/>
+<g opacity=".35" fill="#fff"><ellipse cx="300" cy="260" rx="90" ry="40" transform="rotate(-38 300 260)"/><ellipse cx="730" cy="260" rx="90" ry="40" transform="rotate(-38 730 260)"/><ellipse cx="300" cy="700" rx="90" ry="40" transform="rotate(-38 300 700)"/><ellipse cx="730" cy="700" rx="90" ry="40" transform="rotate(-38 730 700)"/></g>
+<circle cx="512" cy="512" r="96" fill="#17112E" stroke="rgba(255,255,255,.25)" stroke-width="6"/>
+<text x="512" y="548" text-anchor="middle" font-family="Poppins" font-weight="700" font-size="96" fill="#fff">♪</text>
+<rect width="1024" height="560" fill="url(#smgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -435,8 +456,9 @@ const wordmarks = {
   'fruit-slice': wordmark({ lines: ['Fruit', 'Slice'], size: 172, fill: ['#FFF6B0', '#FFB23F', '#F04E2E'], outline: '#4A1A08', depth: '#2E0E03', tilt: -3 }),
   'connect-four': wordmark({ lines: ['Connect', 'Four'], size: 168, fill: ['#FFE9A8', '#FFC22E', '#EA4A1F'], outline: '#1E2A6B', depth: '#0E1740', tilt: -3 }),
   'space-invaders': wordmark({ lines: ['Space', 'Invaders'], size: 150, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0B1026', depth: '#05081A', tilt: -3 }),
+  'simon-says': wordmark({ lines: ['Simon', 'Says'], size: 168, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

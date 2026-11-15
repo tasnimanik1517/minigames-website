@@ -69,6 +69,7 @@ export const covers = {
   'fruit-slice': () => engineCover('slice', { showcase: true }, 'body'),
   'connect-four': () => engineCover('connect4', { showcase: true }, 'body'),
   'space-invaders': () => engineCover('invaders', { showcase: true }),
+  'simon-says': () => engineCover('simon', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -84,4 +85,5 @@ export const iconFocus = {
   'fruit-slice': [0.5, 0.5, 0.7],
   'connect-four': [0.5, 0.5, 0.7],
   'space-invaders': [0.5, 0.45, 0.7],
+  'simon-says': [0.5, 0.5, 0.8],
 };
