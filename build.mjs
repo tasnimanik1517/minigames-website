@@ -149,14 +149,16 @@ const urls = [
   { loc: '/all-games/', lastmod: newest },
   ...categories.filter(c => c.count >= site.minIndexableCategory).map(c => ({ loc: `/${c.slug}-games/`, lastmod: newest })),
   ...games.map(g => ({ loc: `/${g.slug}/`, lastmod: g.updated, image: `/${g.slug}/thumb-800.webp`, title: g.title })),
-  ...staticPages.map(s => ({ loc: `/${s}/`, lastmod: '2026-11-02' })),
+  ...staticPages.map(s => ({ loc: `/${s}/` })),  // no lastmod: the old hardcoded 2026-11-02 date was stale
 ];
 write('/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${urls.map(x => `  <url><loc>${site.url}${x.loc}</loc><lastmod>${x.lastmod}</lastmod>${x.image ? `<image:image><image:loc>${site.url}${x.image}</image:loc></image:image>` : ''}</url>`).join('\n')}
+${urls.map(x => `  <url><loc>${site.url}${x.loc}</loc>${x.lastmod ? `<lastmod>${x.lastmod}</lastmod>` : ''}${x.image ? `<image:image><image:loc>${site.url}${x.image}</image:loc></image:image>` : ''}</url>`).join('\n')}
 </urlset>
 `);
-write('/robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`);
+// Search-result URLs (?q=...) are not landing pages: with the literal template
+// string they 200 with zero results and Google lists them as soft 404s.
+write('/robots.txt', `User-agent: *\nAllow: /\nDisallow: /*?q=\n\nSitemap: ${site.url}/sitemap.xml\n`);
 
 // RSS feed: lets Pinterest (and any feed reader) pick up new games automatically.
 const rssDate = d => new Date(d + 'T09:00:00Z').toUTCString();
