@@ -434,6 +434,35 @@ const bubbleEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><d
 <rect width="1024" height="560" fill="url(#bbgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Tetris: the seven tetrominoes stacked in a well on a deep purple tile, a T piece falling in.
+const tetrisEmblem = (() => {
+  const C = ['#22D3EE', '#FACC15', '#C084FC', '#4ADE80', '#F87171', '#60A5FA', '#FB923C'];
+  const STACK = [
+    [0, 5, 1, 2, 3, -1, 6, 0, 1, 5],
+    [4, 3, -1, 0, 5, 2, 1, 4, 3, 6],
+    [1, 2, 4, 3, 6, 0, 5, 1, 2, 4],
+    [5, 0, 3, 1, 4, 2, 6, 5, 0, 3],
+    [3, 6, 2, 4, 0, 1, 5, 3, 6, 2],
+    [2, 4, 5, 3, 6, 0, 1, 2, 4, 5],
+  ];
+  const cells = STACK.map((row, r) => row.map((ci, c) => ci < 0 ? '' :
+    `<rect x="${312 + c * 40}" y="${740 + r * 40}" width="40" height="40" rx="7" fill="${C[ci]}" stroke="rgba(0,0,0,.28)" stroke-width="2"/><rect x="${316 + c * 40}" y="${744 + r * 40}" width="32" height="9" rx="4" fill="#fff" opacity=".35"/>`).join('')).join('');
+  return `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<radialGradient id="ttb" cx=".5" cy=".25" r="1.1"><stop offset="0" stop-color="#3B2A7A"/><stop offset=".6" stop-color="#241B47"/><stop offset="1" stop-color="#17112E"/></radialGradient>
+<linearGradient id="ttgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="tttile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#tttile)"><rect width="1024" height="1024" fill="url(#ttb)"/>
+<g fill="#fff"><circle cx="120" cy="130" r="6"/><circle cx="240" cy="90" r="4"/><circle cx="880" cy="120" r="5"/><circle cx="920" cy="330" r="4"/><circle cx="90" cy="420" r="5"/><circle cx="860" cy="600" r="4"/><circle cx="130" cy="860" r="5"/></g>
+<rect x="300" y="168" width="424" height="824" rx="18" fill="#0E0A24" stroke="rgba(255,255,255,.22)" stroke-width="4"/>
+<g stroke="rgba(255,255,255,.06)" stroke-width="1">${Array.from({ length: 9 }, (_, i) => `<path d="M${352 + i * 40} 168 V992"/>`).join('')}${Array.from({ length: 19 }, (_, i) => `<path d="M300 ${208 + i * 40} H724"/>`).join('')}</g>
+${cells}
+<g><rect x="472" y="56" width="40" height="40" rx="7" fill="#C084FC" stroke="rgba(0,0,0,.28)" stroke-width="2"/><rect x="512" y="56" width="40" height="40" rx="7" fill="#C084FC" stroke="rgba(0,0,0,.28)" stroke-width="2"/><rect x="552" y="56" width="40" height="40" rx="7" fill="#C084FC" stroke="rgba(0,0,0,.28)" stroke-width="2"/><rect x="512" y="96" width="40" height="40" rx="7" fill="#C084FC" stroke="rgba(0,0,0,.28)" stroke-width="2"/>
+<rect x="476" y="60" width="32" height="9" rx="4" fill="#fff" opacity=".35"/><rect x="516" y="60" width="32" height="9" rx="4" fill="#fff" opacity=".35"/><rect x="556" y="60" width="32" height="9" rx="4" fill="#fff" opacity=".35"/><rect x="516" y="100" width="32" height="9" rx="4" fill="#fff" opacity=".35"/></g>
+<g fill="#FFC22E"><path d="M150 640l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 700l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#ttgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+})();
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -479,8 +508,9 @@ const wordmarks = {
   'space-invaders': wordmark({ lines: ['Space', 'Invaders'], size: 150, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0B1026', depth: '#05081A', tilt: -3 }),
   'simon-says': wordmark({ lines: ['Simon', 'Says'], size: 168, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
   'bubble-shooter': wordmark({ lines: ['Bubble', 'Shooter'], size: 168, fill: ['#E8F7FF', '#7FD4F5', '#0EA5E9'], outline: '#0B3D5C', depth: '#072A40', tilt: -3 }),
+  'tetris': wordmark({ text: 'Tetris', size: 250, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

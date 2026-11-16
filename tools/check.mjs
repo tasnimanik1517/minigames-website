@@ -328,6 +328,20 @@ plays['bubble-shooter'] = await play('bubble-shooter', async (f) => {
   return { score: await f.textContent('.mg-pill b'), level: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
     overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.bb-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['tetris'] = await play('tetris', async (f) => {
+  // start stacking, steer a few pieces, hard-drop them, read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(400);
+  for (let i = 0; i < 4; i++) {
+    await f.press('body', i % 2 ? 'ArrowRight' : 'ArrowLeft');
+    await f.press('body', 'ArrowUp');
+    await f.press('body', 'Space');
+    await f.waitForTimeout(700);
+  }
+  return { score: await f.textContent('.mg-pill b'), level: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    lines: await f.textContent('.mg-hud .mg-pill:nth-child(3) b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden),
+    canvas: await f.$eval('.tt-canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['stack'] = await play('stack', async (f) => {
   // start stacking, then drop the swinging block a few times and read the score pill
   await f.click('.mg-overlay .mg-btn');

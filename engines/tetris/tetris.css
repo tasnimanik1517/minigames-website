@@ -1,0 +1,40 @@
+/* Tetris: deep purple night sky, glowing blocks, chunky thumb buttons. */
+.tt {
+  --g-bg: #241B47; --g-surface: #FFFFFF; --g-surface-2: #EDE9FE; --g-ink: #F5F3FF; --g-muted: #C4B5FD; --g-line: #4C3A86;
+  --g-brand: #FACC15; --g-brand-edge: #A16207; --g-accent: #22D3EE; --g-focus: #FACC15;
+  color-scheme: dark; color: var(--g-ink); overflow: hidden;
+  background: linear-gradient(180deg, #1B1440 0%, #241B47 60%, #17112E 100%);
+}
+.tt .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.tt .mg-pill, .tt .mg-icon-btn { background: rgba(255, 255, 255, .12); box-shadow: 0 1px 0 rgba(255, 255, 255, .08), inset 0 0 0 1px rgba(255, 255, 255, .14); color: #F5F3FF; }
+.tt .mg-pill small { color: #C4B5FD; }
+.tt .mg-pill b { color: #FACC15; }
+.tt .mg-icon-btn { color: #F5F3FF; }
+@media (max-width: 430px) { .tt .mg-pill { padding: 6px 8px; font-size: 14px; } .tt .mg-icon-btn { width: 34px; height: 34px; } }
+.tt-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.tt-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* big thumb-friendly control row for phones */
+.tt-controls {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  padding: 10px 12px 12px; position: relative; z-index: 3;
+}
+.tt-btn {
+  appearance: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  min-height: 52px; border-radius: 14px; color: #1B1440; font-weight: 900; font-size: 22px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #EDE9FE 100%);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, .35), 0 8px 18px -8px rgba(0, 0, 0, .6), inset 0 2px 0 rgba(255, 255, 255, .9);
+  display: grid; place-items: center; touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.tt-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0, 0, 0, .35), 0 4px 10px -6px rgba(0, 0, 0, .6), inset 0 2px 0 rgba(255, 255, 255, .9); }
+.tt-btn.is-drop { background: linear-gradient(180deg, #FDE047 0%, #FACC15 55%, #EAB308 100%); }
+
+/* result card */
+.tt-card { gap: 10px; }
+.tt-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .5)); }
+.tt-score { display: grid; justify-items: center; line-height: 1; }
+.tt-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.tt-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.tt.is-showcase .mg-hud { display: none; }
+.tt.is-showcase .tt-controls { display: none; }
