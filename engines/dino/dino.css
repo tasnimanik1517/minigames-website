@@ -1,0 +1,38 @@
+/* Dino Runner: a bright desert sky, sandy ground, a chunky green dino. */
+.dn {
+  --g-bg: #BAE6FD; --g-surface: #FFFFFF; --g-surface-2: #FEF3C7; --g-ink: #451A03; --g-muted: #92400E; --g-line: #FCD34D;
+  --g-brand: #EA580C; --g-brand-edge: #9A3412; --g-accent: #16A34A; --g-focus: #EA580C;
+  color-scheme: light; color: var(--g-ink); overflow: hidden;
+  background: linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 55%, #FEF3C7 78%, #FDE68A 100%);
+}
+.dn .mg-hud { flex-wrap: nowrap; position: relative; z-index: 3; }
+.dn .mg-pill, .dn .mg-icon-btn { background: rgba(255, 255, 255, .94); box-shadow: 0 1px 0 rgba(69, 26, 3, .06), 0 6px 14px -8px rgba(180, 83, 9, .5), inset 0 0 0 1px rgba(217, 119, 6, .18); }
+.dn .mg-pill b { color: #C2410C; }
+@media (max-width: 430px) { .dn .mg-pill { padding: 6px 8px; font-size: 14px; } .dn .mg-icon-btn { width: 34px; height: 34px; } }
+.dn-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+.dn-canvas { display: block; touch-action: none; -webkit-tap-highlight-color: transparent; }
+
+/* two big thumb buttons: duck on the left, jump on the right */
+.dn-controls {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 8px;
+  padding: 10px 12px 12px; position: relative; z-index: 3;
+}
+.dn-btn {
+  appearance: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  min-height: 56px; border-radius: 14px; color: #451A03; font-weight: 900; font-size: 20px; letter-spacing: .04em;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FEF3C7 100%);
+  box-shadow: 0 4px 0 rgba(120, 53, 15, .4), 0 8px 18px -8px rgba(0, 0, 0, .5), inset 0 2px 0 rgba(255, 255, 255, .9);
+  display: grid; place-items: center; touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.dn-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(120, 53, 15, .4), 0 4px 10px -6px rgba(0, 0, 0, .5), inset 0 2px 0 rgba(255, 255, 255, .9); }
+.dn-btn.is-jump { background: linear-gradient(180deg, #4ADE80 0%, #22C55E 55%, #16A34A 100%); color: #052E16; }
+
+/* result card */
+.dn-card { gap: 10px; }
+.dn-badge { font-size: 58px; line-height: 1; filter: drop-shadow(0 8px 12px rgba(180, 83, 9, .4)); }
+.dn-score { display: grid; justify-items: center; line-height: 1; }
+.dn-score .mg-big { color: var(--g-brand); font-size: 58px; letter-spacing: -.03em; }
+.dn-score span:last-child { margin-top: 3px; font-size: 13px; font-weight: 800; color: var(--g-muted); }
+
+.dn.is-showcase .mg-hud { display: none; }
+.dn.is-showcase .dn-controls { display: none; }

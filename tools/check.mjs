@@ -342,6 +342,22 @@ plays['tetris'] = await play('tetris', async (f) => {
     lines: await f.textContent('.mg-hud .mg-pill:nth-child(3) b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden),
     canvas: await f.$eval('.tt-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['dino-runner'] = await play('dino-runner', async (f) => {
+  // start running, jump over the first cacti a few times, read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  let over = false;
+  for (let i = 0; i < 10 && !over; i++) {
+    over = await f.$eval('.mg-overlay', e => !e.hidden);
+    if (over) break;
+    await f.press('body', 'Space');
+    await f.waitForTimeout(900);
+    over = await f.$eval('.mg-overlay', e => !e.hidden);
+  }
+  await f.waitForTimeout(300);
+  return { score: await f.textContent('.mg-pill b'), speed: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.dn-canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['stack'] = await play('stack', async (f) => {
   // start stacking, then drop the swinging block a few times and read the score pill
   await f.click('.mg-overlay .mg-btn');

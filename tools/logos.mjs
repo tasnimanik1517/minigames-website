@@ -463,6 +463,48 @@ ${cells}
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 })();
 
+// Dino Runner: a green dino leaping over cacti in a sunny desert, a purple bird overhead.
+const dinoEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="dnsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7DD3FC"/><stop offset=".55" stop-color="#BAE6FD"/><stop offset=".78" stop-color="#FEF3C7"/><stop offset="1" stop-color="#FDE68A"/></linearGradient>
+<linearGradient id="dngl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="dntile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#dntile)"><rect width="1024" height="1024" fill="url(#dnsky)"/>
+<circle cx="820" cy="150" r="62" fill="#FDE047"/><circle cx="820" cy="150" r="86" fill="#FDE047" opacity=".35"/>
+<g fill="#fff" opacity=".92"><ellipse cx="180" cy="180" rx="90" ry="30"/><ellipse cx="240" cy="196" rx="60" ry="22"/><ellipse cx="700" cy="300" rx="80" ry="26"/><ellipse cx="760" cy="316" rx="56" ry="20"/></g>
+<path d="M0 700 Q160 620 330 700 Q480 760 640 700 Q820 640 1024 700 L1024 1024 L0 1024 Z" fill="#FCD34D"/>
+<path d="M0 760 Q200 700 380 760 Q560 810 760 760 Q900 730 1024 760 L1024 1024 L0 1024 Z" fill="#F59E0B"/>
+<g fill="#B45309"><rect x="120" y="830" width="60" height="8" rx="4"/><rect x="420" y="880" width="60" height="8" rx="4"/><rect x="760" y="840" width="60" height="8" rx="4"/><circle cx="250" cy="920" r="7"/><circle cx="600" cy="940" r="7"/><circle cx="880" cy="910" r="6"/></g>
+<g transform="translate(512 470) rotate(-6)">
+<path d="M-40 30 L-110 6 L-36 12 Z" fill="#2F9E44"/>
+<rect x="-58" y="52" width="20" height="30" rx="6" fill="#1E7A34"/>
+<rect x="18" y="56" width="20" height="26" rx="6" fill="#1E7A34"/>
+<rect x="0" y="8" width="120" height="66" rx="24" fill="#37B24D"/>
+<rect x="14" y="46" width="66" height="22" rx="11" fill="#8CE99A"/>
+<rect x="76" y="-44" width="30" height="64" rx="14" fill="#37B24D"/>
+<rect x="76" y="-48" width="66" height="42" rx="20" fill="#37B24D"/>
+<path d="M116 -16 Q128 -8 116 -2" stroke="#1E7A34" stroke-width="4" stroke-linecap="round" fill="none"/>
+<circle cx="106" cy="-32" r="10" fill="#fff"/><circle cx="110" cy="-32" r="5" fill="#171A2B"/>
+<path d="M20 10 L30 -6 L40 10 Z M48 10 L58 -6 L68 10 Z M76 10 L86 -6 L96 10 Z" fill="#2F9E44"/>
+</g>
+<g fill="#2F9E44" stroke="#1E7A34" stroke-width="5">
+<rect x="640" y="640" width="34" height="130" rx="14"/><rect x="622" y="676" width="20" height="44" rx="10"/><rect x="622" y="676" width="46" height="20" rx="10"/>
+<rect x="700" y="690" width="28" height="80" rx="12"/><rect x="716" y="716" width="16" height="34" rx="8"/><rect x="716" y="716" width="36" height="16" rx="8"/>
+</g>
+<g fill="#2F9E44" stroke="#1E7A34" stroke-width="5">
+<rect x="230" y="690" width="30" height="80" rx="12"/><rect x="214" y="716" width="16" height="34" rx="8"/><rect x="214" y="716" width="38" height="16" rx="8"/>
+</g>
+<g transform="translate(700 330)">
+<path d="M0 14 Q16 -8 34 10 Q20 18 0 14 Z" fill="#8B5CF6"/>
+<path d="M10 18 Q26 40 44 20 Q28 22 10 18 Z" fill="#8B5CF6"/>
+<ellipse cx="26" cy="14" rx="26" ry="11" fill="#7C3AED"/>
+<circle cx="50" cy="10" r="9" fill="#7C3AED"/>
+<path d="M58 8 L68 11 L58 14 Z" fill="#F59E0B"/>
+<circle cx="51" cy="8" r="2.6" fill="#fff"/><circle cx="52" cy="8" r="1.3" fill="#171A2B"/>
+</g>
+<g fill="#FFC22E"><path d="M150 300l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 560l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#dngl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -509,8 +551,9 @@ const wordmarks = {
   'simon-says': wordmark({ lines: ['Simon', 'Says'], size: 168, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
   'bubble-shooter': wordmark({ lines: ['Bubble', 'Shooter'], size: 168, fill: ['#E8F7FF', '#7FD4F5', '#0EA5E9'], outline: '#0B3D5C', depth: '#072A40', tilt: -3 }),
   'tetris': wordmark({ text: 'Tetris', size: 250, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
+  'dino-runner': wordmark({ lines: ['Dino', 'Runner'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
