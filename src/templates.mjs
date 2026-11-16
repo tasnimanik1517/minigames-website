@@ -174,15 +174,21 @@ export function pageHome(ctx) {
   const sectioned = games.length >= site.sectionedHomeAt;
   const catsWithGames = categories.filter(c => c.count >= 3);
   const first = popular[0];
+  const faq = [
+    ['What are mini games?', 'Mini games are short, simple browser games you can start in seconds — classics like Snake and Tic Tac Toe, puzzles, and quick two-player games. Every game on this site is free and runs in your browser.'],
+    ['Do I need to download anything or sign up?', 'No. Every game plays instantly in your browser on your phone or computer. There is nothing to download and no account to create.'],
+    ['Are the games free?', `Yes. All ${games.length} games are free to play, and new games are added regularly.`],
+  ];
   return `${head({
     css: ctx.css, path: '/',
-    title: 'MiniGames.website – Free Mini Games Online, No Download',
+    title: `Play ${games.length} Mini Games Online Free – No Download`,
     ogTitle: 'MiniGames.website – Free mini games, ready to play',
-    description: `Play ${games.length >= 10 ? games.length + ' ' : ''}free mini games online at MiniGames.website: Snake, Tic Tac Toe, Rock Paper Scissors and more. Instant play on phone or computer, no download or sign-up.`,
+    description: `Play ${games.length} free mini games online — Snake, Tetris, Tic Tac Toe, Dino Runner and more. Instant play on phone or computer. No download, no sign-up.`,
     preload: `<link rel="preload" as="image" type="image/avif" imagesrcset="${u('/' + first.slug + '/thumb-400.avif')} 400w, ${u('/' + first.slug + '/thumb-800.avif')} 800w" imagesizes="(min-width: 1280px) 200px, (min-width: 860px) 23vw, (min-width: 560px) 31vw, 46vw" fetchpriority="high">\n`,
     jsonld: [
       { '@context': 'https://schema.org', '@type': 'WebSite', '@id': site.url + '/#website', name: site.name, alternateName: ['MiniGames', 'Mini Games Website', 'minigames.website'], url: site.url + '/', inLanguage: 'en', publisher: { '@id': site.url + '/#org' } },
       { '@context': 'https://schema.org', '@type': 'Organization', '@id': site.url + '/#org', name: site.name, url: site.url + '/', logo: { '@type': 'ImageObject', url: site.url + '/icon-512.png', width: 512, height: 512 } },
+      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
     ],
   })}
 <body class="page-home">
@@ -207,6 +213,10 @@ ${catsWithGames.map(c => catCard(c, games)).join('\n')}
 </div></section>` : ''}
   <section class="wrap home-about">
     <p>MiniGames.website collects small, free browser games — classics, puzzles and quick two-player games — and adds new ones regularly. <a href="${u('/about/')}">More about this site</a></p>
+  </section>
+  <section class="wrap home-faq" aria-labelledby="faq-h">
+    <div class="section-head"><h2 id="faq-h">Questions</h2></div>
+    <div class="faq">${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>
   </section>
 </main>
 ${footer()}
@@ -316,6 +326,8 @@ export function pageGame(ctx, g) {
   const [mw, mh] = (g.aspectMobile || g.aspect).split('/').map(s => +s.trim());
   const related = ctx.related[g.slug];
   const og = site.url + '/' + g.slug + '/og.jpg';
+  const plain = t => t.replace(/\[\[(?:[^\]|]+\|)?([^\]]+)\]\]/g, '$1');
+  const faqItems = g.sections.flatMap(s => (s.faq || []).map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: plain(a) } })));
   return `${head({
     css: ctx.css, path,
     title: `${g.seoTitle} | ${site.name}`,
@@ -337,6 +349,7 @@ export function pageGame(ctx, g) {
           isAccessibleForFree: true, publisher: { '@id': site.url + '/#org' },
         },
       },
+      ...(faqItems.length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems }] : []),
     ],
   })}
 <body class="page-game">
