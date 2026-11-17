@@ -342,6 +342,21 @@ plays['tetris'] = await play('tetris', async (f) => {
     lines: await f.textContent('.mg-hud .mg-pill:nth-child(3) b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden),
     canvas: await f.$eval('.tt-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['gem-match'] = await play('gem-match', async (f) => {
+  // start the 60-second round, ask for a hint, then play the hinted swap
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  await f.click('.gm-hint-btn');
+  await f.waitForTimeout(200);
+  const pair = await f.$$eval('.gm-cell.is-hint', els => els.map(e => [...e.parentElement.children].indexOf(e)));
+  if (pair.length === 2) {
+    for (const i of pair) { await f.click(`.gm-cell:nth-child(${i + 1})`); await f.waitForTimeout(250); }
+  }
+  await f.waitForTimeout(1200);
+  return { hinted: pair.length, score: await f.textContent('.mg-pill b'),
+    time: await f.textContent('.gm-time b'), cells: await f.$$eval('.gm-cell', l => l.length),
+    gems: await f.$$eval('.gm-gem', l => l.length), overlay: await f.$eval('.mg-overlay', e => !e.hidden) };
+});
 plays['crossy-road'] = await play('crossy-road', async (f) => {
   // start hopping, hop forward a few times, read the score pill
   await f.click('.mg-overlay .mg-btn');

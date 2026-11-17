@@ -521,6 +521,29 @@ const crossyEmblem = `<div class="t"><div class="grass"></div><div class="road">
 .log{left:620px;top:720px;font-size:200px;filter:drop-shadow(0 16px 0 rgba(0,0,0,.25))}
 .gloss{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 55%)}</style>`;
 
+// Gem Match: six jewel shapes on the velvet tray, three red diamonds lined up and glowing.
+const gemEmblem = `<style>
+.e{position:relative;width:976px;height:976px;margin:24px;border-radius:230px;overflow:hidden;
+ background:radial-gradient(120% 100% at 30% 15%,#6D4BD8,#3D2589 70%,#2A185F);
+ box-shadow:inset 0 0 0 10px rgba(255,255,255,.3)}
+.g{position:absolute;width:220px;height:220px}
+.g::after{content:"";position:absolute;left:18%;top:12%;width:34%;height:24%;border-radius:50%;background:rgba(255,255,255,.55);transform:rotate(-18deg)}
+.d{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:linear-gradient(135deg,#FF7A45,#E8481C 60%,#B9350F)}
+.c{clip-path:circle(50%);background:linear-gradient(135deg,#FFD75A,#FF8A1F 60%,#E06A00)}
+.t{clip-path:polygon(50% 0,100% 100%,0 100%);background:linear-gradient(135deg,#FFF3B0,#FFC22E 60%,#D99E00)}
+.s{clip-path:inset(6% round 18%);background:linear-gradient(135deg,#7FE3A8,#1FB86E 60%,#0E7A46)}
+.h{clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);background:linear-gradient(135deg,#7FB3FF,#2F6BFF 60%,#173FB4)}
+.o{clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);background:linear-gradient(135deg,#D3A8FF,#8B5CFF 60%,#5B21B6)}
+.r1{left:120px;top:150px}.r2{left:380px;top:150px}.r3{left:640px;top:150px}
+.m1{left:120px;top:410px;filter:drop-shadow(0 0 26px rgba(255,80,40,.9))}
+.m2{left:380px;top:410px;filter:drop-shadow(0 0 26px rgba(255,80,40,.9))}
+.m3{left:640px;top:410px;filter:drop-shadow(0 0 26px rgba(255,80,40,.9))}
+.b1{left:120px;top:670px}.b2{left:380px;top:670px}.b3{left:640px;top:670px}
+.gl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,0) 50%)}
+</style><div class="e"><div class="g d r1"></div><div class="g c r2"></div><div class="g t r3"></div>
+<div class="g d m1"></div><div class="g d m2"></div><div class="g d m3"></div>
+<div class="g s b1"></div><div class="g h b2"></div><div class="g o b3"></div><div class="gl"></div></div>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -569,8 +592,9 @@ const wordmarks = {
   'tetris': wordmark({ text: 'Tetris', size: 250, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
   'dino-runner': wordmark({ lines: ['Dino', 'Runner'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
   'crossy-road': wordmark({ lines: ['Crossy', 'Road'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
+  'gem-match': wordmark({ lines: ['Gem', 'Match'], size: 168, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem, 'gem-match': gemEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
