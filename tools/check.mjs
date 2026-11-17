@@ -342,6 +342,20 @@ plays['tetris'] = await play('tetris', async (f) => {
     lines: await f.textContent('.mg-hud .mg-pill:nth-child(3) b'), overlay: await f.$eval('.mg-overlay', e => !e.hidden),
     canvas: await f.$eval('.tt-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['crossy-road'] = await play('crossy-road', async (f) => {
+  // start hopping, hop forward a few times, read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  let over = false;
+  for (let i = 0; i < 5 && !over; i++) {
+    await f.press('body', 'ArrowUp');
+    await f.waitForTimeout(450);
+    over = await f.$eval('.mg-overlay', e => !e.hidden);
+  }
+  await f.waitForTimeout(300);
+  return { score: await f.textContent('.mg-pill b'), best: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.cy-stage canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['dino-runner'] = await play('dino-runner', async (f) => {
   // start running, jump over the first cacti a few times, read the score pill
   await f.click('.mg-overlay .mg-btn');

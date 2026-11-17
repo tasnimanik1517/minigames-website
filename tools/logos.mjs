@@ -505,6 +505,22 @@ const dinoEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><def
 <rect width="1024" height="560" fill="url(#dngl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Crossy Road: the chicken mid-hop over a road, a car passing and a river below.
+const crossyEmblem = `<div class="t"><div class="grass"></div><div class="road"></div><div class="dashes"></div><div class="river"></div>
+<div class="h emoji car">🚗</div><div class="h emoji chicken">🐔</div><div class="h emoji coin">🪙</div><div class="h emoji log">🪵</div>
+<div class="gloss"></div></div><style>
+.t{position:relative;width:976px;height:976px;margin:24px;border-radius:230px;overflow:hidden;box-shadow:inset 0 0 0 10px rgba(255,255,255,.3)}
+.grass{position:absolute;left:0;right:0;top:0;height:330px;background:linear-gradient(180deg,#8ED45E,#6DB544)}
+.road{position:absolute;left:0;right:0;top:330px;height:320px;background:#5A5F6B}
+.dashes{position:absolute;left:0;right:0;top:478px;height:14px;background:repeating-linear-gradient(90deg,#FFD75A 0 90px,transparent 90px 180px)}
+.river{position:absolute;left:0;right:0;top:650px;height:326px;background:linear-gradient(180deg,#3FA7D6,#2B8FC0)}
+.h{position:absolute;line-height:1}
+.chicken{left:300px;top:280px;font-size:360px;filter:drop-shadow(0 24px 0 rgba(0,0,0,.3))}
+.car{left:80px;top:360px;font-size:230px;filter:drop-shadow(0 18px 0 rgba(0,0,0,.3))}
+.coin{left:760px;top:120px;font-size:150px;filter:drop-shadow(0 12px 0 rgba(0,0,0,.25))}
+.log{left:620px;top:720px;font-size:200px;filter:drop-shadow(0 16px 0 rgba(0,0,0,.25))}
+.gloss{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 55%)}</style>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -552,8 +568,9 @@ const wordmarks = {
   'bubble-shooter': wordmark({ lines: ['Bubble', 'Shooter'], size: 168, fill: ['#E8F7FF', '#7FD4F5', '#0EA5E9'], outline: '#0B3D5C', depth: '#072A40', tilt: -3 }),
   'tetris': wordmark({ text: 'Tetris', size: 250, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
   'dino-runner': wordmark({ lines: ['Dino', 'Runner'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
+  'crossy-road': wordmark({ lines: ['Crossy', 'Road'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

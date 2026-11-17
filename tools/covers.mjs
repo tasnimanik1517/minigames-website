@@ -73,6 +73,7 @@ export const covers = {
   'bubble-shooter': () => engineCover('bubbles', { showcase: true }),
   'tetris': () => engineCover('tetris', { showcase: true }),
   'dino-runner': () => engineCover('dino', { showcase: true }),
+  'crossy-road': () => engineCover('crossy', { showcase: true }),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -92,4 +93,5 @@ export const iconFocus = {
   'bubble-shooter': [0.5, 0.45, 0.7],
   'tetris': [0.5, 0.5, 0.7],
   'dino-runner': [0.5, 0.5, 0.7],
+  'crossy-road': [0.5, 0.5, 0.7],
 };

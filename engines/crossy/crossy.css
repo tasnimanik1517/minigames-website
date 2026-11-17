@@ -1,0 +1,18 @@
+/* Crossy Road: a bright road-and-river crossing for one brave chicken. */
+.cy {
+  --g-bg: #EAF6DC; --g-surface: #FFFDF5; --g-surface-2: #DDEFC8; --g-ink: #243312; --g-muted: #5F7350; --g-line: #C4DC9F;
+  --g-brand: #E8481C; --g-brand-edge: #A34E10; --g-accent: #FFC22E; --g-focus: #2F6BFF;
+  color-scheme: light; color: var(--g-ink); overflow: hidden;
+  background: radial-gradient(80% 55% at 0% 0%, #D9F2B8 0%, rgba(217, 242, 184, 0) 60%), radial-gradient(70% 55% at 100% 100%, #BFE3F5 0%, rgba(191, 227, 245, 0) 60%), #EFF8E0;
+}
+.cy .mg-hud { flex-wrap: nowrap; }
+.cy .mg-pill, .cy .mg-icon-btn { background: #fff; box-shadow: 0 1px 0 rgba(36, 51, 18, .05), 0 6px 14px -8px rgba(90, 120, 40, .5), inset 0 0 0 1px rgba(110, 160, 60, .16); }
+.cy .mg-pill b { color: var(--g-brand); }
+@media (max-width: 430px) { .cy .mg-pill { padding: 6px 8px; font-size: 14px; } .cy .mg-icon-btn { width: 34px; height: 34px; } }
+.cy-stage { flex: 1 1 auto; min-height: 0; display: grid; place-items: center; padding: 0 8px 8px; touch-action: none; cursor: pointer; }
+.cy-stage canvas { display: block; border-radius: 16px; box-shadow: 0 2px 0 rgba(0, 0, 0, .12), 0 16px 34px -14px rgba(10, 30, 5, .55); }
+/* still frame used to render cover art */
+.cy.is-showcase { background: #7CBE4F; }
+.cy.is-showcase .mg-hud, .cy.is-showcase .mg-overlay { display: none !important; }
+.cy.is-showcase .cy-stage { padding: 0; }
+.cy.is-showcase .cy-stage canvas { border-radius: 0; box-shadow: none; }
