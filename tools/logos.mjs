@@ -544,6 +544,35 @@ const gemEmblem = `<style>
 <div class="g d m1"></div><div class="g d m2"></div><div class="g d m3"></div>
 <div class="g s b1"></div><div class="g h b2"></div><div class="g o b3"></div><div class="gl"></div></div>`;
 
+// Pinball: a neon table at night — glowing dome rails, three bright bumpers,
+// orange flippers at the bottom and a silver ball on its way up.
+const pinballEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="pbsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1650"/><stop offset=".55" stop-color="#3D1E73"/><stop offset="1" stop-color="#160B33"/></linearGradient>
+<radialGradient id="pbb1" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#FF4D8D"/><stop offset="1" stop-color="#8A1040"/></radialGradient>
+<radialGradient id="pbb2" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#FFC22E"/><stop offset="1" stop-color="#B97A00"/></radialGradient>
+<radialGradient id="pbb3" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#22D3EE"/><stop offset="1" stop-color="#0B5C73"/></radialGradient>
+<radialGradient id="pbball" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#E8E8F0"/><stop offset="1" stop-color="#8A8AA8"/></radialGradient>
+<linearGradient id="pbflip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFE066"/><stop offset=".5" stop-color="#FF9F1C"/><stop offset="1" stop-color="#E8481C"/></linearGradient>
+<linearGradient id="pbgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="pbtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#pbtile)"><rect width="1024" height="1024" fill="url(#pbsky)"/>
+<g fill="#fff" opacity=".5"><circle cx="90" cy="120" r="3"/><circle cx="180" cy="80" r="2.5"/><circle cx="700" cy="90" r="3"/><circle cx="880" cy="160" r="2.5"/><circle cx="120" cy="300" r="2.5"/><circle cx="920" cy="330" r="3"/></g>
+<text x="512" y="180" text-anchor="middle" font-family="Poppins" font-weight="900" font-size="72" letter-spacing="6" fill="#fff" opacity=".25">PINBALL</text>
+<g fill="none" stroke="#22D3EE" stroke-width="12" stroke-linecap="round" opacity=".95" filter="drop-shadow(0 0 14px rgba(34,211,238,.9))">
+<path d="M140 900 L140 420 A372 372 0 0 1 884 420 L884 900"/></g>
+<g><circle cx="330" cy="330" r="86" fill="url(#pbb1)"/><circle cx="330" cy="330" r="86" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="6"/><text x="330" y="352" text-anchor="middle" font-family="Poppins" font-weight="900" font-size="42" fill="#fff">100</text></g>
+<g><circle cx="694" cy="330" r="86" fill="url(#pbb2)"/><circle cx="694" cy="330" r="86" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="6"/><text x="694" y="352" text-anchor="middle" font-family="Poppins" font-weight="900" font-size="42" fill="#fff">100</text></g>
+<g><circle cx="512" cy="520" r="86" fill="url(#pbb3)"/><circle cx="512" cy="520" r="86" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="6"/><text x="512" y="542" text-anchor="middle" font-family="Poppins" font-weight="900" font-size="42" fill="#fff">100</text></g>
+<g fill="#FF6A3D"><path d="M196 640 L330 622 L330 760 Z"/><path d="M828 640 L694 622 L694 760 Z"/></g>
+<g><g transform="rotate(28 330 830)"><rect x="330" y="812" width="210" height="38" rx="19" fill="url(#pbflip)"/></g>
+<g transform="rotate(-28 694 830)"><rect x="484" y="812" width="210" height="38" rx="19" fill="url(#pbflip)"/></g>
+<circle cx="330" cy="830" r="24" fill="#3A2A7A"/><circle cx="694" cy="830" r="24" fill="#3A2A7A"/></g>
+<g><circle cx="560" cy="650" r="12" fill="#FFE066" opacity=".55"/><circle cx="575" cy="690" r="15" fill="#FFE066" opacity=".4"/><circle cx="592" cy="735" r="20" fill="#FFE066" opacity=".3"/>
+<circle cx="612" cy="782" r="34" fill="url(#pbball)" stroke="#fff" stroke-opacity=".6" stroke-width="4"/></g>
+<g fill="#FFC22E"><path d="M150 880l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 880l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#pbgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -593,8 +622,9 @@ const wordmarks = {
   'dino-runner': wordmark({ lines: ['Dino', 'Runner'], size: 168, fill: ['#E8FFD8', '#8FE388', '#2FA84F'], outline: '#0F3D1E', depth: '#082A12', tilt: -3 }),
   'crossy-road': wordmark({ lines: ['Crossy', 'Road'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
   'gem-match': wordmark({ lines: ['Gem', 'Match'], size: 168, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
+  'pinball': wordmark({ text: 'Pinball', size: 200, fill: ['#FFE3F1', '#FF6B9D', '#E8487D'], outline: '#4A0E2E', depth: '#2E0619', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem, 'gem-match': gemEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem, 'gem-match': gemEmblem, 'pinball': pinballEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

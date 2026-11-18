@@ -1,0 +1,157 @@
+{
+  "added": "2026-11-18",
+  "aka": [
+    "pinball",
+    "pinball machine",
+    "pinball game online",
+    "play pinball",
+    "arcade pinball",
+    "free pinball game"
+  ],
+  "aspect": "3 / 4",
+  "aspectMobile": "3 / 4",
+  "categories": [
+    "arcade",
+    "casual"
+  ],
+  "color": "#DB2777",
+  "controls": [
+    [
+      "Left arrow or Z key",
+      "Flip the left flipper"
+    ],
+    [
+      "Right arrow or / key",
+      "Flip the right flipper"
+    ],
+    [
+      "Tap the left or right half of the table",
+      "Flip that side's flipper (hold to keep it up)"
+    ],
+    [
+      "Space or tap",
+      "Launch the ball"
+    ],
+    [
+      "Pause button at the top",
+      "Pause the game (it also pauses by itself if you switch tabs)"
+    ],
+    [
+      "Play again button",
+      "Start a fresh game with three balls"
+    ]
+  ],
+  "description": "Pinball online free: flip the flippers, bounce the ball off the bumpers, and don't let it drain. Three balls — light all three bumpers for a 500-point jackpot.",
+  "engine": "pinball",
+  "featured": false,
+  "lede": "The arcade classic, shrunk onto one glowing table. A silver ball drops from the top, bounces off three bright bumpers, rattles the slingshots, and falls toward the gap between your two flippers — and it is your job to keep it alive. Every bumper is worth 100 points, every slingshot 10, and if you light all three bumpers on the same ball you win a 500-point jackpot. You have three balls, and the table never forgives a late flip.",
+  "options": {},
+  "players": "1",
+  "popularity": 92,
+  "sections": [
+    {
+      "h": "How to play Pinball",
+      "p": [
+        "Press Start playing, then tap or press Space to launch the ball. It shoots up through the bumpers and comes back down toward your flippers. Flip at the right moment to send it back up the table: the left flipper is the Left arrow or the Z key, the right flipper is the Right arrow or the / key, and on a phone you tap the left or right half of the table. Hold a flipper up to cradle the ball and let it settle before you shoot.",
+        "The ball drains when it falls between the two flippers, past the sloped guides. You have three balls per game. When the third one drains, the game is over and your score is final. If you beat your best score, the new one is saved on this device."
+      ]
+    },
+    {
+      "controls": true,
+      "h": "Controls"
+    },
+    {
+      "h": "How scoring works",
+      "p": [
+        "Every bumper hit is worth 100 points, and a bumper stays lit for the rest of the ball once you have hit it. Light all three bumpers on the same ball and you win a 500-point jackpot — then the lights reset and you can win it again. Each slingshot hit is worth 10 points, and passing through a rollover lane lights a star for 50 points; light both stars on the same ball for a 250-point lanes bonus.",
+        "There is no timer and no level: the only thing that ends a ball is the drain. A long rally is worth far more than a lucky bounce, because every bumper hit on the way up is another 100 points."
+      ],
+      "table": {
+        "head": [
+          "What happens",
+          "Points"
+        ],
+        "rows": [
+          [
+            "Bumper hit",
+            "100"
+          ],
+          [
+            "All three bumpers lit on one ball",
+            "500 jackpot"
+          ],
+          [
+            "Slingshot hit",
+            "10"
+          ],
+          [
+            "Rollover lane",
+            "50"
+          ],
+          [
+            "Both lanes lit on one ball",
+            "250 bonus"
+          ]
+        ]
+      }
+    },
+    {
+      "h": "From the first pinball machine to the arcade",
+      "p": [
+        "Pinball grew out of bagatelle, a parlour game in which players shot balls up a sloped board studded with pins. The first coin-operated pinball machine, Baffle Ball, appeared in 1931, and the flippers that define the game today were added in 1947, on Gottlieb's Humpty Dumpty — before that, players could only watch the ball fall.",
+        "By the 1970s and 1980s pinball was a fixture of every arcade, with electronic scoring, flashing lights and sound effects, and machines like The Addams Family (1992) became the best-selling pinball machine of all time. This table keeps the heart of it: two flippers, three bumpers, and a ball that always wants to drain."
+      ]
+    },
+    {
+      "h": "Tips for a bigger score",
+      "ol": [
+        "Flip a fraction late, not early. The ball should be close to the flipper when it swings up, so the hit sends it high and straight rather than sideways.",
+        "Aim for the bumpers, not the walls. A ball sent up the middle of the table falls back through the bumpers, where every hit is 100 points.",
+        "Cradle the ball when it is rolling slowly: hold a flipper up, let the ball settle, then flip when you are ready to aim.",
+        "Watch the bumper lights. Two lit means the jackpot is one good hit away — aim the next shot at the dark bumper.",
+        "On a phone, hold the device in both hands and tap with your thumbs: left thumb for the left flipper, right thumb for the right one."
+      ]
+    },
+    {
+      "h": "More arcade games",
+      "p": [
+        "If you like bouncing a ball around a table, steer the paddle and smash bricks in [[breakout]]. For a faster test of reflexes against an alien fleet, try [[space-invaders]]. You can find every fast, fairground-style game in [[cat:arcade|arcade games]]."
+      ]
+    },
+    {
+      "faq": [
+        [
+          "How do I flip the flippers?",
+          "Left arrow or Z flips the left flipper, Right arrow or / flips the right one. On a phone, tap the left or right half of the table. Hold to keep a flipper up."
+        ],
+        [
+          "How many balls do I get?",
+          "Three balls per game. A ball ends when it drains between the flippers, and the game ends when the third ball drains."
+        ],
+        [
+          "How do I win the jackpot?",
+          "Hit all three bumpers on the same ball. Each bumper stays lit once you hit it, and lighting the third one pays 500 points and resets the lights."
+        ],
+        [
+          "What are the rollover lanes?",
+          "The two star circles on the left and right of the table. Pass the ball through one to light it for 50 points; light both on the same ball for a 250-point bonus."
+        ],
+        [
+          "Is my best score saved?",
+          "Yes. Your best score is saved in this browser on this device, and it is shown at the top of the screen and on the start card."
+        ],
+        [
+          "Can I pause the game?",
+          "Yes. Use the pause button at the top, and the game also pauses by itself if you switch to another tab or app, so the ball never drains while you are not looking."
+        ]
+      ],
+      "h": "Questions"
+    }
+  ],
+  "seoTitle": "Pinball – Play the Classic Arcade Pinball Game Online Free",
+  "slug": "pinball",
+  "tagline": "Three balls. Two flippers. Don't let it drain.",
+  "time": "2 min",
+  "title": "Pinball",
+  "updated": "2026-11-18"
+}

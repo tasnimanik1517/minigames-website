@@ -439,6 +439,20 @@ plays['fruit-slice'] = await play('fruit-slice', async (f, page) => {
   return { score: await f.textContent('.mg-pill b'), lives: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
     overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.fs-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['pinball'] = await play('pinball', async (f) => {
+  // start a game, launch the ball, flip both flippers a few times, read the score pill
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  await f.press('body', 'Space');
+  await f.waitForTimeout(1200);
+  for (let i = 0; i < 4; i++) {
+    await f.press('body', 'ArrowLeft'); await f.waitForTimeout(350);
+    await f.press('body', 'ArrowRight'); await f.waitForTimeout(350);
+  }
+  await f.waitForTimeout(800);
+  return { score: await f.textContent('.mg-pill b'), balls: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.pb-canvas', e => e.width > 0 && e.height > 0) };
+});
 plays['flappy-bird'] = await play('flappy-bird', async (f) => {
   // start a flight, then keep the bird alive with steady taps; stop when the
   // game-over overlay appears (a tap on the overlay is not a flap). Check for

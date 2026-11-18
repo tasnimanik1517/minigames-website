@@ -75,6 +75,7 @@ export const covers = {
   'dino-runner': () => engineCover('dino', { showcase: true }),
   'crossy-road': () => engineCover('crossy', { showcase: true }),
   'gem-match': () => engineCover('gems', { showcase: true }, 'body'),
+  'pinball': () => engineCover('pinball', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -96,4 +97,5 @@ export const iconFocus = {
   'dino-runner': [0.5, 0.5, 0.7],
   'crossy-road': [0.5, 0.5, 0.7],
   'gem-match': [0.5, 0.5, 0.7],
+  'pinball': [0.5, 0.5, 0.7],
 };
