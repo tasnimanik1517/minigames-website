@@ -453,6 +453,18 @@ plays['pinball'] = await play('pinball', async (f) => {
   return { score: await f.textContent('.mg-pill b'), balls: await f.textContent('.mg-hud .mg-pill:nth-child(2) b'),
     overlay: await f.$eval('.mg-overlay', e => !e.hidden), canvas: await f.$eval('.pb-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['wordle'] = await play('wordle', async (f) => {
+  // start a game, type ARISE and submit, read the first row's tile colours
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  for (const k of ['A', 'R', 'I', 'S', 'E']) { await f.press('body', 'Key' + k); await f.waitForTimeout(120); }
+  await f.press('body', 'Enter');
+  await f.waitForTimeout(1400);
+  return { tiles: await f.$$eval('.wd-row:first-child .wd-tile', ts => ts.map(t => t.className)),
+    guesses: await f.textContent('.mg-pill b'),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden),
+    keys: await f.$$eval('.wd-key.is-green, .wd-key.is-yellow, .wd-key.is-grey', l => l.length) };
+});
 plays['flappy-bird'] = await play('flappy-bird', async (f) => {
   // start a flight, then keep the bird alive with steady taps; stop when the
   // game-over overlay appears (a tap on the overlay is not a flap). Check for

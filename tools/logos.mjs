@@ -573,6 +573,33 @@ const pinballEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><
 <rect width="1024" height="560" fill="url(#pbgl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Wordle: letter tiles in green, yellow and grey spelling out the game itself.
+const wordleEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="wdsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDF5E9"/><stop offset="1" stop-color="#CDE6C8"/></linearGradient>
+<linearGradient id="wdgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="wdtile"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#wdtile)"><rect width="1024" height="1024" fill="url(#wdsky)"/>
+<g font-family="Poppins" font-weight="900" font-size="120" text-anchor="middle">
+<g><rect x="112" y="330" width="150" height="150" rx="14" fill="#6AAA64"/><text x="187" y="440" fill="#fff">W</text></g>
+<g><rect x="282" y="330" width="150" height="150" rx="14" fill="#C9B458"/><text x="357" y="440" fill="#fff">O</text></g>
+<g><rect x="452" y="330" width="150" height="150" rx="14" fill="#787C7E"/><text x="527" y="440" fill="#fff">R</text></g>
+<g><rect x="622" y="330" width="150" height="150" rx="14" fill="#6AAA64"/><text x="697" y="440" fill="#fff">D</text></g>
+<g><rect x="792" y="330" width="150" height="150" rx="14" fill="#C9B458"/><text x="867" y="440" fill="#fff">L</text></g></g>
+<g font-family="Poppins" font-weight="900" font-size="92" text-anchor="middle" opacity=".9">
+<g><rect x="202" y="520" width="120" height="120" rx="12" fill="#6AAA64"/><text x="262" y="602" fill="#fff">E</text></g>
+<g><rect x="342" y="520" width="120" height="120" rx="12" fill="#fff" stroke="#D3D6DA" stroke-width="5"/><text x="402" y="602" fill="#1A1A2E">A</text></g>
+<g><rect x="482" y="520" width="120" height="120" rx="12" fill="#C9B458"/><text x="542" y="602" fill="#fff">R</text></g>
+<g><rect x="622" y="520" width="120" height="120" rx="12" fill="#fff" stroke="#D3D6DA" stroke-width="5"/><text x="682" y="602" fill="#1A1A2E">T</text></g>
+<g><rect x="762" y="520" width="120" height="120" rx="12" fill="#787C7E"/><text x="822" y="602" fill="#fff">H</text></g></g>
+<g font-family="Poppins" font-weight="900" font-size="64" text-anchor="middle" opacity=".55">
+<g><rect x="292" y="690" width="88" height="88" rx="10" fill="#fff" stroke="#D3D6DA" stroke-width="4"/><text x="336" y="750" fill="#1A1A2E">S</text></g>
+<g><rect x="398" y="690" width="88" height="88" rx="10" fill="#fff" stroke="#D3D6DA" stroke-width="4"/><text x="442" y="750" fill="#1A1A2E">T</text></g>
+<g><rect x="504" y="690" width="88" height="88" rx="10" fill="#fff" stroke="#D3D6DA" stroke-width="4"/><text x="548" y="750" fill="#1A1A2E">A</text></g>
+<g><rect x="610" y="690" width="88" height="88" rx="10" fill="#fff" stroke="#D3D6DA" stroke-width="4"/><text x="654" y="750" fill="#1A1A2E">Y</text></g></g>
+<g fill="#6AAA64"><path d="M150 880l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 880l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#wdgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 /* ------------------------------------------------------------ wordmarks (title lettering per game) */
 function wordmark({ text, fill, outline, depth, size = 210, italic = false, tilt = 0, letters, lines }) {
   if (lines) { // stacked title: several centred lines, same treatment
@@ -623,8 +650,9 @@ const wordmarks = {
   'crossy-road': wordmark({ lines: ['Crossy', 'Road'], size: 168, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#3A2A08', depth: '#241A03', tilt: -3 }),
   'gem-match': wordmark({ lines: ['Gem', 'Match'], size: 168, fill: ['#F0E6FF', '#B794F6', '#7C3AED'], outline: '#2B0F4A', depth: '#1A0830', tilt: -3 }),
   'pinball': wordmark({ text: 'Pinball', size: 200, fill: ['#FFE3F1', '#FF6B9D', '#E8487D'], outline: '#4A0E2E', depth: '#2E0619', tilt: -3 }),
+  'wordle': wordmark({ text: 'Wordle', size: 210, fill: ['#E8F5E9', '#8FCE8A', '#538D4E'], outline: '#1E3A1E', depth: '#122612', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem, 'gem-match': gemEmblem, 'pinball': pinballEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem, 'gem-match': gemEmblem, 'pinball': pinballEmblem, 'wordle': wordleEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */
