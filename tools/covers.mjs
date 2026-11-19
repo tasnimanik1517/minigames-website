@@ -77,6 +77,7 @@ export const covers = {
   'gem-match': () => engineCover('gems', { showcase: true }, 'body'),
   'pinball': () => engineCover('pinball', { showcase: true }, 'body'),
   'wordle': () => engineCover('wordle', { showcase: true }, 'body'),
+  'pong': () => engineCover('pong', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -100,4 +101,5 @@ export const iconFocus = {
   'gem-match': [0.5, 0.5, 0.7],
   'pinball': [0.5, 0.5, 0.7],
   'wordle': [0.5, 0.5, 0.7],
+  'pong': [0.5, 0.5, 0.7],
 };
