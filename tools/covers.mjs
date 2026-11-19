@@ -78,6 +78,7 @@ export const covers = {
   'pinball': () => engineCover('pinball', { showcase: true }, 'body'),
   'wordle': () => engineCover('wordle', { showcase: true }, 'body'),
   'pong': () => engineCover('pong', { showcase: true }, 'body'),
+  'hangman': () => engineCover('hangman', { showcase: true }, 'body'),
 };
 
 /* Focal point (0..1) used to crop the square app icon from each cover. */
@@ -102,4 +103,5 @@ export const iconFocus = {
   'pinball': [0.5, 0.5, 0.7],
   'wordle': [0.5, 0.5, 0.7],
   'pong': [0.5, 0.5, 0.7],
+  'hangman': [0.5, 0.5, 0.7],
 };

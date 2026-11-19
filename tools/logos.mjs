@@ -590,6 +590,27 @@ const pongEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><def
 <rect width="1024" height="560" fill="url(#pggl)"/></g>
 <rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
 
+// Hangman: a wooden gallows and the word taking shape — some letters found, some still hidden.
+const hangmanEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
+<linearGradient id="hmsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF8E7"/><stop offset="1" stop-color="#FFE9BE"/></linearGradient>
+<linearGradient id="hmgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="hmclip"><rect x="24" y="24" width="976" height="976" rx="230"/></clipPath></defs>
+<g clip-path="url(#hmclip)"><rect width="1024" height="1024" fill="url(#hmsky)"/>
+<g stroke="#8A5F38" stroke-width="26" stroke-linecap="round"><line x1="220" y1="560" x2="560" y2="560"/><line x1="280" y1="560" x2="280" y2="120"/><line x1="280" y1="120" x2="560" y2="120"/></g>
+<line x1="560" y1="120" x2="560" y2="180" stroke="#C9A86A" stroke-width="10" stroke-linecap="round"/>
+<g stroke="#2A2118" stroke-width="12" stroke-linecap="round" fill="none"><circle cx="560" cy="235" r="55" fill="#FFFDF5"/><line x1="560" y1="290" x2="560" y2="420"/><line x1="560" y1="330" x2="490" y2="380"/><line x1="560" y1="420" x2="500" y2="500"/></g>
+<g fill="#2A2118"><circle cx="540" cy="225" r="7"/><circle cx="580" cy="225" r="7"/><path d="M540 258 Q560 272 580 258" stroke="#2A2118" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+<g font-family="Poppins" font-weight="900" font-size="110" text-anchor="middle">
+<g><rect x="92" y="640" width="110" height="130" rx="14" fill="#6AAA64"/><text x="147" y="740" fill="#fff">H</text></g>
+<g><rect x="222" y="640" width="110" height="130" rx="14" fill="#fff" stroke="#2A2118" stroke-width="6"/><text x="277" y="740" fill="#2A2118" opacity=".25">?</text></g>
+<g><rect x="352" y="640" width="110" height="130" rx="14" fill="#6AAA64"/><text x="407" y="740" fill="#fff">N</text></g>
+<g><rect x="482" y="640" width="110" height="130" rx="14" fill="#6AAA64"/><text x="537" y="740" fill="#fff">G</text></g>
+<g><rect x="612" y="640" width="110" height="130" rx="14" fill="#fff" stroke="#2A2118" stroke-width="6"/><text x="667" y="740" fill="#2A2118" opacity=".25">?</text></g>
+<g><rect x="742" y="640" width="110" height="130" rx="14" fill="#6AAA64"/><text x="797" y="740" fill="#fff">N</text></g></g>
+<g fill="#FFC22E"><path d="M150 880l12 32 32 12-32 12-12 32-12-32-32-12 32-12Z"/><path d="M880 880l9 24 24 9-24 9-9 24-9-24-24-9 24-9Z"/></g>
+<rect width="1024" height="560" fill="url(#hmgl)"/></g>
+<rect x="24" y="24" width="976" height="976" rx="230" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="10"/></svg>`;
+
 // Wordle: letter tiles in green, yellow and grey spelling out the game itself.
 const wordleEmblem = `<svg width="1024" height="1024" viewBox="0 0 1024 1024"><defs>
 <linearGradient id="wdsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDF5E9"/><stop offset="1" stop-color="#CDE6C8"/></linearGradient>
@@ -669,8 +690,9 @@ const wordmarks = {
   'pinball': wordmark({ text: 'Pinball', size: 200, fill: ['#FFE3F1', '#FF6B9D', '#E8487D'], outline: '#4A0E2E', depth: '#2E0619', tilt: -3 }),
   'wordle': wordmark({ text: 'Wordle', size: 210, fill: ['#E8F5E9', '#8FCE8A', '#538D4E'], outline: '#1E3A1E', depth: '#122612', tilt: -3 }),
   'pong': wordmark({ text: 'Pong', size: 250, fill: ['#FFF6B0', '#FFC53D', '#FF8A1F'], outline: '#241A03', depth: '#160F02', tilt: -3 }),
+  'hangman': wordmark({ text: 'Hangman', size: 180, fill: ['#E8F5E9', '#8FCE8A', '#2F7D4F'], outline: '#1E3A1E', depth: '#122612', tilt: -3 }),
 };
-const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem, 'gem-match': gemEmblem, 'pinball': pinballEmblem, 'wordle': wordleEmblem, 'pong': pongEmblem };
+const emblems = { 'snake': snakeEmblem, 'tic-tac-toe': tttEmblem, 'tic-tac-toe-4x4-4-in-a-row': tttEmblem, 'rock-paper-scissors': rpsEmblem, '2048': g2048Emblem, 'block-puzzle': blockEmblem, 'ball-sort': ballEmblem, 'memory-match': memoryEmblem, 'fruit-merge': fruitEmblem, 'endless-craft': craftEmblem, 'typing-speed-test': typingEmblem, 'reaction-time-test': reactionEmblem, 'perfect-circle': circleEmblem, 'whack-a-mole': whackEmblem, 'flappy-bird': flappyEmblem, 'stack': stackEmblem, 'breakout': breakoutEmblem, 'doodle-jump': doodleEmblem, 'fruit-slice': fruitSliceEmblem, 'connect-four': connectFourEmblem, 'space-invaders': spaceInvadersEmblem, 'simon-says': simonEmblem, 'bubble-shooter': bubbleEmblem, 'tetris': tetrisEmblem, 'dino-runner': dinoEmblem, 'crossy-road': crossyEmblem, 'gem-match': gemEmblem, 'pinball': pinballEmblem, 'wordle': wordleEmblem, 'pong': pongEmblem, 'hangman': hangmanEmblem };
 const only = process.argv.slice(2); // node tools/logos.mjs 2048 -> just that game's logo, nothing else
 
 /* ------------------------------------------------------------ render */

@@ -494,6 +494,19 @@ plays['pong'] = await play('pong', async (f) => {
     overlay: await f.$eval('.mg-overlay', e => !e.hidden),
     canvas: await f.$eval('.pg-canvas', e => e.width > 0 && e.height > 0) };
 });
+plays['hangman'] = await play('hangman', async (f) => {
+  // start a round, guess E, then a usually-wrong Z, read the HUD and the figure
+  await f.click('.mg-overlay .mg-btn');
+  await f.waitForTimeout(300);
+  await f.click('.hm-key[data-key="E"]');
+  await f.waitForTimeout(400);
+  await f.click('.hm-key[data-key="Z"]');
+  await f.waitForTimeout(400);
+  return { wrong: await f.textContent('.mg-hud .mg-pill:nth-child(1) b'),
+    letters: await f.$$eval('.hm-letter', ls => ls.map(l => l.textContent || '_').join('')),
+    shown: await f.$$eval('.hm-part.is-shown', l => l.length),
+    overlay: await f.$eval('.mg-overlay', e => !e.hidden) };
+});
 /* page weight (compressed HTML) */
 const weights = {};
 for (const u of ['/', '/snake/', '/snake/game.html', '/tic-tac-toe/game.html', '/rock-paper-scissors/game.html']) {
